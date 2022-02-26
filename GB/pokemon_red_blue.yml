@@ -1,7 +1,7 @@
 meta:
   schemaVersion: 1
   gameName: "Pokemon Red and Blue"
-  gamePlatform: "Gameboy"
+  gamePlatform: "GB"
 
 
 #definitions:

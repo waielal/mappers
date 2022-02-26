@@ -91,7 +91,7 @@ properties:
       numOfItems: { type: "number", startingAddress: 0xD31C, length: 1 }
       bag: { type: "macro", startingAddress: 0xD31D, macro: "playerBag" } 
     badges: { type: "number", startingAddress: 0xD355, length: 2 }
-    money: { type: "binaryCodedDecimal", startingAddress: 0xD346, length: 3 }
+    money: { type: "number", startingAddress: 0xD346, length: 3 }
       
   team:
     teamCount: { type: "number", startingAddress: 0xD162, length: 1 }
