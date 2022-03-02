@@ -147,7 +147,7 @@ properties:
       modEnemyStageAcc: { type: "reference", startingAddress: 0xCD31, length: 1, reference: "stageModifiers" }
       modEnemyStageEva: { type: "reference", startingAddress: 0xCD32, length: 1, reference: "stageModifiers" }  
   battle:
-    type: { type: "reference", startingAddress: 0xD057, length: 1, reference: "battleTypes" }
+    type: { type: "reference", startingAddress: 0xD056, length: 1, reference: "battleTypes" }
     specialType: { type: "reference", startingAddress: 0xD059, reference: "specialBattleTypes" }
   rival:
     name: { type: "string", startingAddress: 0xD349, length: 8} #check
