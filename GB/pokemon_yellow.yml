@@ -6,6 +6,7 @@ meta:
 macros:
   pokemonInParty:
       species: { offset: 0, type: "reference", reference: "pokemon" }
+      nickname: { offset: 330, type: "string", length: 11, reference: "defaultCharacterMap", note: "Stored at a different memory location" }
       currentHp: { offset: 1, type: "number", length: 2, note: "The amount of remaining HP" }
       statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
@@ -275,6 +276,42 @@ glossary:
   defaultCharacterMap:
     0x50: null
     0x00: " "
+    0x01: Null
+    0x02: Null
+    0x03: Null
+    0x04: Null
+    0x05: Null
+    0x06: Null
+    0x07: Null
+    0x08: Null
+    0x09: Null
+    0x0A: Null
+    0x0B: Null
+    0x0C: Null
+    0x0D: Null
+    0x0E: Null
+    0x0D: Null
+    0x10: Null
+    0x11: Null
+    0x12: Null
+    0x13: Null
+    0x14: Null
+    0x15: Null
+    0x16: Null
+    0x17: Null
+    0x18: Null
+    0x19: Null
+    0x40: Null
+    0x41: Null
+    0x42: Null
+    0x43: Null
+    0x44: Null
+    0x45: Null
+    0x46: Null
+    0x47: Null
+    0x48: Null
+    0x49: Null
+    0x51: Null
     0x54: "#"
     0x75: "…"
     0x79: "┌"
@@ -349,6 +386,7 @@ glossary:
     0xBD: "s"
     0xBE: "t"
     0xBF: "v"
+    0xC7: null
     0xE0: " "
     0xE3: "-"
     0xE4: "r"
