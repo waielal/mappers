@@ -3,32 +3,25 @@ meta:
   gameName: "Pokemon Yellow"
   gamePlatform: "GB"
 
-
-#definitions:
-  #summary(stat) - the stat as it appears on the Pokemon's summary page
-  #current(stat) - the stat's value after badge boosts are applied
-  #battle(stat) - the stat's value during battle after badge boosts and stage multipliers
-  #level - in the data structure the Pokemon's level is stored in multiple locations, the second location is the correct one
-
 macros:
-  pokemonInParty: #the following data is ordered sequentially by memory location
+  pokemonInParty:
       species: { offset: 0, type: "reference", reference: "pokemon" }
-      currentHp: { offset: 1, type: "number", length: 2 }
+      currentHp: { offset: 1, type: "number", length: 2, note: "The amount of remaining HP" }
       statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
       type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
       catchRate: { offset: 7, type: "number" }
-      move1: { offset: 8, type: "reference", reference: "moves" }
-      move2: { offset: 9, type: "reference", reference: "moves" }
+      move1: { offset: 8, type: "reference", reference: "moves", note: "Top moveslot" }
+      move2: { offset: 9, type: "reference", reference: "moves", }
       move3: { offset: 10, type: "reference", reference: "moves" }
-      move4: { offset: 11, type: "reference", reference: "moves" }
+      move4: { offset: 11, type: "reference", reference: "moves",  note: "Bottom moveslot" }
       trainerId: { offset: 12, type: "number", length: 2 }
-      experience: { offset: 14, type: "number", length: 3 }
-      statExpHP: { offset: 17, type: "number", length: 2 }
-      statExpAtk: { offset: 19, type: "number", length: 2 }
-      statExpDef: { offset: 21, type: "number", length: 2 }
-      statExpSpd: { offset: 23, type: "number", length: 2 }
-      statExpSpc: { offset: 25, type: "number", length: 2 }
+      experience: { offset: 14, type: "number", length: 3, note: "Current exp" }
+      statExpHP: { offset: 17, type: "number", length: 2, note: "HP EV (stat experience)" }
+      statExpAtk: { offset: 19, type: "number", length: 2, note: "Attack EV (stat experience)" }
+      statExpDef: { offset: 21, type: "number", length: 2, note: "Defense EV (stat experience)" }
+      statExpSpd: { offset: 23, type: "number", length: 2, note: "Speed EV (stat experience)"  }
+      statExpSpc: { offset: 25, type: "number", length: 2, note: "Special EV (stat experience)"  }
       dvAtkDef: { offset: 27, type: "number", length: 1 }
       dvSpdSpc: { offset: 28, type: "number", length: 1 }
       move1pp: { offset: 29, type: "number", length: 1 }
@@ -36,11 +29,12 @@ macros:
       move3pp: { offset: 31, type: "number", length: 1 }
       move4pp: { offset: 32, type: "number", length: 1 }
       level: { offset: 33, type: "number", length: 1 }
-      maxHP: { offset: 34, type: "number", length: 2 }
-      summaryAtk: { offset: 36, type: "number", length: 2 }
-      summaryDef: { offset: 38, type: "number", length: 2 }
-      summarySpd: { offset: 40, type: "number", length: 2 }
-      summarySpc: { offset: 42, type: "number", length: 2 }
+      maxHP: { offset: 34, type: "number", length: 2, note: "The maximum HP the Pokemon can have when it is fully healed" }
+      summaryAtk: { offset: 36, type: "number", length: 2, note: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      summaryDef: { offset: 38, type: "number", length: 2, note: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      summarySpd: { offset: 40, type: "number", length: 2, note: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      summarySpc: { offset: 42, type: "number", length: 2, note: "The Attack stat as it appears in the Pokemon's summary page in game" }
+  
   playerBag:
     slot1:
       item: { offset: 0, type: "reference", reference: "items" }
@@ -102,17 +96,55 @@ macros:
     slot20:
       item: { offset: 38, type: "reference", reference: "items" }
       qty: { offset: 39, type: "number", length: 1 }
+  
+  encounterStructure:
+    common1:
+      species: { offset: 1, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 0, type: "number", length: 1 }
+    common2:
+      species: { offset: 3, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 2, type: "number", length: 1 }
+    common3:
+      species: { offset: 5, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 4, type: "number", length: 1 }
+    common4:
+      species: { offset: 7, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 6, type: "number", length: 1 }
+    uncommon1:
+      species: { offset: 9, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 8, type: "number", length: 1 }
+    uncommon2:
+      species: { offset: 11, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 10, type: "number", length: 1 }
+    uncommon3:
+      species: { offset: 13, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 12, type: "number", length: 1 }
+    uncommon4:
+      species: { offset: 15, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 14, type: "number", length: 1 }
+    rare1:
+      species: { offset: 17, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 16, type: "number", length: 1 }
+    rare2:
+      species: { offset: 19, type: "reference", length: 1, reference: "pokemon" }
+      level: { offset: 18, type: "number", length: 1 }
 
 properties:
   player:
     name: { type: "string", startingAddress: 0xD157, length: 11 }
-    starterPokemon: { type: "reference", startingAddress: 0xD716, length: 1, reference: "pokemon" }
+    starterPokemon: { type: "reference", startingAddress: 0xD716, length: 1, reference: "pokemon", note: "The starter Pokemon received from Oak."}
     playerItems:
-      numOfItems: { type: "number", startingAddress: 0xD31C, length: 1 }
+      numOfItems: { type: "number", startingAddress: 0xD31C, length: 1, "The total number of items currently in the bag."}
       bag: { type: "macro", startingAddress: 0xD31D, macro: "playerBag" } 
     badges: { type: "number", startingAddress: 0xD355, length: 2 }
     money: { type: "binaryCodedDecimal", startingAddress: 0xD346, length: 3 }
-      
+  
+  overworld:
+    loadedMap: { type: "reference", startingAddress: 0xD35D, length: 1, reference: "maps" }
+    encounters: 
+      rate: { type: "number", startingAddress: 0xD886, length: 1 }
+      encounterTable: { type: "macro", startingAddress: 0xD887, macro: "encounterStructure" } 
+  
   team:
     teamCount: { type: "number", startingAddress: 0xD162, length: 1 }
     inbattle:
@@ -122,10 +154,10 @@ properties:
       modStageSpc: { type: "reference", startingAddress: 0xCD1d, length: 1, reference: "stageModifiers" }
       modStageAcc: { type: "reference", startingAddress: 0xCD1e, length: 1, reference: "stageModifiers" }
       modStageEva: { type: "reference", startingAddress: 0xCD1f, length: 1, reference: "stageModifiers" }
-      battleStatAtk: { type: "number", startingAddress: 0xD024, length: 2 }
-      battleStatDef: { type: "number", startingAddress: 0xD026, length: 2 }
-      battleStatSpd: { type: "number", startingAddress: 0xD028, length: 2 }
-      battleStatSpc: { type: "number", startingAddress: 0xD02A, length: 2 }
+      battleStatAtk: { type: "number", startingAddress: 0xD024, length: 2, note: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatDef: { type: "number", startingAddress: 0xD026, length: 2, note: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpd: { type: "number", startingAddress: 0xD028, length: 2, note: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
+      battleStatSpc: { type: "number", startingAddress: 0xD02A, length: 2, note: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
       move1: { type: "reference", startingAddress: 0xD01B, length: 1, reference: "moves" }
       move2: { type: "reference", startingAddress: 0xD01C, length: 1, reference: "moves" }
       move3: { type: "reference", startingAddress: 0xD01D, length: 1, reference: "moves" }
@@ -138,19 +170,45 @@ properties:
     slot4: { type: "macro", startingAddress: 0xD1EE, macro: "pokemonInParty" }
     slot5: { type: "macro", startingAddress: 0xD21A, macro: "pokemonInParty" }
     slot6: { type: "macro", startingAddress: 0xD246, macro: "pokemonInParty" }
-    
-  enemy:
-      modEnemyStageAtk: { type: "reference", startingAddress: 0xCD2D, length: 1, reference: "stageModifiers" }
-      modEnemyStageDef: { type: "reference", startingAddress: 0xCD2E, length: 1, reference: "stageModifiers" }
-      modEnemyStageSpd: { type: "reference", startingAddress: 0xCD2F, length: 1, reference: "stageModifiers" }
-      modEnemyStageSpc: { type: "reference", startingAddress: 0xCD30, length: 1, reference: "stageModifiers" }
-      modEnemyStageAcc: { type: "reference", startingAddress: 0xCD31, length: 1, reference: "stageModifiers" }
-      modEnemyStageEva: { type: "reference", startingAddress: 0xCD32, length: 1, reference: "stageModifiers" }  
+
   battle:
     type: { type: "reference", startingAddress: 0xD056, length: 1, reference: "battleTypes" }
     specialType: { type: "reference", startingAddress: 0xD059, reference: "specialBattleTypes" }
+    trainer:
+      class: { type: "string", startingAddress: 0xD049, length: 11, reference: "defaultCharacterMap" }
+      totalPokemon: { type: "number", startingAddress: 0xD89B, length: 1 }
+      slot1: { type: "reference", startingAddress: 0xD89C, length: 1, reference: "pokemon" }
+      slot2: { type: "reference", startingAddress: 0xD89D, length: 1, reference: "pokemon" }
+      slot3: { type: "reference", startingAddress: 0xD89E, length: 1, reference: "pokemon" }
+      slot4: { type: "reference", startingAddress: 0xD8AF, length: 1, reference: "pokemon" }
+      slot5: { type: "reference", startingAddress: 0xD8A0, length: 1, reference: "pokemon" }
+      slot6: { type: "reference", startingAddress: 0xD8A1, length: 1, reference: "pokemon" }
+    enemyPokemon:
+      species: { type: "reference", startingAddress: 0xCFD7, length: 1, reference: "pokemon" }
+      currentHP: { type: "number", startingAddress: 0xCFE5, length: 2 }
+      statusCondition: { type: "reference", startingAddress: 0xCFE8, length: 1, reference: "statusConditions" }
+      type1: { type: "reference", startingAddress: 0xCFE9, length: 1, reference: "pokemonTypes" }
+      type2: { type: "reference", startingAddress: 0xCFEA, length: 1, reference: "pokemonTypes" }
+      move1: { type: "reference", startingAddress: 0xCFEC, length: 1, reference: "moves" }
+      move2: { type: "reference", startingAddress: 0xCFED, length: 1, reference: "moves" }
+      move3: { type: "reference", startingAddress: 0xCFEE, length: 1, reference: "moves" }
+      move4: { type: "reference", startingAddress: 0xCFEF, length: 1, reference: "moves" }
+      level: { type: "number", startingAddress: 0xCFF2, length: 1 }
+      maxHP: { type: "number", startingAddress: 0xCFF3, length: 2 }
+      atk: { type: "number", startingAddress: 0xCFF5, length: 2 }
+      def: { type: "number", startingAddress: 0xCFF7, length: 2 }
+      spd: { type: "number", startingAddress: 0xCFF9, length: 2 }
+      spc: { type: "number", startingAddress: 0xCFFB, length: 2 }
+      modEnemyStageAtk: { type: "reference", startingAddress: 0xCD2E, length: 1, reference: "stageModifiers" }
+      modEnemyStageDef: { type: "reference", startingAddress: 0xCD2F, length: 1, reference: "stageModifiers" }
+      modEnemyStageSpd: { type: "reference", startingAddress: 0xCD30, length: 1, reference: "stageModifiers" }
+      modEnemyStageSpc: { type: "reference", startingAddress: 0xCD31, length: 1, reference: "stageModifiers" }
+      modEnemyStageAcc: { type: "reference", startingAddress: 0xCD32, length: 1, reference: "stageModifiers" }
+      modEnemyStageEva: { type: "reference", startingAddress: 0xCD33, length: 1, reference: "stageModifiers" }  
+  
   rival:
-    name: { type: "string", startingAddress: 0xD349, length: 8} #check
+    name: { type: "string", startingAddress: 0xD349, length: 8, note: "The rival's name."}
+  
   gameTime:
     hours:   { type: "number", startingAddress: 0xDA3F, length: 2 }
     minutes: { type: "number", startingAddress: 0xDA41, length: 2 }
@@ -167,6 +225,7 @@ glossary:
     0x00: "Normal"
     0x01: "Old Man Battle"
     0x02: "Safari Zone"
+    0x04: "Oak catching Starter"
   pokemonTypes:
     0x00:	"Normal"
     0x01:	"Fighting"
@@ -184,7 +243,7 @@ glossary:
     0x19:	"Ice"
     0x1A:	"Dragon"
   stageModifiers:
-    0x00: null #this should never be the value
+    0x00: null
     0x01: -6
     0x02: -5
     0x03: -4
@@ -198,8 +257,8 @@ glossary:
     0x0B: 4
     0x0C: 5
     0x0D: 6
-    0x0E: null #this should never be the value
-    0x14: null #sometimes returns this outside of battle
+    0x0E: null
+    0x14: null
   statusConditions:
     0x00: null
     0x04:	"Asleep"
@@ -208,10 +267,10 @@ glossary:
     0x20:	"Frozen"
     0x40:	"Paralyzed"
   tempStatusConfused:
-    0x00: null #no status
+    0x00: null
     0x80: "Confused"
   tempStatusBadPoison:
-    0x00: null #no status
+    0x00: null
     0x01: "Badly Posioned"
   defaultCharacterMap:
     0x50: null
@@ -315,7 +374,7 @@ glossary:
     0xFE: "8"
     0xFF: "9"
   moves:
-    0x00: null
+    0x00: " "
     0x01: "POUND"
     0x02: "KARATE CHOP"
     0x03: "DOUBLESLAP"
@@ -811,3 +870,253 @@ glossary:
     0xBC: { pokedexNumber: 69, name: "Bellsprout" }
     0xBD: { pokedexNumber: 70, name: "Weepinbell" }
     0xBE: { pokedexNumber: 71, name: "Victreebell" }
+  maps:
+    0x00: "Pallet Town"
+    0x01: "Viridian City"
+    0x02: "Pewter City"
+    0x03: "Cerulean City"
+    0x04: "Lavender Town"
+    0x05: "Vermilion City"
+    0x06: "Celadon City"
+    0x07: "Fuchsia City"
+    0x08: "Cinnabar Island"
+    0x09: "Indigo Plateau"
+    0x0A: "Saffron City"
+    0x0B: "UNUSED_MAP_0B"
+    0x0C: "Route 1"
+    0x0D: "Route 2"
+    0x0E: "Route 3"
+    0x0F: "Route 4"
+    0x10: "Route 5"
+    0x11: "Route 6"
+    0x12: "Route 7"
+    0x13: "Route 8"
+    0x14: "Route 9"
+    0x15: "Route 10"
+    0x16: "Route 11"
+    0x17: "Route 12"
+    0x18: "Route 13"
+    0x19: "Route 14"
+    0x1A: "Route 15"
+    0x1B: "Route 16"
+    0x1C: "Route 17"
+    0x1D: "Route 18"
+    0x1E: "Route 19"
+    0x1F: "Route 20"
+    0x20: "Route 21" 
+    0x21: "Route 22"
+    0x22: "Route 23"
+    0x23: "Route 24"
+    0x24: "Route 25"
+    0x25: "Pallet Town - Red's House 1F"
+    0x26: "Pallet Town - Red's House 2F"
+    0x27: "Pallet Town - Blue's House"
+    0x28: "Pallet Town - Oak's Lab"
+    0x29: "Viridian City - Pokecenter"
+    0x2A: "Viridian City - Mart"
+    0x2B: "Viridian City - School"
+    0x2C: "Viridian City - House"
+    0x2D: "Viridian City - Gym"
+    0x2E: "Digglet's Cave - Exit"
+    0x2F: "Viridian Forest - Exit"
+    0x30: "Route 2 - House"
+    0x31: "Route 2 - Gate"
+    0x32: "Viridian Forest - Entrance"
+    0x33: "Viridian Forest"
+    0x34: "Pewter City - Museum 1F"
+    0x35: "Pewter City - Museum 2F"
+    0x36: "Pewter City - Gym"
+    0x37: "Pewter City - House 1"
+    0x38: "Pewter City - Mart"
+    0x39: "Pewter City - House 2"
+    0x3A: "Pewter City - Pokecenter"
+    0x3B: "Mt Moon - 1"
+    0x3C: "Mt Moon - 2"
+    0x3D: "Mt Moon - 3"
+    0x3E: "Cerulean City - Trashed House"
+    0x3F: "Cerulean City - House"
+    0x40: "Cerulean City - Pokecenter"
+    0x41: "Cerulean City - Gym"
+    0x42: "Cerulean City - Bike Shop"
+    0x43: "Cerulean City - Mart"
+    0x44: "Route 4 - Mt. Moon Pokecenter"
+    0x45: "Trashed House Copy"
+    0x46: "Route 5 - Gate"
+    0x47: "Route 5 - Path Entrance"
+    0x48: "Pokémon Day Care"
+    0x49: "Route 6 - Gate"
+    0x4A: "Route 6 - Path Entrance"
+    0x4B: "Route 7 - Path Entrance Copy"
+    0x4C: "Route 7 - Gate"
+    0x4D: "Route 7 - Path Entrance"
+    0x4E: "Route 7 - Path Entrance Copy"
+    0x4F: "Route 8 - Gate"
+    0x50: "Route 8 - Path Entrance"
+    0x51: "Rock Tunnel Pokecenter"
+    0x52: "Rock Tunnel - 1"
+    0x53: "Power Plant"
+    0x54: "Route 11 - Gate 1F"
+    0x55: "Digglet's Cave - Entrance"
+    0x56: "Route 11 - Gate 2F"
+    0x57: "Route 12 - Gate 1F"
+    0x58: "Bill's House"
+    0x59: "Vermilion City - Pokecenter"
+    0x5A: "Vermilion City - Pokemon Fan Club"
+    0x5B: "Vermilion City - Mart"
+    0x5C: "Vermilion City - Gym"
+    0x5D: "Vermilion City - House 1"
+    0x5E: "Vermilion Dock"
+    0x5F: "SS Anne"
+    0x60: "SS Anne"
+    0x61: "SS Anne"
+    0x62: "SS Anne"
+    0x63: "SS Anne"
+    0x64: "SS Anne"
+    0x65: "SS Anne"
+    0x66: "SS Anne"
+    0x67: "SS Anne"
+    0x68: "SS Anne"
+    0x69: "UNUSED_MAP_69"
+    0x6A: "UNUSED_MAP_6A"
+    0x6B: "UNUSED_MAP_6B"
+    0x6C: "Victory Road"
+    0x6D: "UNUSED_MAP_6D"
+    0x6E: "UNUSED_MAP_6E"
+    0x6F: "UNUSED_MAP_6F"
+    0x70: "UNUSED_MAP_70"
+    0x71: "Lance's Room"
+    0x72: "UNUSED_MAP_72"
+    0x73: "UNUSED_MAP_73"
+    0x74: "UNUSED_MAP_74"
+    0x75: "UNUSED_MAP_75"
+    0x76: "Hall of Fame"
+    0x77: "Underground Path"
+    0x78: "Champions Room"
+    0x79: "Underground Path"
+    0x7A: "Celadon City - Department Store - 1F"
+    0x7B: "Celadon City - Department Store - 2F"
+    0x7C: "Celadon City - Department Store - 3F"
+    0x7D: "Celadon City - Department Store - 4F"
+    0x7E: "Celadon City - Department Store - Roof"
+    0x7F: "Celadon City - Department Store - Elevator"
+    0x80: "Celadon City - Mansion - 1F"
+    0x81: "Celadon City - Mansion - 2F"
+    0x82: "Celadon City - Mansion - 3F"
+    0x83: "Celadon City - Mansion - 4F"
+    0x84: "Celadon City - Mansion - 5F"
+    0x85: "Celadon City - Pokecenter"
+    0x86: "Celadon City - Celadon Gym"
+    0x87: "Celadon City - Game Corner"
+    0x88: "Celadon City - Department Store - 5F"
+    0x89: "Celadon City - Prize House"
+    0x8A: "Celadon City - Diner"
+    0x8B: "Celadon City - House"
+    0x8C: "Celadon City - Hotel"
+    0x8D: "Lavender Town - Pokecenter"
+    0x8E: "Pokemon Tower - 1F"
+    0x8F: "Pokemon Tower - 2F"
+    0x90: "Pokemon Tower - 3F"
+    0x91: "Pokemon Tower - 4F"
+    0x92: "Pokemon Tower - 5F"
+    0x93: "Pokemon Tower - 6F"
+    0x94: "Pokemon Tower - 7F"
+    0x95: "Lavender Town - House 1"
+    0x96: "Lavender Town - Mart"
+    0x97: "Lavender Town - House 2"
+    0x98: "Fuchsia City - Mart"
+    0x99: "Fuchsia City - House 1"
+    0x9A: "Fuchsia City - Pokecenter"
+    0x9B: "Fuchsia City - House 2"
+    0x9C: "Safari Zone - Entrance"
+    0x9D: "Fuchsia City - Gym"
+    0x9E: "Fuchsia City - Meeting Room"
+    0x9F: "Seafoam Islands"
+    0xA0: "Seafoam Islands"
+    0xA1: "Seafoam Islands"
+    0xA2: "Seafoam Islands"
+    0xA3: "Vermilion City - House 2"
+    0xA4: "Fuchsia City - House 3"
+    0xA5: "Cinnabar Mansion"
+    0xA6: "Cinnabar Island - Gym"
+    0xA7: "Cinnabar Island - Lab"
+    0xA8: "Cinnabar Island - Lab"
+    0xA9: "Cinnabar Island - Lab"
+    0xAA: "Cinnabar Island - Lab"
+    0xAB: "Cinnabar Island - Pokecenter"
+    0xAC: "Cinnabar Island - Mart"
+    0xAD: "CINNABAR_MART_COPY"
+    0xAE: "Indigo Plateau - Lobby"
+    0xAF: "Saffron City - Copycat's House - 1F"
+    0xB0: "Saffron City - Copycat's House - 2F"
+    0xB1: "Saffron City - Fighting Dojo"
+    0xB2: "Saffron City - Gym"
+    0xB3: "Saffron City - House 1"
+    0xB4: "Saffron City - Mart"
+    0xB5: "Silph Co - 1F"
+    0xB6: "Saffron City - Pokecenter"
+    0xB7: "Saffron City - House 2"
+    0xB8: "Route 15 - Gate - 1F"
+    0xB9: "Route 15 - Gate  -2F"
+    0xBA: "Route 16 - Gate - 1F"
+    0xBB: "Route 16 - Gate - 2F"
+    0xBC: "Route 16 - House"
+    0xBD: "Route 12 - House"
+    0xBE: "Route 18 - Gate - 1F"
+    0xBF: "Route 18 - Gate - 2F"
+    0xC0: "Seafoam Islands"
+    0xC1: "Route 22 - Gate"
+    0xC2: "Victory Road"
+    0xC3: "Route 12 - Gate - 2F"
+    0xC4: "Vermilion City - House 3"
+    0xC5: "Digglet's Cave"
+    0xC6: "Victory Road"
+    0xC7: "Rocket Hideout 1"
+    0xC8: "Rocket Hideout 2"
+    0xC9: "Rocket Hideout 3"
+    0xCA: "Rocket Hideout 4"
+    0xCB: "Rocket Hideout - Elevator"
+    0xCC: "UNUSED_MAP_CC"
+    0xCD: "UNUSED_MAP_CD"
+    0xCE: "UNUSED_MAP_CE"
+    0xCF: "Silph Co - 2F"
+    0xD0: "Silph Co - 3F"
+    0xD1: "Silph Co - 4F"
+    0xD2: "Silph Co - 5F"
+    0xD3: "Silph Co - 6F"
+    0xD4: "Silph Co - 7F"
+    0xD5: "Silph Co - 8F"
+    0xD6: "Cinnabar Mansion"
+    0xD7: "Cinnabar Mansion"
+    0xD8: "Cinnabar Mansion"
+    0xD9: "Safari Zone (East)"
+    0xDA: "Safari Zone (North)"
+    0xDB: "Safari Zone (West)"
+    0xDC: "Safari Zone (Center)"
+    0xDD: "Safari Zone - Rest House 1"
+    0xDE: "Safari Zone - Secret House"
+    0xDF: "Safari Zone - Rest House 2"
+    0xE0: "Safari Zone - Rest House 3"
+    0xE1: "Safari Zone - Rest House 4"
+    0xE2: "Unknown Dungeon"
+    0xE3: "Unknown Dungeon"
+    0xE4: "Unknown Dungeon"
+    0xE5: "Lavender Town - Name Rater's House"
+    0xE6: "Cerulean City - House 3"
+    0xE7: "UNUSED_MAP_E7"
+    0xE8: "Rock Tunnel"
+    0xE9: "Silph Co - 9F"
+    0xEA: "Silph Co - 10F"
+    0xEB: "Silph Co - 11F"
+    0xEC: "Silph Co - Elevator"
+    0xED: "UNUSED_MAP_ED"
+    0xEE: "UNUSED_MAP_EE"
+    0xEF: "Trade Center"
+    0xF0: "Colosseum"
+    0xF1: "UNUSED_MAP_F1"
+    0xF2: "UNUSED_MAP_F2"
+    0xF3: "UNUSED_MAP_F3"
+    0xF4: "UNUSED_MAP_F4"
+    0xF5: "The Elite 4: Lorelei"
+    0xF6: "The Elite 4: Bruno"
+    0xF7: "The Elite 4: Agatha"
+    0xFF: "UNKNOWN"
