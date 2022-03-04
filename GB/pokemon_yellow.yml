@@ -39,96 +39,96 @@ macros:
   playerBag:
     slot1:
       item: { offset: 0, type: "reference", reference: "items" }
-      qty: { offset: 1, type: "number", length: 1 }
+      quantity: { offset: 1, type: "number", length: 1 }
     slot2:
       item: { offset: 2, type: "reference", reference: "items" }
-      qty: { offset: 3, type: "number", length: 1 }
+      quantity: { offset: 3, type: "number", length: 1 }
     slot3:
       item: { offset: 4, type: "reference", reference: "items" }
-      qty: { offset: 5, type: "number", length: 1 }
+      quantity: { offset: 5, type: "number", length: 1 }
     slot4:
       item: { offset: 6, type: "reference", reference: "items" }
-      qty: { offset: 7, type: "number", length: 1 }
+      quantity: { offset: 7, type: "number", length: 1 }
     slot5:
       item: { offset: 8, type: "reference", reference: "items" }
-      qty: { offset: 9, type: "number", length: 1 }
+      quantity: { offset: 9, type: "number", length: 1 }
     slot6:
       item: { offset: 10, type: "reference", reference: "items" }
-      qty: { offset: 11, type: "number", length: 1 }
+      quantity: { offset: 11, type: "number", length: 1 }
     slot7:
       item: { offset: 12, type: "reference", reference: "items" }
-      qty: { offset: 13, type: "number", length: 1 }
+      quantity: { offset: 13, type: "number", length: 1 }
     slot8:
       item: { offset: 14, type: "reference", reference: "items" }
-      qty: { offset: 15, type: "number", length: 1 }
+      quantity: { offset: 15, type: "number", length: 1 }
     slot9:
       item: { offset: 16, type: "reference", reference: "items" }
-      qty: { offset: 17, type: "number", length: 1 }
+      quantity: { offset: 17, type: "number", length: 1 }
     slot10:
       item: { offset: 18, type: "reference", reference: "items" }
-      qty: { offset: 19, type: "number", length: 1 }
+      quantity: { offset: 19, type: "number", length: 1 }
     slot11:
       item: { offset: 20, type: "reference", reference: "items" }
-      qty: { offset: 21, type: "number", length: 1 }
+      quantity: { offset: 21, type: "number", length: 1 }
     slot12:
       item: { offset: 22, type: "reference", reference: "items" }
-      qty: { offset: 23, type: "number", length: 1 }
+      quantity: { offset: 23, type: "number", length: 1 }
     slot13:
       item: { offset: 24, type: "reference", reference: "items" }
-      qty: { offset: 25, type: "number", length: 1 }
+      quantity: { offset: 25, type: "number", length: 1 }
     slot14:
       item: { offset: 26, type: "reference", reference: "items" }
-      qty: { offset: 27, type: "number", length: 1 }
+      quantity: { offset: 27, type: "number", length: 1 }
     slot15:
       item: { offset: 28, type: "reference", reference: "items" }
-      qty: { offset: 29, type: "number", length: 1 }
+      quantity: { offset: 29, type: "number", length: 1 }
     slot16:
       item: { offset: 30, type: "reference", reference: "items" }
-      qty: { offset: 31, type: "number", length: 1 }
+      quantity: { offset: 31, type: "number", length: 1 }
     slot17:
       item: { offset: 32, type: "reference", reference: "items" }
-      qty: { offset: 33, type: "number", length: 1 }
+      quantity: { offset: 33, type: "number", length: 1 }
     slot18:
       item: { offset: 34, type: "reference", reference: "items" }
-      qty: { offset: 35, type: "number", length: 1 }
+      quantity: { offset: 35, type: "number", length: 1 }
     slot19:
       item: { offset: 36, type: "reference", reference: "items" }
-      qty: { offset: 37, type: "number", length: 1 }
+      quantity: { offset: 37, type: "number", length: 1 }
     slot20:
       item: { offset: 38, type: "reference", reference: "items" }
-      qty: { offset: 39, type: "number", length: 1 }
+      quantity: { offset: 39, type: "number", length: 1 }
   
   encounterStructure:
     common1:
-      species: { offset: 1, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 0, type: "number", length: 1 }
+      pokemon: { offset: 1, type: "reference", length: 1, reference: "pokemon" }
     common2:
-      species: { offset: 3, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 2, type: "number", length: 1 }
+      pokemon: { offset: 3, type: "reference", length: 1, reference: "pokemon" }
     common3:
-      species: { offset: 5, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 4, type: "number", length: 1 }
+      pokemon: { offset: 5, type: "reference", length: 1, reference: "pokemon" }
     common4:
-      species: { offset: 7, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 6, type: "number", length: 1 }
+      pokemon: { offset: 7, type: "reference", length: 1, reference: "pokemon" }
     uncommon1:
-      species: { offset: 9, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 8, type: "number", length: 1 }
+      pokemon: { offset: 9, type: "reference", length: 1, reference: "pokemon" }
     uncommon2:
-      species: { offset: 11, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 10, type: "number", length: 1 }
+      pokemon: { offset: 11, type: "reference", length: 1, reference: "pokemon" }
     uncommon3:
-      species: { offset: 13, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 12, type: "number", length: 1 }
+      pokemon: { offset: 13, type: "reference", length: 1, reference: "pokemon" }
     uncommon4:
-      species: { offset: 15, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 14, type: "number", length: 1 }
+      pokemon: { offset: 15, type: "reference", length: 1, reference: "pokemon" }
     rare1:
-      species: { offset: 17, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 16, type: "number", length: 1 }
+      pokemon: { offset: 17, type: "reference", length: 1, reference: "pokemon" }
     rare2:
-      species: { offset: 19, type: "reference", length: 1, reference: "pokemon" }
       level: { offset: 18, type: "number", length: 1 }
+      pokemon: { offset: 19, type: "reference", length: 1, reference: "pokemon" }
 
 properties:
   player:
@@ -137,7 +137,18 @@ properties:
     playerItems:
       numOfItems: { type: "number", startingAddress: 0xD31C, length: 1, "The total number of items currently in the bag."}
       bag: { type: "macro", startingAddress: 0xD31D, macro: "playerBag" } 
-    badges: { type: "number", startingAddress: 0xD355, length: 2 }
+    badges:
+        boulderBadge: { type: "bit", startingAddress: 0xD355, index: 0 }
+        cascadeBadge: { type: "bit", startingAddress: 0xD355, index: 1 }
+        thunderBadge: { type: "bit", startingAddress: 0xD355, index: 2 }
+        rainbowBadge: { type: "bit", startingAddress: 0xD355, index: 3 }
+        soulBadge: { type: "bit", startingAddress: 0xD355, index: 4 }
+        marshBadge: { type: "bit", startingAddress: 0xD355, index: 5 }
+        volcanoBadge: { type: "bit", startingAddress: 0xD355, index: 6 }
+        earthBadge: { type: "bit", startingAddress: 0xD355, index: 7 }
+    pokedex:
+      seen: { type: "bitArray", startingAddress: 0xD309, length: 19 }
+      caught: { type: "bitArray", startingAddress: 0xD2F6, length: 19 }
     money: { type: "binaryCodedDecimal", startingAddress: 0xD346, length: 3 }
   
   overworld:
@@ -148,23 +159,6 @@ properties:
   
   team:
     teamCount: { type: "number", startingAddress: 0xD162, length: 1 }
-    inbattle:
-      modStageAtk: { type: "reference", startingAddress: 0xCD1a, length: 1, reference: "stageModifiers" }
-      modStageDef: { type: "reference", startingAddress: 0xCD1b, length: 1, reference: "stageModifiers" }
-      modStageSpd: { type: "reference", startingAddress: 0xCD1c, length: 1, reference: "stageModifiers" }
-      modStageSpc: { type: "reference", startingAddress: 0xCD1d, length: 1, reference: "stageModifiers" }
-      modStageAcc: { type: "reference", startingAddress: 0xCD1e, length: 1, reference: "stageModifiers" }
-      modStageEva: { type: "reference", startingAddress: 0xCD1f, length: 1, reference: "stageModifiers" }
-      battleStatAtk: { type: "number", startingAddress: 0xD024, length: 2, note: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatDef: { type: "number", startingAddress: 0xD026, length: 2, note: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpd: { type: "number", startingAddress: 0xD028, length: 2, note: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
-      battleStatSpc: { type: "number", startingAddress: 0xD02A, length: 2, note: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
-      move1: { type: "reference", startingAddress: 0xD01B, length: 1, reference: "moves" }
-      move2: { type: "reference", startingAddress: 0xD01C, length: 1, reference: "moves" }
-      move3: { type: "reference", startingAddress: 0xD01D, length: 1, reference: "moves" }
-      move4: { type: "reference", startingAddress: 0xD01E, length: 1, reference: "moves" }
-      tempStatusConfusion: { type: "reference", startingAddress: 0xd061, length: 1, reference: "tempStatusConfused" }
-      tempStatusBadPoison: { type: "reference", startingAddress: 0xd063, length: 1, reference: "tempStatusBadPoison" }
     slot1: { type: "macro", startingAddress: 0xD16A, macro: "pokemonInParty" } 
     slot2: { type: "macro", startingAddress: 0xD196, macro: "pokemonInParty" }
     slot3: { type: "macro", startingAddress: 0xD1C2, macro: "pokemonInParty" }
@@ -205,7 +199,24 @@ properties:
       modEnemyStageSpd: { type: "reference", startingAddress: 0xCD30, length: 1, reference: "stageModifiers" }
       modEnemyStageSpc: { type: "reference", startingAddress: 0xCD31, length: 1, reference: "stageModifiers" }
       modEnemyStageAcc: { type: "reference", startingAddress: 0xCD32, length: 1, reference: "stageModifiers" }
-      modEnemyStageEva: { type: "reference", startingAddress: 0xCD33, length: 1, reference: "stageModifiers" }  
+      modEnemyStageEva: { type: "reference", startingAddress: 0xCD33, length: 1, reference: "stageModifiers" } 
+    yourPokemon:
+      modStageAtk: { type: "reference", startingAddress: 0xCD1a, length: 1, reference: "stageModifiers" }
+      modStageDef: { type: "reference", startingAddress: 0xCD1b, length: 1, reference: "stageModifiers" }
+      modStageSpd: { type: "reference", startingAddress: 0xCD1c, length: 1, reference: "stageModifiers" }
+      modStageSpc: { type: "reference", startingAddress: 0xCD1d, length: 1, reference: "stageModifiers" }
+      modStageAcc: { type: "reference", startingAddress: 0xCD1e, length: 1, reference: "stageModifiers" }
+      modStageEva: { type: "reference", startingAddress: 0xCD1f, length: 1, reference: "stageModifiers" }
+      battleStatAtk: { type: "number", startingAddress: 0xD024, length: 2, note: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatDef: { type: "number", startingAddress: 0xD026, length: 2, note: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpd: { type: "number", startingAddress: 0xD028, length: 2, note: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
+      battleStatSpc: { type: "number", startingAddress: 0xD02A, length: 2, note: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      move1: { type: "reference", startingAddress: 0xD01B, length: 1, reference: "moves" }
+      move2: { type: "reference", startingAddress: 0xD01C, length: 1, reference: "moves" }
+      move3: { type: "reference", startingAddress: 0xD01D, length: 1, reference: "moves" }
+      move4: { type: "reference", startingAddress: 0xD01E, length: 1, reference: "moves" }
+      tempStatusConfusion: { type: "reference", startingAddress: 0xd061, length: 1, reference: "tempStatusConfused" }
+      tempStatusBadPoison: { type: "reference", startingAddress: 0xd063, length: 1, reference: "tempStatusBadPoison" }
   
   rival:
     name: { type: "string", startingAddress: 0xD349, length: 8, note: "The rival's name."}
