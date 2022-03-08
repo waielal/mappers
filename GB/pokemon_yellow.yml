@@ -150,6 +150,7 @@ properties:
       seen: { type: "bitArray", startingAddress: 0xD309, length: 19 }
       caught: { type: "bitArray", startingAddress: 0xD2F6, length: 19 }
     money: { type: "binaryCodedDecimal", startingAddress: 0xD346, length: 3 }
+    coins: { type: "binaryCodedDecimal", startingAddress: 0xD5A3, length: 2 }
   
   overworld:
     loadedMap: { type: "reference", startingAddress: 0xD35D, length: 1, reference: "maps" }
