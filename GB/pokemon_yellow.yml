@@ -157,6 +157,7 @@ properties:
     encounters: 
       rate: { type: "number", startingAddress: 0xD886, length: 1 }
       encounterTable: { type: "macro", startingAddress: 0xD887, macro: "encounterStructure" } 
+    trashCanPuzzle: { type: "reference", startingAddress: 0xD772, length: 1, reference: "trashCanFlags" }
   
   team:
     teamCount: { type: "number", startingAddress: 0xD162, length: 1 }
@@ -285,6 +286,10 @@ glossary:
   tempStatusBadPoison:
     0x00: null
     0x01: "Badly Posioned"
+  trashCanFlags:
+    0x00: "Unsolved"
+    0x02: "First Can Found"
+    0x03: "Solved"
   defaultCharacterMap:
     0x50: null
     0x00: " "
