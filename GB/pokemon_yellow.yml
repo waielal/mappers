@@ -275,6 +275,8 @@ glossary:
     0x14: null
   statusConditions:
     0x00: null
+    0x01: "Asleep"
+    0x02: "Asleep"
     0x04:	"Asleep"
     0x08:	"Poisoned"
     0x10:	"Burned"
