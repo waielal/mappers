@@ -8,49 +8,50 @@ properties:
   map:
     loadedMap: { type: "reference", startingAddress: 0xD700, length: 155, reference: "maps" }
     #worldMap: { Each screen status is represented by a byte, which is a combination of the following masks : }
-    heldItemA: { type: "reference", startingAddress: 0xDB00, reference: "items" }
-    heldItemB: { type: "reference", startingAddress: 0xDB01, reference: "items" }
-    inventory: { type: "referenceArray", startingAddress: 0xDB02, length: 9, reference: "items" }
-    haveFlippers: { type: "boolean", startingAddress: 0xDB0C }
-    havePotion: { type: "boolean", startingAddress: 0xDB0C }
-    tradingSequenceItem: { type: "reference", startingAddress: 0xDB0E, reference: "tradingItems" }
-    secretShells: { type: "number", startingAddress: 0xDB0F }
-    dungeonEntranceKeys:
-      slimeKey: { type: "boolean", startingAddress: 0xDB10 }
-      anglerKey: { type: "boolean", startingAddress: 0xDB11 }
-      faceKey: { type: "boolean", startingAddress: 0xDB12 }
-      birdKey: { type: "boolean", startingAddress: 0xDB13 }
-    goldenLeaves: { type: "number", startingAddress: 0xDB0F }
-    # DB16 - DB3D - Beginning of dungeon item flags. 5 bytes fo each dungeon, 5th byte is quantity of keys for that dungeon
-    powerBraceletLevel: { type: "number", startingAddress: 0xDB43 }
-    shieldLevel: { type: "number", startingAddress: 0xDB44 }
-    arrows: { type: "number", startingAddress: 0xDB45 }
-    # DB49 - Ocarina songs in possession (3 bits mask, 0=no songs, 7=all songs)
-    ocarinaSelectedSong: { type: "reference", startingAddress: 0xDB4A, reference: "ocarinaSongs" }
-    magicPowderQuantity: { type: "number", startingAddress: 0xDB4C }
-    bombsQuantity: { type: "number", startingAddress: 0xDB4D }
-    swordLevel: { type: "number", startingAddress: 0xDB4E }
-    numberOfDeaths: { type: "number", startingAddress: 0xDB56, length: 2 }
-    health: { type: "number", startingAddress: 0xDB5A }
-    maximumHealth: { type: "number", startingAddress: 0xDB5B }
-    ruppees: { type: "binaryCodedDecimal", startingAddress: 0xDB5A }
-    dungeonInstruments:
-      fullMoonCello: { type: "boolean", startingAddress: 0xDB65 }
-      conchHorn: { type: "boolean", startingAddress: 0xDB66 }
-      seaLilysBell: { type: "boolean", startingAddress: 0xDB67 }
-      surfHarp: { type: "boolean", startingAddress: 0xDB68 }
-      windMarimba: { type: "boolean", startingAddress: 0xDB69 }
-      coralTriangle: { type: "boolean", startingAddress: 0xDB6A }
-      organOfEveningCalm: { type: "boolean", startingAddress: 0xDB6B }
-      thunderDrum: { type: "boolean", startingAddress: 0xDB6C }
-    maximumMagicPowder: { type: "number", startingAddress: 0xDB76 }
-    maximumBombs: { type: "number", startingAddress: 0xDB77 }
-    maximumArrows: { type: "number", startingAddress: 0xDB78 }
-    dungeonGridPosition: { type: "number", startingAddress: 0xDBAE }
-    keys: { type: "number", startingAddress: 0xDBD0 }
+  heldItemA: { type: "reference", startingAddress: 0xDB00, reference: "items" }
+  heldItemB: { type: "reference", startingAddress: 0xDB01, reference: "items" }
+  inventory: { type: "referenceArray", startingAddress: 0xDB02, length: 9, reference: "items" }
+  haveFlippers: { type: "boolean", startingAddress: 0xDB0C }
+  havePotion: { type: "boolean", startingAddress: 0xDB0C }
+  tradingSequenceItem: { type: "reference", startingAddress: 0xDB0E, reference: "tradingItems" }
+  secretShells: { type: "number", startingAddress: 0xDB0F }
+  dungeonEntranceKeys:
+    slimeKey: { type: "boolean", startingAddress: 0xDB10 }
+    anglerKey: { type: "boolean", startingAddress: 0xDB11 }
+    faceKey: { type: "boolean", startingAddress: 0xDB12 }
+    birdKey: { type: "boolean", startingAddress: 0xDB13 }
+  goldenLeaves: { type: "number", startingAddress: 0xDB0F }
+  # DB16 - DB3D - Beginning of dungeon item flags. 5 bytes fo each dungeon, 5th byte is quantity of keys for that dungeon
+  powerBraceletLevel: { type: "number", startingAddress: 0xDB43 }
+  shieldLevel: { type: "number", startingAddress: 0xDB44 }
+  arrows: { type: "number", startingAddress: 0xDB45 }
+  # DB49 - Ocarina songs in possession (3 bits mask, 0=no songs, 7=all songs)
+  ocarinaSelectedSong: { type: "reference", startingAddress: 0xDB4A, reference: "ocarinaSongs" }
+  magicPowderQuantity: { type: "number", startingAddress: 0xDB4C }
+  bombsQuantity: { type: "number", startingAddress: 0xDB4D }
+  swordLevel: { type: "number", startingAddress: 0xDB4E }
+  numberOfDeaths: { type: "number", startingAddress: 0xDB56, length: 2 }
+  health: { type: "number", startingAddress: 0xDB5A }
+  maximumHealth: { type: "number", startingAddress: 0xDB5B }
+  ruppees: { type: "binaryCodedDecimal", startingAddress: 0xDB5A }
+  dungeonInstruments:
+    fullMoonCello: { type: "boolean", startingAddress: 0xDB65 }
+    conchHorn: { type: "boolean", startingAddress: 0xDB66 }
+    seaLilysBell: { type: "boolean", startingAddress: 0xDB67 }
+    surfHarp: { type: "boolean", startingAddress: 0xDB68 }
+    windMarimba: { type: "boolean", startingAddress: 0xDB69 }
+    coralTriangle: { type: "boolean", startingAddress: 0xDB6A }
+    organOfEveningCalm: { type: "boolean", startingAddress: 0xDB6B }
+    thunderDrum: { type: "boolean", startingAddress: 0xDB6C }
+  maximumMagicPowder: { type: "number", startingAddress: 0xDB76 }
+  maximumBombs: { type: "number", startingAddress: 0xDB77 }
+  maximumArrows: { type: "number", startingAddress: 0xDB78 }
+  dungeonGridPosition: { type: "number", startingAddress: 0xDBAE }
+  keys: { type: "number", startingAddress: 0xDBD0 }
 
 glossary:
   maps:
+    0x00: TODO
   items:
     0x01: Sword
     0x02: Bombs
@@ -66,4 +67,6 @@ glossary:
     0x0C: Magic Powder
     0x0D: Boomerang
   tradingItems:
+    0x00: TODO
   ocarinaSongs:
+    0x00: TODO
