@@ -51,7 +51,6 @@ properties:
 
 glossary:
   maps:
-    0x00: TODO
   items:
     0x01: Sword
     0x02: Bombs
@@ -67,6 +66,4 @@ glossary:
     0x0C: Magic Powder
     0x0D: Boomerang
   tradingItems:
-    0x00: TODO
   ocarinaSongs:
-    0x00: TODO
