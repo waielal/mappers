@@ -96,6 +96,13 @@ properties:
       
   team:
     teamCount: { type: "number", startingAddress: 0xD163, length: 1 }
+    teamNicknames:
+      nicknameSlot1: { type: "string", startingAddress: 0xD2B5, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot2: { type: "string", startingAddress: 0xD2C0, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot3: { type: "string", startingAddress: 0xD2CB, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot4: { type: "string", startingAddress: 0xD2D6, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot5: { type: "string", startingAddress: 0xD2E1, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot6: { type: "string", startingAddress: 0xD2EC, length: 11, reference: "defaultCharacterMap" }
     inbattle:
       modStageAtk: { type: "reference", startingAddress: 0xCD1b, length: 1, reference: "stageModifiers" }
       modStageDef: { type: "reference", startingAddress: 0xCD1c, length: 1, reference: "stageModifiers" }
