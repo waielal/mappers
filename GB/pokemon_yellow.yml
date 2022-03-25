@@ -7,7 +7,6 @@ meta:
 macros:
   pokemonInParty:
       species: { offset: 0, type: "reference", reference: "pokemon" }
-      nickname: { offset: 330, type: "string", length: 11, reference: "defaultCharacterMap", note: "Stored at a different memory location" }
       currentHp: { offset: 1, type: "number", length: 2, note: "The amount of remaining HP" }
       statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
@@ -162,6 +161,13 @@ properties:
   
   team:
     teamCount: { type: "number", startingAddress: 0xD162, length: 1 }
+    teamNicknames:
+      nicknameSlot1: { type: "string", startingAddress: 0xD2B4, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot2: { type: "string", startingAddress: 0xD2BF, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot3: { type: "string", startingAddress: 0xD2CA, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot4: { type: "string", startingAddress: 0xD2D5, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot5: { type: "string", startingAddress: 0xD2E0, length: 11, reference: "defaultCharacterMap" }
+      nicknameSlot6: { type: "string", startingAddress: 0xD2EB, length: 11, reference: "defaultCharacterMap" }
     slot1: { type: "macro", startingAddress: 0xD16A, macro: "pokemonInParty" } 
     slot2: { type: "macro", startingAddress: 0xD196, macro: "pokemonInParty" }
     slot3: { type: "macro", startingAddress: 0xD1C2, macro: "pokemonInParty" }
