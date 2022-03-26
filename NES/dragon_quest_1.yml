@@ -6,31 +6,31 @@ meta:
 
 properties:
   map:
-    horizontalOffset: { type: "number", startingAddress: 0x11 }
+    horizontalOffset: { type: "int", startingAddress: 0x11 }
     loadedMap: { type: "reference", startingAddress: 0x45, reference: "maps" }
-    loadedTileset: { type: "number", startingAddress: 0x12 }
+    loadedTileset: { type: "int", startingAddress: 0x12 }
     exteriorTile: { type: "reference", startingAddress: 0x45, reference: "tiles" }
   player:
     standingOn: { type: "reference", startingAddress: 0xE0, reference: "tiles" }
     position:
-      x: { type: "number", startingAddress: 0x3A }
-      y: { type: "number", startingAddress: 0x3B }
-    health: { type: "number", startingAddress: 0xC5 }
-    maxHealth: { type: "number", startingAddress: 0xCA }
-    magic: { type: "number", startingAddress: 0xC6 }
-    maxMagic: { type: "number", startingAddress: 0xCB }
-    attack: { type: "number", startingAddress: 0xCC }
-    defense: { type: "number", startingAddress: 0xCD }
-    level: { type: "number", startingAddress: 0xC7 }
-    gold: { type: "number", startingAddress: 0xBC, length: 2 }
-    magicKeys: { type: "number", startingAddress: 0xBF }
-    herbs: { type: "number", startingAddress: 0xC0 }
+      x: { type: "int", startingAddress: 0x3A }
+      y: { type: "int", startingAddress: 0x3B }
+    health: { type: "int", startingAddress: 0xC5 }
+    maxHealth: { type: "int", startingAddress: 0xCA }
+    magic: { type: "int", startingAddress: 0xC6 }
+    maxMagic: { type: "int", startingAddress: 0xCB }
+    attack: { type: "int", startingAddress: 0xCC }
+    defense: { type: "int", startingAddress: 0xCD }
+    level: { type: "int", startingAddress: 0xC7 }
+    gold: { type: "int", startingAddress: 0xBC, length: 2 }
+    magicKeys: { type: "int", startingAddress: 0xBF }
+    herbs: { type: "int", startingAddress: 0xC0 }
     #items: { type: "bitArray", startingAddress: 0xC1 }
   battle:
     enemy:
       type: { type: "reference", startingAddress: 0xE0, reference: "enemies" }
-  overworldInactivityTimer: { type: "number", startingAddress: 0x4F }
-  buttonsPressed: { type: "number", startingAddress: 0x47 }
+  overworldInactivityTimer: { type: "int", startingAddress: 0x4F }
+  buttonsPressed: { type: "int", startingAddress: 0x47 }
   lightRadius: { type: "reference", startingAddress: 0xD0, reference: "lightRadius" }
 
 glossary:
