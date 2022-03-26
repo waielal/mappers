@@ -22,8 +22,16 @@ This translates the property into a human-readable string.
 `reference` | No | defaultCharacterMap | Which glossary item provides the mapping.
 `note` | No | | Note section
 
-### **number**
-This translates the property into a number.
+### **int**
+This translates the property into a number (int32).
+| Argument | Required | Default Value | Description |
+|--------------|-----------|------------|--|
+`startingAddress` | Yes | | The starting address for the property.
+`length` | No | 1 | How many bytes until the ending address
+`note` | No | | Note section
+
+### **uint**
+This translates the property into a unsigned number (uint32).
 | Argument | Required | Default Value | Description |
 |--------------|-----------|------------|--|
 `startingAddress` | Yes | | The starting address for the property.
@@ -38,8 +46,24 @@ This translates the property into a number which is binary encoded (where each d
 `length` | No | 1 | How many bytes until the ending address
 `note` | No | | Note section
 
-### **bytes**
-This returns the property as a byte array.
+### **bool**
+This returns the property as a true / false value.
+| Argument | Required | Default Value | Description |
+|--------------|-----------|------------|--|
+`startingAddress` | Yes | | The starting address for the property.
+`length` | No | 1 | How many bytes until the ending address
+`note` | No | | Note section
+
+### **bit**
+This returns the property as a single bit.
+| Argument | Required | Default Value | Description |
+|--------------|-----------|------------|--|
+`startingAddress` | Yes | | The starting address for the property.
+`length` | No | 1 | How many bytes until the ending address
+`note` | No | | Note section
+
+### **bitArray**
+This returns the property as a array of bits.
 | Argument | Required | Default Value | Description |
 |--------------|-----------|------------|--|
 `startingAddress` | Yes | | The starting address for the property.
