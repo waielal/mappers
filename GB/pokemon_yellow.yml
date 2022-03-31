@@ -131,6 +131,11 @@ macros:
       pokemon: { offset: 19, type: "reference", length: 1, reference: "pokemon" }
 
 properties:
+  menuScreen:
+    battleAnimation: {type: "bit", startingAddress: 0xD354, index: 7}
+    battleStyle: {type: "bit", startingAddress: 0xD354, index: 6}
+    textSpeed: {type: "bit", startingAddress: 0xD354, index: 1}
+    
   player:
     name: { type: "string", startingAddress: 0xD157, length: 11 }
     starterPokemon: { type: "reference", startingAddress: 0xD716, length: 1, reference: "pokemon", note: "The starter Pokemon received from Oak."}
