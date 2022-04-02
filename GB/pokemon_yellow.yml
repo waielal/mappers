@@ -132,10 +132,11 @@ macros:
 
 properties:
   menuScreen:
-    battleAnimation: {type: "bit", startingAddress: 0xD354, index: 7}
-    battleStyle: {type: "bit", startingAddress: 0xD354, index: 6}
-    textSpeed: {type: "bit", startingAddress: 0xD354, index: 1}
-    
+    battleAnimation: { type: "bit", startingAddress: 0xD354, index: 7 }
+    battleStyle: { type: "bit", startingAddress: 0xD354, index: 6 }
+    textSpeed: { type: "bit", startingAddress: 0xD354, index: 1 }
+    startGameMenu: { type: int, startingAddress: 0xD35E, Length: 1 }
+  
   player:
     name: { type: "string", startingAddress: 0xD157, length: 11 }
     starterPokemon: { type: "reference", startingAddress: 0xD716, length: 1, reference: "pokemon", note: "The starter Pokemon received from Oak."}
@@ -240,7 +241,7 @@ properties:
     minutes: { type: "int", startingAddress: 0xDA41, length: 2 }
     seconds: { type: "int", startingAddress: 0xDA43, length: 1 }
     frames:  { type: "int", startingAddress: 0xDA44, length: 1 }
-
+  
 glossary:
   battleTypes:
     0x00: null
