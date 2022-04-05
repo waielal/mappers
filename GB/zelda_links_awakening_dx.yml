@@ -6,48 +6,48 @@ meta:
 
 properties:
   map:
-    loadedMap: { type: "reference", startingAddress: 0xD700, length: 155, reference: "maps" }
+    loadedMap: { type: "reference", address: 0xD700, size: 155, reference: "maps" }
     #worldMap: { Each screen status is represented by a byte, which is a combination of the following masks : }
-  heldItemA: { type: "reference", startingAddress: 0xDB00, reference: "items" }
-  heldItemB: { type: "reference", startingAddress: 0xDB01, reference: "items" }
-  inventory: { type: "referenceArray", startingAddress: 0xDB02, length: 9, reference: "items" }
-  haveFlippers: { type: "bool", startingAddress: 0xDB0C }
-  havePotion: { type: "bool", startingAddress: 0xDB0C }
-  tradingSequenceItem: { type: "reference", startingAddress: 0xDB0E, reference: "tradingItems" }
-  secretShells: { type: "int", startingAddress: 0xDB0F }
+  heldItemA: { type: "reference", address: 0xDB00, reference: "items" }
+  heldItemB: { type: "reference", address: 0xDB01, reference: "items" }
+  inventory: { type: "referenceArray", address: 0xDB02, size: 9, reference: "items" }
+  haveFlippers: { type: "bool", address: 0xDB0C }
+  havePotion: { type: "bool", address: 0xDB0C }
+  tradingSequenceItem: { type: "reference", address: 0xDB0E, reference: "tradingItems" }
+  secretShells: { type: "int", address: 0xDB0F }
   dungeonEntranceKeys:
-    slimeKey: { type: "bool", startingAddress: 0xDB10 }
-    anglerKey: { type: "bool", startingAddress: 0xDB11 }
-    faceKey: { type: "bool", startingAddress: 0xDB12 }
-    birdKey: { type: "bool", startingAddress: 0xDB13 }
-  goldenLeaves: { type: "int", startingAddress: 0xDB0F }
+    slimeKey: { type: "bool", address: 0xDB10 }
+    anglerKey: { type: "bool", address: 0xDB11 }
+    faceKey: { type: "bool", address: 0xDB12 }
+    birdKey: { type: "bool", address: 0xDB13 }
+  goldenLeaves: { type: "int", address: 0xDB0F }
   # DB16 - DB3D - Beginning of dungeon item flags. 5 bytes fo each dungeon, 5th byte is quantity of keys for that dungeon
-  powerBraceletLevel: { type: "int", startingAddress: 0xDB43 }
-  shieldLevel: { type: "int", startingAddress: 0xDB44 }
-  arrows: { type: "int", startingAddress: 0xDB45 }
+  powerBraceletLevel: { type: "int", address: 0xDB43 }
+  shieldLevel: { type: "int", address: 0xDB44 }
+  arrows: { type: "int", address: 0xDB45 }
   # DB49 - Ocarina songs in possession (3 bits mask, 0=no songs, 7=all songs)
-  ocarinaSelectedSong: { type: "reference", startingAddress: 0xDB4A, reference: "ocarinaSongs" }
-  magicPowderQuantity: { type: "int", startingAddress: 0xDB4C }
-  bombsQuantity: { type: "int", startingAddress: 0xDB4D }
-  swordLevel: { type: "int", startingAddress: 0xDB4E }
-  numberOfDeaths: { type: "int", startingAddress: 0xDB56, length: 2 }
-  health: { type: "int", startingAddress: 0xDB5A }
-  maximumHealth: { type: "int", startingAddress: 0xDB5B }
-  ruppees: { type: "binaryCodedDecimal", startingAddress: 0xDB5A }
+  ocarinaSelectedSong: { type: "reference", address: 0xDB4A, reference: "ocarinaSongs" }
+  magicPowderQuantity: { type: "int", address: 0xDB4C }
+  bombsQuantity: { type: "int", address: 0xDB4D }
+  swordLevel: { type: "int", address: 0xDB4E }
+  numberOfDeaths: { type: "int", address: 0xDB56, size: 2 }
+  health: { type: "int", address: 0xDB5A }
+  maximumHealth: { type: "int", address: 0xDB5B }
+  ruppees: { type: "binaryCodedDecimal", address: 0xDB5A }
   dungeonInstruments:
-    fullMoonCello: { type: "bool", startingAddress: 0xDB65 }
-    conchHorn: { type: "bool", startingAddress: 0xDB66 }
-    seaLilysBell: { type: "bool", startingAddress: 0xDB67 }
-    surfHarp: { type: "bool", startingAddress: 0xDB68 }
-    windMarimba: { type: "bool", startingAddress: 0xDB69 }
-    coralTriangle: { type: "bool", startingAddress: 0xDB6A }
-    organOfEveningCalm: { type: "bool", startingAddress: 0xDB6B }
-    thunderDrum: { type: "bool", startingAddress: 0xDB6C }
-  maximumMagicPowder: { type: "int", startingAddress: 0xDB76 }
-  maximumBombs: { type: "int", startingAddress: 0xDB77 }
-  maximumArrows: { type: "int", startingAddress: 0xDB78 }
-  dungeonGridPosition: { type: "int", startingAddress: 0xDBAE }
-  keys: { type: "int", startingAddress: 0xDBD0 }
+    fullMoonCello: { type: "bool", address: 0xDB65 }
+    conchHorn: { type: "bool", address: 0xDB66 }
+    seaLilysBell: { type: "bool", address: 0xDB67 }
+    surfHarp: { type: "bool", address: 0xDB68 }
+    windMarimba: { type: "bool", address: 0xDB69 }
+    coralTriangle: { type: "bool", address: 0xDB6A }
+    organOfEveningCalm: { type: "bool", address: 0xDB6B }
+    thunderDrum: { type: "bool", address: 0xDB6C }
+  maximumMagicPowder: { type: "int", address: 0xDB76 }
+  maximumBombs: { type: "int", address: 0xDB77 }
+  maximumArrows: { type: "int", address: 0xDB78 }
+  dungeonGridPosition: { type: "int", address: 0xDBAE }
+  keys: { type: "int", address: 0xDBD0 }
 
 glossary:
   maps:

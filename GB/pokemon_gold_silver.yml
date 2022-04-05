@@ -12,290 +12,290 @@ macros:
       move2: { offset: 3, type: "reference", reference: "moves" }
       move3: { offset: 4, type: "reference", reference: "moves" }
       move4: { offset: 5, type: "reference", reference: "moves" }
-      trainerId: { offset: 6, type: "int", length: 2 }
-      experience: { offset: 8, type: "int", length: 3 }
-      statExpHP: { offset: 11, type: "int", length: 2 }
-      statExpAtk: { offset: 13, type: "int", length: 2 }
-      statExpDef: { offset: 15, type: "int", length: 2 }
-      statExpSpd: { offset: 17, type: "int", length: 2 }
-      statExpSpc: { offset: 19, type: "int", length: 2 }
-      dvAtkDef: { offset: 21, type: "binaryCodedDecimal", length: 1 }
-      dvSpdSpc: { offset: 22, type: "binaryCodedDecimal", length: 1 }
-      move1pp: { offset: 23, type: "int", length: 1 } #modulus. 0-63 no pp up, 64-127 1 pp up, etc. Use formula: x % 64
-      move2pp: { offset: 24, type: "int", length: 1 }
-      move3pp: { offset: 25, type: "int", length: 1 }
-      move4pp: { offset: 26, type: "int", length: 1 }
-      friendship: { offset: 27, type: "int", length: 1 }
-      pokerus: { offset: 28, type: "int", length: 1 }
-      level: { offset: 31, type: "int", length: 1 }
+      trainerId: { offset: 6, type: "int", size: 2 }
+      experience: { offset: 8, type: "int", size: 3 }
+      statExpHP: { offset: 11, type: "int", size: 2 }
+      statExpAtk: { offset: 13, type: "int", size: 2 }
+      statExpDef: { offset: 15, type: "int", size: 2 }
+      statExpSpd: { offset: 17, type: "int", size: 2 }
+      statExpSpc: { offset: 19, type: "int", size: 2 }
+      dvAtkDef: { offset: 21, type: "binaryCodedDecimal", size: 1 }
+      dvSpdSpc: { offset: 22, type: "binaryCodedDecimal", size: 1 }
+      move1pp: { offset: 23, type: "int", size: 1 } #modulus. 0-63 no pp up, 64-127 1 pp up, etc. Use formula: x % 64
+      move2pp: { offset: 24, type: "int", size: 1 }
+      move3pp: { offset: 25, type: "int", size: 1 }
+      move4pp: { offset: 26, type: "int", size: 1 }
+      friendship: { offset: 27, type: "int", size: 1 }
+      pokerus: { offset: 28, type: "int", size: 1 }
+      level: { offset: 31, type: "int", size: 1 }
       statusCondition: { offset: 32, type: "reference", reference: "statusConditions" }
-      currentHP: { offset: 34, type: "int", length: 2 }
-      maxHP: { offset: 36, type: "int", length: 2 }
-      summaryAtk: { offset: 38, type: "int", length: 2 }
-      summaryDef: { offset: 40, type: "int", length: 2 }
-      summarySpcA: { offset: 44, type: "int", length: 2 }
-      summarySpcD: { offset: 46, type: "int", length: 2 }
-      summarySpd: { offset: 42, type: "int", length: 2 }
+      currentHP: { offset: 34, type: "int", size: 2 }
+      maxHP: { offset: 36, type: "int", size: 2 }
+      summaryAtk: { offset: 38, type: "int", size: 2 }
+      summaryDef: { offset: 40, type: "int", size: 2 }
+      summarySpcA: { offset: 44, type: "int", size: 2 }
+      summarySpcD: { offset: 46, type: "int", size: 2 }
+      summarySpd: { offset: 42, type: "int", size: 2 }
 
   playerBag:
-    numOfItems: { offset: 0, type: "int", length: 1 }
+    numOfItems: { offset: 0, type: "int", size: 1 }
     slot1:
       item: { offset: 1, type: "reference", reference: "items" }
-      quantity: { offset: 2, type: "int", length: 1 }
+      quantity: { offset: 2, type: "int", size: 1 }
     slot2:
       item: { offset: 3, type: "reference", reference: "items" }
-      quantity: { offset: 4, type: "int", length: 1 }
+      quantity: { offset: 4, type: "int", size: 1 }
     slot3:
       item: { offset: 5, type: "reference", reference: "items" }
-      quantity: { offset: 6, type: "int", length: 1 }
+      quantity: { offset: 6, type: "int", size: 1 }
     slot4:
       item: { offset: 7, type: "reference", reference: "items" }
-      quantity: { offset: 8, type: "int", length: 1 }
+      quantity: { offset: 8, type: "int", size: 1 }
     slot5:
       item: { offset: 9, type: "reference", reference: "items" }
-      quantity: { offset: 10, type: "int", length: 1 }
+      quantity: { offset: 10, type: "int", size: 1 }
     slot6:
       item: { offset: 11, type: "reference", reference: "items" }
-      quantity: { offset: 12, type: "int", length: 1 }
+      quantity: { offset: 12, type: "int", size: 1 }
     slot7:
       item: { offset: 13, type: "reference", reference: "items" }
-      quantity: { offset: 14, type: "int", length: 1 }
+      quantity: { offset: 14, type: "int", size: 1 }
     slot8:
       item: { offset: 15, type: "reference", reference: "items" }
-      quantity: { offset: 16, type: "int", length: 1 }
+      quantity: { offset: 16, type: "int", size: 1 }
     slot9:
       item: { offset: 17, type: "reference", reference: "items" }
-      quantity: { offset: 18, type: "int", length: 1 }
+      quantity: { offset: 18, type: "int", size: 1 }
     slot10:
       item: { offset: 19, type: "reference", reference: "items" }
-      quantity: { offset: 20, type: "int", length: 1 }
+      quantity: { offset: 20, type: "int", size: 1 }
     slot11:
       item: { offset: 21, type: "reference", reference: "items" }
-      quantity: { offset: 22, type: "int", length: 1 }
+      quantity: { offset: 22, type: "int", size: 1 }
     slot12:
       item: { offset: 23, type: "reference", reference: "items" }
-      quantity: { offset: 24, type: "int", length: 1 }
+      quantity: { offset: 24, type: "int", size: 1 }
     slot13:
       item: { offset: 25, type: "reference", reference: "items" }
-      quantity: { offset: 26, type: "int", length: 1 }
+      quantity: { offset: 26, type: "int", size: 1 }
     slot14:
       item: { offset: 27, type: "reference", reference: "items" }
-      quantity: { offset: 28, type: "int", length: 1 }
+      quantity: { offset: 28, type: "int", size: 1 }
     slot15:
       item: { offset: 29, type: "reference", reference: "items" }
-      quantity: { offset: 30, type: "int", length: 1 }
+      quantity: { offset: 30, type: "int", size: 1 }
     slot16:
       item: { offset: 31, type: "reference", reference: "items" }
-      quantity: { offset: 32, type: "int", length: 1 }
+      quantity: { offset: 32, type: "int", size: 1 }
     slot17:
       item: { offset: 33, type: "reference", reference: "items" }
-      quantity: { offset: 34, type: "int", length: 1 }
+      quantity: { offset: 34, type: "int", size: 1 }
     slot18:
       item: { offset: 35, type: "reference", reference: "items" }
-      quantity: { offset: 36, type: "int", length: 1 }
+      quantity: { offset: 36, type: "int", size: 1 }
     slot19:
       item: { offset: 37, type: "reference", reference: "items" }
-      quantity: { offset: 38, type: "int", length: 1 }
+      quantity: { offset: 38, type: "int", size: 1 }
     slot20:
       item: { offset: 39, type: "reference", reference: "items" }
-      quantity: { offset: 40, type: "int", length: 1 }
+      quantity: { offset: 40, type: "int", size: 1 }
 
 properties:
   player:
-    name: { type: "string", startingAddress: 0xD1A3, length: 11 }
-    playerID: { type: "int", startingAddress: 0xD1A1, length: 2 }
-    bag: { type: "macro", startingAddress: 0xD5B7, macro: "playerBag" }
+    name: { type: "string", address: 0xD1A3, size: 11 }
+    playerID: { type: "int", address: 0xD1A1, size: 2 }
+    bag: { type: "macro", address: 0xD5B7, macro: "playerBag" }
     tms:
-      tm01-dynamicpunch: { type: "int", startingAddress: 0xD57E, length: 1 }
-      tm02-headbutt: { type: "int", startingAddress: 0xD57F, length: 1 }
-      tm03-curse: { type: "int", startingAddress: 0xD580, length: 1 }
-      tm04-rollout: { type: "int", startingAddress: 0xD581, length: 1 }
-      tm05-roar: { type: "int", startingAddress: 0xD582, length: 1 }
-      tm06-toxic: { type: "int", startingAddress: 0xD583, length: 1 }
-      tm07-zapcannon: { type: "int", startingAddress: 0xD584, length: 1 }
-      tm08-rocksmash: { type: "int", startingAddress: 0xD585, length: 1 }
-      tm09-psychup: { type: "int", startingAddress: 0xD586, length: 1 }
-      tm10-hiddenpower: { type: "int", startingAddress: 0xD587, length: 1 }
-      tm11-sunnyday: { type: "int", startingAddress: 0xD588, length: 1 }
-      tm12-sweetscent: { type: "int", startingAddress: 0xD589, length: 1 }
-      tm13-snore: { type: "int", startingAddress: 0xD58A, length: 1 }
-      tm14-blizzard: { type: "int", startingAddress: 0xD58B, length: 1 }
-      tm15-hyperbeam: { type: "int", startingAddress: 0xD58C, length: 1 }
-      tm16-icywind: { type: "int", startingAddress: 0xD58D, length: 1 }
-      tm17-protect: { type: "int", startingAddress: 0xD58E, length: 1 }
-      tm18-raindance: { type: "int", startingAddress: 0xD58F, length: 1 }
-      tm19-gigadrain: { type: "int", startingAddress: 0xD590, length: 1 }
-      tm20-endure: { type: "int", startingAddress: 0xD591, length: 1 }
-      tm21-frustration: { type: "int", startingAddress: 0xD592, length: 1 }
-      tm22-solarbeam: { type: "int", startingAddress: 0xD593, length: 1 }
-      tm23-irontail: { type: "int", startingAddress: 0xD594, length: 1 }
-      tm24-dragonbreath: { type: "int", startingAddress: 0xD595, length: 1 }
-      tm25-thunder: { type: "int", startingAddress: 0xD596, length: 1 }
-      tm26-earthquake: { type: "int", startingAddress: 0xD597, length: 1 }
-      tm27-return: { type: "int", startingAddress: 0xD598, length: 1 }
-      tm28-dig: { type: "int", startingAddress: 0xD599, length: 1 }
-      tm29-psychic: { type: "int", startingAddress: 0xD59A, length: 1 }
-      tm30-shadowball: { type: "int", startingAddress: 0xD59B, length: 1 }
-      tm31-mudslap: { type: "int", startingAddress: 0xD59C, length: 1 }
-      tm32-doubleteam: { type: "int", startingAddress: 0xD59D, length: 1 }
-      tm33-icepunch: { type: "int", startingAddress: 0xD59E, length: 1 }
-      tm34-swagger: { type: "int", startingAddress: 0xD59F, length: 1 }
-      tm35-sleeptalk: { type: "int", startingAddress: 0xD5A0, length: 1 }
-      tm36-sludgebomb: { type: "int", startingAddress: 0xD5A1, length: 1 }
-      tm37-sandstorm: { type: "int", startingAddress: 0xD5A2, length: 1 }
-      tm38-fireblast: { type: "int", startingAddress: 0xD5A3, length: 1 }
-      tm39-swift: { type: "int", startingAddress: 0xD5A4, length: 1 }
-      tm40-defensecurl: { type: "int", startingAddress: 0xD5A5, length: 1 }
-      tm41-thunderpunch: { type: "int", startingAddress: 0xD5A6, length: 1 }
-      tm42-dreameater: { type: "int", startingAddress: 0xD5A7, length: 1 }
-      tm43-detect: { type: "int", startingAddress: 0xD5A8, length: 1 }
-      tm44-rest: { type: "int", startingAddress: 0xD5A9, length: 1 }
-      tm45-attract: { type: "int", startingAddress: 0xD5AA, length: 1 }
-      tm46-thief: { type: "int", startingAddress: 0xD5AB, length: 1 }
-      tm47-steelwing: { type: "int", startingAddress: 0xD5AC, length: 1 }
-      tm48-firepunch: { type: "int", startingAddress: 0xD5AD, length: 1 }
-      tm49-furycutter: { type: "int", startingAddress: 0xD5AE, length: 1 }
-      tm50-nightmare: { type: "int", startingAddress: 0xD5AF, length: 1 }
+      tm01-dynamicpunch: { type: "int", address: 0xD57E, size: 1 }
+      tm02-headbutt: { type: "int", address: 0xD57F, size: 1 }
+      tm03-curse: { type: "int", address: 0xD580, size: 1 }
+      tm04-rollout: { type: "int", address: 0xD581, size: 1 }
+      tm05-roar: { type: "int", address: 0xD582, size: 1 }
+      tm06-toxic: { type: "int", address: 0xD583, size: 1 }
+      tm07-zapcannon: { type: "int", address: 0xD584, size: 1 }
+      tm08-rocksmash: { type: "int", address: 0xD585, size: 1 }
+      tm09-psychup: { type: "int", address: 0xD586, size: 1 }
+      tm10-hiddenpower: { type: "int", address: 0xD587, size: 1 }
+      tm11-sunnyday: { type: "int", address: 0xD588, size: 1 }
+      tm12-sweetscent: { type: "int", address: 0xD589, size: 1 }
+      tm13-snore: { type: "int", address: 0xD58A, size: 1 }
+      tm14-blizzard: { type: "int", address: 0xD58B, size: 1 }
+      tm15-hyperbeam: { type: "int", address: 0xD58C, size: 1 }
+      tm16-icywind: { type: "int", address: 0xD58D, size: 1 }
+      tm17-protect: { type: "int", address: 0xD58E, size: 1 }
+      tm18-raindance: { type: "int", address: 0xD58F, size: 1 }
+      tm19-gigadrain: { type: "int", address: 0xD590, size: 1 }
+      tm20-endure: { type: "int", address: 0xD591, size: 1 }
+      tm21-frustration: { type: "int", address: 0xD592, size: 1 }
+      tm22-solarbeam: { type: "int", address: 0xD593, size: 1 }
+      tm23-irontail: { type: "int", address: 0xD594, size: 1 }
+      tm24-dragonbreath: { type: "int", address: 0xD595, size: 1 }
+      tm25-thunder: { type: "int", address: 0xD596, size: 1 }
+      tm26-earthquake: { type: "int", address: 0xD597, size: 1 }
+      tm27-return: { type: "int", address: 0xD598, size: 1 }
+      tm28-dig: { type: "int", address: 0xD599, size: 1 }
+      tm29-psychic: { type: "int", address: 0xD59A, size: 1 }
+      tm30-shadowball: { type: "int", address: 0xD59B, size: 1 }
+      tm31-mudslap: { type: "int", address: 0xD59C, size: 1 }
+      tm32-doubleteam: { type: "int", address: 0xD59D, size: 1 }
+      tm33-icepunch: { type: "int", address: 0xD59E, size: 1 }
+      tm34-swagger: { type: "int", address: 0xD59F, size: 1 }
+      tm35-sleeptalk: { type: "int", address: 0xD5A0, size: 1 }
+      tm36-sludgebomb: { type: "int", address: 0xD5A1, size: 1 }
+      tm37-sandstorm: { type: "int", address: 0xD5A2, size: 1 }
+      tm38-fireblast: { type: "int", address: 0xD5A3, size: 1 }
+      tm39-swift: { type: "int", address: 0xD5A4, size: 1 }
+      tm40-defensecurl: { type: "int", address: 0xD5A5, size: 1 }
+      tm41-thunderpunch: { type: "int", address: 0xD5A6, size: 1 }
+      tm42-dreameater: { type: "int", address: 0xD5A7, size: 1 }
+      tm43-detect: { type: "int", address: 0xD5A8, size: 1 }
+      tm44-rest: { type: "int", address: 0xD5A9, size: 1 }
+      tm45-attract: { type: "int", address: 0xD5AA, size: 1 }
+      tm46-thief: { type: "int", address: 0xD5AB, size: 1 }
+      tm47-steelwing: { type: "int", address: 0xD5AC, size: 1 }
+      tm48-firepunch: { type: "int", address: 0xD5AD, size: 1 }
+      tm49-furycutter: { type: "int", address: 0xD5AE, size: 1 }
+      tm50-nightmare: { type: "int", address: 0xD5AF, size: 1 }
     hms:
-      hm01: { type: "bit", startingAddress: 0xD5B0, index: 0 }
-      hm02: { type: "bit", startingAddress: 0xD5B1, index: 0 }
-      hm03: { type: "bit", startingAddress: 0xD5B2, index: 0 }
-      hm04: { type: "bit", startingAddress: 0xD5B3, index: 0 }
-      hm05: { type: "bit", startingAddress: 0xD5B4, index: 0 }
-      hm06: { type: "bit", startingAddress: 0xD5B5, index: 0 }
-      hm07: { type: "bit", startingAddress: 0xD5B6, index: 0 }
-    totalKeyItems: { type: "int", startingAddress: 0xD5E1, length: 1 }
+      hm01: { type: "bit", address: 0xD5B0, position: 1 }
+      hm02: { type: "bit", address: 0xD5B1, position: 1 }
+      hm03: { type: "bit", address: 0xD5B2, position: 1 }
+      hm04: { type: "bit", address: 0xD5B3, position: 1 }
+      hm05: { type: "bit", address: 0xD5B4, position: 1 }
+      hm06: { type: "bit", address: 0xD5B5, position: 1 }
+      hm07: { type: "bit", address: 0xD5B6, position: 1 }
+    totalKeyItems: { type: "int", address: 0xD5E1, size: 1 }
     badges:
       johto:
-        zephyrbadge: { type: "bit", startingAddress: 0xD57C, index: 0 }
-        hivebadge: { type: "bit", startingAddress: 0xD57C, index: 1 }
-        plainbadge: { type: "bit", startingAddress: 0xD57C, index: 2 }
-        fogbadge: { type: "bit", startingAddress: 0xD57C, index: 3 }
-        stormbadge: { type: "bit", startingAddress: 0xD57C, index: 5 }
-        mineralbadge: { type: "bit", startingAddress: 0xD57C, index: 4 }
-        glacierbadge: { type: "bit", startingAddress: 0xD57C, index: 6 }
-        risingbadge: { type: "bit", startingAddress: 0xD57C, index: 7 }
+        zephyrbadge: { type: "bit", address: 0xD57C, position: 1 }
+        hivebadge: { type: "bit", address: 0xD57C, position: 2 }
+        plainbadge: { type: "bit", address: 0xD57C, position: 3 }
+        fogbadge: { type: "bit", address: 0xD57C, position: 4 }
+        stormbadge: { type: "bit", address: 0xD57C, position: 6 }
+        mineralbadge: { type: "bit", address: 0xD57C, position: 5 }
+        glacierbadge: { type: "bit", address: 0xD57C, position: 7 }
+        risingbadge: { type: "bit", address: 0xD57C, position: 8 }
       kanto:
-        boulderbadge: { type: "bit", startingAddress: 0xD57D, index: 0 }
-        cascadebadge: { type: "bit", startingAddress: 0xD57D, index: 1 }
-        thunderbadge: { type: "bit", startingAddress: 0xD57D, index: 2 }
-        rainbowbadge: { type: "bit", startingAddress: 0xD57D, index: 3 }
-        soulbadge: { type: "bit", startingAddress: 0xD57D, index: 5 }
-        marshbadge: { type: "bit", startingAddress: 0xD57D, index: 4 }
-        volcanobadge: { type: "bit", startingAddress: 0xD57D, index: 6 }
-        earthbadge: { type: "bit", startingAddress: 0xD57D, index: 7 }   
-    money: { type: "int", startingAddress: 0xD573, length: 3 }
-    moneyMom: { type: "int", startingAddress: 0xD576, length: 3 }
-    coins: { type: "int", startingAddress: 0xD57A, length: 2 }
-    repelStepsLeft: { type: "int", startingAddress: 0xD9EB, length: 1 }
-    bikeStatus: { type: "reference", startingAddress: 0xD682, length: 1, reference: "bikeStatus" }
+        boulderbadge: { type: "bit", address: 0xD57D, position: 1 }
+        cascadebadge: { type: "bit", address: 0xD57D, position: 2 }
+        thunderbadge: { type: "bit", address: 0xD57D, position: 3 }
+        rainbowbadge: { type: "bit", address: 0xD57D, position: 4 }
+        soulbadge: { type: "bit", address: 0xD57D, position: 6 }
+        marshbadge: { type: "bit", address: 0xD57D, position: 5 }
+        volcanobadge: { type: "bit", address: 0xD57D, position: 7 }
+        earthbadge: { type: "bit", address: 0xD57D, position: 8 }   
+    money: { type: "int", address: 0xD573, size: 3 }
+    moneyMom: { type: "int", address: 0xD576, size: 3 }
+    coins: { type: "int", address: 0xD57A, size: 2 }
+    repelStepsLeft: { type: "int", address: 0xD9EB, size: 1 }
+    bikeStatus: { type: "reference", address: 0xD682, size: 1, reference: "bikeStatus" }
 
   team:
-    # teamCount: { type: "int", startingAddress: 0xDCD7, length: 1 } #haven't located for GS
+    # teamCount: { type: "int", address: 0xDCD7, size: 1 } #haven't located for GS
     teamNicknames:
-      nicknameSlot1: { type: "string", startingAddress: 0xDB8C, length: 11, reference: "defaultCharacterMap" }
-      nicknameSlot2: { type: "string", startingAddress: 0xDB97, length: 11, reference: "defaultCharacterMap" }
-      nicknameSlot3: { type: "string", startingAddress: 0xDBA2, length: 11, reference: "defaultCharacterMap" }
-      nicknameSlot4: { type: "string", startingAddress: 0xDBAD, length: 11, reference: "defaultCharacterMap" }
-      nicknameSlot5: { type: "string", startingAddress: 0xDBB8, length: 11, reference: "defaultCharacterMap" }
-      nicknameSlot6: { type: "string", startingAddress: 0xDBC3, length: 11, reference: "defaultCharacterMap" }
-    slot1: { type: "macro", startingAddress: 0xDA2A, macro: "pokemonInParty" }
-    slot2: { type: "macro", startingAddress: 0xDA5A, macro: "pokemonInParty" }
-    slot3: { type: "macro", startingAddress: 0xDA8A, macro: "pokemonInParty" }
-    slot4: { type: "macro", startingAddress: 0xDABA, macro: "pokemonInParty" }
-    slot5: { type: "macro", startingAddress: 0xDAEA, macro: "pokemonInParty" }
-    slot6: { type: "macro", startingAddress: 0xDB1A, macro: "pokemonInParty" }
+      nicknameSlot1: { type: "string", address: 0xDB8C, size: 11, reference: "defaultCharacterMap" }
+      nicknameSlot2: { type: "string", address: 0xDB97, size: 11, reference: "defaultCharacterMap" }
+      nicknameSlot3: { type: "string", address: 0xDBA2, size: 11, reference: "defaultCharacterMap" }
+      nicknameSlot4: { type: "string", address: 0xDBAD, size: 11, reference: "defaultCharacterMap" }
+      nicknameSlot5: { type: "string", address: 0xDBB8, size: 11, reference: "defaultCharacterMap" }
+      nicknameSlot6: { type: "string", address: 0xDBC3, size: 11, reference: "defaultCharacterMap" }
+    slot1: { type: "macro", address: 0xDA2A, macro: "pokemonInParty" }
+    slot2: { type: "macro", address: 0xDA5A, macro: "pokemonInParty" }
+    slot3: { type: "macro", address: 0xDA8A, macro: "pokemonInParty" }
+    slot4: { type: "macro", address: 0xDABA, macro: "pokemonInParty" }
+    slot5: { type: "macro", address: 0xDAEA, macro: "pokemonInParty" }
+    slot6: { type: "macro", address: 0xDB1A, macro: "pokemonInParty" }
 
   overworld:
-    mapBank: { type: "reference", startingAddress: 0xDA00, length: 1, reference: "mapBank" }
-    mapNumber: { type: "int", startingAddress: 0xDA01, length: 1 }
-    encounterRate: { type: "int", startingAddress: 0xD20B, length: 1 } #this changes based on the tile you are on
+    mapBank: { type: "reference", address: 0xDA00, size: 1, reference: "mapBank" }
+    mapNumber: { type: "int", address: 0xDA01, size: 1 }
+    encounterRate: { type: "int", address: 0xD20B, size: 1 } #this changes based on the tile you are on
 
   battle:
-    type: { type: "reference", startingAddress: 0xD116, length: 1, reference: "battleTypes" }
-    battleStart: { type: "int", startingAddress: 0xC664, length: 1 }
-    moneyEarned: { type: "int", startingAddress: 0xCB65, length: 2 }
-    experienceEarned: { type: "int", startingAddress: 0xCF7E, length: 2 }
+    type: { type: "reference", address: 0xD116, size: 1, reference: "battleTypes" }
+    battleStart: { type: "int", address: 0xC664, size: 1 }
+    moneyEarned: { type: "int", address: 0xCB65, size: 2 }
+    experienceEarned: { type: "int", address: 0xCF7E, size: 2 }
     yourPokemon:
-      heldItem: { type: "reference", startingAddress: 0xCB0D, length: 1, reference: "items" }
-      currentHP: { type: "int", startingAddress: 0xCB1C, length: 2 }
-      type1: { type: "reference", startingAddress: 0xCB2A, length: 1, reference: "types" }
-      type2: { type: "reference", startingAddress: 0xCB2B, length: 1, reference: "types" }
-      modStageAtk: { type: "reference", startingAddress: 0xC6CC, length: 1, reference: "stageModifiers" }
-      modStageDef: { type: "reference", startingAddress: 0xC6CD, length: 1, reference: "stageModifiers" }
-      modStageSpd: { type: "reference", startingAddress: 0xC6CE, length: 1, reference: "stageModifiers" }
-      modStageSpcA: { type: "reference", startingAddress: 0xC6CF, length: 1, reference: "stageModifiers" }
-      modStageSpcD: { type: "reference", startingAddress: 0xC6D0, length: 1, reference: "stageModifiers" }
-      modStageAcc: { type: "reference", startingAddress: 0xC6D1, length: 1, reference: "stageModifiers" }
-      modStageEva: { type: "reference", startingAddress: 0xC6D2, length: 1, reference: "stageModifiers" }
-      battleStatAtk: { type: "int", startingAddress: 0xCBC1, length: 2, note: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatDef: { type: "int", startingAddress: 0xCBC3, length: 2, note: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpd: { type: "int", startingAddress: 0xCBC5, length: 2, note: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpcA: { type: "int", startingAddress: 0xCBC7, length: 2, note: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpcD: { type: "int", startingAddress: 0xCBC9, length: 2, note: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included"}
-      move1: { type: "reference", startingAddress: 0xCB0E, length: 1, reference: "moves" }
-      move2: { type: "reference", startingAddress: 0xCB0F, length: 1, reference: "moves" }
-      move3: { type: "reference", startingAddress: 0xCB10, length: 1, reference: "moves" }
-      move4: { type: "reference", startingAddress: 0xCB11, length: 1, reference: "moves" }
-      move1pp: { type: "int", startingAddress: 0xCB14, length: 1 }
-      move2pp: { type: "int", startingAddress: 0xCB15, length: 1 }
-      move3pp: { type: "int", startingAddress: 0xCB16, length: 1 }
-      move4pp: { type: "int", startingAddress: 0xCB17, length: 1 }
+      heldItem: { type: "reference", address: 0xCB0D, size: 1, reference: "items" }
+      currentHP: { type: "int", address: 0xCB1C, size: 2 }
+      type1: { type: "reference", address: 0xCB2A, size: 1, reference: "types" }
+      type2: { type: "reference", address: 0xCB2B, size: 1, reference: "types" }
+      modStageAtk: { type: "reference", address: 0xC6CC, size: 1, reference: "stageModifiers" }
+      modStageDef: { type: "reference", address: 0xC6CD, size: 1, reference: "stageModifiers" }
+      modStageSpd: { type: "reference", address: 0xC6CE, size: 1, reference: "stageModifiers" }
+      modStageSpcA: { type: "reference", address: 0xC6CF, size: 1, reference: "stageModifiers" }
+      modStageSpcD: { type: "reference", address: 0xC6D0, size: 1, reference: "stageModifiers" }
+      modStageAcc: { type: "reference", address: 0xC6D1, size: 1, reference: "stageModifiers" }
+      modStageEva: { type: "reference", address: 0xC6D2, size: 1, reference: "stageModifiers" }
+      battleStatAtk: { type: "int", address: 0xCBC1, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatDef: { type: "int", address: 0xCBC3, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpd: { type: "int", address: 0xCBC5, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpcA: { type: "int", address: 0xCBC7, size: 2, description: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpcD: { type: "int", address: 0xCBC9, size: 2, description: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included"}
+      move1: { type: "reference", address: 0xCB0E, size: 1, reference: "moves" }
+      move2: { type: "reference", address: 0xCB0F, size: 1, reference: "moves" }
+      move3: { type: "reference", address: 0xCB10, size: 1, reference: "moves" }
+      move4: { type: "reference", address: 0xCB11, size: 1, reference: "moves" }
+      move1pp: { type: "int", address: 0xCB14, size: 1 }
+      move2pp: { type: "int", address: 0xCB15, size: 1 }
+      move3pp: { type: "int", address: 0xCB16, size: 1 }
+      move4pp: { type: "int", address: 0xCB17, size: 1 }
     wildPokemon:
-      wildSpecies: { type: "reference", startingAddress: 0xD0ED, reference: "pokemon" }
-      wildLevel: { type: "int", startingAddress: 0xD0FC, length: 1 }
-      moves1: { type: "reference", startingAddress: 0xCC13, length: 1, reference: "moves" }
-      moves2: { type: "reference", startingAddress: 0xCC14, length: 1, reference: "moves" }
-      moves3: { type: "reference", startingAddress: 0xCC15, length: 1, reference: "moves" }
-      moves4: { type: "reference", startingAddress: 0xCC16, length: 1, reference: "moves" }
-    # trainerTeamCount: { type: "int", startingAddress: 0xDD55, length: 7 }
+      wildSpecies: { type: "reference", address: 0xD0ED, reference: "pokemon" }
+      wildLevel: { type: "int", address: 0xD0FC, size: 1 }
+      moves1: { type: "reference", address: 0xCC13, size: 1, reference: "moves" }
+      moves2: { type: "reference", address: 0xCC14, size: 1, reference: "moves" }
+      moves3: { type: "reference", address: 0xCC15, size: 1, reference: "moves" }
+      moves4: { type: "reference", address: 0xCC16, size: 1, reference: "moves" }
+    # trainerTeamCount: { type: "int", address: 0xDD55, size: 7 }
     enemyPokemon:
-      heldItem: { type: "reference", startingAddress: 0xD0F0, length: 1, reference: "items" }
-      level: { type: "int", startingAddress: 0xD0FC, length: 1 }
-      statsCondition: { type: "reference", startingAddress: 0xD9FD, length: 1, reference: "statusConditions" }
-      # gender: { type: "reference", startingAddress: 0xD0F0, length: 1, reference: "gender" }
-      move1: { type: "reference", startingAddress: 0xD0F1, length: 1, reference: "moves" }
-      move2: { type: "reference", startingAddress: 0xD0F2, length: 1, reference: "moves" }
-      move3: { type: "reference", startingAddress: 0xD0F3, length: 1, reference: "moves" }
-      move4: { type: "reference", startingAddress: 0xD0F4, length: 1, reference: "moves" }
-      currentHP: { type: "int", startingAddress: 0xD0FF, length: 2 }
-      maxHP: { type: "int", startingAddress: 0xD101, length: 2 }
-      Atk: { type: "int", startingAddress: 0xD103, length: 2 }
-      Def: { type: "int", startingAddress: 0xD105, length: 2 }
-      Spd: { type: "int", startingAddress: 0xD107, length: 2 }
-      SpcA: { type: "int", startingAddress: 0xD109, length: 2 }
-      SpcD: { type: "int", startingAddress: 0xD10B, length: 2 }
-      dvAtkDef: { type: "int", startingAddress: 0xD0F5, length: 1 }
-      dvSpdSpc: { type: "int", startingAddress: 0xD0F6, length: 1 }
-      enemyType1: { type: "reference", startingAddress: 0xD127, length: 1, reference: "types" }
-      enemyType2: { type: "reference", startingAddress: 0xD128, length: 1, reference: "types" }
+      heldItem: { type: "reference", address: 0xD0F0, size: 1, reference: "items" }
+      level: { type: "int", address: 0xD0FC, size: 1 }
+      statsCondition: { type: "reference", address: 0xD9FD, size: 1, reference: "statusConditions" }
+      # gender: { type: "reference", address: 0xD0F0, size: 1, reference: "gender" }
+      move1: { type: "reference", address: 0xD0F1, size: 1, reference: "moves" }
+      move2: { type: "reference", address: 0xD0F2, size: 1, reference: "moves" }
+      move3: { type: "reference", address: 0xD0F3, size: 1, reference: "moves" }
+      move4: { type: "reference", address: 0xD0F4, size: 1, reference: "moves" }
+      currentHP: { type: "int", address: 0xD0FF, size: 2 }
+      maxHP: { type: "int", address: 0xD101, size: 2 }
+      Atk: { type: "int", address: 0xD103, size: 2 }
+      Def: { type: "int", address: 0xD105, size: 2 }
+      Spd: { type: "int", address: 0xD107, size: 2 }
+      SpcA: { type: "int", address: 0xD109, size: 2 }
+      SpcD: { type: "int", address: 0xD10B, size: 2 }
+      dvAtkDef: { type: "int", address: 0xD0F5, size: 1 }
+      dvSpdSpc: { type: "int", address: 0xD0F6, size: 1 }
+      enemyType1: { type: "reference", address: 0xD127, size: 1, reference: "types" }
+      enemyType2: { type: "reference", address: 0xD128, size: 1, reference: "types" }
 
     
   # mart: # not working currently (only slots 1-3 work)
-  #   total items: { type: "int", startingAddress: 0xD140, length: 1}
-  #   item1: { type: "reference", startingAddress: 0xCFED, length: 1, reference: "items" }
-  #   item2: { type: "reference", startingAddress: 0xCFEE, length: 1, reference: "items" }
-  #   item3: { type: "reference", startingAddress: 0xCFEF, length: 1, reference: "items" }
-  #   item4: { type: "reference", startingAddress: 0xCFD0, length: 1, reference: "items" }
-  #   item5: { type: "reference", startingAddress: 0xCFD1, length: 1, reference: "items" }
+  #   total items: { type: "int", address: 0xD140, size: 1}
+  #   item1: { type: "reference", address: 0xCFED, size: 1, reference: "items" }
+  #   item2: { type: "reference", address: 0xCFEE, size: 1, reference: "items" }
+  #   item3: { type: "reference", address: 0xCFEF, size: 1, reference: "items" }
+  #   item4: { type: "reference", address: 0xCFD0, size: 1, reference: "items" }
+  #   item5: { type: "reference", address: 0xCFD1, size: 1, reference: "items" }
 
   options:
-      # clockDay: { type: "string", startingAddress: 0xD1DC, length: 5, reference: "defaultCharacterMap" }
-      # clockTime: { type: "string", startingAddress: 0xD1EB, length: 5, reference: "defaultCharacterMap" }
-      textSpeed1: { type: "bit", startingAddress: 0xD199, index: 1, note: "False+False = Fast, True+False = Mid, True+True = Slow" }
-      textSpeed2: { type: "bit", startingAddress: 0xD199, index: 2 }
-      sound: { type: "bit", startingAddress: 0xD199, index: 5, note: "Mono = False, Stereo = True" }
-      battleStyle: { type: "bit", startingAddress: 0xD199, index: 6, note: "Shift = False, Set = True"}
-      battleAnimations: { type: "bit", startingAddress: 0xD199, index: 7, note: "On = False, Off = True" }
+      # clockDay: { type: "string", address: 0xD1DC, size: 5, reference: "defaultCharacterMap" }
+      # clockTime: { type: "string", address: 0xD1EB, size: 5, reference: "defaultCharacterMap" }
+      textSpeed1: { type: "bit", address: 0xD199, position: 2, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
+      textSpeed2: { type: "bit", address: 0xD199, position: 3 }
+      sound: { type: "bit", address: 0xD199, position: 6, description: "Mono = False, Stereo = True" }
+      battleStyle: { type: "bit", address: 0xD199, position: 7, description: "Shift = False, Set = True"}
+      battleAnimations: { type: "bit", address: 0xD199, position: 8, description: "On = False, Off = True" }
 
   rival:
-    rivalName: { type: "string", startingAddress: 0xD1BC, length: 11 }
+    rivalName: { type: "string", address: 0xD1BC, size: 11 }
 
   gameTime:
-    hours: { type: "int", startingAddress: 0xD1EB, length: 2 }
-    minutes: { type: "int", startingAddress: 0xD1ED, length: 1 }
-    seconds: { type: "int", startingAddress: 0xD1EE, length: 1 }
-    frames: { type: "int", startingAddress: 0xD1EF, length: 1 }
+    hours: { type: "int", address: 0xD1EB, size: 2 }
+    minutes: { type: "int", address: 0xD1ED, size: 1 }
+    seconds: { type: "int", address: 0xD1EE, size: 1 }
+    frames: { type: "int", address: 0xD1EF, size: 1 }
 
 glossary:
   battleTypes:

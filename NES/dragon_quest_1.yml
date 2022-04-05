@@ -6,32 +6,32 @@ meta:
 
 properties:
   map:
-    horizontalOffset: { type: "int", startingAddress: 0x11 }
-    loadedMap: { type: "reference", startingAddress: 0x45, reference: "maps" }
-    loadedTileset: { type: "int", startingAddress: 0x12 }
-    exteriorTile: { type: "reference", startingAddress: 0x45, reference: "tiles" }
+    horizontalOffset: { type: "int", address: 0x11 }
+    loadedMap: { type: "reference", address: 0x45, reference: "maps" }
+    loadedTileset: { type: "int", address: 0x12 }
+    exteriorTile: { type: "reference", address: 0x45, reference: "tiles" }
   player:
-    standingOn: { type: "reference", startingAddress: 0xE0, reference: "tiles" }
+    standingOn: { type: "reference", address: 0xE0, reference: "tiles" }
     position:
-      x: { type: "int", startingAddress: 0x3A }
-      y: { type: "int", startingAddress: 0x3B }
-    health: { type: "int", startingAddress: 0xC5 }
-    maxHealth: { type: "int", startingAddress: 0xCA }
-    magic: { type: "int", startingAddress: 0xC6 }
-    maxMagic: { type: "int", startingAddress: 0xCB }
-    attack: { type: "int", startingAddress: 0xCC }
-    defense: { type: "int", startingAddress: 0xCD }
-    level: { type: "int", startingAddress: 0xC7 }
-    gold: { type: "int", startingAddress: 0xBC, length: 2 }
-    magicKeys: { type: "int", startingAddress: 0xBF }
-    herbs: { type: "int", startingAddress: 0xC0 }
-    #items: { type: "bitArray", startingAddress: 0xC1 }
+      x: { type: "int", address: 0x3A }
+      y: { type: "int", address: 0x3B }
+    health: { type: "int", address: 0xC5 }
+    maxHealth: { type: "int", address: 0xCA }
+    magic: { type: "int", address: 0xC6 }
+    maxMagic: { type: "int", address: 0xCB }
+    attack: { type: "int", address: 0xCC }
+    defense: { type: "int", address: 0xCD }
+    level: { type: "int", address: 0xC7 }
+    gold: { type: "int", address: 0xBC, size: 2 }
+    magicKeys: { type: "int", address: 0xBF }
+    herbs: { type: "int", address: 0xC0 }
+    #items: { type: "bitArray", address: 0xC1 }
   battle:
     enemy:
-      type: { type: "reference", startingAddress: 0xE0, reference: "enemies" }
-  overworldInactivityTimer: { type: "int", startingAddress: 0x4F }
-  buttonsPressed: { type: "int", startingAddress: 0x47 }
-  lightRadius: { type: "reference", startingAddress: 0xD0, reference: "lightRadius" }
+      type: { type: "reference", address: 0xE0, reference: "enemies" }
+  overworldInactivityTimer: { type: "int", address: 0x4F }
+  buttonsPressed: { type: "int", address: 0x47 }
+  lightRadius: { type: "reference", address: 0xD0, reference: "lightRadius" }
 
 glossary:
   maps:
