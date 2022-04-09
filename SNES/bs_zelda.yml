@@ -21,34 +21,34 @@ properties:
     powerBracelet: { type: "bool", address: 0x7E742E }
     oldLadyLetter: { type: "bool", address: 0x7E742F }
     dungeonCompasses:
-      level1: { type: "bit", address: 0x7E7430, position: 8 }
-      level2: { type: "bit", address: 0x7E7430, position: 7 }
-      level3: { type: "bit", address: 0x7E7430, position: 6 }
-      level4: { type: "bit", address: 0x7E7430, position: 5 }
-      level5: { type: "bit", address: 0x7E7430, position: 4 }
-      level6: { type: "bit", address: 0x7E7430, position: 3 }
-      level7: { type: "bit", address: 0x7E7430, position: 2 }
-      level8: { type: "bit", address: 0x7E7430, position: 1 }
+      level1: { type: "bit", address: 0x7E7430, position: 7 }
+      level2: { type: "bit", address: 0x7E7430, position: 6 }
+      level3: { type: "bit", address: 0x7E7430, position: 5 }
+      level4: { type: "bit", address: 0x7E7430, position: 4 }
+      level5: { type: "bit", address: 0x7E7430, position: 3 }
+      level6: { type: "bit", address: 0x7E7430, position: 2 }
+      level7: { type: "bit", address: 0x7E7430, position: 1 }
+      level8: { type: "bit", address: 0x7E7430, position: 0 }
     dungeonMaps:
-      level1: { type: "bit", address: 0x7E7432, position: 8 }
-      level2: { type: "bit", address: 0x7E7432, position: 7 }
-      level3: { type: "bit", address: 0x7E7432, position: 6 }
-      level4: { type: "bit", address: 0x7E7432, position: 5 }
-      level5: { type: "bit", address: 0x7E7432, position: 4 }
-      level6: { type: "bit", address: 0x7E7432, position: 3 }
-      level7: { type: "bit", address: 0x7E7432, position: 2 }
-      level8: { type: "bit", address: 0x7E7432, position: 1 }
+      level1: { type: "bit", address: 0x7E7432, position: 7 }
+      level2: { type: "bit", address: 0x7E7432, position: 6 }
+      level3: { type: "bit", address: 0x7E7432, position: 5 }
+      level4: { type: "bit", address: 0x7E7432, position: 4 }
+      level5: { type: "bit", address: 0x7E7432, position: 3 }
+      level6: { type: "bit", address: 0x7E7432, position: 2 }
+      level7: { type: "bit", address: 0x7E7432, position: 1 }
+      level8: { type: "bit", address: 0x7E7432, position: 0 }
     rupees: { type: "int", address: 0x7E7436, size: 2 }
     keys: { type: "int", address: 0x7E7438 }
     triforcePieces:
-      piece1: { type: "bit", address: 0x7E7439, position: 8 }
-      piece2: { type: "bit", address: 0x7E7439, position: 7 }
-      piece3: { type: "bit", address: 0x7E7439, position: 6 }
-      piece4: { type: "bit", address: 0x7E7439, position: 5 }
-      piece5: { type: "bit", address: 0x7E7439, position: 4 }
-      piece6: { type: "bit", address: 0x7E7439, position: 3 }
-      piece7: { type: "bit", address: 0x7E7439, position: 2 }
-      piece8: { type: "bit", address: 0x7E7439, position: 1 }
+      piece1: { type: "bit", address: 0x7E7439, position: 7 }
+      piece2: { type: "bit", address: 0x7E7439, position: 6 }
+      piece3: { type: "bit", address: 0x7E7439, position: 5 }
+      piece4: { type: "bit", address: 0x7E7439, position: 4 }
+      piece5: { type: "bit", address: 0x7E7439, position: 3 }
+      piece6: { type: "bit", address: 0x7E7439, position: 2 }
+      piece7: { type: "bit", address: 0x7E7439, position: 1 }
+      piece8: { type: "bit", address: 0x7E7439, position: 0 }
     sword: { type: "reference", address: 0x7E743A, reference: "swords" }
     bow: { type: "bool", address: 0x7E743C }
 

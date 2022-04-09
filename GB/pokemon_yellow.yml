@@ -23,187 +23,141 @@ macros:
       statExpDef: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
       statExpSpd: { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
       statExpSpc: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
-      dvAtkDef: { offset: 27, type: "int", size: 1 }
-      dvSpdSpc: { offset: 28, type: "int", size: 1 }
-      move1pp: { offset: 29, type: "int", size: 1 }
-      move2pp: { offset: 30, type: "int", size: 1 }
-      move3pp: { offset: 31, type: "int", size: 1 }
-      move4pp: { offset: 32, type: "int", size: 1 }
-      level: { offset: 33, type: "int", size: 1 }
+      dvAtkDef: { offset: 27, type: "int" }
+      dvSpdSpc: { offset: 28, type: "int" }
+      move1pp: { offset: 29, type: "int" }
+      move2pp: { offset: 30, type: "int" }
+      move3pp: { offset: 31, type: "int" }
+      move4pp: { offset: 32, type: "int" }
+      level: { offset: 33, type: "int" }
       maxHP: { offset: 34, type: "int", size: 2, description: "The maximum HP the Pokemon can have when it is fully healed" }
       summaryAtk: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
       summaryDef: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
       summarySpd: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
       summarySpc: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-  
-  playerBag:
-    slot1:
+  playerItem:
       item: { offset: 0, type: "reference", reference: "items" }
-      quantity: { offset: 1, type: "int", size: 1 }
-    slot2:
-      item: { offset: 2, type: "reference", reference: "items" }
-      quantity: { offset: 3, type: "int", size: 1 }
-    slot3:
-      item: { offset: 4, type: "reference", reference: "items" }
-      quantity: { offset: 5, type: "int", size: 1 }
-    slot4:
-      item: { offset: 6, type: "reference", reference: "items" }
-      quantity: { offset: 7, type: "int", size: 1 }
-    slot5:
-      item: { offset: 8, type: "reference", reference: "items" }
-      quantity: { offset: 9, type: "int", size: 1 }
-    slot6:
-      item: { offset: 10, type: "reference", reference: "items" }
-      quantity: { offset: 11, type: "int", size: 1 }
-    slot7:
-      item: { offset: 12, type: "reference", reference: "items" }
-      quantity: { offset: 13, type: "int", size: 1 }
-    slot8:
-      item: { offset: 14, type: "reference", reference: "items" }
-      quantity: { offset: 15, type: "int", size: 1 }
-    slot9:
-      item: { offset: 16, type: "reference", reference: "items" }
-      quantity: { offset: 17, type: "int", size: 1 }
-    slot10:
-      item: { offset: 18, type: "reference", reference: "items" }
-      quantity: { offset: 19, type: "int", size: 1 }
-    slot11:
-      item: { offset: 20, type: "reference", reference: "items" }
-      quantity: { offset: 21, type: "int", size: 1 }
-    slot12:
-      item: { offset: 22, type: "reference", reference: "items" }
-      quantity: { offset: 23, type: "int", size: 1 }
-    slot13:
-      item: { offset: 24, type: "reference", reference: "items" }
-      quantity: { offset: 25, type: "int", size: 1 }
-    slot14:
-      item: { offset: 26, type: "reference", reference: "items" }
-      quantity: { offset: 27, type: "int", size: 1 }
-    slot15:
-      item: { offset: 28, type: "reference", reference: "items" }
-      quantity: { offset: 29, type: "int", size: 1 }
-    slot16:
-      item: { offset: 30, type: "reference", reference: "items" }
-      quantity: { offset: 31, type: "int", size: 1 }
-    slot17:
-      item: { offset: 32, type: "reference", reference: "items" }
-      quantity: { offset: 33, type: "int", size: 1 }
-    slot18:
-      item: { offset: 34, type: "reference", reference: "items" }
-      quantity: { offset: 35, type: "int", size: 1 }
-    slot19:
-      item: { offset: 36, type: "reference", reference: "items" }
-      quantity: { offset: 37, type: "int", size: 1 }
-    slot20:
-      item: { offset: 38, type: "reference", reference: "items" }
-      quantity: { offset: 39, type: "int", size: 1 }
-  
-  encounterStructure:
-    common1:
-      level: { offset: 0, type: "int", size: 1 }
-      pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemon" }
-    common2:
-      level: { offset: 2, type: "int", size: 1 }
-      pokemon: { offset: 3, type: "reference", size: 1, reference: "pokemon" }
-    common3:
-      level: { offset: 4, type: "int", size: 1 }
-      pokemon: { offset: 5, type: "reference", size: 1, reference: "pokemon" }
-    common4:
-      level: { offset: 6, type: "int", size: 1 }
-      pokemon: { offset: 7, type: "reference", size: 1, reference: "pokemon" }
-    uncommon1:
-      level: { offset: 8, type: "int", size: 1 }
-      pokemon: { offset: 9, type: "reference", size: 1, reference: "pokemon" }
-    uncommon2:
-      level: { offset: 10, type: "int", size: 1 }
-      pokemon: { offset: 11, type: "reference", size: 1, reference: "pokemon" }
-    uncommon3:
-      level: { offset: 12, type: "int", size: 1 }
-      pokemon: { offset: 13, type: "reference", size: 1, reference: "pokemon" }
-    uncommon4:
-      level: { offset: 14, type: "int", size: 1 }
-      pokemon: { offset: 15, type: "reference", size: 1, reference: "pokemon" }
-    rare1:
-      level: { offset: 16, type: "int", size: 1 }
-      pokemon: { offset: 17, type: "reference", size: 1, reference: "pokemon" }
-    rare2:
-      level: { offset: 18, type: "int", size: 1 }
-      pokemon: { offset: 19, type: "reference", size: 1, reference: "pokemon" }
+      quantity: { offset: 1, type: "int" }
+  encounter:
+    level: { offset: 0, type: "int" }
+    pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemon" }
 
 properties:
-  menuScreen:
-    battleAnimation: { type: "bit", address: 0xD354, position: 8 }
-    battleStyle: { type: "bit", address: 0xD354, position: 7 }
-    textSpeed: { type: "bit", address: 0xD354, position: 2 }
-    startGameMenu: { type: int, address: 0xD35E, size: 1 }
-  
   player:
     name: { type: "string", address: 0xD157, size: 11 }
     starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
-    playerItems:
-      numOfItems: { type: "int", address: 0xD31C, size: 1, "The total number of items currently in the bag."}
-      bag: { type: "macro", address: 0xD31D, macro: "playerBag" } 
+    pokedexSeen: { type: "bitArray", address: 0xD309, size: 19 }
+    pokedexCaught: { type: "bitArray", address: 0xD2F6, size: 19 }
+    pokeDollars: { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
+    gameCornerCoins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
+    joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
+    teamCount: { type: "int", address: 0xD162 }
+    team:
+      - name: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD16A, macro: "pokemonInParty" }
+      - name: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD196, macro: "pokemonInParty" }
+      - name: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD1C2, macro: "pokemonInParty" }
+      - name: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD1EE, macro: "pokemonInParty" }
+      - name: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD21A, macro: "pokemonInParty" }
+      - name: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
+        _: { type: "macro", address: 0xD246, macro: "pokemonInParty" }
+    itemCount: { type: "int", address: 0xD31C }
+    items:
+      - { type: "macro", address: 0xD31D, macro: "playerItem" }
+      - { type: "macro", address: 0xD31E, macro: "playerItem" }
+      - { type: "macro", address: 0xD31F, macro: "playerItem" }
+      - { type: "macro", address: 0xD320, macro: "playerItem" }
+      - { type: "macro", address: 0xD321, macro: "playerItem" }
+      - { type: "macro", address: 0xD322, macro: "playerItem" }
+      - { type: "macro", address: 0xD323, macro: "playerItem" }
+      - { type: "macro", address: 0xD324, macro: "playerItem" }
+      - { type: "macro", address: 0xD325, macro: "playerItem" }
+      - { type: "macro", address: 0xD326, macro: "playerItem" }
+      - { type: "macro", address: 0xD327, macro: "playerItem" }
+      - { type: "macro", address: 0xD328, macro: "playerItem" }
+      - { type: "macro", address: 0xD329, macro: "playerItem" }
+      - { type: "macro", address: 0xD32A, macro: "playerItem" }
+      - { type: "macro", address: 0xD32B, macro: "playerItem" }
+      - { type: "macro", address: 0xD32C, macro: "playerItem" }
+      - { type: "macro", address: 0xD32D, macro: "playerItem" }
+      - { type: "macro", address: 0xD32E, macro: "playerItem" }
+      - { type: "macro", address: 0xD32F, macro: "playerItem" }
+      - { type: "macro", address: 0xD330, macro: "playerItem" }
+      - { type: "macro", address: 0xD331, macro: "playerItem" }
+      - { type: "macro", address: 0xD332, macro: "playerItem" }
+      - { type: "macro", address: 0xD333, macro: "playerItem" }
+      - { type: "macro", address: 0xD334, macro: "playerItem" }
+      - { type: "macro", address: 0xD335, macro: "playerItem" }
+      - { type: "macro", address: 0xD336, macro: "playerItem" }
+      - { type: "macro", address: 0xD337, macro: "playerItem" }
+      - { type: "macro", address: 0xD338, macro: "playerItem" }
+      - { type: "macro", address: 0xD339, macro: "playerItem" }
+      - { type: "macro", address: 0xD33A, macro: "playerItem" }
+      - { type: "macro", address: 0xD33B, macro: "playerItem" }
+      - { type: "macro", address: 0xD33C, macro: "playerItem" }
+      - { type: "macro", address: 0xD33D, macro: "playerItem" }
+      - { type: "macro", address: 0xD33E, macro: "playerItem" }
     badges:
-        boulderBadge: { type: "bit", address: 0xD355, position: 1 }
-        cascadeBadge: { type: "bit", address: 0xD355, position: 2 }
-        thunderBadge: { type: "bit", address: 0xD355, position: 3 }
-        rainbowBadge: { type: "bit", address: 0xD355, position: 4 }
-        soulBadge: { type: "bit", address: 0xD355, position: 5 }
-        marshBadge: { type: "bit", address: 0xD355, position: 6 }
-        volcanoBadge: { type: "bit", address: 0xD355, position: 7 }
-        earthBadge: { type: "bit", address: 0xD355, position: 8 }
-    pokedex:
-      seen: { type: "bitArray", address: 0xD309, size: 19 }
-      caught: { type: "bitArray", address: 0xD2F6, size: 19 }
-    money: { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
-    coins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
-  
+        boulderBadge: { type: "bit", address: 0xD355, position: 0 }
+        cascadeBadge: { type: "bit", address: 0xD355, position: 1 }
+        thunderBadge: { type: "bit", address: 0xD355, position: 2 }
+        rainbowBadge: { type: "bit", address: 0xD355, position: 3 }
+        soulBadge: { type: "bit", address: 0xD355, position: 4 }
+        marshBadge: { type: "bit", address: 0xD355, position: 5 }
+        volcanoBadge: { type: "bit", address: 0xD355, position: 6 }
+        earthBadge: { type: "bit", address: 0xD355, position: 7 }
   overworld:
-    loadedMap: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
-    encounters: 
-      rate: { type: "int", address: 0xD886, size: 1 }
-      encounterTable: { type: "macro", address: 0xD887, macro: "encounterStructure" } 
-    trashCanPuzzle: { type: "reference", address: 0xD772, size: 1, reference: "trashCanFlags" }
-  
-  team:
-    teamCount: { type: "int", address: 0xD162, size: 1 }
-    teamNicknames:
-      nicknameSlot1: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
-      nicknameSlot2: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
-      nicknameSlot3: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
-      nicknameSlot4: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
-      nicknameSlot5: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
-      nicknameSlot6: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
-    slot1: { type: "macro", address: 0xD16A, macro: "pokemonInParty" } 
-    slot2: { type: "macro", address: 0xD196, macro: "pokemonInParty" }
-    slot3: { type: "macro", address: 0xD1C2, macro: "pokemonInParty" }
-    slot4: { type: "macro", address: 0xD1EE, macro: "pokemonInParty" }
-    slot5: { type: "macro", address: 0xD21A, macro: "pokemonInParty" }
-    slot6: { type: "macro", address: 0xD246, macro: "pokemonInParty" }
-
+    map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
+    encounterRate: { type: "int", address: 0xD886 }
+    encounters:
+      common:
+        - { type: "macro", address: 0xD887, macro: "encounter" }
+        - { type: "macro", address: 0xD889, macro: "encounter" }
+        - { type: "macro", address: 0xD88B, macro: "encounter" }
+        - { type: "macro", address: 0xD88C, macro: "encounter" }
+        - { type: "macro", address: 0xD88F, macro: "encounter" }
+      uncommon:
+        - { type: "macro", address: 0xD889, macro: "encounter" }
+        - { type: "macro", address: 0xD891, macro: "encounter" }
+        - { type: "macro", address: 0xD893, macro: "encounter" }
+        - { type: "macro", address: 0xD895, macro: "encounter" }
+      rare:
+        - { type: "macro", address: 0xD897, macro: "encounter" }
+        - { type: "macro", address: 0xD899, macro: "encounter" }
+    events:
+      surgeGym:
+          completed: { type: "bit", startingAddress: 0xD772, index: 0 }
+          firstCan: { type: "bit", startingAddress: 0xD772, index: 1 }
+          trainerRight: { type: "bit", startingAddress: 0xD772, index: 2 }
+          trainerMiddle: { type: "bit", startingAddress: 0xD772, index: 3 }
+          trainerLeft: { type: "bit", startingAddress: 0xD772, index: 4 }
+          tmReceived: { type: "bit", startingAddress: 0xD772, index: 6 }
+          leaderDefeated: { type: "bit", startingAddress: 0xD772, index: 7 }
   battle:
     type: { type: "reference", address: 0xD056, size: 1, reference: "battleTypes" }
+    animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
     trainer:
       class: { type: "string", address: 0xD049, size: 11, reference: "defaultCharacterMap" }
-      totalPokemon: { type: "int", address: 0xD89B, size: 1 }
-      slot1: { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
-      slot2: { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
-      slot3: { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
-      slot4: { type: "reference", address: 0xD8AF, size: 1, reference: "pokemon" }
-      slot5: { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
-      slot6: { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
+      teamCount: { type: "int", address: 0xD89B }
+      team:
+        - { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD8AF, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
     enemyPokemon:
       species: { type: "reference", address: 0xCFD7, size: 1, reference: "pokemon" }
       currentHP: { type: "int", address: 0xCFE5, size: 2 }
       statusCondition: { type: "reference", address: 0xCFE8, size: 1, reference: "statusConditions" }
       type1: { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" }
       type2: { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" }
-      move1: { type: "reference", address: 0xCFEC, size: 1, reference: "moves" }
-      move2: { type: "reference", address: 0xCFED, size: 1, reference: "moves" }
-      move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
-      move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
-      level: { type: "int", address: 0xCFF2, size: 1 }
+      level: { type: "int", address: 0xCFF2 }
       maxHP: { type: "int", address: 0xCFF3, size: 2 }
       atk: { type: "int", address: 0xCFF5, size: 2 }
       def: { type: "int", address: 0xCFF7, size: 2 }
@@ -214,7 +168,11 @@ properties:
       modEnemyStageSpd: { type: "reference", address: 0xCD30, size: 1, reference: "stageModifiers" }
       modEnemyStageSpc: { type: "reference", address: 0xCD31, size: 1, reference: "stageModifiers" }
       modEnemyStageAcc: { type: "reference", address: 0xCD32, size: 1, reference: "stageModifiers" }
-      modEnemyStageEva: { type: "reference", address: 0xCD33, size: 1, reference: "stageModifiers" } 
+      modEnemyStageEva: { type: "reference", address: 0xCD33, size: 1, reference: "stageModifiers" }
+      move1: { type: "reference", address: 0xCFEC, size: 1, reference: "moves" }
+      move2: { type: "reference", address: 0xCFED, size: 1, reference: "moves" }
+      move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
+      move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
     yourPokemon:
       modStageAtk: { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" }
       modStageDef: { type: "reference", address: 0xCD1b, size: 1, reference: "stageModifiers" }
@@ -226,49 +184,70 @@ properties:
       battleStatDef: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
       battleStatSpd: { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
       battleStatSpc: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
+      tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
       move1: { type: "reference", address: 0xD01B, size: 1, reference: "moves" }
       move2: { type: "reference", address: 0xD01C, size: 1, reference: "moves" }
       move3: { type: "reference", address: 0xD01D, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
-      tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
-      tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
-  
+  pokemart:
+    itemCount: { type: "int", address: 0xCF7B }
+    items:
+      - { type: "reference", address: 0xCF7B, reference: "items" }
+      - { type: "reference", address: 0xCF7C, reference: "items" }
+      - { type: "reference", address: 0xCF7D, reference: "items" }
+      - { type: "reference", address: 0xCF7E, reference: "items" }
+      - { type: "reference", address: 0xCF7F, reference: "items" }
+      - { type: "reference", address: 0xCF80, reference: "items" }
+      - { type: "reference", address: 0xCF81, reference: "items" }
+      - { type: "reference", address: 0xCF82, reference: "items" }
+      - { type: "reference", address: 0xCF83, reference: "items" }
+      - { type: "reference", address: 0xCF84, reference: "items" }
+      - { type: "reference", address: 0xCF85, reference: "items" }
+
   rival:
-    name: { type: "string", address: 0xD349, size: 8, description: "The rival's name."}
-  
+    name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
+  settings:
+    battleAnimation: { type: "bit", address: 0xD354, position: 7 }
+    battleStyle: { type: "bit", address: 0xD354, position: 6 }
+    textSpeed: { type: "bit", address: 0xD354, position: 1 }
+    startGameMenu: { type: int, address: 0xD35E }
   gameTime:
-    hours:   { type: "int", address: 0xDA3F, size: 2 }
+    hours: { type: "int", address: 0xDA3F, size: 2 }
     minutes: { type: "int", address: 0xDA41, size: 2 }
-    seconds: { type: "int", address: 0xDA43, size: 1 }
-    frames:  { type: "int", address: 0xDA44, size: 1 }
+    seconds: { type: "int", address: 0xDA43 }
+    frames: { type: "int", address: 0xDA44 }
   
 glossary:
   battleTypes:
     0x00: null
-    0x01: "Wild"
-    0x02: "Trainer"
-    0xFF: "Lost Battle"
+    0x01: Wild
+    0x02: Trainer
+    0xFF: Lost Battle
   specialBattleTypes:
-    0x00: "Normal"
-    0x01: "Old Man Battle"
-    0x02: "Safari Zone"
-    0x04: "Oak catching Starter"
+    0x00: Normal
+    0x01: Old Man Battle
+    0x02: Safari Zone
+    0x04: Oak Catching Starter
+  battleTurn:
+    0x00: Player
+    0x01: Opponent
   pokemonTypes:
-    0x00:	"Normal"
-    0x01:	"Fighting"
-    0x02:	"Flying"
-    0x03:	"Poison"
-    0x04:	"Ground"
-    0x05:	"Rock"
-    0x07:	"Bug"
-    0x08:	"Ghost"
-    0x14:	"Fire"
-    0x15:	"Water"
-    0x16:	"Grass"
-    0x17:	"Electric"
-    0x18:	"Psychic"
-    0x19:	"Ice"
-    0x1A:	"Dragon"
+    0x00:	Normal
+    0x01:	Fighting
+    0x02:	Flying
+    0x03:	Poison
+    0x04:	Ground
+    0x05:	Rock
+    0x07:	Bug
+    0x08:	Ghost
+    0x14:	Fire
+    0x15:	Water
+    0x16:	Grass
+    0x17:	Electric
+    0x18:	Psychic
+    0x19:	Ice
+    0x1A:	Dragon
   stageModifiers:
     0x00: null
     0x01: -6
@@ -288,62 +267,58 @@ glossary:
     0x14: null
   statusConditions:
     0x00: null
-    0x01: "Asleep"
-    0x02: "Asleep"
-    0x04:	"Asleep"
-    0x08:	"Poisoned"
-    0x10:	"Burned"
-    0x20:	"Frozen"
-    0x40:	"Paralyzed"
+    0x01: Asleep
+    0x02: Asleep
+    0x04:	Asleep
+    0x08:	Poisoned
+    0x10:	Burned
+    0x20:	Frozen
+    0x40:	Paralyzed
   tempStatusConfused:
     0x00: null
     0x80: "Confused"
   tempStatusBadPoison:
     0x00: null
     0x01: "Badly Posioned"
-  trashCanFlags:
-    0x00: "Unsolved"
-    0x02: "First Can Found"
-    0x03: "Solved"
   defaultCharacterMap:
     0x50: null
     0x00: " "
-    0x01: Null
-    0x02: Null
-    0x03: Null
-    0x04: Null
-    0x05: Null
-    0x06: Null
-    0x07: Null
-    0x08: Null
-    0x09: Null
-    0x0A: Null
-    0x0B: Null
-    0x0C: Null
-    0x0D: Null
-    0x0E: Null
-    0x0D: Null
-    0x10: Null
-    0x11: Null
-    0x12: Null
-    0x13: Null
-    0x14: Null
-    0x15: Null
-    0x16: Null
-    0x17: Null
-    0x18: Null
-    0x19: Null
-    0x40: Null
-    0x41: Null
-    0x42: Null
-    0x43: Null
-    0x44: Null
-    0x45: Null
-    0x46: Null
-    0x47: Null
-    0x48: Null
-    0x49: Null
-    0x51: Null
+    0x01: null
+    0x02: null
+    0x03: null
+    0x04: null
+    0x05: null
+    0x06: null
+    0x07: null
+    0x08: null
+    0x09: null
+    0x0A: null
+    0x0B: null
+    0x0C: null
+    0x0D: null
+    0x0E: null
+    0x0F: null
+    0x10: null
+    0x11: null
+    0x12: null
+    0x13: null
+    0x14: null
+    0x15: null
+    0x16: null
+    0x17: null
+    0x18: null
+    0x19: null
+    0x40: null
+    0x41: null
+    0x42: null
+    0x43: null
+    0x44: null
+    0x45: null
+    0x46: null
+    0x47: null
+    0x48: null
+    0x49: null
+    0x51: null
     0x54: "#"
     0x75: "…"
     0x79: "┌"
@@ -695,11 +670,11 @@ glossary:
     0x51: "MAX ETHER"
     0x52: "ELIXER"
     0x53: "MAX ELIXER"
-    0xC4: "HM01 - Cut"
-    0xC5: "HM02 - Fly"
-    0xC6: "HM03 - Surf"
-    0xC7: "HM04 - Strength"
-    0xC8: "HM05 - Flash"
+    0xC4: "HM01: Cut"
+    0xC5: "HM02: Fly"
+    0xC6: "HM03: Surf"
+    0xC7: "HM04: Strength"
+    0xC8: "HM05: Flash"
     0xC9: "TM01: Mega Punch"
     0xCA: "TM02: Razor Wind"
     0xCB: "TM03: Swords Dance"
@@ -754,7 +729,6 @@ glossary:
   pokemon:
     0x00: null
     0xFF: null
-    0x34: null
     0x01: { pokedexNumber: 112, name: "Rhydon" }
     0x02: { pokedexNumber: 115, name: "Kangaskhan" }
     0x03: { pokedexNumber: 32, name: "NidoranM"}
