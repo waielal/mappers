@@ -115,6 +115,7 @@ properties:
       rare:
         - { type: "macro", address: 0xD897, macro: "encounter" }
         - { type: "macro", address: 0xD899, macro: "encounter" }
+    sound: { type: "int", address: 0xC0ED } #unfinished
     events:
       vermilionCityGym:
         completed: { type: "bit", startingAddress: 0xD772, position: 0 }
@@ -193,13 +194,17 @@ properties:
       - { type: "reference", address: 0xCF85, reference: "items" }
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
+  menu:
+    menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
+    cursorPosition: { type: int, address: 0xCC26 }
+    
   settings:
+    textSpeedFast: { type: "bit", address: 0xD354, position: 0 }
     textSpeedMid: { type: "bit", address: 0xD354, position: 1 }
     textSpeedSlow: { type: "bit", address: 0xD354, position: 2 }
-    textSpeedFast: { type: "bit", address: 0xD354, position: 3 }
     battleAnimation: { type: "bit", address: 0xD354, position: 7 }
     battleStyle: { type: "bit", address: 0xD354, position: 6 }
-    startGameMenu: { type: int, address: 0xD35E }
+    #startGameMenu: { type: int, address: 0xD35E } #is not the value for the start menu
   gameTime:
     hours: { type: "int", address: 0xDA3F, size: 2 }
     minutes: { type: "int", address: 0xDA41, size: 2 }
@@ -406,6 +411,12 @@ glossary:
     0xFD: "7"
     0xFE: "8"
     0xFF: "9"
+  menus:
+    0x00: null
+    0x29: "Inventory"
+    0x64: "Party
+    0xE9: "Options"
+    0xF8: "Items"
   moves:
     0x00: " "
     0x01: "POUND"
