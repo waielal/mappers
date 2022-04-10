@@ -68,39 +68,25 @@ properties:
     itemCount: { type: "int", address: 0xD31C }
     items:
       - { type: "macro", address: 0xD31D, macro: "playerItem" }
-      - { type: "macro", address: 0xD31E, macro: "playerItem" }
       - { type: "macro", address: 0xD31F, macro: "playerItem" }
-      - { type: "macro", address: 0xD320, macro: "playerItem" }
       - { type: "macro", address: 0xD321, macro: "playerItem" }
-      - { type: "macro", address: 0xD322, macro: "playerItem" }
       - { type: "macro", address: 0xD323, macro: "playerItem" }
-      - { type: "macro", address: 0xD324, macro: "playerItem" }
       - { type: "macro", address: 0xD325, macro: "playerItem" }
-      - { type: "macro", address: 0xD326, macro: "playerItem" }
       - { type: "macro", address: 0xD327, macro: "playerItem" }
-      - { type: "macro", address: 0xD328, macro: "playerItem" }
       - { type: "macro", address: 0xD329, macro: "playerItem" }
-      - { type: "macro", address: 0xD32A, macro: "playerItem" }
       - { type: "macro", address: 0xD32B, macro: "playerItem" }
-      - { type: "macro", address: 0xD32C, macro: "playerItem" }
       - { type: "macro", address: 0xD32D, macro: "playerItem" }
-      - { type: "macro", address: 0xD32E, macro: "playerItem" }
       - { type: "macro", address: 0xD32F, macro: "playerItem" }
-      - { type: "macro", address: 0xD330, macro: "playerItem" }
       - { type: "macro", address: 0xD331, macro: "playerItem" }
-      - { type: "macro", address: 0xD332, macro: "playerItem" }
       - { type: "macro", address: 0xD333, macro: "playerItem" }
-      - { type: "macro", address: 0xD334, macro: "playerItem" }
       - { type: "macro", address: 0xD335, macro: "playerItem" }
-      - { type: "macro", address: 0xD336, macro: "playerItem" }
       - { type: "macro", address: 0xD337, macro: "playerItem" }
-      - { type: "macro", address: 0xD338, macro: "playerItem" }
       - { type: "macro", address: 0xD339, macro: "playerItem" }
-      - { type: "macro", address: 0xD33A, macro: "playerItem" }
       - { type: "macro", address: 0xD33B, macro: "playerItem" }
-      - { type: "macro", address: 0xD33C, macro: "playerItem" }
       - { type: "macro", address: 0xD33D, macro: "playerItem" }
-      - { type: "macro", address: 0xD33E, macro: "playerItem" }
+      - { type: "macro", address: 0xD33F, macro: "playerItem" }
+      - { type: "macro", address: 0xD341, macro: "playerItem" }
+      - { type: "macro", address: 0xD343, macro: "playerItem" }
     badges:
         boulderBadge: { type: "bit", address: 0xD355, position: 0 }
         cascadeBadge: { type: "bit", address: 0xD355, position: 1 }
@@ -148,7 +134,7 @@ properties:
         - { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8AF, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD89F, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
     enemyPokemon:
