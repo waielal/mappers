@@ -194,9 +194,11 @@ properties:
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
   settings:
+    textSpeedMid: { type: "bit", address: 0xD354, position: 1 }
+    textSpeedSlow: { type: "bit", address: 0xD354, position: 2 }
+    textSpeedFast: { type: "bit", address: 0xD354, position: 3 }
     battleAnimation: { type: "bit", address: 0xD354, position: 7 }
     battleStyle: { type: "bit", address: 0xD354, position: 6 }
-    textSpeed: { type: "bit", address: 0xD354, position: 1 }
     startGameMenu: { type: int, address: 0xD35E }
   gameTime:
     hours: { type: "int", address: 0xDA3F, size: 2 }
