@@ -194,14 +194,13 @@ properties:
       - { type: "reference", address: 0xCF85, reference: "items" }
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
-  menu:
-    menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
-    cursorPosition: { type: int, address: 0xCC26 }
+  #menu:
+    #menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
+    #cursorPosition: { type: int, address: 0xCC26 }
     
   settings:
-    textSpeedFast: { type: "bit", address: 0xD354, position: 0 }
-    textSpeedMid: { type: "bit", address: 0xD354, position: 1 }
-    textSpeedSlow: { type: "bit", address: 0xD354, position: 2 }
+    textSpeedMid: { type: "bit", address: 0xD354, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
+    textSpeedSlow: { type: "bit", address: 0xD354, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
     battleAnimation: { type: "bit", address: 0xD354, position: 7 }
     battleStyle: { type: "bit", address: 0xD354, position: 6 }
     #startGameMenu: { type: int, address: 0xD35E } #is not the value for the start menu
@@ -411,12 +410,12 @@ glossary:
     0xFD: "7"
     0xFE: "8"
     0xFF: "9"
-  menus:
-    0x00: null
-    0x29: "Inventory"
-    0x64: "Party
-    0xE9: "Options"
-    0xF8: "Items"
+  #menus:
+    #0x00: null
+    #0x29: "Inventory"
+    #0x64: "Party
+    #0xE9: "Options"
+    #0xF8: "Items"
   moves:
     0x00: " "
     0x01: "POUND"
