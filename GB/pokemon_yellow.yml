@@ -44,6 +44,7 @@ macros:
 
 properties:
   player:
+    playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     name: { type: "string", address: 0xD157, size: 11 }
     teamCount: { type: "int", address: 0xD162 }
     team:
