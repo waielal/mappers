@@ -7,12 +7,17 @@ meta:
 macros:
   pokemonInParty:
       species: { offset: 0, type: "reference", reference: "pokemon" }
+      level: { offset: 33, type: "int" }
+      expPoints: { offset: 14, type: "int", size: 3 }
+      statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       hp: { offset: 1, type: "int", size: 2 }
       maxHp: { offset: 34, type: "int", size: 2 }
-      statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
-      type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
-      type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
-      catchRate: { offset: 7, type: "int" }
+      Attack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Speed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      dvAttackDefense: { offset: 27, type: "int" }
+      dvSpeedSpecial: { offset: 28, type: "int" }
       move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
       move2: { offset: 9, type: "reference", reference: "moves", }
       move3: { offset: 10, type: "reference", reference: "moves" }
@@ -21,20 +26,15 @@ macros:
       move2pp: { offset: 30, type: "int" }
       move3pp: { offset: 31, type: "int" }
       move4pp: { offset: 32, type: "int" }
-      trainerId: { offset: 12, type: "int", size: 2 }
-      expPoints: { offset: 14, type: "int", size: 3 }
       statExpHP: { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
       statExpAttack: { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
       statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
       statExpSpeed: { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
       statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
-      dvAttackDefense: { offset: 27, type: "int" }
-      dvSpeedSpecial: { offset: 28, type: "int" }
-      level: { offset: 33, type: "int" }
-      summaryAttack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      summaryDefense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      summarySpeed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      summarySpecial: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
+      type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
+      trainerId: { offset: 12, type: "int", size: 2 }
+      catchRate: { offset: 7, type: "int" }
   playerItem:
       item: { offset: 0, type: "reference", reference: "items" }
       quantity: { offset: 1, type: "int" }
@@ -44,13 +44,8 @@ macros:
 
 properties:
   player:
+    playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     name: { type: "string", address: 0xD157, size: 11 }
-    starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
-    pokedexSeen: { type: "bitArray", address: 0xD309, size: 19 }
-    pokedexCaught: { type: "bitArray", address: 0xD2F6, size: 19 }
-    money: { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
-    gameCornerCoins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
-    joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
     teamCount: { type: "int", address: 0xD162 }
     team:
       - name: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
@@ -87,6 +82,10 @@ properties:
       - { type: "macro", address: 0xD33F, macro: "playerItem" }
       - { type: "macro", address: 0xD341, macro: "playerItem" }
       - { type: "macro", address: 0xD343, macro: "playerItem" }
+    money: { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
+    gameCornerCoins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
+    pokedexSeen: { type: "bitArray", address: 0xD309, size: 19 }
+    pokedexCaught: { type: "bitArray", address: 0xD2F6, size: 19 }
     badges:
       boulderBadge: { type: "bit", address: 0xD355, position: 0 }
       cascadeBadge: { type: "bit", address: 0xD355, position: 1 }
@@ -96,6 +95,9 @@ properties:
       marshBadge: { type: "bit", address: 0xD355, position: 5 }
       volcanoBadge: { type: "bit", address: 0xD355, position: 6 }
       earthBadge: { type: "bit", address: 0xD355, position: 7 }
+    starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
+    joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
+
   overworld:
     map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
     encounterRate: { type: "int", address: 0xD886 }
@@ -114,6 +116,7 @@ properties:
       rare:
         - { type: "macro", address: 0xD897, macro: "encounter" }
         - { type: "macro", address: 0xD899, macro: "encounter" }
+    sound: { type: "int", address: 0xC0ED } #unfinished
     events:
       vermilionCityGym:
         completed: { type: "bit", startingAddress: 0xD772, position: 0 }
@@ -192,11 +195,16 @@ properties:
       - { type: "reference", address: 0xCF85, reference: "items" }
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
+  #menu:
+    #menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
+    #cursorPosition: { type: int, address: 0xCC26 }
+    
   settings:
+    textSpeedMid: { type: "bit", address: 0xD354, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
+    textSpeedSlow: { type: "bit", address: 0xD354, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
     battleAnimation: { type: "bit", address: 0xD354, position: 7 }
     battleStyle: { type: "bit", address: 0xD354, position: 6 }
-    textSpeed: { type: "bit", address: 0xD354, position: 1 }
-    startGameMenu: { type: int, address: 0xD35E }
+    #startGameMenu: { type: int, address: 0xD35E } #is not the value for the start menu
   gameTime:
     hours: { type: "int", address: 0xDA3F, size: 2 }
     minutes: { type: "int", address: 0xDA41, size: 2 }
@@ -403,6 +411,12 @@ glossary:
     0xFD: "7"
     0xFE: "8"
     0xFF: "9"
+  #menus:
+    #0x00: null
+    #0x29: "Inventory"
+    #0x64: "Party
+    #0xE9: "Options"
+    #0xF8: "Items"
   moves:
     0x00: null
     0x01: "POUND"
