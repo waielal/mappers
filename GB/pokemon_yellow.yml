@@ -266,7 +266,6 @@ glossary:
     0x00: null
     0x01: "Badly Posioned"
   defaultCharacterMap:
-    0x50: null
     0x00: " "
     0x01: null
     0x02: null
@@ -303,6 +302,7 @@ glossary:
     0x47: null
     0x48: null
     0x49: null
+    0x50: null
     0x51: null
     0x54: "#"
     0x75: "…"
@@ -404,7 +404,7 @@ glossary:
     0xFE: "8"
     0xFF: "9"
   moves:
-    0x00: " "
+    0x00: null
     0x01: "POUND"
     0x02: "KARATE CHOP"
     0x03: "DOUBLESLAP"
