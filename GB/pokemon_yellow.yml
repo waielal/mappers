@@ -198,6 +198,8 @@ properties:
   #menu:
     #menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
     #cursorPosition: { type: int, address: 0xCC26 }
+  tiles:
+    textCursor: { type: int, address: 0xE4F2 }
   audio:
     channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
     channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
