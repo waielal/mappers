@@ -176,14 +176,14 @@ properties:
         glacierbadge: { type: "bit", address: 0xD57C, position: 7 }
         risingbadge: { type: "bit", address: 0xD57C, position: 8 }
       kanto:
-        boulderbadge: { type: "bit", address: 0xD57D, position: 1 }
-        cascadebadge: { type: "bit", address: 0xD57D, position: 2 }
-        thunderbadge: { type: "bit", address: 0xD57D, position: 3 }
-        rainbowbadge: { type: "bit", address: 0xD57D, position: 4 }
-        soulbadge: { type: "bit", address: 0xD57D, position: 6 }
-        marshbadge: { type: "bit", address: 0xD57D, position: 5 }
-        volcanobadge: { type: "bit", address: 0xD57D, position: 7 }
-        earthbadge: { type: "bit", address: 0xD57D, position: 8 }   
+        boulderbadge: { type: "bit", address: 0xD57D, position: 0 }
+        cascadebadge: { type: "bit", address: 0xD57D, position: 1 }
+        thunderbadge: { type: "bit", address: 0xD57D, position: 2 }
+        rainbowbadge: { type: "bit", address: 0xD57D, position: 3 }
+        soulbadge: { type: "bit", address: 0xD57D, position: 5 }
+        marshbadge: { type: "bit", address: 0xD57D, position: 4 }
+        volcanobadge: { type: "bit", address: 0xD57D, position: 6 }
+        earthbadge: { type: "bit", address: 0xD57D, position: 7 }   
     money: { type: "int", address: 0xD573, size: 3 }
     moneyMom: { type: "int", address: 0xD576, size: 3 }
     coins: { type: "int", address: 0xD57A, size: 2 }
@@ -282,11 +282,11 @@ properties:
   options:
       # clockDay: { type: "string", address: 0xD1DC, size: 5, reference: "defaultCharacterMap" }
       # clockTime: { type: "string", address: 0xD1EB, size: 5, reference: "defaultCharacterMap" }
-      textSpeed1: { type: "bit", address: 0xD199, position: 2, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
-      textSpeed2: { type: "bit", address: 0xD199, position: 3 }
-      sound: { type: "bit", address: 0xD199, position: 6, description: "Mono = False, Stereo = True" }
-      battleStyle: { type: "bit", address: 0xD199, position: 7, description: "Shift = False, Set = True"}
-      battleAnimations: { type: "bit", address: 0xD199, position: 8, description: "On = False, Off = True" }
+      textSpeed1: { type: "bit", address: 0xD199, position: 1, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
+      textSpeed2: { type: "bit", address: 0xD199, position: 2 }
+      sound: { type: "bit", address: 0xD199, position: 5, description: "Mono = False, Stereo = True" }
+      battleStyle: { type: "bit", address: 0xD199, position: 6, description: "Shift = False, Set = True"}
+      battleAnimations: { type: "bit", address: 0xD199, position: 7, description: "On = False, Off = True" }
 
   rival:
     rivalName: { type: "string", address: 0xD1BC, size: 11 }
