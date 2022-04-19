@@ -165,14 +165,14 @@ properties:
       #   hm07: { type: "bit", address: 0xD5B6, position: 1 }
       # totalKeyItems: { type: "int", address: 0xD5E1, size: 1 } #copied from GS mapper - all addresses are incorrect
     badges:
-      zephyrBadge: { type: "bit", address: 0xDA73, position: 1 }
-      hiveBadge: { type: "bit", address: 0xDA73, position: 2 }
-      plainBadge: { type: "bit", address: 0xDA73, position: 4 }
-      fogBadge: { type: "bit", address: 0xDA73, position: 5 }
-      stormBadge: { type: "bit", address: 0xDA73, position: 3 }
-      mineralBadge: { type: "bit", address: 0xDA73, position: 6 }
-      glacierBadge: { type: "bit", address: 0xDA73, position: 7 }
-      risingBadge: { type: "bit", address: 0xDA73, position: 8 }
+      zephyrBadge: { type: "bit", address: 0xDA73, position: 0 }
+      hiveBadge: { type: "bit", address: 0xDA73, position: 1 }
+      plainBadge: { type: "bit", address: 0xDA73, position: 3 }
+      fogBadge: { type: "bit", address: 0xDA73, position: 4 }
+      stormBadge: { type: "bit", address: 0xDA73, position: 2 }
+      mineralBadge: { type: "bit", address: 0xDA73, position: 5 }
+      glacierBadge: { type: "bit", address: 0xDA73, position: 6 }
+      risingBadge: { type: "bit", address: 0xDA73, position: 7 }
     money: { type: "int", address: 0xD84E, size: 3 }
     # moneyMom: { type: "int", address: 0xD851, size: 3 } #incorrect
     # coins: { type: "int", address: 0xD854, size: 2 } #incorrect
@@ -227,11 +227,11 @@ properties:
       moves4: { type: "reference", address: 0xD20B, size: 1, reference: "moves" }
 
   options:
-    textSpeed2: { type: "bit", address: 0xCFCC, position: 2, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
-    textSpeed3: { type: "bit", address: 0xCFCC, position: 3, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
-    sound: { type: "bit", address: 0xCFCC, position: 6, description: "Mono = False, Stereo = True" }
-    battleStyle: { type: "bit", address: 0xCFCC, position: 7, description: "Shift = False, Set = True" }
-    battleAnimations: { type: "bit", address: 0xCFCC, position: 8, description: "On = False, Off = True" }
+    textSpeed2: { type: "bit", address: 0xCFCC, position: 1, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
+    textSpeed3: { type: "bit", address: 0xCFCC, position: 2, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
+    sound: { type: "bit", address: 0xCFCC, position: 5, description: "Mono = False, Stereo = True" }
+    battleStyle: { type: "bit", address: 0xCFCC, position: 6, description: "Shift = False, Set = True" }
+    battleAnimations: { type: "bit", address: 0xCFCC, position: 7, description: "On = False, Off = True" }
 
   # rival: #incorrect address
   #   rivalName: { type: "string", address: 0xD3A8, size: 11 }
