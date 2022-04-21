@@ -785,12 +785,12 @@ glossary:
     0x2F: { pokedexNumber: 54, name: "Psyduck" }
     0x30: { pokedexNumber: 96, name: "Drowzee" }
     0x31: { pokedexNumber: 76, name: "Golem" }
-    0x32: { pokedexNumber: 126, name: "Magmar" }
-    0x33: { pokedexNumber: 125, name: "Electabuzz" }
-    0x34: { pokedexNumber: 82, name: "Magneton" }
-    0x35: { pokedexNumber: 109, name: "Koffing" }
-    0x36: null
-    0x37: null
+    0x32: null
+    0x33: { pokedexNumber: 126, name: "Magmar" }
+    0x34: null
+    0x35: { pokedexNumber: 125, name: "Electabuzz" }
+    0x36: { pokedexNumber: 82, name: "Magneton" }
+    0x37: { pokedexNumber: 109, name: "Koffing" }
     0x38: null
     0x39: { pokedexNumber: 56, name: "Mankey" }
     0x3A: { pokedexNumber: 86, name: "Seel" }
