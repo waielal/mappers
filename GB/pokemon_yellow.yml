@@ -186,8 +186,8 @@ properties:
       enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
       yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
       enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
-      battleStart: { type: "int", address: 0xCCF5, size: 1, note: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, note: "When 1, the opponent has lost" }
+      battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
+      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost" }
   pokemart:
     itemCount: { type: "int", address: 0xCF7B }
     items:
@@ -210,12 +210,12 @@ properties:
   tiles:
     textCursor: { type: int, address: 0xE4F2 }
   audio:
-    channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
-    channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
-    channel3: { type: "int", address: 0xC028, size: 1, note: "When 1, the opponent has lost" }
-    channel4: { type: "int", address: 0xC029, size: 1, note: "When 1, the opponent has lost" }
+    channel1: { type: "int", address: 0xC026, size: 1, description: "When 1, the opponent has lost" }
+    channel2: { type: "int", address: 0xC027, size: 1, description: "When 1, the opponent has lost" }
+    channel3: { type: "int", address: 0xC028, size: 1, description: "When 1, the opponent has lost" }
+    channel4: { type: "int", address: 0xC029, size: 1, description: "When 1, the opponent has lost" }
     currentSound: { type: "int", address: 0xC001, size: 1 } #unsure if this is the correct value
-    newSoundID: { type: "int", address: 0xC0ED, size: 1, note: "When 1, the opponent has lost" }   
+    newSoundID: { type: "int", address: 0xC0ED, size: 1, description: "When 1, the opponent has lost" }   
   settings:
     textSpeedMid: { type: "bit", address: 0xD354, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
     textSpeedSlow: { type: "bit", address: 0xD354, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
