@@ -207,15 +207,40 @@ properties:
   #menu:
     #menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
     #cursorPosition: { type: int, address: 0xCC26 }
-  tiles:
-    textCursor: { type: int, address: 0xE4F2 }
   audio:
-    channel1: { type: "int", address: 0xC026, size: 1, description: "When 1, the opponent has lost" }
-    channel2: { type: "int", address: 0xC027, size: 1, description: "When 1, the opponent has lost" }
-    channel3: { type: "int", address: 0xC028, size: 1, description: "When 1, the opponent has lost" }
-    channel4: { type: "int", address: 0xC029, size: 1, description: "When 1, the opponent has lost" }
-    currentSound: { type: "int", address: 0xC001, size: 1 } #unsure if this is the correct value
-    newSoundID: { type: "int", address: 0xC0ED, size: 1, description: "When 1, the opponent has lost" }   
+    channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
+    channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
+    channel3: { type: "int", address: 0xC028, size: 1, note: "When 1, the opponent has lost" }
+    channel4: { type: "int", address: 0xC029, size: 1, note: "When 1, the opponent has lost" }
+    channel5: { type: "int", address: 0xC02A, size: 1, note: "When 1, the opponent has lost" }
+    channel6: { type: "int", address: 0xC02B, size: 1, note: "When 1, the opponent has lost" }
+    channel7: { type: "int", address: 0xC02C, size: 1, note: "When 1, the opponent has lost" }
+    channel8: { type: "int", address: 0xC02D, size: 1, note: "When 1, the opponent has lost" }
+    currentSound: { type: "int", address: 0xC001, size: 1 }
+    newSoundID: { type: "int", address: 0xC0EE, size: 1, note: "When 1, the opponent has lost" }
+    audioBank: { type: "int", address: 0xC0EF, size: 1 }
+    overworldTrackCurrentMap: { type: "reference", address: 0xD35A, size: 1, reference: "audioTrack" }
+    audioBankCurrentMap: { type: "int", address: 0xD35B, size: 1, note: "When 1, the opponent has lost" }
+    volume:
+      channel1: { type: "int", address: 0xC0DE, size: 1 }
+      channel2: { type: "int", address: 0xC0DF, size: 1 }
+      channel3: { type: "int", address: 0xC0E0, size: 1 }
+      channel4: { type: "int", address: 0xC0E1, size: 1 }
+      channel5: { type: "int", address: 0xC0E2, size: 1 }
+      channel6: { type: "int", address: 0xC0E3, size: 1 }
+      channel7: { type: "int", address: 0xC0E4, size: 1 }
+      channel8: { type: "int", address: 0xC0E5, size: 1 }
+    tempo:
+      music: { type: "int", address: 0xC0E8 , size: 2 }
+      sfx: { type: "int", address: 0xC0EA, size: 2 }
+
+  screen:
+    text:
+      prompt: { type: "string", address: 0xC4F2, size: 1, reference: "textPrompt" }
+
+  options:
+    soloChallenge: { type: "reference", address: 0xD354, size: 1, reference: "options"}
+ 
   settings:
     textSpeedMid: { type: "bit", address: 0xD354, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
     textSpeedSlow: { type: "bit", address: 0xD354, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
@@ -290,6 +315,62 @@ glossary:
   tempStatusBadPoison:
     0x00: null
     0x01: "Badly Posioned"
+      trashCanFlags:
+    0x00: "Unsolved"
+    0x02: "First Can Found"
+    0x03: "Solved"
+  options:
+    0xC1: "Fast Text, No Animations, Battlestyle Set"
+    0x41: "Champion Fight"
+  trainerClasses:
+    0x00: "NOBODY"
+    0x01: "YOUNGSTER"
+    0x02: "BUG CATCHER"
+    0x03: "LASS"
+    0x04: "SAILOR"
+    0x05: "JR TRAINER M"
+    0x06: "JR TRAINER F"
+    0x07: "POKEMANIAC"
+    0x08: "SUPER NERD"
+    0x09: "HIKER"
+    0x0A: "BIKER"
+    0x0B: "BURGLAR"
+    0x0C: "ENGINEER"
+    0x0D: "JUGGLER"  # unused
+    0x0E: "FISHER"
+    0x0F: "SWIMMER"
+    0x10: "CUE BALL"
+    0x11: "GAMBLER"
+    0x12: "BEAUTY"
+    0x13: "PSYCHIC"
+    0x14: "ROCKER"
+    0x15: "JUGGLER"
+    0x16: "TAMER"
+    0x17: "BIRD KEEPER"
+    0x18: "BLACKBELT"
+    0x19: "RIVAL1"
+    0x1A: "PROF OAK"
+    0x1B: "CHIEF"
+    0x1C: "SCIENTIST"
+    0x1D: "GIOVANNI"
+    0x1E: "ROCKET"
+    0x1F: "COOLTRAINER M"
+    0x20: "COOLTRAINER F"
+    0x21: "BRUNO"
+    0x22: "BROCK"
+    0x23: "MISTY"
+    0x24: "LT.SURGE"
+    0x25: "ERIKA"
+    0x26: "KOGA"
+    0x27: "BLAINE"
+    0x28: "SABRINA"
+    0x29: "GENTLEMAN"
+    0x2A: "RIVAL2"
+    0x2B: "RIVAL3"
+    0x2C: "LORELEI"
+    0x2D: "CHANNELER"
+    0x2E: "AGATHA"
+    0x2F: "LANCE"
   defaultCharacterMap:
     0x00: " "
     0x01: null
