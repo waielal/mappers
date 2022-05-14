@@ -12,10 +12,10 @@ macros:
       statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       hp: { offset: 1, type: "int", size: 2 }
       maxHp: { offset: 34, type: "int", size: 2 }
-      Attack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      Defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      Speed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      Special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      attack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      speed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
       dvAttackDefense: { offset: 27, type: "int" }
       dvSpeedSpecial: { offset: 28, type: "int" }
       move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
