@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 9f46da7e-5087-439d-bcc8-7fe81e54e988
+  id: 2cea6ead-53d9-4744-b4ed-f4c28ab94a6c
   gameName: "Pokemon Crystal"
   gamePlatform: "GB"
 
@@ -193,14 +193,33 @@ properties:
     slot5: { type: "macro", address: 0xDD9F, macro: "pokemonInParty" }
     slot6: { type: "macro", address: 0xDDCF, macro: "pokemonInParty" }
 
-  # overworld: #currently broken (incorrect addresses)
-  #   mapBank: { type: "reference", address: 0xDA00, size: 1, reference: "mapBank" }
-  #   mapNumber: { type: "int", address: 0xDA01, size: 1 }
-  #   encounterRate: { type: "int", address: 0xD20B, size: 1 } #this changes based on the tile you are on
+  overworld:
+    mapGroup: { type: "reference", address: 0xDCB5, size: 1, reference: "mapGroups" }
+    mapNumber: { type: "int", address: 0xDCB6, size: 1 }
+    # map: { type: "reference", address: 0xDCB5, size: 2, reference: "maps" }
+  encounterRate:
+    morning: { type: "int", address: 0xD25A, size: 1 }
+    day:     { type: "int", address: 0xD25B, size: 1 }
+    night:   { type: "int", address: 0xD25C, size: 1 }
+    water:   { type: "int", address: 0xD25D, size: 1 }
 
   battle:
-    type: { type: "reference", address: 0xD22D, size: 1, reference: "battleTypes" }
-    battleStart: { type: "int", address: 0xC664, size: 1 }
+    mode: { type: "reference", address: 0xD22D, size: 1, reference: "battleModes" }
+    type: { type: "reference", address: 0xD230, size: 1, reference: "battleTypes" }
+    result: { type: "reference", address: 0xD0EE, size: 1, reference: "battleResults" }
+    # justStarted: { type: "int", address: 0xD264, size: 1 }
+    # ended: { type: "int", address: 0xC734, size: 1 }
+    trainer:
+      class: { type: "reference", address: 0xD22F, size: 1, reference: "trainerClasses" }
+      id: { type: "int", address: 0xD231, size: 1 }
+      name: { type: "string", address: 0xD26B, size: 11, reference: "defaultCharacterMap" }
+      totalPokemon: { type: "int", address: 0xD280, size: 1 }
+      slot1: { type: "reference", address: 0xD281, size: 1, reference: "pokemon" }
+      slot2: { type: "reference", address: 0xD282, size: 1, reference: "pokemon" }
+      slot3: { type: "reference", address: 0xD283, size: 1, reference: "pokemon" }
+      slot4: { type: "reference", address: 0xD284, size: 1, reference: "pokemon" }
+      slot5: { type: "reference", address: 0xD285, size: 1, reference: "pokemon" }
+      slot6: { type: "reference", address: 0xD286, size: 1, reference: "pokemon" }
     yourPokemon:
       modStageAtk: { type: "reference", address: 0xC6CC, size: 1, reference: "stageModifiers" }
       modStageDef: { type: "reference", address: 0xC6CD, size: 1, reference: "stageModifiers" }
@@ -225,6 +244,7 @@ properties:
       moves2: { type: "reference", address: 0xD209, size: 1, reference: "moves" }
       moves3: { type: "reference", address: 0xD20A, size: 1, reference: "moves" }
       moves4: { type: "reference", address: 0xD20B, size: 1, reference: "moves" }
+    battleStart: { type: "int", address: 0xC664, size: 1 }
 
   options:
     textSpeed2: { type: "bit", address: 0xCFCC, position: 1, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
@@ -236,30 +256,141 @@ properties:
   # rival: #incorrect address
   #   rivalName: { type: "string", address: 0xD3A8, size: 11 }
 
-    gameTime:
-      hours: { type: "int", address: 0xD4C5, size: 1 }
-      minutes: { type: "int", address: 0xD4C6, size: 1 }
-      seconds: { type: "int", address: 0xD4C7, size: 1 }
-      frames: { type: "int", address: 0xD4C8, size: 1 }
+  gameTime:
+    hours: { type: "int", address: 0xD4C4, size: 2 }
+    minutes: { type: "int", address: 0xD4C6, size: 1 }
+    seconds: { type: "int", address: 0xD4C7, size: 1 }
+    frames: { type: "int", address: 0xD4C8, size: 1 }
+
+  audio:
+    mapMusic: { type: "int", address: 0xC2C0, size: 1 }
+    currentSound: { type: "int", address: 0xC2BF, size: 1 }
+    musicID: { type: "int", address: 0xC29D, size: 2 }
+    # musicID: { type: "int", address: 0xC29D, size: 1 }
+    musicBank: { type: "int", address: 0xC29F, size: 1 }
+
+  screen:
+    text:
+      prompt: { type: "string", address: 0xC606, size: 1, reference: "textPrompt" }
+
+  saveRamStart: { type: "int", address: 0xA000, size: 1 }
+  saveRamEnd: { type: "int", address: 0xBFF0, size: 1 }
 
 glossary:
-  battleTypes:
-    0x00: "None"
-    0x01: "Wild"
-    0x02: "Trainer"
-    0xFF: "Lost Battle"
+  battleModes: # wBattleMode values
+    0x00: "NONE"
+    0x01: "WILD"
+    0x02: "TRAINER"
+  battleTypes: # wBattleType values
+    0x00: "NORMAL"
+    0x01: "CANLOSE"   # battles you can lose (first Rival, Battle Tower...)
+    0x02: "DEBUG"
+    0x03: "TUTORIAL"  # catching tutorial
+    0x04: "FISH"      # fishing
+    0x05: "ROAMING"   # vs roaming Entei, Raikou
+    0x06: "CONTEST"   # Bug Contest battles
+    0x07: "SHINY"     # vs Shiny wild mons
+    0x08: "TREE"      # Headbutt battles
+    0x09: "TRAP"      # vs traps in Rocket base (Geodude, Voltorb, Koffing)
+    0x0A: "FORCEITEM" # force mon to hold item 1 (vs Lugia, Ho-oh, Snorlax)
+    0x0B: "CELEBI"    # event Celebi
+    0x0C: "SUICUNE"   # vs Suicune
+  battleResults:
+    0x00: "WIN"
+    0x01: "LOSE"
+    0x02: "DRAW"
+    # bit 6: caught Celebi
+    0x40: "WIN"
+    0x41: "LOSE"
+    0x42: "DRAW"
+    # bit 7: box full
+    0x80: "WIN"
+    0x81: "LOSE"
+    0x82: "DRAW"
+    0xC0: "WIN"
+    0xC1: "LOSE"
+    0xC2: "DRAW"
+  trainerClasses:
+    0x00: "NOBODY"
+    0x01: "FALKNER"
+    0x02: "WHITNEY"
+    0x03: "BUGSY"
+    0x04: "MORTY"
+    0x05: "PRYCE"
+    0x06: "JASMINE"
+    0x07: "CHUCK"
+    0x08: "CLAIR"
+    0x09: "RIVAL1"
+    0x0A: "POKEMON PROF."
+    0x0B: "WILL"
+    0x0C: "CAL"
+    0x0D: "BRUNO"
+    0x0E: "KAREN"
+    0x0F: "KOGA"
+    0x10: "CHAMPION"
+    0x11: "BROCK"
+    0x12: "MISTY"
+    0x13: "LT. SURGE"
+    0x14: "SCIENTIST"
+    0x15: "ERIKA"
+    0x16: "YOUNGSTER"
+    0x17: "SCHOOLBOY"
+    0x18: "BIRD KEEPER"
+    0x19: "LASS"
+    0x1A: "JANINE"
+    0x1B: "COOLTRAINER M"
+    0x1C: "COOLTRAINER F"
+    0x1D: "BEAUTY"
+    0x1E: "POKEMANIAC"
+    0x1F: "GRUNT M"
+    0x20: "GENTLEMAN"
+    0x21: "SKIER"
+    0x22: "TEACHER"
+    0x23: "SABRINA"
+    0x24: "BUG CATCHER"
+    0x25: "FISHER"
+    0x26: "SWIMMER M"
+    0x27: "SWIMMER F"
+    0x28: "SAILOR"
+    0x29: "SUPER NERD"
+    0x2A: "RIVAL2"
+    0x2B: "GUITARIST"
+    0x2C: "HIKER"
+    0x2D: "BIKER"
+    0x2E: "BLAINE"
+    0x2F: "BURGLAR"
+    0x30: "FIREBREATHER"
+    0x31: "JUGGLER"
+    0x32: "BLACKBELT"
+    0x33: "EXECUTIVE M"
+    0x34: "PSYCHIC"
+    0x35: "PICNICKER"
+    0x36: "CAMPER"
+    0x37: "EXECUTIVE F"
+    0x38: "SAGE"
+    0x39: "MEDIUM"
+    0x3A: "BOARDER"
+    0x3B: "POKEFAN M"
+    0x3C: "KIMONO GIRL"
+    0x3D: "TWINS"
+    0x3E: "POKEFAN F"
+    0x3F: "RED"
+    0x40: "BLUE"
+    0x41: "OFFICER"
+    0x42: "GRUNT F"
+    0x43: "MYSTICAL MAN"
   statusConditions:
     0x00: " "
     0x01: "SLP" #rest
     0x02: "SLP" #rest
     0x03: "SLP"
-    0x04:	"SLP"
+    0x04: "SLP"
     0x05: "SLP"
     0x06: "SLP"
-    0x08:	"PSN"
-    0x10:	"BRN"
-    0x20:	"FRZ"
-    0x40:	"PRZ"
+    0x08: "PSN"
+    0x10: "BRN"
+    0x20: "FRZ"
+    0x40: "PRZ"
   defaultCharacterMap:
     0x50: null
     0x00: " "
@@ -369,15 +500,15 @@ glossary:
     0x04: -3
     0x05: -2
     0x06: -1
-    0x07: " "
-    0x08: +1
-    0x09: +2
-    0x0A: +3
-    0x0B: +4
-    0x0C: +5
-    0x0D: +6
-    0x0E: null
-    0x14: null
+    0x07:  " "
+    0x08:  +1
+    0x09:  +2
+    0x0A:  +3
+    0x0B:  +4
+    0x0C:  +5
+    0x0D:  +6
+    0x0E: " "
+    0x14: " "
   moves:
     0x00: " " #battle starting
     0x01: "POUND"
@@ -635,12 +766,12 @@ glossary:
     0x00: null
     0x01: "MASTER BALL"
     0x02: "ULTRA BALL"
-    0x03:	"BRIGHTPOWDER"
-    0x04:	"GREAT BALL"
-    0x05:	"# BALL"
-    0x06:	"TERU-SAMA"
-    0x07:	"BICYCLE"
-    0x08:	"MOON STONE"
+    0x03: "BRIGHTPOWDER"
+    0x04: "GREAT BALL"
+    0x05: "# BALL"
+    0x06: "TERU-SAMA"
+    0x07: "BICYCLE"
+    0x08: "MOON STONE"
     0x09: "ANTIDOTE"
     0x0A: "BURN HEAL"
     0x0B: "ICE HEAL"
@@ -826,8 +957,8 @@ glossary:
   pokemon:
     0x00: null
     0x01: { pokedexNumber: 1, name: "Bulbasaur" }
-    0x02: { pokedexNumber: 1, name: "Ivysaur" }
-    0x03: { pokedexNumber: 1, name: "Venusaur" }
+    0x02: { pokedexNumber: 2, name: "Ivysaur" }
+    0x03: { pokedexNumber: 3, name: "Venusaur" }
     0x04: { pokedexNumber: 4, name: "Charmander" }
     0x05: { pokedexNumber: 5, name: "Charmeleon" }
     0x06: { pokedexNumber: 6, name: "Charizard" }
@@ -1076,3 +1207,47 @@ glossary:
     0xF9: { pokedexNumber: 249, name: "Lugia" }
     0xFA: { pokedexNumber: 250, name: "Ho-oh" }
     0xFB: { pokedexNumber: 251, name: "Celebi" }
+  mapGroups:
+    0x01: "OLIVINE"
+    0x02: "MAHOGANY"
+    0x03: "DUNGEONS"
+    0x04: "ECRUTEAK"
+    0x05: "BLACKTHORN"
+    0x06: "CINNABAR"
+    0x07: "CERULEAN"
+    0x08: "AZALEA"
+    0x09: "LAKE OF RAGE"
+    0x0A: "VIOLET"
+    0x0B: "GOLDENROD"
+    0x0C: "VERMILION"
+    0x0D: "PALLET"
+    0x0E: "PEWTER"
+    0x0F: "FAST SHIP"
+    0x10: "INDIGO"
+    0x11: "FUCHSIA"
+    0x12: "LAVENDER"
+    0x13: "SILVER"
+    0x14: "CABLE CLUB"
+    0x15: "CELADON"
+    0x16: "CIANWOOD"
+    0x17: "VIRIDIAN"
+    0x18: "NEW BARK"
+    0x19: "SAFFRON"
+    0x1A: "CHERRYGROVE"
+  # maps:
+    # 0x1801: { group: "NEW BARK", name: "ROUTE 26" }
+    # 0x1802: { group: "NEW BARK", name: "ROUTE 27" }
+    # 0x1803: { group: "NEW BARK", name: "ROUTE 29" }
+    # 0x1804: { group: "NEW BARK", name: "NEW BARK TOWN" }
+    # 0x1805: { group: "NEW BARK", name: "ELM'S LAB" }
+    # 0x1806: { group: "NEW BARK", name: "PLAYER'S HOUSE 1F" }
+    # 0x1807: { group: "NEW BARK", name: "PLAYER'S HOUSE 2F" }
+    # 0x1808: { group: "NEW BARK", name: "PLAYER'S NEIGHBOR'S HOUSE" }
+    # 0x1809: { group: "NEW BARK", name: "ELM'S HOUSE" }
+    # 0x180A: { group: "NEW BARK", name: "ROUTE 26 HEAL HOUSE" }
+    # 0x180B: { group: "NEW BARK", name: "DAY OF WEEK SIBLINGS HOUSE" }
+    # 0x180C: { group: "NEW BARK", name: "ROUTE 27 SANDSTORM HOUSE" }
+    # 0x180D: { group: "NEW BARK", name: "ROUTE 29-ROUTE 46 GATE" }
+  textPrompt:
+    0x58: "▼"
+    0xEE: "▼"
