@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 3d8effe7-051b-4799-99e7-79a4e40781ff
+  id: 36e2cddd-b5db-4a6f-939b-b7dba5f9fd64
   gameName: "Pokemon Yellow"
   gamePlatform: "GB"
 
@@ -133,10 +133,10 @@ properties:
     specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
     trainer:
       class: { type: "reference", address: 0xD030, size: 1, reference: "trainerClasses" }
-      number: { type: "int", address: 0xD05C, size: 1 }
+      number: { type: "int", address: 0xD05C }
       name: { type: "string", address: 0xD049, size: 11, reference: "defaultCharacterMap" }
-      gymLeader: { type: "int", address: 0xD05B, size: 1 }
-      totalPokemon: { type: "int", address: 0xD89B, size: 1 }
+      gymLeader: { type: "int", address: 0xD05B }
+      totalPokemon: { type: "int", address: 0xD89B }
       team:
         - { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
@@ -184,14 +184,14 @@ properties:
       move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
     turnInfo:
-      criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
-      nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
-      yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
-      enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
-      yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
-      enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
+      #criticalHitOHKO: { type: "int", address: 0xD05C, size: 1 }
+      #nextAttackDamage: { type: "int", address: 0xD0D6, size: 1 }
+      #yourSubtituteHP: { type: "int", address: 0xCCD5, size: 1 }
+      #enemySubstituteHP: { type: "int", address: 0xCCD6, size: 1 }
+      #yourMove: { type: "reference", address: 0xCCDA, size: 1, reference: "moves" }
+      #enemyMove:  { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
       battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost" }
+      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost / wild Pokemon has fainted." }
   pokemart:
     itemCount: { type: "int", address: 0xCF7B }
     items:
@@ -516,12 +516,6 @@ glossary:
     0xFD: "7"
     0xFE: "8"
     0xFF: "9"
-  #menus:
-    #0x00: null
-    #0x29: "Inventory"
-    #0x64: "Party
-    #0xE9: "Options"
-    #0xF8: "Items"
   moves:
     0x00: null
     0x01: "POUND"
