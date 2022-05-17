@@ -1,7 +1,7 @@
 meta:
   schemaVersion: 1
-  id: ba922e8c-c89d-4dea-8b9b-b09a2a7969d4
-  gameName: "Pokemon Red and Blue"
+  id: 36e2cddd-b5db-4a6f-939b-b7dba5f9fd64
+  gameName: "Pokemon Yellow"
   gamePlatform: "GB"
 
 macros:
@@ -131,7 +131,10 @@ properties:
     animationTurn: { type: "reference", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType: { type: "reference", address: 0xD05A, reference: "specialBattleTypes" }
     trainer:
-      class: { type: "string", address: 0xD04A, size: 11, reference: "defaultCharacterMap" }
+      class: { type: "reference", address: 0xD031, size: 11, reference: "battleTypes" }
+      number: { type: "int", address: 0xD05D, size: 1 }
+      name: { type: "string", address: 0xD04A, size: 11, reference: "defaultCharacterMap" }
+      gymLeader: { type: "int", address: 0xD05C, size: 1 }
       teamCount: { type: "int", address: 0xD89C }
       team:
         - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
