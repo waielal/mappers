@@ -48,17 +48,17 @@ properties:
     name: { type: "string", address: 0xD157, size: 11 }
     teamCount: { type: "int", address: 0xD162 }
     team:
-      - name: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD16A, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD196, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD1C2, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD1EE, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD21A, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD246, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD31C }
     items:
@@ -100,6 +100,7 @@ properties:
 
   overworld:
     map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
+    topLeftTile: { type: "int", address: 0xD123 }
     encounterRate: { type: "int", address: 0xD886 }
     encounters:
       common:
@@ -183,6 +184,7 @@ properties:
       move2: { type: "reference", address: 0xCFED, size: 1, reference: "moves" }
       move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
+    lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "When 1, the opponent has lost / wild Pokemon has fainted." }
     turnInfo:
       #criticalHitOHKO: { type: "int", address: 0xD05C, size: 1 }
       #nextAttackDamage: { type: "int", address: 0xD0D6, size: 1 }
@@ -191,7 +193,6 @@ properties:
       #yourMove: { type: "reference", address: 0xCCDA, size: 1, reference: "moves" }
       #enemyMove:  { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
       battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost / wild Pokemon has fainted." }
   pokemart:
     itemCount: { type: "int", address: 0xCF7B }
     items:
@@ -329,6 +330,9 @@ glossary:
   options:
     0xC1: "Fast Text, No Animations, Battlestyle Set"
     0x41: "Champion Fight"
+  lowHealthAlarm:
+    0x00: "Enabled"
+    0x01: "Disabled"
   trainerClasses:
     0x00: "NOBODY"
     0x01: "YOUNGSTER"
