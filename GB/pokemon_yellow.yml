@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 36e2cddd-b5db-4a6f-939b-b7dba5f9fd64
+  id: b2b7d2d6-5cf0-4db1-9152-1efc7fe36926
   gameName: "Pokemon Yellow"
   gamePlatform: "GB"
 
@@ -209,6 +209,7 @@ properties:
       - { type: "reference", address: 0xCF85, reference: "items" }
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
+    finalTeam: { type: "reference", address: 0xD714, reference: "finalTeam" }
   audio:
     channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
     channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
@@ -333,6 +334,11 @@ glossary:
   options:
     0xC1: "Fast Text, No Animations, Battlestyle Set"
     0x41: "Champion Fight"
+  finalTeam:
+    0x00: "No Team Selected"
+    0x01: "Jolteon"
+    0x02: "Flareon"
+    0x03: "Vaporeon"
   trainerClasses:
     0x00: "NOBODY"
     0x01: "YOUNGSTER"
