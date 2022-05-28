@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 36e2cddd-b5db-4a6f-939b-b7dba5f9fd64
+  id: 53e2cddd-b5db-4a6f-939b-b7dba5f9fd64
   gameName: "Pokemon Red and Blue"
   gamePlatform: "GB"
 
@@ -131,12 +131,13 @@ properties:
     type: { type: "reference", address: 0xD057, size: 1, reference: "battleTypes" }
     animationTurn: { type: "reference", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType: { type: "reference", address: 0xD05A, reference: "specialBattleTypes" }
+    lowHealthAlarm: { type: "reference", address: 0xCCF5, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      class: { type: "reference", address: 0xD031, size: 11, reference: "battleTypes" }
+      class: { type: "reference", address: 0xD031, size: 1, reference: "trainerClasses" }
       number: { type: "int", address: 0xD05D }
       name: { type: "string", address: 0xD04A, size: 11, reference: "defaultCharacterMap" }
       gymLeader: { type: "int", address: 0xD05C }
-      teamCount: { type: "int", address: 0xD89C }
+      totalPokemon: { type: "int", address: 0xD89C }
       team:
         - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
@@ -183,16 +184,15 @@ properties:
       move2: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
       move3: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xCFF0, size: 1, reference: "moves" }
-    lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "When 1, the opponent has lost / wild Pokemon has fainted." }
-    turnInfo:
-      #criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
-      #nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
-      #yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
-      #enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
-      #yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
-      #enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
-      battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost / wild Pokemon has fainted." } #deprecated
+    # turnInfo:
+    #   #criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
+    #   #nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
+    #   #yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
+    #   #enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
+    #   #yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
+    #   #enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
+    #   battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
+    #   trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost / wild Pokemon has fainted." } #deprecated
   pokemart:
     itemCount: { type: "int", address: 0xCF7C }
     items:
@@ -209,6 +209,7 @@ properties:
       - { type: "reference", address: 0xCF86, reference: "items" }
   rival:
     name: { type: "string", address: 0xD34A, size: 8, description: "The rival's name." }
+    finalTeam: { type: "reference", address: 0xD714, reference: "finalTeam" } #may be incorrect, untested
   audio:
     channel1: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
     channel2: { type: "int", address: 0xC028, size: 1, note: "When 1, the opponent has lost" }
@@ -221,8 +222,8 @@ properties:
     currentSound: { type: "int", address: 0xC002, size: 1 }
     newSoundID: { type: "int", address: 0xC0EF, size: 1, note: "When 1, the opponent has lost" }
     audioBank: { type: "int", address: 0xC0F0, size: 1 }
-    overworldTrackCurrentMap: { type: "reference", address: 0xD35A, size: 1, reference: "audioTrack" } #check
-    audioBankCurrentMap: { type: "int", address: 0xD35B, size: 1, note: "When 1, the opponent has lost" } #check
+    overworldTrackCurrentMap: { type: "reference", address: 0xD359, size: 1, reference: "audioTrack" } #check
+    audioBankCurrentMap: { type: "int", address: 0xD35A, size: 1, note: "When 1, the opponent has lost" } #check
     volume:
       channel1: { type: "int", address: 0xC0DF, size: 1 }
       channel2: { type: "int", address: 0xC0E0, size: 1 }
@@ -269,6 +270,9 @@ glossary:
   battleTurn:
     0x00: Player
     0x01: Opponent
+  lowHealthAlarm:
+    0x00: Enabled
+    0x01: Disabled
   pokemonTypes:
     0x00:	Normal
     0x01:	Fighting
@@ -330,9 +334,11 @@ glossary:
   options:
     0xC1: "Fast Text, No Animations, Battlestyle Set"
     0x41: "Champion Fight"
-  lowHealthAlarm:
-    0x00: "Enabled"
-    0x01: "Disabled"
+  finalTeam:
+    0x00: "No Team Selected"
+    0x01: "Jolteon"
+    0x02: "Flareon"
+    0x03: "Vaporeon"
   trainerClasses:
     0x00: "NOBODY"
     0x01: "YOUNGSTER"
@@ -520,6 +526,12 @@ glossary:
     0xFD: "7"
     0xFE: "8"
     0xFF: "9"
+  #menus:
+    #0x00: null
+    #0x29: "Inventory"
+    #0x64: "Party
+    #0xE9: "Options"
+    #0xF8: "Items"
   moves:
     0x00: null
     0x01: "POUND"
@@ -1272,6 +1284,7 @@ glossary:
     0xF7: "Agatha's Room"
     0xFF: "UNKNOWN"
   audioTrack: #not working yet
+    0x00: null
     0xB3: "Validate"
     0xB4: "Bump"
     0xB5: "Exit of a house"
