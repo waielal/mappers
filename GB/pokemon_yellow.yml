@@ -146,6 +146,8 @@ properties:
         - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
     yourPokemon:
+      nickname: { type: "string", address: 0xD008, size: 11, reference: "defaultCharacterMap" }
+      species: { type: "reference", address: 0xD013, size: 1, reference: "pokemon" }
       modStageAttack: { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" }
       modStageDefense: { type: "reference", address: 0xCD1b, size: 1, reference: "stageModifiers" }
       modStageSpeed: { type: "reference", address: 0xCD1c, size: 1, reference: "stageModifiers" }
