@@ -154,6 +154,8 @@ properties:
       modStageSpecial: { type: "reference", address: 0xCD1d, size: 1, reference: "stageModifiers" }
       modStageAccuracy: { type: "reference", address: 0xCD1e, size: 1, reference: "stageModifiers" }
       modStageEvasion: { type: "reference", address: 0xCD1f, size: 1, reference: "stageModifiers" }
+      battleStatHP: { type: "int", address: 0xD014, size: 2 }
+      battleStatMaxHP: { type: "int", address: 0xD022, size: 2 }
       battleStatAttack: { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
       battleStatDefense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
       battleStatSpeed: { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
