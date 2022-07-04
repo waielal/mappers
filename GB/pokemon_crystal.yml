@@ -119,7 +119,36 @@ properties:
       - { type: "macro", address: 0xD8B7, macro: "playerItem" }
       - { type: "macro", address: 0xD8B9, macro: "playerItem" }
       - { type: "macro", address: 0xD8BA, macro: "playerItem" }
-    keyItemCount: { type: "int", address: 0xD8BC }
+    totalKeyItems: { type: "int", address: 0xD8BC }
+    keyItems:
+      - { type: "reference", address: 0xD8BD, reference: "items" }
+      - { type: "reference", address: 0xD8BE, reference: "items" }
+      - { type: "reference", address: 0xD8BF, reference: "items" }
+      - { type: "reference", address: 0xD8C0, reference: "items" }
+      - { type: "reference", address: 0xD8C1, reference: "items" }
+      - { type: "reference", address: 0xD8C2, reference: "items" }
+      - { type: "reference", address: 0xD8C3, reference: "items" }
+      - { type: "reference", address: 0xD8C4, reference: "items" }
+      - { type: "reference", address: 0xD8C5, reference: "items" }
+      - { type: "reference", address: 0xD8C6, reference: "items" }
+      - { type: "reference", address: 0xD8C7, reference: "items" }
+      - { type: "reference", address: 0xD8C8, reference: "items" }
+      - { type: "reference", address: 0xD8C9, reference: "items" }
+      - { type: "reference", address: 0xD8CA, reference: "items" }
+      - { type: "reference", address: 0xD8CB, reference: "items" }
+      - { type: "reference", address: 0xD8CC, reference: "items" }
+      - { type: "reference", address: 0xD8CD, reference: "items" }
+      - { type: "reference", address: 0xD8CE, reference: "items" }
+      - { type: "reference", address: 0xD8CF, reference: "items" }
+      - { type: "reference", address: 0xD8D0, reference: "items" }
+      - { type: "reference", address: 0xD8D1, reference: "items" }
+      - { type: "reference", address: 0xD8D2, reference: "items" }
+      - { type: "reference", address: 0xD8D3, reference: "items" }
+      - { type: "reference", address: 0xD8D4, reference: "items" }
+      - { type: "reference", address: 0xD8D5, reference: "items" }
+      - { type: "reference", address: 0xD8D6, reference: "items" }
+
+
 
       # tms: #copied from GS mapper - all addresses are incorrect
       #   tm01-dynamicpunch: { type: "int", address: 0xD57E, size: 1 }
@@ -180,7 +209,6 @@ properties:
       #   hm05: { type: "bit", address: 0xD5B4, position: 1 }
       #   hm06: { type: "bit", address: 0xD5B5, position: 1 }
       #   hm07: { type: "bit", address: 0xD5B6, position: 1 }
-      # totalKeyItems: { type: "int", address: 0xD5E1, size: 1 } #copied from GS mapper - all addresses are incorrect
     badges:
       zephyrBadge: { type: "bit", address: 0xDA73, position: 0 }
       hiveBadge: { type: "bit", address: 0xDA73, position: 1 }
