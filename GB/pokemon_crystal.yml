@@ -97,27 +97,30 @@ properties:
       - nickname: { type: "string", address: 0xDE78, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xDDCF, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD892 }
-    # items:
-    #   - { type: "macro", address: 0xDE00, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE02, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE04, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE06, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE08, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE0A, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE0C, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE0E, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE10, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE12, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE14, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE16, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE18, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE1A, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE1C, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE1E, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE20, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE22, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE24, macro: "playerItem" }
-    #   - { type: "macro", address: 0xDE26, macro: "playerItem" }
+    items:
+      - { type: "macro", address: 0xD893, macro: "playerItem" }
+      - { type: "macro", address: 0xD895, macro: "playerItem" }
+      - { type: "macro", address: 0xD897, macro: "playerItem" }
+      - { type: "macro", address: 0xD899, macro: "playerItem" }
+      - { type: "macro", address: 0xD89B, macro: "playerItem" }
+      - { type: "macro", address: 0xD89D, macro: "playerItem" }
+      - { type: "macro", address: 0xD89F, macro: "playerItem" }
+      - { type: "macro", address: 0xD8A1, macro: "playerItem" }
+      - { type: "macro", address: 0xD8A3, macro: "playerItem" }
+      - { type: "macro", address: 0xD8A5, macro: "playerItem" }
+      - { type: "macro", address: 0xD8A7, macro: "playerItem" }
+      - { type: "macro", address: 0xD8A9, macro: "playerItem" }
+      - { type: "macro", address: 0xD8AB, macro: "playerItem" }
+      - { type: "macro", address: 0xD8AD, macro: "playerItem" }
+      - { type: "macro", address: 0xD8AF, macro: "playerItem" }
+      - { type: "macro", address: 0xD8B1, macro: "playerItem" }
+      - { type: "macro", address: 0xD8B3, macro: "playerItem" }
+      - { type: "macro", address: 0xD8B5, macro: "playerItem" }
+      - { type: "macro", address: 0xD8B7, macro: "playerItem" }
+      - { type: "macro", address: 0xD8B9, macro: "playerItem" }
+      - { type: "macro", address: 0xD8BA, macro: "playerItem" }
+    keyItemCount: { type: "int", address: 0xD8BC }
+
       # tms: #copied from GS mapper - all addresses are incorrect
       #   tm01-dynamicpunch: { type: "int", address: 0xD57E, size: 1 }
       #   tm02-headbutt: { type: "int", address: 0xD57F, size: 1 }
@@ -187,9 +190,18 @@ properties:
       mineralBadge: { type: "bit", address: 0xDA73, position: 5 }
       glacierBadge: { type: "bit", address: 0xDA73, position: 6 }
       risingBadge: { type: "bit", address: 0xDA73, position: 7 }
+      boulderBadge: { type: "bit", address: 0xDA74, position: 0 }
+      cascadeBadge: { type: "bit", address: 0xDA74, position: 1 }
+      thunderBadge: { type: "bit", address: 0xDA74, position: 2 }
+      rainbowBadge: { type: "bit", address: 0xDA74, position: 3 }
+      soulBadge: { type: "bit", address: 0xDA74, position: 4 }
+      marshBadge: { type: "bit", address: 0xDA74, position: 5 }
+      volcanoBadge: { type: "bit", address: 0xDA74, position: 6 }
+      earthBadge: { type: "bit", address: 0xDA74, position: 7 }
     money: { type: "int", address: 0xD84E, size: 3 }
-    # moneyMom: { type: "int", address: 0xD851, size: 3 } #incorrect location?
-    # coins: { type: "int", address: 0xD854, size: 2 } #incorrect location? binarycoded decimal?
+    moneyMom: { type: "int", address: 0xD851, size: 3 }
+    momSaving: { type: "bit", address: 0xD854, position: 0}  # Bits 1 and 2 are unused alternate modes for save half and save all. Bit 7 is whether the feature is unlocked
+    coins: { type: "int", address: 0xD855, size: 2 }
 
   overworld:
     mapGroup: { type: "reference", address: 0xDCB5, size: 1, reference: "mapGroups" }
