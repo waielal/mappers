@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 9f46da7e-5087-439d-bcc8-7fe81e54e989
+  id: 9f46da7e-5087-439d-bcc8-7fe81e54e988
   gameName: "Pokemon Crystal"
   gamePlatform: "GB"
 
@@ -305,13 +305,7 @@ properties:
       enemyMonEnd: { type: "int", address: 0xd22d, size: 1 }
     info:
       currentDamage: { type: "int", address: 0xd256, size: 2 }
-    wildPokemon:
-      wildSpecies: { type: "reference", address: 0xD108, reference: "pokemon" }
-      wildLevel: { type: "int", address: 0xD12D, size: 1 }
-      moves1: { type: "reference", address: 0xD208, size: 1, reference: "moves" }
-      moves2: { type: "reference", address: 0xD209, size: 1, reference: "moves" }
-      moves3: { type: "reference", address: 0xD20A, size: 1, reference: "moves" }
-      moves4: { type: "reference", address: 0xD20B, size: 1, reference: "moves" }
+      lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
     #battleStart: { type: "int", address: 0xC664, size: 1 }
     lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
 
