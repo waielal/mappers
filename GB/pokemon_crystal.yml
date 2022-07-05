@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 9f46da7e-5087-439d-bcc8-7fe81e54e988
+  id: 9f46da7e-5087-439d-bcc8-7fe81e54e989
   gameName: "Pokemon Crystal"
   gamePlatform: "GB"
 
@@ -235,6 +235,7 @@ properties:
     mapGroup: { type: "reference", address: 0xDCB5, size: 1, reference: "mapGroups" }
     mapNumber: { type: "int", address: 0xDCB6, size: 1 }
     # map: { type: "reference", address: 0xDCB5, size: 2, reference: "maps" }
+
   encounterRate:
     morning: { type: "int", address: 0xD25A, size: 1 }
     day:     { type: "int", address: 0xD25B, size: 1 }
@@ -275,6 +276,35 @@ properties:
       move2: { type: "reference", address: 0xC62F, size: 1, reference: "moves" }
       move3: { type: "reference", address: 0xC630, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xC631, size: 1, reference: "moves" }
+    enemyPokemon:
+      species: { type: "reference", address: 0xd206, reference: "pokemon" }
+      item: { type: "reference", address: 0xd207, size: 1, reference: "items" }
+      level: { type: "int", address: 0xD12D, size: 1 }
+      moves1: { type: "reference", address: 0xD208, size: 1, reference: "moves" }
+      moves2: { type: "reference", address: 0xD209, size: 1, reference: "moves" }
+      moves3: { type: "reference", address: 0xD20A, size: 1, reference: "moves" }
+      moves4: { type: "reference", address: 0xD20B, size: 1, reference: "moves" }
+      move1pp: { type: "int", address: 0xd20e, size: 1 }
+      move2pp: { type: "int", address: 0xd20f, size: 1 }
+      move3pp: { type: "int", address: 0xd210, size: 1 }
+      move4pp: { type: "int", address: 0xd211, size: 1 }
+      hp: { type: "int", address: 0xd216, size: 2 }
+      maxHp: { type: "int", address: 0xd218, size: 2 }
+      Attack: { type: "int", address: 0xd21a, size: 2 }
+      Defense: { type: "int", address: 0xd21c, size: 2 }
+      SpecialAttack: { type: "int", address: 0xd220, size: 2 }
+      SpecialDefense: { type: "int", address: 0xd222, size: 2 }
+      Speed: { type: "int", address: 0xd21e, size: 2 }
+      modStageAttack: { type: "reference", address: 0xc6d4, size: 1, reference: "stageModifiers" }
+      modStageDefense: { type: "reference", address: 0xc6d5, size: 1, reference: "stageModifiers" }
+      modStageSpeed: { type: "reference", address: 0xc6d6, size: 1, reference: "stageModifiers" }
+      modStageSpecialAttack: { type: "reference", address: 0xc6d7, size: 1, reference: "stageModifiers" }
+      modStageSpecialDefense: { type: "reference", address: 0xc6d8, size: 1, reference: "stageModifiers" }
+      modStageAccuracy: { type: "reference", address: 0xc6d9, size: 1, reference: "stageModifiers" }
+      modStageEvasion: { type: "reference", address: 0xc6da, size: 1, reference: "stageModifiers" }
+      enemyMonEnd: { type: "int", address: 0xd22d, size: 1 }
+    info:
+      currentDamage: { type: "int", address: 0xd256, size: 2 }
     wildPokemon:
       wildSpecies: { type: "reference", address: 0xD108, reference: "pokemon" }
       wildLevel: { type: "int", address: 0xD12D, size: 1 }
