@@ -147,68 +147,65 @@ properties:
       - { type: "reference", address: 0xD8D4, reference: "items" }
       - { type: "reference", address: 0xD8D5, reference: "items" }
       - { type: "reference", address: 0xD8D6, reference: "items" }
-
-
-
-      # tms: #copied from GS mapper - all addresses are incorrect
-      #   tm01-dynamicpunch: { type: "int", address: 0xD57E, size: 1 }
-      #   tm02-headbutt: { type: "int", address: 0xD57F, size: 1 }
-      #   tm03-curse: { type: "int", address: 0xD580, size: 1 }
-      #   tm04-rollout: { type: "int", address: 0xD581, size: 1 }
-      #   tm05-roar: { type: "int", address: 0xD582, size: 1 }
-      #   tm06-toxic: { type: "int", address: 0xD583, size: 1 }
-      #   tm07-zapcannon: { type: "int", address: 0xD584, size: 1 }
-      #   tm08-rocksmash: { type: "int", address: 0xD585, size: 1 }
-      #   tm09-psychup: { type: "int", address: 0xD586, size: 1 }
-      #   tm10-hiddenpower: { type: "int", address: 0xD587, size: 1 }
-      #   tm11-sunnyday: { type: "int", address: 0xD588, size: 1 }
-      #   tm12-sweetscent: { type: "int", address: 0xD589, size: 1 }
-      #   tm13-snore: { type: "int", address: 0xD58A, size: 1 }
-      #   tm14-blizzard: { type: "int", address: 0xD58B, size: 1 }
-      #   tm15-hyperbeam: { type: "int", address: 0xD58C, size: 1 }
-      #   tm16-icywind: { type: "int", address: 0xD58D, size: 1 }
-      #   tm17-protect: { type: "int", address: 0xD58E, size: 1 }
-      #   tm18-raindance: { type: "int", address: 0xD58F, size: 1 }
-      #   tm19-gigadrain: { type: "int", address: 0xD590, size: 1 }
-      #   tm20-endure: { type: "int", address: 0xD591, size: 1 }
-      #   tm21-frustration: { type: "int", address: 0xD592, size: 1 }
-      #   tm22-solarbeam: { type: "int", address: 0xD593, size: 1 }
-      #   tm23-irontail: { type: "int", address: 0xD594, size: 1 }
-      #   tm24-dragonbreath: { type: "int", address: 0xD595, size: 1 }
-      #   tm25-thunder: { type: "int", address: 0xD596, size: 1 }
-      #   tm26-earthquake: { type: "int", address: 0xD597, size: 1 }
-      #   tm27-return: { type: "int", address: 0xD598, size: 1 }
-      #   tm28-dig: { type: "int", address: 0xD599, size: 1 }
-      #   tm29-psychic: { type: "int", address: 0xD59A, size: 1 }
-      #   tm30-shadowball: { type: "int", address: 0xD59B, size: 1 }
-      #   tm31-mudslap: { type: "int", address: 0xD59C, size: 1 }
-      #   tm32-doubleteam: { type: "int", address: 0xD59D, size: 1 }
-      #   tm33-icepunch: { type: "int", address: 0xD59E, size: 1 }
-      #   tm34-swagger: { type: "int", address: 0xD59F, size: 1 }
-      #   tm35-sleeptalk: { type: "int", address: 0xD5A0, size: 1 }
-      #   tm36-sludgebomb: { type: "int", address: 0xD5A1, size: 1 }
-      #   tm37-sandstorm: { type: "int", address: 0xD5A2, size: 1 }
-      #   tm38-fireblast: { type: "int", address: 0xD5A3, size: 1 }
-      #   tm39-swift: { type: "int", address: 0xD5A4, size: 1 }
-      #   tm40-defensecurl: { type: "int", address: 0xD5A5, size: 1 }
-      #   tm41-thunderpunch: { type: "int", address: 0xD5A6, size: 1 }
-      #   tm42-dreameater: { type: "int", address: 0xD5A7, size: 1 }
-      #   tm43-detect: { type: "int", address: 0xD5A8, size: 1 }
-      #   tm44-rest: { type: "int", address: 0xD5A9, size: 1 }
-      #   tm45-attract: { type: "int", address: 0xD5AA, size: 1 }
-      #   tm46-thief: { type: "int", address: 0xD5AB, size: 1 }
-      #   tm47-steelwing: { type: "int", address: 0xD5AC, size: 1 }
-      #   tm48-firepunch: { type: "int", address: 0xD5AD, size: 1 }
-      #   tm49-furycutter: { type: "int", address: 0xD5AE, size: 1 }
-      #   tm50-nightmare: { type: "int", address: 0xD5AF, size: 1 }
-      # hms: #copied from GS mapper - all addresses are incorrect
-      #   hm01: { type: "bit", address: 0xD5B0, position: 1 }
-      #   hm02: { type: "bit", address: 0xD5B1, position: 1 }
-      #   hm03: { type: "bit", address: 0xD5B2, position: 1 }
-      #   hm04: { type: "bit", address: 0xD5B3, position: 1 }
-      #   hm05: { type: "bit", address: 0xD5B4, position: 1 }
-      #   hm06: { type: "bit", address: 0xD5B5, position: 1 }
-      #   hm07: { type: "bit", address: 0xD5B6, position: 1 }
+    tms:
+      tm01-dynamicpunch: { type: "int", address: 0xD859, size: 1 }
+      tm02-headbutt: { type: "int", address: 0xD85A, size: 1 }
+      tm03-curse: { type: "int", address: 0xD85B, size: 1 }
+      tm04-rollout: { type: "int", address: 0xD85C, size: 1 }
+      tm05-roar: { type: "int", address: 0xD85D, size: 1 }
+      tm06-toxic: { type: "int", address: 0xD85E, size: 1 }
+      tm07-zapcannon: { type: "int", address: 0xD85F, size: 1 }
+      tm08-rocksmash: { type: "int", address: 0xD860, size: 1 }
+      tm09-psychup: { type: "int", address: 0xD861, size: 1 }
+      tm10-hiddenpower: { type: "int", address: 0xD862, size: 1 }
+      tm11-sunnyday: { type: "int", address: 0xD863, size: 1 }
+      tm12-sweetscent: { type: "int", address: 0xD864, size: 1 }
+      tm13-snore: { type: "int", address: 0xD865, size: 1 }
+      tm14-blizzard: { type: "int", address: 0xD866, size: 1 }
+      tm15-hyperbeam: { type: "int", address: 0xD867, size: 1 }
+      tm16-icywind: { type: "int", address: 0xD868, size: 1 }
+      tm17-protect: { type: "int", address: 0xD869, size: 1 }
+      tm18-raindance: { type: "int", address: 0xD86A, size: 1 }
+      tm19-gigadrain: { type: "int", address: 0xD86B, size: 1 }
+      tm20-endure: { type: "int", address: 0xD86C, size: 1 }
+      tm21-frustration: { type: "int", address: 0xD86D, size: 1 }
+      tm22-solarbeam: { type: "int", address: 0xD86E, size: 1 }
+      tm23-irontail: { type: "int", address: 0xD86F, size: 1 }
+      tm24-dragonbreath: { type: "int", address: 0xD870, size: 1 }
+      tm25-thunder: { type: "int", address: 0xD871, size: 1 }
+      tm26-earthquake: { type: "int", address: 0xD872, size: 1 }
+      tm27-return: { type: "int", address: 0xD873, size: 1 }
+      tm28-dig: { type: "int", address: 0xD874, size: 1 }
+      tm29-psychic: { type: "int", address: 0xD875, size: 1 }
+      tm30-shadowball: { type: "int", address: 0xD876, size: 1 }
+      tm31-mudslap: { type: "int", address: 0xD877, size: 1 }
+      tm32-doubleteam: { type: "int", address: 0xD878, size: 1 }
+      tm33-icepunch: { type: "int", address: 0xD879, size: 1 }
+      tm34-swagger: { type: "int", address: 0xD87A, size: 1 }
+      tm35-sleeptalk: { type: "int", address: 0xD87B, size: 1 }
+      tm36-sludgebomb: { type: "int", address: 0xD87C, size: 1 }
+      tm37-sandstorm: { type: "int", address: 0xD87D, size: 1 }
+      tm38-fireblast: { type: "int", address: 0xD87E, size: 1 }
+      tm39-swift: { type: "int", address: 0xD87F, size: 1 }
+      tm40-defensecurl: { type: "int", address: 0xD880, size: 1 }
+      tm41-thunderpunch: { type: "int", address: 0xD881, size: 1 }
+      tm42-dreameater: { type: "int", address: 0xD882, size: 1 }
+      tm43-detect: { type: "int", address: 0xD883, size: 1 }
+      tm44-rest: { type: "int", address: 0xD884, size: 1 }
+      tm45-attract: { type: "int", address: 0xD885, size: 1 }
+      tm46-thief: { type: "int", address: 0xD886, size: 1 }
+      tm47-steelwing: { type: "int", address: 0xD887, size: 1 }
+      tm48-firepunch: { type: "int", address: 0xD888, size: 1 }
+      tm49-furycutter: { type: "int", address: 0xD889, size: 1 }
+      tm50-nightmare: { type: "int", address: 0xD88A, size: 1 }
+    hms:
+      hm01: { type: "bit", address: 0xD88B, position: 1 }
+      hm02: { type: "bit", address: 0xD88C, position: 1 }
+      hm03: { type: "bit", address: 0xD88D, position: 1 }
+      hm04: { type: "bit", address: 0xD88E, position: 1 }
+      hm05: { type: "bit", address: 0xD88F, position: 1 }
+      hm06: { type: "bit", address: 0xD890, position: 1 }
+      hm07: { type: "bit", address: 0xD891, position: 1 }
     badges:
       zephyrBadge: { type: "bit", address: 0xDA73, position: 0 }
       hiveBadge: { type: "bit", address: 0xDA73, position: 1 }
