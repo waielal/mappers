@@ -303,6 +303,9 @@ properties:
     info:
       currentDamage: { type: "int", address: 0xd256, size: 2 }
       lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
+    weather:
+      weatherType: { type: "reference", address: 0xc70a, size: 1, reference: "weather" }
+      weatherTurns: { type: int, address: 0xc70b, size: 1 }
     #battleStart: { type: "int", address: 0xC664, size: 1 }
     lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
 
@@ -1330,3 +1333,8 @@ glossary:
   textPrompt:
     0x58: "▼"
     0xEE: "▼"
+  weather:
+    0x0: "NONE"
+    0x1: "RAIN"
+    0x2: "SUN"
+    0x3: "SANDSTORM"
