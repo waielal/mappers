@@ -232,6 +232,12 @@ properties:
       marshBadge: { type: "bit", address: 0xDA74, position: 5 }
       volcanoBadge: { type: "bit", address: 0xDA74, position: 6 }
       earthBadge: { type: "bit", address: 0xDA74, position: 7 }
+    pokegear:
+      mapCard: {type: "bit", address: 0xD957, position: 0 }
+      radioCard: {type: "bit", address: 0xD957, position: 1 }
+      phoneCard: {type: "bit", address: 0xD957, position: 2 }
+      expansionCard: {type: "bit", address: 0xD957, position: 3 }
+      obtained: {type: "bit", address: 0xD957, position: 7 }
     money: { type: "int", address: 0xD84E, size: 3 }
     moneyMom: { type: "int", address: 0xD851, size: 3 }
     momSaving: { type: "bit", address: 0xD854, position: 0}  # Bits 1 and 2 are unused alternate modes for save half and save all. Bit 7 is whether the feature is unlocked
