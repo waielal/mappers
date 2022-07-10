@@ -77,11 +77,20 @@ macros:
     # Field2e: { offset: 45, type: "int", size: 1 }
     # Field2f: { offset: 46, type: "int", size: 1 }
     # Field30: { offset: 47, type: "int", size: 1 }
+  roamer:
+    species: { offset: 0, type: "reference", reference: "pokemon" }
+    level: { offset: 1, type: "int", size: 1 }
+    mapGroup: { offset: 2, type: "reference", size: 1, reference: "mapGroups" }
+    mapNumber: { offset: 3, type: "int", size: 1 }
+    hp: { offset: 4, type: "int", size: 1 }
+    # dvAttackDefense: { offset: 5, type: "int" }
+    # dvSpeedSpecial: { offset: 6, type: "int" }
 
 properties:
   player:
     playerId: {type: "int", address: 0xD47B, size: 2, description: "The active player ID" }
-    name: { type: "string", address: 0xDDFF, size: 11 }
+    name: { type: "string", address: 0xD47D, size: 11 }
+    gender: { type: "reference", address: 0xD472, reference: "gender" }
     teamCount: { type: "int", address: 0xDCD7, size: 1 }
     team:
       - nickname: { type: "string", address: 0xDE41, size: 11, reference: "defaultCharacterMap" }
@@ -233,6 +242,11 @@ properties:
     mapNumber: { type: "int", address: 0xDCB6, size: 1 }
     # map: { type: "reference", address: 0xDCB5, size: 2, reference: "maps" }
 
+  roamers:
+    - { type: "macro", address: 0xDFCF, macro: "roamer" }
+    - { type: "macro", address: 0xDFD6, macro: "roamer" }
+    - { type: "macro", address: 0xDFDD, macro: "roamer" }
+
   encounterRate:
     morning: { type: "int", address: 0xD25A, size: 1 }
     day:     { type: "int", address: 0xD25B, size: 1 }
@@ -303,6 +317,9 @@ properties:
     info:
       currentDamage: { type: "int", address: 0xd256, size: 2 }
       lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
+    weather:
+      weatherType: { type: "reference", address: 0xc70a, size: 1, reference: "weather" }
+      weatherTurnsRemaining: { type: int, address: 0xc70b, size: 1 }
     #battleStart: { type: "int", address: 0xC664, size: 1 }
     lowHealthAlarm: { type: "reference", address: 0xC6FD, size: 1, reference: "lowHealthAlarm" }
 
@@ -1330,3 +1347,11 @@ glossary:
   textPrompt:
     0x58: "▼"
     0xEE: "▼"
+  weather:
+    0x0: "NONE"
+    0x1: "RAIN"
+    0x2: "SUN"
+    0x3: "SANDSTORM"
+  gender:
+    0x0: "Male"
+    0x1: "Female"
