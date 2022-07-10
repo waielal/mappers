@@ -81,7 +81,8 @@ macros:
 properties:
   player:
     playerId: {type: "int", address: 0xD47B, size: 2, description: "The active player ID" }
-    name: { type: "string", address: 0xDDFF, size: 11 }
+    name: { type: "string", address: 0xD47D, size: 11 }
+    female: { type: "bool", address: 0xD472 }
     teamCount: { type: "int", address: 0xDCD7, size: 1 }
     team:
       - nickname: { type: "string", address: 0xDE41, size: 11, reference: "defaultCharacterMap" }
