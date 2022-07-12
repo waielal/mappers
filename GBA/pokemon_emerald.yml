@@ -1,0 +1,629 @@
+meta:
+  schemaVersion: 1
+  id: 005fdd01-8921-468c-aca3-d4fa864d5909
+  gameName: "Pokemon Emerald"
+  gamePlatform: "GBA"
+
+macros:
+  pokemonInParty:
+      personalityValue: { offset: 0, type: "uint", size: 4 }
+      otID: { offset: 4, type: "uint", size: 4 }
+      nickname: { offset: 8, type: "string", size: 10, reference: "defaultCharacterMap"}
+      language: { offset: 18, type: "reference", size: 1, reference: "language" }
+      eggName: { offset: 19, type: "int", size: 1 }
+      otName: { offset: 20, type: "string", size: 7, reference: "defaultCharacterMap" }
+      markings: { offset: 27, type: "int", size: 1 }
+      checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
+      
+      species: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "reference", size: 2, reference: "pokemon" }
+      itemHeld: { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "reference", size: 2, reference: "items" }
+
+      move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "reference", size: 2, reference: "moves" }
+      move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "reference", size: 2, reference: "moves" }
+      move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "reference", size: 2, reference: "moves" }
+      move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "reference", size: 2, reference: "moves" }
+
+      hpEv: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
+
+      pokerusStatus: { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
+
+      level: { offset: 84, type: "int" }
+      pokerus: { offset: 85, type: "int" }
+      hp: { offset: 86, type: "int", size: 2 }
+      maxHp: { offset: 88, type: "int", size: 2 }
+      Attack: { offset: 90, type: "int", size: 2 }
+      Defense: { offset: 92, type: "int", size: 2 }
+      Speed: { offset: 94, type: "int", size: 2 }
+      SpecialAttack: { offset: 96, type: "int", size: 2 }
+      SpecialDefense: { offset: 98, type: "int", size: 2 }
+
+properties:
+  player:
+    # playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    # name: { type: "string", address: 0xD157, size: 11 }
+    # teamCount: { type: "int", address: 0xD162 }
+    team:
+      - { type: "macro", address: 0x20244EC, macro: "pokemonInParty" }
+      - { type: "macro", address: 0x2024550, macro: "pokemonInParty" }
+      - { type: "macro", address: 0x20245B4, macro: "pokemonInParty" }
+      - { type: "macro", address: 0x2024618, macro: "pokemonInParty" }
+      - { type: "macro", address: 0x202467C, macro: "pokemonInParty" }
+      - { type: "macro", address: 0x20246E0, macro: "pokemonInParty" }
+
+glossary:
+  moves:
+    327: "SKY UPPERCUT"
+    53: "FLAMETHROWER"
+    89: "EARTHQUAKE"
+    339: "BULK UP"
+    150: "SPLASH"
+    45: "GROWL"
+    55: "WATER GUN"
+    19: "FLY"
+  items:
+  defaultCharacterMap:
+    0x00: " "
+    0x01: "À"
+    0x02: "Á"
+    0x03: "Â"
+    0x04: "ç"
+    0x05: "È"
+    0x06: "É"
+    0x07: "Ê"
+    0x08: "Ë"
+    0x09: "Ì"
+    0x0A: null
+    0x0B: "Î"
+    0x0C: "Ï"
+    0x0D: "Ò"
+    0x0E: "Ó"
+    0x0F: "Ô"
+    0x10: "Œ"
+    0x11: "Ù"
+    0x12: "Ú"
+    0x13: "Û"
+    0x14: "Ñ"
+    0x15: "ß"
+    0x16: "à"
+    0x17: "á"
+    0x18: null
+    0x19: "ç"
+    0x1A: "è"
+    0x1B: "é"
+    0x1C: "ê"
+    0x1D: "ë"
+    0x1E: "ì"
+    0x1F: null
+    0x20: "î"
+    0x21: "ï"
+    0x22: "ò"
+    0x23: "ó"
+    0x24: "ô"
+    0x25: "œ"
+    0x26: "ù"
+    0x27: "ú"
+    0x28: "û"
+    0x29: "ñ"
+    0x2A: "ͦ"
+    0x2B: "ͣ"
+    0x2C: "ͤ ͬ"
+    0x2D: "&"
+    0x2E: "+"
+    0x2F: null
+    0x30: null
+    0x31: null
+    0x32: null
+    0x33: null
+    0x34: "Lv"
+    0x35: "="
+    0x36: ";"
+    0xA0: "ͬͤ"
+    0xA1: "0"
+    0xA2: "1"
+    0xA3: "2"
+    0xA4: "3"
+    0xA5: "4"
+    0xA6: "5"
+    0xA7: "6"
+    0xA8: "7"
+    0xA9: "8"
+    0xAA: "9"
+    0xAB: "!"
+    0xAC: "?"
+    0xAD: "."
+    0xBB: "A"
+    0xBC: "B"
+    0xBD: "C"
+    0xBE: "D"
+    0xBF: "E"
+    0xC0: "F"
+    0xC1: "G"
+    0xC2: "H"
+    0xC3: "I"
+    0xC4: "J"
+    0xC5: "K"
+    0xC6: "L"
+    0xC7: "M"
+    0xC8: "N"
+    0xC9: "O"
+    0xCA: "P"
+    0xCB: "Q"
+    0xCC: "R"
+    0xCD: "S"
+    0xCE: "T"
+    0xCF: "U"
+    0xD0: "V"
+    0xD1: "W"
+    0xD2: "X"
+    0xD3: "Y"
+    0xD4: "Z"
+    0xD5: "a"
+    0xD6: "b"
+    0xD7: "c"
+    0xD8: "d"
+    0xD9: "e"
+    0xDA: "f"
+    0xDB: "g"
+    0xDC: "h"
+    0xDD: "i"
+    0xDE: "j"
+    0xDF: "k"
+    0xE0: "l"
+    0xE1: "m"
+    0xE2: "n"
+    0xE3: "o"
+    0xE4: "p"
+    0xE5: "q"
+    0xE6: "r"
+    0xE7: "s"
+    0xE8: "t"
+    0xE9: "u"
+    0xEA: "v"
+    0xEB: "w"
+    0xEC: "x"
+    0xED: "y"
+    0xEE: "z"
+    0xEF: "▶"
+    0xF0: ":"
+    0xF1: "Ä"
+    0xF2: "Ö"
+    0xF3: "Ü"
+    0xF4: "ä"
+    0xF5: "ö"
+    0xF6: "ü"
+    0xF7: null
+    0xF8: null
+    0xF9: null
+    0xFA: null
+    0xFB: null
+    0xFC: null
+    0xFD: null
+    0xFE: null
+    0xFF: null #padding
+  language:
+    0x01: "Japanese" #eggs will always have the japanese language
+    0x02: "English"
+    0x03: "French"
+    0x04: "Italian"
+    0x05: "German"
+    0x06: "Korean"
+    0x07: "Spanish"
+  # statusConditions: #unfinished, these are done with bits over the spam of 4 bytes
+  #   0x00: null
+  #   0x01: 
+  pokemon:
+    0x00: null
+    0x01: { pokedexNumber: 1, name: "Bulbasaur" }
+    0x02: { pokedexNumber: 2, name: "Ivysaur" }
+    0x03: { pokedexNumber: 3, name: "Venusaur" }
+    0x04: { pokedexNumber: 4, name: "Charmander" }
+    0x05: { pokedexNumber: 5, name: "Charmeleon" }
+    0x06: { pokedexNumber: 6, name: "Charizard" }
+    0x07: { pokedexNumber: 7, name: "Squirtle" }
+    0x08: { pokedexNumber: 8, name: "Wartortle" }
+    0x09: { pokedexNumber: 9, name: "Blastoise" }
+    0x0A: { pokedexNumber: 10, name: "Caterpie" } 
+    0x0B: { pokedexNumber: 11, name: "Metapod" }
+    0x0C: { pokedexNumber: 12, name: "Butterfree" } 
+    0x0D: { pokedexNumber: 13, name: "Weedle" }
+    0x0E: { pokedexNumber: 14, name: "Kakuna" }
+    0x0F: { pokedexNumber: 15, name: "Beedrill" }
+    0x10: { pokedexNumber: 16, name: "Pidgey" }
+    0x11: { pokedexNumber: 17, name: "Pidgeotto" }
+    0x12: { pokedexNumber: 18, name: "Pidgeot" }
+    0x13: { pokedexNumber: 19, name: "Rattata" }
+    0x14: { pokedexNumber: 20, name: "Raticate" }
+    0x15: { pokedexNumber: 21, name: "Spearow" }
+    0x16: { pokedexNumber: 22, name: "Fearow" }
+    0x17: { pokedexNumber: 23, name: "Ekans" }
+    0x18: { pokedexNumber: 24, name: "Arbok" }
+    0x19: { pokedexNumber: 25, name: "Pikachu" }
+    0x1A: { pokedexNumber: 26, name: "Raichu" }
+    0x1B: { pokedexNumber: 27, name: "Sandshrew" }
+    0x1C: { pokedexNumber: 28, name: "Sandslash" }
+    0x1D: { pokedexNumber: 29, name: "NidoranF" }
+    0x1E: { pokedexNumber: 30, name: "Nidorina" }
+    0x1F: { pokedexNumber: 31, name: "Nidoqueen" }
+    0x20: { pokedexNumber: 32, name: "NidoranM" }
+    0x21: { pokedexNumber: 33, name: "Nidorino" }
+    0x22: { pokedexNumber: 34, name: "Nidoking" }
+    0x23: { pokedexNumber: 35, name: "Clefairy" }
+    0x24: { pokedexNumber: 36, name: "Clefable" }
+    0x25: { pokedexNumber: 37, name: "Vulpix" }
+    0x26: { pokedexNumber: 38, name: "Ninetales" }
+    0x27: { pokedexNumber: 39, name: "Jigglypuff" }
+    0x28: { pokedexNumber: 40, name: "Wigglytuff" }
+    0x29: { pokedexNumber: 41, name: "Zubat" }
+    0x2A: { pokedexNumber: 42, name: "Golbat" }
+    0x2B: { pokedexNumber: 43, name: "Oddish" }
+    0x2C: { pokedexNumber: 44, name: "Gloom" }
+    0x2D: { pokedexNumber: 45, name: "Vileplume" }
+    0x2E: { pokedexNumber: 46, name: "Paras" }
+    0x2F: { pokedexNumber: 47, name: "Parasect" }
+    0x30: { pokedexNumber: 48, name: "Venonat" }
+    0x31: { pokedexNumber: 49, name: "Venomoth" }
+    0x32: { pokedexNumber: 50, name: "Diglett" }
+    0x33: { pokedexNumber: 51, name: "Dugtrio" }
+    0x34: { pokedexNumber: 52, name: "Meowth" }
+    0x35: { pokedexNumber: 53, name: "Persian" }
+    0x36: { pokedexNumber: 54, name: "Psyduck" }
+    0x37: { pokedexNumber: 55, name: "Golduck" }
+    0x38: { pokedexNumber: 56, name: "Mankey" }
+    0x39: { pokedexNumber: 57, name: "Primeape" }
+    0x3A: { pokedexNumber: 58, name: "Growlithe" }
+    0x3B: { pokedexNumber: 59, name: "Arcanine" }
+    0x3C: { pokedexNumber: 60, name: "Poliwag" }
+    0x3D: { pokedexNumber: 61, name: "Poliwhirl" }
+    0x3E: { pokedexNumber: 62, name: "Poliwrath" }
+    0x3F: { pokedexNumber: 63, name: "Abra" }
+    0x40: { pokedexNumber: 64, name: "Kadabra" }
+    0x41: { pokedexNumber: 65, name: "Alakazam" }
+    0x42: { pokedexNumber: 66, name: "Machop" }
+    0x43: { pokedexNumber: 67, name: "Machoke" }
+    0x44: { pokedexNumber: 68, name: "Machamp" }
+    0x45: { pokedexNumber: 69, name: "Bellsprout" }
+    0x46: { pokedexNumber: 70, name: "Weepinbell" }
+    0x47: { pokedexNumber: 71, name: "Victreebel" }
+    0x48: { pokedexNumber: 72, name: "Tentacool" }
+    0x49: { pokedexNumber: 73, name: "Tentacruel" }
+    0x4A: { pokedexNumber: 74, name: "Geodude" }
+    0x4B: { pokedexNumber: 75, name: "Graveler" }
+    0x4C: { pokedexNumber: 76, name: "Golem" }
+    0x4D: { pokedexNumber: 77, name: "Ponyta" }
+    0x4E: { pokedexNumber: 78, name: "Rapidash" }
+    0x4F: { pokedexNumber: 79, name: "Slowpoke" }
+    0x50: { pokedexNumber: 80, name: "Slowbro" }
+    0x51: { pokedexNumber: 81, name: "Magnemite" }
+    0x52: { pokedexNumber: 82, name: "Magneton" }
+    0x53: { pokedexNumber: 83, name: "Farfetch'd" }
+    0x54: { pokedexNumber: 84, name: "Doduo" }
+    0x55: { pokedexNumber: 85, name: "Dodrio" }
+    0x56: { pokedexNumber: 86, name: "Seel" }
+    0x57: { pokedexNumber: 87, name: "Dewgong" }
+    0x58: { pokedexNumber: 88, name: "Grimer" }
+    0x59: { pokedexNumber: 89, name: "Muk" }
+    0x5A: { pokedexNumber: 90, name: "Shellder" }
+    0x5B: { pokedexNumber: 91, name: "Cloyster" }
+    0x5C: { pokedexNumber: 92, name: "Gastly" }
+    0x5D: { pokedexNumber: 93, name: "Haunter" }
+    0x5E: { pokedexNumber: 94, name: "Gengar" }
+    0x5F: { pokedexNumber: 95, name: "Onix" }
+    0x60: { pokedexNumber: 96, name: "Drowzee" }
+    0x61: { pokedexNumber: 97, name: "Hypno" }
+    0x62: { pokedexNumber: 98, name: "Krabby" }
+    0x63: { pokedexNumber: 99, name: "Kingler" }
+    0x64: { pokedexNumber: 100, name: "Voltorb" }
+    0x65: { pokedexNumber: 101, name: "Electrode" }
+    0x66: { pokedexNumber: 102, name: "Exeggcute" }
+    0x67: { pokedexNumber: 103, name: "Exeggutor" }
+    0x68: { pokedexNumber: 104, name: "Cubone" }
+    0x69: { pokedexNumber: 105, name: "Marowak" } 
+    0x6A: { pokedexNumber: 106, name: "Hitmonlee" }
+    0x6B: { pokedexNumber: 107, name: "Hitmonchan" }
+    0x6C: { pokedexNumber: 108, name: "Lickitung" }
+    0x6D: { pokedexNumber: 109, name: "Koffing" }
+    0x6E: { pokedexNumber: 110, name: "Weezing" }
+    0x6F: { pokedexNumber: 111, name: "Rhyhorn" }
+    0x70: { pokedexNumber: 112, name: "Rhydon" }
+    0x71: { pokedexNumber: 113, name: "Chansey" }
+    0x72: { pokedexNumber: 114, name: "Tangela" }
+    0x73: { pokedexNumber: 115, name: "Kangaskhan" }
+    0x74: { pokedexNumber: 116, name: "Horsea" }
+    0x75: { pokedexNumber: 117, name: "Seadra" }
+    0x76: { pokedexNumber: 118, name: "Goldeen" }
+    0x77: { pokedexNumber: 119, name: "Seaking" }
+    0x78: { pokedexNumber: 120, name: "Staryu" }
+    0x79: { pokedexNumber: 121, name: "Starmie" }
+    0x7A: { pokedexNumber: 122, name: "Mr. Mime" }
+    0x7B: { pokedexNumber: 123, name: "Scyther" }
+    0x7C: { pokedexNumber: 124, name: "Jynx" }
+    0x7D: { pokedexNumber: 125, name: "Electabuzz" }
+    0x7E: { pokedexNumber: 126, name: "Magmar" }
+    0x7F: { pokedexNumber: 127, name: "Pinsir" }
+    0x80: { pokedexNumber: 128, name: "Tauros" }
+    0x81: { pokedexNumber: 129, name: "Magikarp" }
+    0x82: { pokedexNumber: 130, name: "Gyarados" }
+    0x83: { pokedexNumber: 131, name: "Lapras" }
+    0x84: { pokedexNumber: 132, name: "Ditto" }
+    0x85: { pokedexNumber: 133, name: "Eevee" }
+    0x86: { pokedexNumber: 134, name: "Vaporeon" }
+    0x87: { pokedexNumber: 135, name: "Jolteon" }
+    0x88: { pokedexNumber: 136, name: "Flareon" }
+    0x89: { pokedexNumber: 137, name: "Porygon" }
+    0x8A: { pokedexNumber: 138, name: "Omanyte" }
+    0x8B: { pokedexNumber: 139, name: "Omastar" }
+    0x8C: { pokedexNumber: 140, name: "Kabuto" }
+    0x8D: { pokedexNumber: 141, name: "Kabutops" }
+    0x8E: { pokedexNumber: 142, name: "Aerodactyl" }
+    0x8F: { pokedexNumber: 143, name: "Snorlax" }
+    0x90: { pokedexNumber: 144, name: "Articuno" }
+    0x91: { pokedexNumber: 145, name: "Zapdos" }
+    0x92: { pokedexNumber: 146, name: "Moltres" }
+    0x93: { pokedexNumber: 147, name: "Dratini" }
+    0x94: { pokedexNumber: 148, name: "Dragonair" }
+    0x95: { pokedexNumber: 149, name: "Dragonite" }
+    0x96: { pokedexNumber: 150, name: "Mewtwo" }
+    0x97: { pokedexNumber: 151, name: "Mew" }
+    0x98: { pokedexNumber: 152, name: "Chikorita" }
+    0x99: { pokedexNumber: 153, name: "Bayleef" }
+    0x9A: { pokedexNumber: 154, name: "Meganium" }
+    0x9B: { pokedexNumber: 155, name: "Cyndaquil" }
+    0x9C: { pokedexNumber: 156, name: "Quilava" }
+    0x9D: { pokedexNumber: 157, name: "Typhlosion" }
+    0x9E: { pokedexNumber: 158, name: "Totodile" }
+    0x9F: { pokedexNumber: 159, name: "Croconaw" }
+    0xA0: { pokedexNumber: 160, name: "Feraligatr" }
+    0xA1: { pokedexNumber: 161, name: "Sentret" }
+    0xA2: { pokedexNumber: 162, name: "Furret" }
+    0xA3: { pokedexNumber: 163, name: "Hoothoot" }
+    0xA4: { pokedexNumber: 164, name: "Noctowl" }
+    0xA5: { pokedexNumber: 165, name: "Ledyba" }
+    0xA6: { pokedexNumber: 166, name: "Ledian" }
+    0xA7: { pokedexNumber: 167, name: "Spinarak" }
+    0xA8: { pokedexNumber: 168, name: "Ariados" }
+    0xA9: { pokedexNumber: 169, name: "Crobat" }
+    0xAA: { pokedexNumber: 170, name: "Chinchou" }
+    0xAB: { pokedexNumber: 171, name: "Lanturn" }
+    0xAC: { pokedexNumber: 172, name: "Pichu" }
+    0xAD: { pokedexNumber: 173, name: "Cleffa" }
+    0xAE: { pokedexNumber: 174, name: "Igglybuff" }
+    0xAF: { pokedexNumber: 175, name: "Togepi" }
+    0xB0: { pokedexNumber: 176, name: "Togetic" }
+    0xB1: { pokedexNumber: 177, name: "Natu" }
+    0xB2: { pokedexNumber: 178, name: "Xatu" }
+    0xB3: { pokedexNumber: 179, name: "Mareep" }
+    0xB4: { pokedexNumber: 180, name: "Flaaffy" }
+    0xB5: { pokedexNumber: 181, name: "Ampharos" }
+    0xB6: { pokedexNumber: 182, name: "Bellossom" }
+    0xB7: { pokedexNumber: 183, name: "Marill" }
+    0xB8: { pokedexNumber: 184, name: "Azumarill" }
+    0xB9: { pokedexNumber: 185, name: "Sudowoodo" }
+    0xBA: { pokedexNumber: 186, name: "Politoed" }
+    0xBB: { pokedexNumber: 187, name: "Hoppip" }
+    0xBC: { pokedexNumber: 188, name: "Skiploom" }
+    0xBD: { pokedexNumber: 189, name: "Jumpluff" }
+    0xBE: { pokedexNumber: 190, name: "Aipom" }
+    0xBF: { pokedexNumber: 191, name: "Sunkern" }
+    0xC0: { pokedexNumber: 192, name: "Sunflora" }
+    0xC1: { pokedexNumber: 193, name: "Yanma" }
+    0xC2: { pokedexNumber: 194, name: "Wooper" }
+    0xC3: { pokedexNumber: 195, name: "Quagsire" }
+    0xC4: { pokedexNumber: 196, name: "Espeon" }
+    0xC5: { pokedexNumber: 197, name: "Umbreon" }
+    0xC6: { pokedexNumber: 198, name: "Murkrow" }
+    0xC7: { pokedexNumber: 199, name: "Slowking" }
+    0xC8: { pokedexNumber: 200, name: "Misdreavus" }
+    0xC9: { pokedexNumber: 201, name: "Unown" }
+    0xCA: { pokedexNumber: 202, name: "Wobbuffet" }
+    0xCB: { pokedexNumber: 203, name: "Girafarig" }
+    0xCC: { pokedexNumber: 204, name: "Pineco" }
+    0xCD: { pokedexNumber: 205, name: "Forretress" }
+    0xCE: { pokedexNumber: 206, name: "Dunsparce" }
+    0xCF: { pokedexNumber: 207, name: "Gligar" }
+    0xD0: { pokedexNumber: 208, name: "Steelix" }
+    0xD1: { pokedexNumber: 209, name: "Snubbull" }
+    0xD2: { pokedexNumber: 210, name: "Granbull" }
+    0xD3: { pokedexNumber: 211, name: "Qwillfish" }
+    0xD4: { pokedexNumber: 212, name: "Scizor" }
+    0xD5: { pokedexNumber: 213, name: "Shuckle" }
+    0xD6: { pokedexNumber: 214, name: "Heracross" }
+    0xD7: { pokedexNumber: 215, name: "Sneasel" }
+    0xD8: { pokedexNumber: 216, name: "Teddiursa" }
+    0xD9: { pokedexNumber: 217, name: "Ursaring" }
+    0xDA: { pokedexNumber: 218, name: "Slugma" }
+    0xDB: { pokedexNumber: 219, name: "Magcargo" }
+    0xDC: { pokedexNumber: 220, name: "Swinub" }
+    0xDD: { pokedexNumber: 221, name: "Piloswine" }
+    0xDE: { pokedexNumber: 222, name: "Corsola" }
+    0xDF: { pokedexNumber: 223, name: "Remoraid" }
+    0xE0: { pokedexNumber: 224, name: "Octillery" }
+    0xE1: { pokedexNumber: 225, name: "Delibird" }
+    0xE2: { pokedexNumber: 226, name: "Mantine" }
+    0xE3: { pokedexNumber: 227, name: "Skarmory" }
+    0xE4: { pokedexNumber: 228, name: "Houndour" }
+    0xE5: { pokedexNumber: 229, name: "Houndoom" }
+    0xE6: { pokedexNumber: 230, name: "Kingdra" }
+    0xE7: { pokedexNumber: 231, name: "Phanpy" }
+    0xE8: { pokedexNumber: 232, name: "Donphan" }
+    0xE9: { pokedexNumber: 233, name: "Porygon2" }
+    0xEA: { pokedexNumber: 234, name: "Stantler" }
+    0xEB: { pokedexNumber: 235, name: "Smeargle" }
+    0xEC: { pokedexNumber: 236, name: "Tyrogue" }
+    0xED: { pokedexNumber: 237, name: "Hitmontop" }
+    0xEE: { pokedexNumber: 238, name: "Smoochum" }
+    0xEF: { pokedexNumber: 239, name: "Elekid" }
+    0xF0: { pokedexNumber: 240, name: "Magby" }
+    0xF1: { pokedexNumber: 241, name: "Miltank" }
+    0xF2: { pokedexNumber: 242, name: "Blissey" }
+    0xF3: { pokedexNumber: 243, name: "Raikou" }
+    0xF4: { pokedexNumber: 244, name: "Entei" }
+    0xF5: { pokedexNumber: 245, name: "Suicune" }
+    0xF6: { pokedexNumber: 246, name: "Larvitar" }
+    0xF7: { pokedexNumber: 247, name: "Pupitar" }
+    0xF8: { pokedexNumber: 248, name: "Tyranitar" }
+    0xF9: { pokedexNumber: 249, name: "Lugia" }
+    0xFA: { pokedexNumber: 250, name: "Ho-oh" }
+    0xFB: { pokedexNumber: 251, name: "Celebi" }
+    0xFC: null
+    0xFD: null
+    0xFE: null
+    0xFF: null
+    0x100: null
+    0x101: null
+    0x102: null
+    0x103: null
+    0x104: null
+    0x105: null
+    0x106: null
+    0x107: null
+    0x108: null
+    0x109: null
+    0x10A: null
+    0x10B: null
+    0x10C: null
+    0x10D: null
+    0x10E: null
+    0x10F: null
+    0x110: null
+    0x111: null
+    0x112: null
+    0x113: null
+    0x114: null
+    0x115: { pokedexNumber: 252, name: "Treecko" }
+    0x116: { pokedexNumber: 253, name: "Grovyle" }
+    0x117: { pokedexNumber: 254, name: "Sceptile" }
+    0x118: { pokedexNumber: 255, name: "Torchic" }
+    0x119: { pokedexNumber: 256, name: "Combusken" }
+    0x11A: { pokedexNumber: 257, name: "Blaziken" }
+    0x11B: { pokedexNumber: 258, name: "Mudkip" }
+    0x11C: { pokedexNumber: 259, name: "Marshtomp" }
+    0x11D: { pokedexNumber: 260, name: "Swampert" }
+    0x11E: { pokedexNumber: 261, name: "Poochyena" }
+    0x11F: { pokedexNumber: 262, name: "Mightyena" }
+    0x120: { pokedexNumber: 263, name: "Zigzagoon" }
+    0x121: { pokedexNumber: 264, name: "Linoone" }
+    0x122: { pokedexNumber: 265, name: "Wurmple" }
+    0x123: { pokedexNumber: 266, name: "Silcoon" }
+    0x124: { pokedexNumber: 267, name: "Beautifly" }
+    0x125: { pokedexNumber: 268, name: "Cascoon" }
+    0x126: { pokedexNumber: 269, name: "Dustox" }
+    0x127: { pokedexNumber: 270, name: "Lotad" }
+    0x128: { pokedexNumber: 271, name: "Lombre" }
+    0x129: { pokedexNumber: 272, name: "Ludicolo" }
+    0x12A: { pokedexNumber: 273, name: "Seedot" }
+    0x12B: { pokedexNumber: 274, name: "Nuzleaf" }
+    0x12C: { pokedexNumber: 275, name: "Shiftry" }
+    0x12D: { pokedexNumber: 276, name: "Nincada" }
+    0x12E: { pokedexNumber: 277, name: "Ninjask" }
+    0x12F: { pokedexNumber: 278, name: "Shedinja" }
+    0x130: { pokedexNumber: 279, name: "Taillow" }
+    0x131: { pokedexNumber: 280, name: "Swellow" }
+    0x132: { pokedexNumber: 281, name: "Shroomish" }
+    0x133: { pokedexNumber: 282, name: "Breloom" }
+    0x134: { pokedexNumber: 283, name: "Spinda" }
+    0x135: { pokedexNumber: 284, name: "Wingull" }
+    0x136: { pokedexNumber: 285, name: "Pelipper" }
+    0x137: { pokedexNumber: 286, name: "Surskit" }
+    0x138: { pokedexNumber: 287, name: "Masquerain" }
+    0x139: { pokedexNumber: 288, name: "Wailmer" }
+    0x13A: { pokedexNumber: 289, name: "Wailord" }
+    0x13B: { pokedexNumber: 290, name: "Skitty" }
+    0x13C: { pokedexNumber: 291, name: "Delcatty" }
+    0x13D: { pokedexNumber: 292, name: "Kecleon" }
+    0x13E: { pokedexNumber: 293, name: "Baltoy" }
+    0x13F: { pokedexNumber: 294, name: "Claydol" }
+    0x140: { pokedexNumber: 295, name: "Nosepass" }
+    0x141: { pokedexNumber: 296, name: "Torkoal" }
+    0x142: { pokedexNumber: 297, name: "Sableye" }
+    0x143: { pokedexNumber: 298, name: "Barboach" }
+    0x144: { pokedexNumber: 299, name: "Whiscash" }
+    0x145: { pokedexNumber: 300, name: "Luvdisc" } #incomplete following this entry
+    # 0x115: { pokedexNumber: 252, name: "Corphish" }
+    # 0x115: { pokedexNumber: 252, name: "Crawdaunt" }
+    # 0x115: { pokedexNumber: 252, name: "Feebas" }
+    # 0x115: { pokedexNumber: 252, name: "Milotic" }
+    # 0x115: { pokedexNumber: 252, name: "Carvanha" }
+    # 0x115: { pokedexNumber: 252, name: "Sharpedo" }
+    # 0x115: { pokedexNumber: 252, name: "Trapinch" }
+    # 0x115: { pokedexNumber: 252, name: "Vibrava" }
+    # 0x115: { pokedexNumber: 252, name: "Flygon" }
+    # 0x115: { pokedexNumber: 252, name: "Makuhita" }
+    # 0x115: { pokedexNumber: 252, name: "Hariyama" }
+    # 0x115: { pokedexNumber: 252, name: "Electrike" }
+    # 0x115: { pokedexNumber: 252, name: "Manectric" }
+    # 0x115: { pokedexNumber: 252, name: "Numel" }
+    # 0x115: { pokedexNumber: 252, name: "Camerupt" }
+    # 0x115: { pokedexNumber: 252, name: "Spheal" }
+    # 0x115: { pokedexNumber: 252, name: "Sealeo" }
+    # 0x115: { pokedexNumber: 252, name: "Walrein" }
+    # 0x115: { pokedexNumber: 252, name: "Cacnea" }
+    # 0x115: { pokedexNumber: 252, name: "Cacturne" }
+    # 0x115: { pokedexNumber: 252, name: "Snorunt" }
+    # 0x115: { pokedexNumber: 252, name: "Glalie" }
+    # 0x115: { pokedexNumber: 252, name: "Lunatone" }
+    # 0x115: { pokedexNumber: 252, name: "Solrock" }
+    # 0x115: { pokedexNumber: 252, name: "Azurill" }
+    # 0x115: { pokedexNumber: 252, name: "Spoink" }
+    # 0x115: { pokedexNumber: 252, name: "Grumpig" }
+    # 0x115: { pokedexNumber: 252, name: "Plusle" }
+    # 0x115: { pokedexNumber: 252, name: "Minun" }
+    # 0x115: { pokedexNumber: 252, name: "Mawile" }
+    # 0x115: { pokedexNumber: 252, name: "Meditite" }
+    # 0x115: { pokedexNumber: 252, name: "Medicham" }
+    # 0x115: { pokedexNumber: 252, name: "Swablu" }
+    # 0x115: { pokedexNumber: 252, name: "Altaria" }
+    # 0x115: { pokedexNumber: 252, name: "Wynaut" }
+    # 0x115: { pokedexNumber: 252, name: "Duskull" }
+    # 0x115: { pokedexNumber: 252, name: "Dusclops" }
+    # 0x115: { pokedexNumber: 252, name: "Roselia" }
+    # 0x115: { pokedexNumber: 252, name: "Slakoth" }
+    # 0x115: { pokedexNumber: 252, name: "Vigoroth" }
+    # 0x115: { pokedexNumber: 252, name: "Slaking" }
+    # 0x115: { pokedexNumber: 252, name: "Gulpin" }
+    # 0x115: { pokedexNumber: 252, name: "Swalot" }
+    # 0x115: { pokedexNumber: 252, name: "Tropius" }
+    # 0x115: { pokedexNumber: 252, name: "Whismur" }
+    # 0x115: { pokedexNumber: 252, name: "Loudred" }
+    # 0x115: { pokedexNumber: 252, name: "Exploud" }
+    # 0x115: { pokedexNumber: 252, name: "Clamperl" }
+    # 0x115: { pokedexNumber: 252, name: "Huntail" }
+    # 0x115: { pokedexNumber: 252, name: "Gorebyss" }
+    # 0x115: { pokedexNumber: 252, name: "Absol" }
+    # 0x115: { pokedexNumber: 252, name: "Shuppet" }
+    # 0x115: { pokedexNumber: 252, name: "Banette" }
+    # 0x115: { pokedexNumber: 252, name: "Seviper" }
+    # 0x115: { pokedexNumber: 252, name: "Zangoose" }
+    # 0x115: { pokedexNumber: 252, name: "Relicanth" }
+    # 0x115: { pokedexNumber: 252, name: "Aron" }
+    # 0x115: { pokedexNumber: 252, name: "Lairon" }
+    # 0x115: { pokedexNumber: 252, name: "Aggron" }
+    # 0x115: { pokedexNumber: 252, name: "Castform" }
+    # 0x115: { pokedexNumber: 252, name: "Volbeat" }
+    # 0x115: { pokedexNumber: 252, name: "Illumise" }
+    # 0x115: { pokedexNumber: 252, name: "Lileep" }
+    # 0x115: { pokedexNumber: 252, name: "Cradily" }
+    # 0x115: { pokedexNumber: 252, name: "Anorith" }
+    # 0x115: { pokedexNumber: 252, name: "Armaldo" }
+    # 0x115: { pokedexNumber: 252, name: "Ralts" }
+    # 0x115: { pokedexNumber: 252, name: "Kirlia" }
+    # 0x115: { pokedexNumber: 252, name: "Gardevoir" }
+    # 0x115: { pokedexNumber: 252, name: "Bagon" }
+    # 0x115: { pokedexNumber: 252, name: "Shelgon" }
+    # 0x115: { pokedexNumber: 252, name: "Salamence" }
+    # 0x115: { pokedexNumber: 252, name: "Beldum" }
+    # 0x115: { pokedexNumber: 252, name: "Metang" }
+    # 0x115: { pokedexNumber: 252, name: "Metagross" }
+    # 0x115: { pokedexNumber: 252, name: "Regirock" }
+    # 0x115: { pokedexNumber: 252, name: "Regice" }
+    # 0x115: { pokedexNumber: 252, name: "Registeel" }
+    # 0x115: { pokedexNumber: 252, name: "Kyogre" }
+    # 0x115: { pokedexNumber: 252, name: "Groudon" }
+    # 0x115: { pokedexNumber: 252, name: "Rayquaza" }
+    # 0x115: { pokedexNumber: 252, name: "Latias" }
+    # 0x115: { pokedexNumber: 252, name: "Latios" }
+    # 0x115: { pokedexNumber: 252, name: "Jirachi" }
+    # 0x115: { pokedexNumber: 252, name: "Deoxys" }
+    # 0x115: { pokedexNumber: 252, name: "Chimecho" }
+    # 0x115: { pokedexNumber: 252, name: "Pokemon Egg" }
+    # 0x115: { pokedexNumber: 252, name: "Unown" }
+    # 0x115: { pokedexNumber: 252, name: "Unown" }
