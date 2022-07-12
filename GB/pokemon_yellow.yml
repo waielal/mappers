@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 36e2cddd-b5db-4a6f-939b-b7dba5f9fd64
+  id: b2b7d2d6-5cf0-4db1-9152-1efc7fe36926
   gameName: "Pokemon Yellow"
   gamePlatform: "GB"
 
@@ -12,10 +12,10 @@ macros:
       statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
       hp: { offset: 1, type: "int", size: 2 }
       maxHp: { offset: 34, type: "int", size: 2 }
-      attack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      speed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Attack: { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Speed: { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+      Special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
       dvAttackDefense: { offset: 27, type: "int" }
       dvSpeedSpecial: { offset: 28, type: "int" }
       move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
@@ -126,13 +126,18 @@ properties:
         trainerLeft: { type: "bit", startingAddress: 0xD772, position: 4 }
         tmReceived: { type: "bit", startingAddress: 0xD772, position: 6 }
         leaderDefeated: { type: "bit", startingAddress: 0xD772, position: 7 }
+    trashCanPuzzle: { type: "reference", address: 0xD772, size: 1, reference: "trashCanFlags" } #scott's thoughts only
   battle:
     type: { type: "reference", address: 0xD056, size: 1, reference: "battleTypes" }
     animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
+    lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      class: { type: "string", address: 0xD049, size: 11, reference: "defaultCharacterMap" }
-      teamCount: { type: "int", address: 0xD89B }
+      class: { type: "reference", address: 0xD030, size: 1, reference: "trainerClasses" }
+      number: { type: "int", address: 0xD05C, size: 1 }
+      name: { type: "string", address: 0xD049, size: 11, reference: "defaultCharacterMap" }
+      gymLeader: { type: "int", address: 0xD05B, size: 1 }
+      totalPokemon: { type: "int", address: 0xD89B, size: 1 }
       team:
         - { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
@@ -140,6 +145,27 @@ properties:
         - { type: "reference", address: 0xD89F, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
         - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
+    yourPokemon:
+      nickname: { type: "string", address: 0xD008, size: 11, reference: "defaultCharacterMap" }
+      species: { type: "reference", address: 0xD013, size: 1, reference: "pokemon" }
+      modStageAttack: { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" }
+      modStageDefense: { type: "reference", address: 0xCD1b, size: 1, reference: "stageModifiers" }
+      modStageSpeed: { type: "reference", address: 0xCD1c, size: 1, reference: "stageModifiers" }
+      modStageSpecial: { type: "reference", address: 0xCD1d, size: 1, reference: "stageModifiers" }
+      modStageAccuracy: { type: "reference", address: 0xCD1e, size: 1, reference: "stageModifiers" }
+      modStageEvasion: { type: "reference", address: 0xCD1f, size: 1, reference: "stageModifiers" }
+      battleStatHP: { type: "int", address: 0xD014, size: 2 }
+      battleStatMaxHP: { type: "int", address: 0xD022, size: 2 }
+      battleStatAttack: { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatDefense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatSpeed: { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
+      battleStatSpecial: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
+      tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
+      move1: { type: "reference", address: 0xD01B, size: 1, reference: "moves" }
+      move2: { type: "reference", address: 0xD01C, size: 1, reference: "moves" }
+      move3: { type: "reference", address: 0xD01D, size: 1, reference: "moves" }
+      move4: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
     enemyPokemon:
       species: { type: "reference", address: 0xCFD7, size: 1, reference: "pokemon" }
       hp: { type: "int", address: 0xCFE5, size: 2 }
@@ -162,23 +188,6 @@ properties:
       move2: { type: "reference", address: 0xCFED, size: 1, reference: "moves" }
       move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
-    yourPokemon:
-      modStageAttack: { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" }
-      modStageDefense: { type: "reference", address: 0xCD1b, size: 1, reference: "stageModifiers" }
-      modStageSpeed: { type: "reference", address: 0xCD1c, size: 1, reference: "stageModifiers" }
-      modStageSpecial: { type: "reference", address: 0xCD1d, size: 1, reference: "stageModifiers" }
-      modStageAccuracy: { type: "reference", address: 0xCD1e, size: 1, reference: "stageModifiers" }
-      modStageEvasion: { type: "reference", address: 0xCD1f, size: 1, reference: "stageModifiers" }
-      battleStatAttack: { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatDefense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpeed: { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
-      battleStatSpecial: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
-      tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
-      tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
-      move1: { type: "reference", address: 0xD01B, size: 1, reference: "moves" }
-      move2: { type: "reference", address: 0xD01C, size: 1, reference: "moves" }
-      move3: { type: "reference", address: 0xD01D, size: 1, reference: "moves" }
-      move4: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
     turnInfo:
       criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
       nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
@@ -204,9 +213,7 @@ properties:
       - { type: "reference", address: 0xCF85, reference: "items" }
   rival:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
-  #menu:
-    #menuOpen: { type: "reference", address: 0xCC52, reference: "menus" }
-    #cursorPosition: { type: int, address: 0xCC26 }
+    finalTeam: { type: "reference", address: 0xD714, reference: "finalTeam" }
   audio:
     channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
     channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
@@ -255,7 +262,7 @@ properties:
   
 glossary:
   battleTypes:
-    0x00: null
+    0x00: None
     0x01: Wild
     0x02: Trainer
     0xFF: Lost Battle
@@ -267,6 +274,9 @@ glossary:
   battleTurn:
     0x00: Player
     0x01: Opponent
+  lowHealthAlarm:
+    0x00: Enabled
+    0x01: Disabled
   pokemonTypes:
     0x00:	Normal
     0x01:	Fighting
@@ -302,8 +312,12 @@ glossary:
     0x0D: 6
     0x0E: null
     0x14: null
+  trashCanFlags:
+    0x00: "Unsolved"
+    0x02: "First Can Found"
+    0x03: "Solved"
   statusConditions:
-    0x00: null
+    0x00: " "
     0x01: Asleep
     0x02: Asleep
     0x04:	Asleep
@@ -324,6 +338,11 @@ glossary:
   options:
     0xC1: "Fast Text, No Animations, Battlestyle Set"
     0x41: "Champion Fight"
+  finalTeam:
+    0x00: "No Team Selected"
+    0x01: "Jolteon"
+    0x02: "Flareon"
+    0x03: "Vaporeon"
   trainerClasses:
     0x00: "NOBODY"
     0x01: "YOUNGSTER"
