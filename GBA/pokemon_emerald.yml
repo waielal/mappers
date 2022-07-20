@@ -1,6 +1,6 @@
 meta:
   schemaVersion: 1
-  id: 005fdd01-8921-468c-aca3-d4fa864d5909
+  id: 005fdd01-8921-468c-aca3-d4fa864d5911
   gameName: "Pokemon Emerald"
   gamePlatform: "GBA"
 
@@ -41,7 +41,7 @@ properties:
   player:
     # playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     # name: { type: "string", address: 0xD157, size: 11 }
-    # teamCount: { type: "int", address: 0xD162 }
+    teamCount: { type: "int", address: 0x20244E9 }
     team:
       - { type: "macro", address: 0x20244EC, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024550, macro: "pokemonInParty" }
@@ -49,18 +49,902 @@ properties:
       - { type: "macro", address: 0x2024618, macro: "pokemonInParty" }
       - { type: "macro", address: 0x202467C, macro: "pokemonInParty" }
       - { type: "macro", address: 0x20246E0, macro: "pokemonInParty" }
+  battle:
+    # type: { type: "reference", address: 0xD056, size: 1, reference: "battleTypes" }
+    # animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
+    # specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
+    # lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
+    trainer:
+      # class: { type: "reference", address: 0xD030, size: 1, reference: "trainerClasses" }
+      # number: { type: "int", address: 0xD05C, size: 1 }
+      # name: { type: "string", address: 0xD049, size: 11, reference: "defaultCharacterMap" }
+      # gymLeader: { type: "int", address: 0xD05B, size: 1 }
+      totalPokemon: { type: "int", address: 0x20244ea }
+      team:
+        - { type: "macro", address: 0x2024744, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x2024746, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x2024748, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x202474A, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x202474C, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x202474E, macro: "pokemonInParty" }
+    yourPokemon:
+      # nickname: { type: "string", address: 0xD008, size: 11, reference: "defaultCharacterMap" }
+      species: { type: "reference", address: 0x2024084, size: 2, reference: "pokemon" }
+      modUnknown: { type: "reference", address: 0x202409C, size: 1, reference: "stageModifiers" }
+      modStageAttack: { type: "reference", address: 0x202409D, size: 1, reference: "stageModifiers" }
+      modStageDefense: { type: "reference", address: 0x202409E, size: 1, reference: "stageModifiers" }
+      modStageSpeed: { type: "reference", address: 0x202409F, size: 1, reference: "stageModifiers" }
+      modStageSpecialAttack: { type: "reference", address: 0x20240A0, size: 1, reference: "stageModifiers" }
+      modStageSpecialDefense: { type: "reference", address: 0x20240A1, size: 1, reference: "stageModifiers" }
+      modStageAccuracy: { type: "reference", address: 0x20240A2, size: 1, reference: "stageModifiers" }
+      modStageEvasion: { type: "reference", address: 0x20240A3, size: 1, reference: "stageModifiers" }
+      battleStatHP: { type: "int", address: 0x20240AC, size: 2 }
+      battleStatMaxHP: { type: "int", address: 0x20240B0, size: 2 }
+      # battleStatAttack: { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      # battleStatDefense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      # battleStatSpeed: { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
+      # battleStatSpecial: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      # # tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
+      # # tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
+      # # move1: { type: "reference", address: 0xD01B, size: 1, reference: "moves" }
+      # # move2: { type: "reference", address: 0xD01C, size: 1, reference: "moves" }
+      # # move3: { type: "reference", address: 0xD01D, size: 1, reference: "moves" }
+      # # move4: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
+      move1pp: { type: "int", address: 0x20240A8, size: 1 }
+      move2pp: { type: "int", address: 0x20240A9, size: 1 }
+      move3pp: { type: "int", address: 0x20240AA, size: 1 }
+      move4pp: { type: "int", address: 0x20240AB, size: 1 }
+    enemyPokemon:
+      species: { type: "reference", address: 0x20240DC, size: 2, reference: "pokemon" }
+      hp: { type: "int", address: 0x2024104, size: 2 }
+      # statusCondition: { type: "reference", address: 0xCFE8, size: 1, reference: "statusConditions" }
+      # type1: { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" }
+      # type2: { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" }
+      level: { type: "int", address: 0x2024106, size: 1 }
+      maxHp: { type: "int", address: 0x2024108, size: 2 }
+      attack: { type: "int", address: 0x20240DE, size: 2 }
+      defense: { type: "int", address: 0x20240E0, size: 2 }
+      speed: { type: "int", address: 0x20240E2, size: 2 }
+      specialAttack: { type: "int", address: 0x20240E4, size: 2 }
+      specialDefense: { type: "int", address: 0x20240E6, size: 2 }
+      modUnknown: { type: "reference", address: 0x20240F4, size: 1, reference: "stageModifiers" }
+      modStageAttack: { type: "reference", address: 0x20240F5, size: 1, reference: "stageModifiers" }
+      modStageDefense: { type: "reference", address: 0x20240F6, size: 1, reference: "stageModifiers" }
+      modStageSpeed: { type: "reference", address: 0x20240F7, size: 1, reference: "stageModifiers" }
+      modStageSpecialAttack: { type: "reference", address: 0x20240F8, size: 1, reference: "stageModifiers" }
+      modStageSpecialDefense: { type: "reference", address: 0x20240F9, size: 1, reference: "stageModifiers" }
+      modStageAccuracy: { type: "reference", address: 0x20240FA, size: 1, reference: "stageModifiers" }
+      modStageEvasion: { type: "reference", address: 0x20240FB, size: 1, reference: "stageModifiers" }
+      # move1: { type: "reference", address: 0x20240FC, size: 1, reference: "moves" }
+      # move2: { type: "reference", address: 0x20240FD, size: 1, reference: "moves" }
+      # move3: { type: "reference", address: 0x20240FE, size: 1, reference: "moves" }
+      # move4: { type: "reference", address: 0x20240FF, size: 1, reference: "moves" }
+      move1pp: { type: "int", address: 0x2024100, size: 1 }
+      move2pp: { type: "int", address: 0x2024101, size: 1 }
+      move3pp: { type: "int", address: 0x2024102, size: 1 }
+      move4pp: { type: "int", address: 0x2024103, size: 1 }
+    turnInfo:
+      battleWeather: { type: "int", address: 0x20243cc, size: 1 } #Unknown values currently
+      battleOutcome: { type: "int", address: 0x202433a, size: 1 } #Unknown values currently
+    #   criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
+    #   nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
+    #   yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
+    #   enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
+    #   yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
+    #   enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
+    #   battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
+    #   trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost" }
 
 glossary:
+  stageModifiers:
+    0x00: -6
+    0x01: -5
+    0x02: -4
+    0x03: -3
+    0x04: -2
+    0x05: -1
+    0x06: 0
+    0x07: 1
+    0x08: 2
+    0x09: 3
+    0x0A: 4
+    0x0B: 5
+    0x0C: 6
+    0x0D: 6
+    0x0E: null
+    0x0F: null
+    0x14: null
   moves:
-    327: "SKY UPPERCUT"
-    53: "FLAMETHROWER"
-    89: "EARTHQUAKE"
-    339: "BULK UP"
-    150: "SPLASH"
-    45: "GROWL"
-    55: "WATER GUN"
+    0: null
+    1: "POUND"
+    2: "KARATE CHOP"
+    3: "DOUBLE SLAP"
+    4: "COMET PUNCH"
+    5: "MEGA PUNCH"
+    6: "PAY DAY"
+    7: "FIRE PUNCH"
+    8: "ICE PUNCH"
+    9: "THUNDER PUNCH"
+    10: "SCRATCH"
+    11: "VICE GRIP"
+    12: "GUILLOTINE"
+    13: "RAZOR WIND"
+    14: "SWORDS DANCE"
+    15: "CUT"
+    16: "GUST"
+    17: "WING ATTACK"
+    18: "WHIRLWIND"
     19: "FLY"
+    20: "BIND"
+    21: "SLAM"
+    22: "VINE WHIP"
+    23: "STOMP"
+    24: "DOUBLE KICK"
+    25: "MEGA KICK"
+    26: "JUMP KICK"
+    27: "ROLLING KICK"
+    28: "SAND ATTACK"
+    29: "HEADBUTT"
+    30: "HORN ATTACK"
+    31: "FURY ATTACK"
+    32: "HORN DRILL"
+    33: "TACKLE"
+    34: "BODY SLAM"
+    35: "WRAP"
+    36: "TAKE DOWN"
+    37: "THRASH"
+    38: "DOUBLE EDGE"
+    39: "TAIL WHIP"
+    40: "POISON STING"
+    41: "TWINEEDLE"
+    42: "PIN MISSILE"
+    43: "LEER"
+    44: "BITE"
+    45: "GROWL"
+    46: "ROAR"
+    47: "SING"
+    48: "SUPERSONIC"
+    49: "SONIC BOOM"
+    50: "DISABLE"
+    51: "ACID"
+    52: "EMBER"
+    53: "FLAMETHROWER"
+    54: "MIST"
+    55: "WATER GUN"
+    56: "HYDRO PUMP"
+    57: "SURF"
+    58: "ICE BEAM"
+    59: "BLIZZARD"
+    60: "PSYBEAM"
+    61: "BUBBLE BEAM"
+    62: "AURORA BEAM"
+    63: "HYPER BEAM"
+    64: "PECK"
+    65: "DRILL PECK"
+    66: "SUBMISSION"
+    67: "LOW KICK"
+    68: "COUNTER"
+    69: "SEISMIC TOSS"
+    70: "STRENGTH"
+    71: "ABSORB"
+    72: "MEGA DRAIN"
+    73: "LEECH SEED"
+    74: "GROWTH"
+    75: "RAZOR LEAF"
+    76: "SOLAR BEAM"
+    77: "POISON POWDER"
+    78: "STUN SPORE"
+    79: "SLEEP POWDER"
+    80: "PETAL DANCE"
+    81: "STRING SHOT"
+    82: "DRAGON RAGE"
+    83: "FIRE SPIN"
+    84: "THUNDER SHOCK"
+    85: "THUNDERBOLT"
+    86: "THUNDER WAVE"
+    87: "THUNDER"
+    88: "ROCK THROW"
+    89: "EARTHQUAKE"
+    90: "FISSURE"
+    91: "DIG"
+    92: "TOXIC"
+    93: "CONFUSION"
+    94: "PSYCHIC"
+    95: "HYPNOSIS"
+    96: "MEDITATE"
+    97: "AGILITY"
+    98: "QUICK ATTACK"
+    99: "RAGE"
+    100: "TELEPORT"
+    101: "NIGHT SHADE"
+    102: "MIMIC"
+    103: "SCREECH"
+    104: "DOUBLE TEAM"
+    105: "RECOVER"
+    106: "HARDEN"
+    107: "MINIMIZE"
+    108: "SMOKESCREEN"
+    109: "CONFUSE RAY"
+    110: "WITHDRAW"
+    111: "DEFENSE CURL"
+    112: "BARRIER"
+    113: "LIGHT SCREEN"
+    114: "HAZE"
+    115: "REFLECT"
+    116: "FOCUS ENERGY"
+    117: "BIDE"
+    118: "METRONOME"
+    119: "MIRROR MOVE"
+    120: "SELF DESTRUCT"
+    121: "EGG BOMB"
+    122: "LICK"
+    123: "SMOG"
+    124: "SLUDGE"
+    125: "BONE CLUB"
+    126: "FIRE BLAST"
+    127: "WATERFALL"
+    128: "CLAMP"
+    129: "SWIFT"
+    130: "SKULL BASH"
+    131: "SPIKE CANNON"
+    132: "CONSTRICT"
+    133: "AMNESIA"
+    134: "KINESIS"
+    135: "SOFT BOILED"
+    136: "HI JUMP KICK"
+    137: "GLARE"
+    138: "DREAM EATER"
+    139: "POISON GAS"
+    140: "BARRAGE"
+    141: "LEECH LIFE"
+    142: "LOVELY KISS"
+    143: "SKY ATTACK"
+    144: "TRANSFORM"
+    145: "BUBBLE"
+    146: "DIZZY PUNCH"
+    147: "SPORE"
+    148: "FLASH"
+    149: "PSYWAVE"
+    150: "SPLASH"
+    151: "ACID ARMOR"
+    152: "CRABHAMMER"
+    153: "EXPLOSION"
+    154: "FURY SWIPES"
+    155: "BONEMERANG"
+    156: "REST"
+    157: "ROCK SLIDE"
+    158: "HYPER FANG"
+    159: "SHARPEN"
+    160: "CONVERSION"
+    161: "TRI ATTACK"
+    162: "SUPER FANG"
+    163: "SLASH"
+    164: "SUBSTITUTE"
+    165: "STRUGGLE"
+    166: "SKETCH"
+    167: "TRIPLE KICK"
+    168: "THIEF"
+    169: "SPIDER WEB"
+    170: "MIND READER"
+    171: "NIGHTMARE"
+    172: "FLAME WHEEL"
+    173: "SNORE"
+    174: "CURSE"
+    175: "FLAIL"
+    176: "CONVERSION 2"
+    177: "AEROBLAST"
+    178: "COTTON SPORE"
+    179: "REVERSAL"
+    180: "SPITE"
+    181: "POWDER SNOW"
+    182: "PROTECT"
+    183: "MACH PUNCH"
+    184: "SCARY FACE"
+    185: "FAINT ATTACK"
+    186: "SWEET KISS"
+    187: "BELLY DRUM"
+    188: "SLUDGE BOMB"
+    189: "MUD SLAP"
+    190: "OCTAZOOKA"
+    191: "SPIKES"
+    192: "ZAP CANNON"
+    193: "FORESIGHT"
+    194: "DESTINY BOND"
+    195: "PERISH SONG"
+    196: "ICY WIND"
+    197: "DETECT"
+    198: "BONE RUSH"
+    199: "LOCK ON"
+    200: "OUTRAGE"
+    201: "SANDSTORM"
+    202: "GIGA DRAIN"
+    203: "ENDURE"
+    204: "CHARM"
+    205: "ROLLOUT"
+    206: "FALSE SWIPE"
+    207: "SWAGGER"
+    208: "MILK DRINK"
+    209: "SPARK"
+    210: "FURY CUTTER"
+    211: "STEEL WING"
+    212: "MEAN LOOK"
+    213: "ATTRACT"
+    214: "SLEEP TALK"
+    215: "HEAL BELL"
+    216: "RETURN"
+    217: "PRESENT"
+    218: "FRUSTRATION" 
+    219: "SAFEGUARD" 
+    220: "PAIN SPLIT" 
+    221: "SACRED FIRE" 
+    222: "MAGNITUDE" 
+    223: "DYNAMIC PUNCH" 
+    224: "MEGAHORN" 
+    225: "DRAGON BREATH" 
+    226: "BATON PASS" 
+    227: "ENCORE" 
+    228: "PURSUIT" 
+    229: "RAPID SPIN" 
+    230: "SWEET SCENT" 
+    231: "IRON TAIL" 
+    232: "METAL CLAW" 
+    233: "VITAL THROW" 
+    234: "MORNING SUN"
+    235: "SYNTHESIS" 
+    236: "MOONLIGHT" 
+    237: "HIDDEN POWER" 
+    238: "CROSS CHOP" 
+    239: "TWISTER" 
+    240: "RAIN DANCE" 
+    241: "SUNNY DAY" 
+    242: "CRUNCH" 
+    243: "MIRROR COAT" 
+    244: "PSYCH UP" 
+    245: "EXTREME SPEED" 
+    246: "ANCIENT POWER" 
+    247: "SHADOW BALL" 
+    248: "FUTURE SIGHT" 
+    249: "ROCK SMASH" 
+    250: "WHIRLPOOL" 
+    251: "BEAT UP" 
+    252: "FAKE OUT" 
+    253: "UPROAR" 
+    254: "STOCKPILE" 
+    255: "SPIT UP" 
+    256: "SWALLOW" 
+    257: "HEAT WAVE" 
+    258: "HAIL" 
+    259: "TORMENT" 
+    260: "FLATTER" 
+    261: "WILL O WISP" 
+    262: "MEMENTO" 
+    263: "FACADE" 
+    264: "FOCUS PUNCH" 
+    265: "SMELLING SALT"
+    266: "FOLLOW ME" 
+    267: "NATURE POWER" 
+    268: "CHARGE" 
+    269: "TAUNT" 
+    270: "HELPING HAND" 
+    271: "TRICK" 
+    272: "ROLE PLAY" 
+    273: "WISH" 
+    274: "ASSIST" 
+    275: "INGRAIN" 
+    276: "SUPERPOWER" 
+    277: "MAGIC COAT" 
+    278: "RECYCLE" 
+    279: "REVENGE" 
+    280: "BRICK BREAK"
+    281: "YAWN" 
+    282: "KNOCK OFF" 
+    283: "ENDEAVOR" 
+    284: "ERUPTION" 
+    285: "SKILL SWAP" 
+    286: "IMPRISON" 
+    287: "REFRESH" 
+    288: "GRUDGE"
+    289: "SNATCH" 
+    290: "SECRET POWER" 
+    291: "DIVE" 
+    292: "ARM THRUST" 
+    293: "CAMOUFLAGE" 
+    294: "TAIL GLOW" 
+    295: "LUSTER PURGE" 
+    296: "MIST BALL" 
+    297: "FEATHER DANCE" 
+    298: "TEETER DANCE" 
+    299: "BLAZE KICK" 
+    300: "MUD SPORT" 
+    301: "ICE BALL" 
+    302: "NEEDLE ARM" 
+    303: "SLACK OFF" 
+    304: "HYPER VOICE" 
+    305: "POISON FANG"
+    306: "CRUSH CLAW" 
+    307: "BLAST BURN" 
+    308: "HYDRO CANNON" 
+    309: "METEOR MASH" 
+    310: "ASTONISH" 
+    311: "WEATHER BALL" 
+    312: "AROMATHERAPY" 
+    313: "FAKE TEARS" 
+    314: "AIR CUTTER" 
+    315: "OVERHEAT"
+    316: "ODOR SLEUTH"
+    317: "ROCK TOMB"
+    318: "SILVER WIND"
+    319: "METAL SOUND"
+    320: "GRASS WHISTLE"
+    321: "TICKLE"
+    322: "COSMIC POWER"
+    323: "WATER SPOUT"
+    324: "SIGNAL BEAM"
+    325: "SHADOW PUNCH"
+    326: "EXTRASENSORY"
+    327: "SKY UPPERCUT"
+    328: "SAND TOMB"
+    329: "SHEER COLD"
+    330: "MUDDY WATER"
+    331: "BULLET SEED"
+    332: "AERIAL ACE"
+    333: "ICICLE SPEAR"
+    334: "IRON DEFENSE"
+    335: "BLOCK"
+    336: "HOWL"
+    337: "DRAGON CLAW"
+    338: "FRENZY PLANT"
+    339: "BULK UP"
+    340: "BOUNCE"
+    341: "MUD SHOT"
+    342: "POISON TAIL"
+    343: "COVET"
+    344: "VOLT TACKLE"
+    345: "MAGICAL LEAF"
+    346: "WATER SPORT"
+    347: "CALM MIND"
+    348: "LEAF BLADE" 
+    349: "DRAGON DANCE"
+    350: "ROCK BLAST"
+    351: "SHOCK WAVE"
+    352: "WATER PULSE"
+    353: "DOOM DESIRE"
+    354: "PSYCHO BOOST"
   items:
+    1: "MASTER BALL"
+    2: "ULTRA BALL"
+    3: "GREAT BALL"
+    4: "POKE BALL"
+    5: "SAFARI BALL"
+    6: "NET BALL"
+    7: "DIVE BALL"
+    8: "NEST BALL"
+    9: "REPEAT BALL"
+    10: "TIMER BALL"
+    11: "LUXURY BALL"
+    12: "PREMIER BALL"
+    13: "POTION"
+    14: "ANTIDOTE"
+    15: "BURN HEAL"
+    16: "ICE HEAL"
+    17: "AWAKENING"
+    18: "PARALYZE HEAL"
+    19: "FULL RESTORE"
+    20: "MAX POTION"
+    21: "HYPER POTION"
+    22: "SUPER POTION"
+    23: "FULL HEAL"
+    24: "REVIVE"
+    25: "MAX REVIVE"
+    26: "FRESH WATER"
+    27: "SODA POP"
+    28: "LEMONADE"
+    29: "MOOMOO MILK"
+    30: "ENERGY POWDER"
+    31: "ENERGY ROOT"
+    32: "HEAL POWDER"
+    33: "REVIVAL HERB"
+    34: "ETHER"
+    35: "MAX ETHER"
+    36: "ELIXIR"
+    37: "MAX ELIXIR"
+    38: "LAVA COOKIE"
+    39: "BLUE FLUTE"
+    40: "YELLOW FLUTE"
+    41: "RED FLUTE"
+    42: "BLACK FLUTE"
+    43: "WHITE FLUTE"
+    44: "BERRY JUICE"
+    45: "SACRED ASH"
+    46: "SHOAL SALT"
+    47: "SHOAL SHELL"
+    48: "RED SHARD"
+    49: "BLUE SHARD"
+    50: "YELLOW SHARD"
+    51: "GREEN SHARD"
+    52: "034"
+    53: "035"
+    54: "036"
+    55: "037"
+    56: "038"
+    57: "039"
+    58: "03A"
+    59: "03B"
+    60: "03C"
+    61: "03D"
+    62: "03E"
+    63: "HP UP"
+    64: "PROTEIN"
+    65: "IRON"
+    66: "CARBOS"
+    67: "CALCIUM"
+    68: "RARE CANDY"
+    69: "PP UP"
+    70: "ZINC"
+    71: "PP MAX"
+    72: "048"
+    73: "GUARD SPEC"
+    74: "DIRE HIT"
+    75: "X ATTACK"
+    76: "X DEFEND"
+    77: "X SPEED"
+    78: "X ACCURACY"
+    79: "X SPECIAL"
+    80: "POKE DOLL"
+    81: "FLUFFY TAIL"
+    82: "052"
+    83: "SUPER REPEL"
+    84: "MAX REPEL"
+    85: "ESCAPE ROPE"
+    86: "REPEL"
+    87: "057"
+    88: "058"
+    89: "059"
+    90: "05A"
+    91: "05B"
+    92: "05C"
+    93: "SUN STONE"
+    94: "MOON STONE"
+    95: "FIRE STONE"
+    96: "THUNDER STONE"
+    97: "WATER STONE"
+    98: "LEAF STONE"
+    99: "063"
+    100: "064"
+    101: "065"
+    102: "066"
+    103: "TINY MUSHROOM"
+    104: "BIG MUSHROOM"
+    105: "069"
+    106: "PEARL"
+    107: "BIG PEARL"
+    108: "STARDUST"
+    109: "STAR PIECE"
+    110: "NUGGET"
+    111: "HEART SCALE"
+    112: "070"
+    113: "071"
+    114: "072"
+    115: "073"
+    116: "074"
+    117: "075"
+    118: "076"
+    119: "077"
+    120: "078"
+    121: "ORANGE MAIL"
+    122: "HARBOR MAIL"
+    123: "GLITTER MAIL"
+    124: "MECH MAIL"
+    125: "WOOD MAIL"
+    126: "WAVE MAIL"
+    127: "BEAD MAIL"
+    128: "SHADOW MAIL"
+    129: "TROPIC MAIL"
+    130: "DREAM MAIL"
+    131: "FAB MAIL"
+    132: "RETRO MAIL"
+    133: "CHERI BERRY"
+    134: "CHESTO BERRY"
+    135: "PECHA BERRY"
+    136: "RAWST BERRY"
+    137: "ASPEAR BERRY"
+    138: "LEPPA BERRY"
+    139: "ORAN BERRY"
+    140: "PERSIM BERRY"
+    141: "LUM BERRY"
+    142: "SITRUS BERRY"
+    143: "FIGY BERRY"
+    144: "WIKI BERRY"
+    145: "MAGO BERRY"
+    146: "AGUAV BERRY"
+    147: "IAPAPA BERRY"
+    148: "RAZZ BERRY"
+    149: "BLUK BERRY"
+    150: "NANAB BERRY"
+    151: "WEPEAR BERRY"
+    152: "PINAP BERRY"
+    153: "POMEG BERRY"
+    154: "KELPSY BERRY"
+    155: "QUALOT BERRY"
+    156: "HONDEW BERRY"
+    157: "GREPA BERRY"
+    158: "TAMATO BERRY"
+    159: "CORNN BERRY"
+    160: "MAGOST BERRY"
+    161: "RABUTA BERRY"
+    162: "NOMEL BERRY"
+    163: "SPELON BERRY"
+    164: "PAMTRE BERRY"
+    165: "WATMEL BERRY"
+    166: "DURIN BERRY"
+    167: "BELUE BERRY"
+    168: "LIECHI BERRY"
+    169: "GANLON BERRY"
+    170: "SALAC BERRY"
+    171: "PETAYA BERRY"
+    172: "APICOT BERRY"
+    173: "LANSAT BERRY"
+    174: "STARF BERRY"
+    175: "ENIGMA BERRY"
+    176: "UNUSED BERRY 1"
+    177: "UNUSED BERRY 2"
+    178: "UNUSED BERRY 3"
+    179: "BRIGHT POWDER"
+    180: "WHITE HERB"
+    181: "MACHO BRACE"
+    182: "EXP SHARE"
+    183: "QUICK CLAW"
+    184: "SOOTHE BELL"
+    185: "MENTAL HERB"
+    186: "CHOICE BAND"
+    187: "KINGS ROCK"
+    188: "SILVER POWDER"
+    189: "AMULET COIN"
+    190: "CLEANSE TAG"
+    191: "SOUL DEW"
+    192: "DEEP SEA TOOTH"
+    193: "DEEP SEA SCALE"
+    194: "SMOKE BALL"
+    195: "EVERSTONE"
+    196: "FOCUS BAND"
+    197: "LUCKY EGG"
+    198: "SCOPE LENS"
+    199: "METAL COAT"
+    200: "LEFTOVERS"
+    201: "DRAGON SCALE"
+    202: "LIGHT BALL"
+    203: "SOFT SAND"
+    204: "HARD STONE"
+    205: "MIRACLE SEED"
+    206: "BLACK GLASSES"
+    207: "BLACK BELT"
+    208: "MAGNET"
+    209: "MYSTIC WATER"
+    210: "SHARP BEAK"
+    211: "POISON BARB"
+    212: "NEVER MELT ICE"
+    213: "SPELL TAG"
+    214: "TWISTED SPOON"
+    215: "CHARCOAL"
+    216: "DRAGON FANG"
+    217: "SILK SCARF"
+    218: "UP GRADE"
+    219: "SHELL BELL"
+    220: "SEA INCENSE"
+    221: "LAX INCENSE"
+    222: "LUCKY PUNCH"
+    223: "METAL POWDER"
+    224: "THICK CLUB"
+    225: "STICK"
+    226: "0E2"
+    227: "0E3"
+    228: "0E4"
+    229: "0E5"
+    230: "0E6"
+    231: "0E7"
+    232: "0E8"
+    233: "0E9"
+    234: "0EA"
+    235: "0EB"
+    236: "0EC"
+    237: "0ED"
+    238: "0EE"
+    239: "0EF"
+    240: "0F0"
+    241: "0F1"
+    242: "0F2"
+    243: "0F3"
+    244: "0F4"
+    245: "0F5"
+    246: "0F6"
+    247: "0F7"
+    248: "0F8"
+    249: "0F9"
+    250: "0FA"
+    251: "0FB"
+    252: "0FC"
+    253: "0FD"
+    254: "RED SCARF"
+    255: "BLUE SCARF"
+    256: "PINK SCARF"
+    257: "GREEN SCARF"
+    258: "YELLOW SCARF"
+    259: "MACH BIKE"
+    260: "COIN CASE"
+    261: "ITEMFINDER"
+    262: "OLD ROD"
+    263: "GOOD ROD"
+    264: "SUPER ROD"
+    265: "SS TICKET"
+    266: "CONTEST PASS"
+    267: "10B"
+    268: "WAILMER PAIL"
+    269: "DEVON GOODS"
+    270: "SOOT SACK"
+    271: "BASEMENT KEY"
+    272: "ACRO BIKE"
+    273: "POKEBLOCK CASE"
+    274: "LETTER"
+    275: "EON TICKET"
+    276: "RED ORB"
+    277: "BLUE ORB"
+    278: "SCANNER"
+    279: "GO GOGGLES"
+    280: "METEORITE"
+    281: "ROOM 1 KEY"
+    282: "ROOM 2 KEY"
+    283: "ROOM 4 KEY"
+    284: "ROOM 6 KEY"
+    285: "STORAGE KEY"
+    286: "ROOT FOSSIL"
+    287: "CLAW FOSSIL"
+    288: "DEVON SCOPE"
+    289: "TM01"
+    290: "TM02"
+    291: "TM03"
+    292: "TM04"
+    293: "TM05"
+    294: "TM06"
+    295: "TM07"
+    296: "TM08"
+    297: "TM09"
+    298: "TM10"
+    299: "TM11"
+    300: "TM12"
+    301: "TM13"
+    302: "TM14"
+    303: "TM15"
+    304: "TM16"
+    305: "TM17"
+    306: "TM18"
+    307: "TM19"
+    308: "TM20"
+    309: "TM21"
+    310: "TM22"
+    311: "TM23"
+    312: "TM24"
+    313: "TM25"
+    314: "TM26"
+    315: "TM27"
+    316: "TM28"
+    317: "TM29"
+    318: "TM30"
+    319: "TM31"
+    320: "TM32"
+    321: "TM33"
+    322: "TM34"
+    323: "TM35"
+    324: "TM36"
+    325: "TM37"
+    326: "TM38"
+    327: "TM39"
+    328: "TM40"
+    329: "TM41"
+    330: "TM42"
+    331: "TM43"
+    332: "TM44"
+    333: "TM45"
+    334: "TM46"
+    335: "TM47"
+    336: "TM48"
+    337: "TM49"
+    338: "TM50"
+    339: "HM01"
+    340: "HM02"
+    341: "HM03"
+    342: "HM04"
+    343: "HM05"
+    344: "HM06"
+    345: "HM07"
+    346: "HM08"
+    347: "15B"
+    348: "15C"
+    349: "OAKS PARCEL"
+    350: "POKE FLUTE"
+    351: "SECRET KEY"
+    352: "BIKE VOUCHER"
+    353: "GOLD TEETH"
+    354: "OLD AMBER"
+    355: "CARD KEY"
+    356: "LIFT KEY"
+    357: "HELIX FOSSIL"
+    358: "DOME FOSSIL"
+    359: "SILPH SCOPE"
+    360: "BICYCLE"
+    361: "TOWN MAP"
+    362: "VS SEEKER"
+    363: "FAME CHECKER"
+    364: "TM CASE"
+    365: "BERRY POUCH"
+    366: "TEACHY TV"
+    367: "TRI PASS"
+    368: "RAINBOW PASS"
+    369: "TEA"
+    370: "MYSTIC TICKET"
+    371: "AURORA TICKET"
+    372: "POWDER JAR"
+    373: "RUBY"
+    374: "SAPPHIRE"
+    375: "MAGMA EMBLEM"
+    376: "OLD SEA MAP"
+    # : "TM01 FOCUS PUNCH ITEM TM01
+    # : "TM02 DRAGON CLAW ITEM TM02
+    # : "TM03 WATER PULSE ITEM TM03
+    # : "TM04 CALM MIND ITEM TM04
+    # : "TM05 ROAR ITEM TM05
+    # : "TM06 TOXIC ITEM TM06
+    # : "TM07 HAIL ITEM TM07
+    # : "TM08 BULK UP ITEM TM08
+    # : "TM09 BULLET SEED ITEM TM09
+    # : "TM10 HIDDEN POWER ITEM TM10
+    # : "TM11 SUNNY DAY ITEM TM11
+    # : "TM12 TAUNT ITEM TM12
+    # : "TM13 ICE BEAM ITEM TM13
+    # : "TM14 BLIZZARD ITEM TM14
+    # : "TM15 HYPER BEAM ITEM TM15
+    # : "TM16 LIGHT SCREEN ITEM TM16
+    # : "TM17 PROTECT ITEM TM17
+    # : "TM18 RAIN DANCE ITEM TM18
+    # : "TM19 GIGA DRAIN ITEM TM19
+    # : "TM20 SAFEGUARD ITEM TM20
+    # : "TM21 FRUSTRATION ITEM TM21
+    # : "TM22 SOLAR BEAM ITEM TM22
+    # : "TM23 IRON TAIL ITEM TM23
+    # : "TM24 THUNDERBOLT ITEM TM24
+    # : "TM25 THUNDER ITEM TM25
+    # : "TM26 EARTHQUAKE ITEM TM26
+    # : "TM27 RETURN ITEM TM27
+    # : "TM28 DIG ITEM TM28
+    # : "TM29 PSYCHIC ITEM TM29
+    # : "TM30 SHADOW BALL ITEM TM30
+    # : "TM31 BRICK BREAK ITEM TM31
+    # : "TM32 DOUBLE TEAM ITEM TM32
+    # : "TM33 REFLECT ITEM TM33
+    # : "TM34 SHOCK WAVE ITEM TM34
+    # : "TM35 FLAMETHROWER ITEM TM35
+    # : "TM36 SLUDGE BOMB ITEM TM36
+    # : "TM37 SANDSTORM ITEM TM37
+    # : "TM38 FIRE BLAST ITEM TM38
+    # : "TM39 ROCK TOMB ITEM TM39
+    # : "TM40 AERIAL ACE ITEM TM40
+    # : "TM41 TORMENT ITEM TM41
+    # : "TM42 FACADE ITEM TM42
+    # : "TM43 SECRET POWER ITEM TM43
+    # : "TM44 REST ITEM TM44
+    # : "TM45 ATTRACT ITEM TM45
+    # : "TM46 THIEF ITEM TM46
+    # : "TM47 STEEL WING ITEM TM47
+    # : "TM48 SKILL SWAP ITEM TM48
+    # : "TM49 SNATCH ITEM TM49
+    # : "TM50 OVERHEAT ITEM TM50
+    # : "HM01 CUT ITEM HM01
+    # : "HM02 FLY ITEM HM02
+    # : "HM03 SURF ITEM HM03
+    # : "HM04 STRENGTH ITEM HM04
+    # : "HM05 FLASH ITEM HM05
+    # : "HM06 ROCK SMASH ITEM HM06
+    # : "HM07 WATERFALL ITEM HM07
+    # : "HM08 DIVE ITEM HM08
   defaultCharacterMap:
     0x00: " "
     0x01: "À"
@@ -513,117 +1397,117 @@ glossary:
     0x12A: { pokedexNumber: 273, name: "Seedot" }
     0x12B: { pokedexNumber: 274, name: "Nuzleaf" }
     0x12C: { pokedexNumber: 275, name: "Shiftry" }
-    0x12D: { pokedexNumber: 276, name: "Nincada" }
-    0x12E: { pokedexNumber: 277, name: "Ninjask" }
-    0x12F: { pokedexNumber: 278, name: "Shedinja" }
-    0x130: { pokedexNumber: 279, name: "Taillow" }
-    0x131: { pokedexNumber: 280, name: "Swellow" }
-    0x132: { pokedexNumber: 281, name: "Shroomish" }
-    0x133: { pokedexNumber: 282, name: "Breloom" }
-    0x134: { pokedexNumber: 283, name: "Spinda" }
-    0x135: { pokedexNumber: 284, name: "Wingull" }
-    0x136: { pokedexNumber: 285, name: "Pelipper" }
-    0x137: { pokedexNumber: 286, name: "Surskit" }
-    0x138: { pokedexNumber: 287, name: "Masquerain" }
-    0x139: { pokedexNumber: 288, name: "Wailmer" }
-    0x13A: { pokedexNumber: 289, name: "Wailord" }
-    0x13B: { pokedexNumber: 290, name: "Skitty" }
-    0x13C: { pokedexNumber: 291, name: "Delcatty" }
-    0x13D: { pokedexNumber: 292, name: "Kecleon" }
-    0x13E: { pokedexNumber: 293, name: "Baltoy" }
-    0x13F: { pokedexNumber: 294, name: "Claydol" }
-    0x140: { pokedexNumber: 295, name: "Nosepass" }
-    0x141: { pokedexNumber: 296, name: "Torkoal" }
-    0x142: { pokedexNumber: 297, name: "Sableye" }
-    0x143: { pokedexNumber: 298, name: "Barboach" }
-    0x144: { pokedexNumber: 299, name: "Whiscash" }
-    0x145: { pokedexNumber: 300, name: "Luvdisc" } #incomplete following this entry
-    # 0x115: { pokedexNumber: 252, name: "Corphish" }
-    # 0x115: { pokedexNumber: 252, name: "Crawdaunt" }
-    # 0x115: { pokedexNumber: 252, name: "Feebas" }
-    # 0x115: { pokedexNumber: 252, name: "Milotic" }
-    # 0x115: { pokedexNumber: 252, name: "Carvanha" }
-    # 0x115: { pokedexNumber: 252, name: "Sharpedo" }
-    # 0x115: { pokedexNumber: 252, name: "Trapinch" }
-    # 0x115: { pokedexNumber: 252, name: "Vibrava" }
-    # 0x115: { pokedexNumber: 252, name: "Flygon" }
-    # 0x115: { pokedexNumber: 252, name: "Makuhita" }
-    # 0x115: { pokedexNumber: 252, name: "Hariyama" }
-    # 0x115: { pokedexNumber: 252, name: "Electrike" }
-    # 0x115: { pokedexNumber: 252, name: "Manectric" }
-    # 0x115: { pokedexNumber: 252, name: "Numel" }
-    # 0x115: { pokedexNumber: 252, name: "Camerupt" }
-    # 0x115: { pokedexNumber: 252, name: "Spheal" }
-    # 0x115: { pokedexNumber: 252, name: "Sealeo" }
-    # 0x115: { pokedexNumber: 252, name: "Walrein" }
-    # 0x115: { pokedexNumber: 252, name: "Cacnea" }
-    # 0x115: { pokedexNumber: 252, name: "Cacturne" }
-    # 0x115: { pokedexNumber: 252, name: "Snorunt" }
-    # 0x115: { pokedexNumber: 252, name: "Glalie" }
-    # 0x115: { pokedexNumber: 252, name: "Lunatone" }
-    # 0x115: { pokedexNumber: 252, name: "Solrock" }
-    # 0x115: { pokedexNumber: 252, name: "Azurill" }
-    # 0x115: { pokedexNumber: 252, name: "Spoink" }
-    # 0x115: { pokedexNumber: 252, name: "Grumpig" }
-    # 0x115: { pokedexNumber: 252, name: "Plusle" }
-    # 0x115: { pokedexNumber: 252, name: "Minun" }
-    # 0x115: { pokedexNumber: 252, name: "Mawile" }
-    # 0x115: { pokedexNumber: 252, name: "Meditite" }
-    # 0x115: { pokedexNumber: 252, name: "Medicham" }
-    # 0x115: { pokedexNumber: 252, name: "Swablu" }
-    # 0x115: { pokedexNumber: 252, name: "Altaria" }
-    # 0x115: { pokedexNumber: 252, name: "Wynaut" }
-    # 0x115: { pokedexNumber: 252, name: "Duskull" }
-    # 0x115: { pokedexNumber: 252, name: "Dusclops" }
-    # 0x115: { pokedexNumber: 252, name: "Roselia" }
-    # 0x115: { pokedexNumber: 252, name: "Slakoth" }
-    # 0x115: { pokedexNumber: 252, name: "Vigoroth" }
-    # 0x115: { pokedexNumber: 252, name: "Slaking" }
-    # 0x115: { pokedexNumber: 252, name: "Gulpin" }
-    # 0x115: { pokedexNumber: 252, name: "Swalot" }
-    # 0x115: { pokedexNumber: 252, name: "Tropius" }
-    # 0x115: { pokedexNumber: 252, name: "Whismur" }
-    # 0x115: { pokedexNumber: 252, name: "Loudred" }
-    # 0x115: { pokedexNumber: 252, name: "Exploud" }
-    # 0x115: { pokedexNumber: 252, name: "Clamperl" }
-    # 0x115: { pokedexNumber: 252, name: "Huntail" }
-    # 0x115: { pokedexNumber: 252, name: "Gorebyss" }
-    # 0x115: { pokedexNumber: 252, name: "Absol" }
-    # 0x115: { pokedexNumber: 252, name: "Shuppet" }
-    # 0x115: { pokedexNumber: 252, name: "Banette" }
-    # 0x115: { pokedexNumber: 252, name: "Seviper" }
-    # 0x115: { pokedexNumber: 252, name: "Zangoose" }
-    # 0x115: { pokedexNumber: 252, name: "Relicanth" }
-    # 0x115: { pokedexNumber: 252, name: "Aron" }
-    # 0x115: { pokedexNumber: 252, name: "Lairon" }
-    # 0x115: { pokedexNumber: 252, name: "Aggron" }
-    # 0x115: { pokedexNumber: 252, name: "Castform" }
-    # 0x115: { pokedexNumber: 252, name: "Volbeat" }
-    # 0x115: { pokedexNumber: 252, name: "Illumise" }
-    # 0x115: { pokedexNumber: 252, name: "Lileep" }
-    # 0x115: { pokedexNumber: 252, name: "Cradily" }
-    # 0x115: { pokedexNumber: 252, name: "Anorith" }
-    # 0x115: { pokedexNumber: 252, name: "Armaldo" }
-    # 0x115: { pokedexNumber: 252, name: "Ralts" }
-    # 0x115: { pokedexNumber: 252, name: "Kirlia" }
-    # 0x115: { pokedexNumber: 252, name: "Gardevoir" }
-    # 0x115: { pokedexNumber: 252, name: "Bagon" }
-    # 0x115: { pokedexNumber: 252, name: "Shelgon" }
-    # 0x115: { pokedexNumber: 252, name: "Salamence" }
-    # 0x115: { pokedexNumber: 252, name: "Beldum" }
-    # 0x115: { pokedexNumber: 252, name: "Metang" }
-    # 0x115: { pokedexNumber: 252, name: "Metagross" }
-    # 0x115: { pokedexNumber: 252, name: "Regirock" }
-    # 0x115: { pokedexNumber: 252, name: "Regice" }
-    # 0x115: { pokedexNumber: 252, name: "Registeel" }
-    # 0x115: { pokedexNumber: 252, name: "Kyogre" }
-    # 0x115: { pokedexNumber: 252, name: "Groudon" }
-    # 0x115: { pokedexNumber: 252, name: "Rayquaza" }
-    # 0x115: { pokedexNumber: 252, name: "Latias" }
-    # 0x115: { pokedexNumber: 252, name: "Latios" }
-    # 0x115: { pokedexNumber: 252, name: "Jirachi" }
-    # 0x115: { pokedexNumber: 252, name: "Deoxys" }
-    # 0x115: { pokedexNumber: 252, name: "Chimecho" }
-    # 0x115: { pokedexNumber: 252, name: "Pokemon Egg" }
-    # 0x115: { pokedexNumber: 252, name: "Unown" }
-    # 0x115: { pokedexNumber: 252, name: "Unown" }
+    0x12D: { pokedexNumber: 290, name: "Nincada" }
+    0x12E: { pokedexNumber: 291, name: "Ninjask" }
+    0x12F: { pokedexNumber: 292, name: "Shedinja" }
+    0x130: { pokedexNumber: 276, name: "Taillow" }
+    0x131: { pokedexNumber: 277, name: "Swellow" }
+    0x132: { pokedexNumber: 285, name: "Shroomish" }
+    0x133: { pokedexNumber: 286, name: "Breloom" }
+    0x134: { pokedexNumber: 327, name: "Spinda" } 
+    0x135: { pokedexNumber: 278, name: "Wingull" }
+    0x136: { pokedexNumber: 279, name: "Pelipper" }
+    0x137: { pokedexNumber: 283, name: "Surskit" }
+    0x138: { pokedexNumber: 284, name: "Masquerain" }
+    0x139: { pokedexNumber: 320, name: "Wailmer" }
+    0x13A: { pokedexNumber: 321, name: "Wailord" }
+    0x13B: { pokedexNumber: 300, name: "Skitty" }
+    0x13C: { pokedexNumber: 301, name: "Delcatty" }
+    0x13D: { pokedexNumber: 352, name: "Kecleon" }
+    0x13E: { pokedexNumber: 343, name: "Baltoy" }
+    0x13F: { pokedexNumber: 344, name: "Claydol" }
+    0x140: { pokedexNumber: 299, name: "Nosepass" }
+    0x141: { pokedexNumber: 324, name: "Torkoal" }
+    0x142: { pokedexNumber: 302, name: "Sableye" }
+    0x143: { pokedexNumber: 339, name: "Barboach" }
+    0x144: { pokedexNumber: 340, name: "Whiscash" }
+    0x145: { pokedexNumber: 370, name: "Luvdisc" }
+    0x146: { pokedexNumber: 341, name: "Corphish" }
+    0x147: { pokedexNumber: 342, name: "Crawdaunt" }
+    0x148: { pokedexNumber: 349, name: "Feebas" }
+    0x149: { pokedexNumber: 350, name: "Milotic" }
+    0x14A: { pokedexNumber: 318, name: "Carvanha" }
+    0x14B: { pokedexNumber: 319, name: "Sharpedo" }
+    0x14C: { pokedexNumber: 328, name: "Trapinch" }
+    0x14D: { pokedexNumber: 329, name: "Vibrava" }
+    0x14E: { pokedexNumber: 330, name: "Flygon" }
+    0x14F: { pokedexNumber: 296, name: "Makuhita" }
+    0x150: { pokedexNumber: 297, name: "Hariyama" }
+    0x151: { pokedexNumber: 309, name: "Electrike" }
+    0x152: { pokedexNumber: 310, name: "Manectric" }
+    0x153: { pokedexNumber: 322, name: "Numel" }
+    0x154: { pokedexNumber: 323, name: "Camerupt" }
+    0x155: { pokedexNumber: 363, name: "Spheal" }
+    0x156: { pokedexNumber: 364, name: "Sealeo" }
+    0x157: { pokedexNumber: 365, name: "Walrein" }
+    0x158: { pokedexNumber: 331, name: "Cacnea" }
+    0x159: { pokedexNumber: 332, name: "Cacturne" }
+    0x15A: { pokedexNumber: 361, name: "Snorunt" }
+    0x15B: { pokedexNumber: 362, name: "Glalie" }
+    0x15C: { pokedexNumber: 337, name: "Lunatone" }
+    0x15D: { pokedexNumber: 338, name: "Solrock" }
+    0x15E: { pokedexNumber: 298, name: "Azurill" }
+    0x15F: { pokedexNumber: 325, name: "Spoink" }
+    0x160: { pokedexNumber: 326, name: "Grumpig" }
+    0x161: { pokedexNumber: 311, name: "Plusle" }
+    0x162: { pokedexNumber: 312, name: "Minun" }
+    0x163: { pokedexNumber: 303, name: "Mawile" }
+    0x164: { pokedexNumber: 307, name: "Meditite" }
+    0x165: { pokedexNumber: 308, name: "Medicham" }
+    0x166: { pokedexNumber: 333, name: "Swablu" }
+    0x167: { pokedexNumber: 334, name: "Altaria" }
+    0x168: { pokedexNumber: 360, name: "Wynaut" }
+    0x169: { pokedexNumber: 355, name: "Duskull" }
+    0x16A: { pokedexNumber: 356, name: "Dusclops" }
+    0x16B: { pokedexNumber: 315, name: "Roselia" }
+    0x16C: { pokedexNumber: 287, name: "Slakoth" }
+    0x16D: { pokedexNumber: 288, name: "Vigoroth" }
+    0x16E: { pokedexNumber: 289, name: "Slaking" }
+    0x16F: { pokedexNumber: 316, name: "Gulpin" }
+    0x170: { pokedexNumber: 317, name: "Swalot" }
+    0x171: { pokedexNumber: 357, name: "Tropius" }
+    0x172: { pokedexNumber: 293, name: "Whismur" }
+    0x173: { pokedexNumber: 294, name: "Loudred" }
+    0x174: { pokedexNumber: 295, name: "Exploud" }
+    0x175: { pokedexNumber: 366, name: "Clamperl" }
+    0x176: { pokedexNumber: 367, name: "Huntail" }
+    0x177: { pokedexNumber: 368, name: "Gorebyss" }
+    0x178: { pokedexNumber: 359, name: "Absol" } 
+    0x179: { pokedexNumber: 353, name: "Shuppet" }
+    0x17A: { pokedexNumber: 354, name: "Banette" } 
+    0x17B: { pokedexNumber: 336, name: "Seviper" }
+    0x17C: { pokedexNumber: 335, name: "Zangoose" }
+    0x17D: { pokedexNumber: 369, name: "Relicanth" } 
+    0x17E: { pokedexNumber: 304, name: "Aron" }
+    0x17F: { pokedexNumber: 305, name: "Lairon" }
+    0x180: { pokedexNumber: 306, name: "Aggron" } 
+    0x181: { pokedexNumber: 351, name: "Castform" } 
+    0x182: { pokedexNumber: 313, name: "Volbeat" }
+    0x183: { pokedexNumber: 314, name: "Illumise" } 
+    0x184: { pokedexNumber: 345, name: "Lileep" }
+    0x185: { pokedexNumber: 346, name: "Cradily" }
+    0x186: { pokedexNumber: 347, name: "Anorith" }
+    0x187: { pokedexNumber: 348, name: "Armaldo" } 
+    0x188: { pokedexNumber: 280, name: "Ralts" }
+    0x189: { pokedexNumber: 281, name: "Kirlia" }
+    0x18A: { pokedexNumber: 282, name: "Gardevoir" } 
+    0x18B: { pokedexNumber: 371, name: "Bagon" }
+    0x18C: { pokedexNumber: 372, name: "Shelgon" }
+    0x18D: { pokedexNumber: 373, name: "Salamence" }
+    0x18E: { pokedexNumber: 374, name: "Beldum" }
+    0x18F: { pokedexNumber: 375, name: "Metang" }
+    0x190: { pokedexNumber: 376, name: "Metagross" }
+    0x191: { pokedexNumber: 377, name: "Regirock" }
+    0x192: { pokedexNumber: 378, name: "Regice" }
+    0x193: { pokedexNumber: 379, name: "Registeel" }
+    0x194: { pokedexNumber: 382, name: "Kyogre" }
+    0x195: { pokedexNumber: 383, name: "Groudon" }
+    0x196: { pokedexNumber: 384, name: "Rayquaza" }
+    0x197: { pokedexNumber: 380, name: "Latias" }
+    0x198: { pokedexNumber: 381, name: "Latios" }
+    0x199: { pokedexNumber: 385, name: "Jirachi" }
+    0x19A: { pokedexNumber: 386, name: "Deoxys" }
+    0x19B: { pokedexNumber: 358, name: "Chimecho" }
+    0x19C: { pokedexNumber: null, name: "Pokemon Egg" }
+    0x19D: { pokedexNumber: 201, name: "Unown" }
+    0x19E: { pokedexNumber: 201, name: "Unown" }
