@@ -55,19 +55,19 @@ macros:
       pokerus: { offset: 85, type: "int" }
       hp: { offset: 86, type: "int", size: 2 }
       maxHp: { offset: 88, type: "int", size: 2 }
-      Attack: { offset: 90, type: "int", size: 2 }
-      Defense: { offset: 92, type: "int", size: 2 }
-      Speed: { offset: 94, type: "int", size: 2 }
-      SpecialAttack: { offset: 96, type: "int", size: 2 }
-      SpecialDefense: { offset: 98, type: "int", size: 2 }
+      attack: { offset: 90, type: "int", size: 2 }
+      defense: { offset: 92, type: "int", size: 2 }
+      speed: { offset: 94, type: "int", size: 2 }
+      specialAttack: { offset: 96, type: "int", size: 2 }
+      specialDefense: { offset: 98, type: "int", size: 2 }
   
   battleStructure: #there may be data in this structure before the species value
       species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
-      Attack: { offset: 2, type: "int", size: 2 }
-      Defense: { offset: 4, type: "int", size: 2 }
-      Speed: { offset: 6, type: "int", size: 2 }
-      SpecialAttack: { offset: 8, type: "int", size: 2 }
-      SpecialDefense: { offset: 10, type: "int", size: 2 }
+      attack: { offset: 2, type: "int", size: 2 }
+      defense: { offset: 4, type: "int", size: 2 }
+      speed: { offset: 6, type: "int", size: 2 }
+      specialAttack: { offset: 8, type: "int", size: 2 }
+      specialDefense: { offset: 10, type: "int", size: 2 }
       move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
       move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
       move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
@@ -92,7 +92,7 @@ macros:
       battleStatHP: { offset: 40, type: "int", size: 2 }
       unknownValue3: { offset: 42, type: "int", size: 2 }
       battleStatMaxHP: { offset: 44, type: "int", size: 2 }
-      # itemHeld: ( offset: 46, type: "reference", size: 2, reference: "items" }
+      itemHeld: { offset: 46, type: "reference", size: 2, reference: "items" }
 
 
 properties:
@@ -129,8 +129,6 @@ properties:
     yourSecondPokemon: { type: "macro", address: 0x2023C94, macro: "battleStructure" }
     enemyPokemon: { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
     enemySecondPokemon: { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
-
-
   turnInfo:
        battleWeather: { type: "reference", address: 0x2023F1C, reference: "battleWeather" } 
        battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
@@ -258,8 +256,6 @@ glossary:
     75: "SHELL ARMOR"
     76: "CACOPHONY"
     77: "AIR LOCK"
-   
-    
   moves:
     0: null
     1: "POUND"
