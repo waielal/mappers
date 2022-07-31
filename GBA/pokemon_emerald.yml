@@ -27,23 +27,23 @@ macros:
       move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int", size: 1 }
       move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int", size: 1 }
 
-      EvHP: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
-      EvAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
-      EvDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
-      EvSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
-      EvSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
-      EvSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
+      evHP: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
+      evAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
+      evDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
+      evSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
+      evSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
+      evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
       pokerusStatus: { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
 
       level: { offset: 84, type: "int" }
       pokerus: { offset: 85, type: "int" }
       hp: { offset: 86, type: "int", size: 2 }
       maxHp: { offset: 88, type: "int", size: 2 }
-      Attack: { offset: 90, type: "int", size: 2 }
-      Defense: { offset: 92, type: "int", size: 2 }
-      Speed: { offset: 94, type: "int", size: 2 }
-      SpecialAttack: { offset: 96, type: "int", size: 2 }
-      SpecialDefense: { offset: 98, type: "int", size: 2 }
+      attack: { offset: 90, type: "int", size: 2 }
+      defense: { offset: 92, type: "int", size: 2 }
+      speed: { offset: 94, type: "int", size: 2 }
+      specialAttack: { offset: 96, type: "int", size: 2 }
+      specialDefense: { offset: 98, type: "int", size: 2 }
       
   battleStructure: #there may be data in this structure before the species value
       species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
