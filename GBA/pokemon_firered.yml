@@ -36,12 +36,12 @@ macros:
       move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int", size: 1 }
 
       #BLOCK3-EVs & Condition
-      EvHP: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
-      EvAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
-      EvDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
-      EvSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
-      EvSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
-      EvSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
+      evHP: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
+      evAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
+      evDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
+      evSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
+      evSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
+      evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
 
       #BLOCK4-MISC
       pokerusStatus: { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
