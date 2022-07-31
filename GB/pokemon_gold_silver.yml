@@ -167,14 +167,14 @@ properties:
     totalKeyItems: { type: "int", address: 0xD5E1, size: 1 }
     badges:
       johto:
-        zephyrbadge: { type: "bit", address: 0xD57C, position: 1 }
-        hivebadge: { type: "bit", address: 0xD57C, position: 2 }
-        plainbadge: { type: "bit", address: 0xD57C, position: 3 }
-        fogbadge: { type: "bit", address: 0xD57C, position: 4 }
-        stormbadge: { type: "bit", address: 0xD57C, position: 6 }
-        mineralbadge: { type: "bit", address: 0xD57C, position: 5 }
-        glacierbadge: { type: "bit", address: 0xD57C, position: 7 }
-        risingbadge: { type: "bit", address: 0xD57C, position: 8 }
+        zephyrbadge: { type: "bit", address: 0xD57C, position: 0 }
+        hivebadge: { type: "bit", address: 0xD57C, position: 1 }
+        plainbadge: { type: "bit", address: 0xD57C, position: 2 }
+        fogbadge: { type: "bit", address: 0xD57C, position: 3 }
+        stormbadge: { type: "bit", address: 0xD57C, position: 5 }
+        mineralbadge: { type: "bit", address: 0xD57C, position: 4 }
+        glacierbadge: { type: "bit", address: 0xD57C, position: 6 }
+        risingbadge: { type: "bit", address: 0xD57C, position: 7 }
       kanto:
         boulderbadge: { type: "bit", address: 0xD57D, position: 0 }
         cascadebadge: { type: "bit", address: 0xD57D, position: 1 }
