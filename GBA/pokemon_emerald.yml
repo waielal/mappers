@@ -33,7 +33,6 @@ macros:
       EvSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
       EvSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
       EvSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
-      
       pokerusStatus: { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
 
       level: { offset: 84, type: "int" }
@@ -48,11 +47,11 @@ macros:
       
   battleStructure: #there may be data in this structure before the species value
       species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
-      Attack: { offset: 2, type: "int", size: 2 }
-      Defense: { offset: 4, type: "int", size: 2 }
-      Speed: { offset: 6, type: "int", size: 2 }
-      SpecialAttack: { offset: 8, type: "int", size: 2 }
-      SpecialDefense: { offset: 10, type: "int", size: 2 }
+      attack: { offset: 2, type: "int", size: 2 }
+      defense: { offset: 4, type: "int", size: 2 }
+      speed: { offset: 6, type: "int", size: 2 }
+      specialAttack: { offset: 8, type: "int", size: 2 }
+      specialDefense: { offset: 10, type: "int", size: 2 }
       move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
       move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
       move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
