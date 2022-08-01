@@ -119,14 +119,13 @@ properties:
     sound: { type: "int", address: 0xC0EE } #unfinished
     events:
       vermilionCityGym:
-        completed: { type: "bit", startingAddress: 0xD773, position: 0 }
-        firstCan: { type: "bit", startingAddress: 0xD773, position: 1 }
-        trainerRight: { type: "bit", startingAddress: 0xD773, position: 2 }
-        trainerMiddle: { type: "bit", startingAddress: 0xD773, position: 3 }
-        trainerLeft: { type: "bit", startingAddress: 0xD773, position: 4 }
-        tmReceived: { type: "bit", startingAddress: 0xD773, position: 6 }
-        leaderDefeated: { type: "bit", startingAddress: 0xD773, position: 7 }
-        trashCanPuzzle: { type: "reference", address: 0xD773, size: 1, reference: "trashCanFlags" } #scott's thoughts only
+        completed: { type: "bit", address: 0xD773, position: 0 }
+        firstCan: { type: "bit", address: 0xD773, position: 1 }
+        trainerRight: { type: "bit", address: 0xD773, position: 2 }
+        trainerMiddle: { type: "bit", address: 0xD773, position: 3 }
+        trainerLeft: { type: "bit", address: 0xD773, position: 4 }
+        tmReceived: { type: "bit", address: 0xD773, position: 6 }
+        leaderDefeated: { type: "bit", address: 0xD773, position: 7 }
   battle:
     type: { type: "reference", address: 0xD057, size: 1, reference: "battleTypes" }
     animationTurn: { type: "reference", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
