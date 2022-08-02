@@ -34,31 +34,55 @@ macros:
       type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
       type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
       trainerId: { offset: 12, type: "int", size: 2 }
-      catchRate: { offset: 7, type: "int" }
+      catchRate: { offset: 7, type: "int", description: "Held item when traded to gen2" }
   playerItem:
       item: { offset: 0, type: "reference", reference: "items" }
       quantity: { offset: 1, type: "int" }
   encounter:
     level: { offset: 0, type: "int" }
     pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemon" }
-
+  storedPokemon:
+      species: { offset: 0, type: "reference", reference: "pokemon" }
+      level: { offset: 3, type: "int" }
+      expPoints: { offset: 14, type: "int", size: 3 }
+      statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
+      hp: { offset: 1, type: "int", size: 2 }
+      dvAttackDefense: { offset: 27, type: "int" }
+      dvSpeedSpecial: { offset: 28, type: "int" }
+      move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
+      move2: { offset: 9, type: "reference", reference: "moves", }
+      move3: { offset: 10, type: "reference", reference: "moves" }
+      move4: { offset: 11, type: "reference", reference: "moves",  description: "Bottom moveslot" }
+      move1pp: { offset: 29, type: "int" }
+      move2pp: { offset: 30, type: "int" }
+      move3pp: { offset: 31, type: "int" }
+      move4pp: { offset: 32, type: "int" }
+      statExpHP: { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
+      statExpAttack: { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
+      statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
+      statExpSpeed: { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
+      statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
+      type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
+      type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
+      trainerId: { offset: 12, type: "int", size: 2 }
+      
 properties:
   player:
-    playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     name: { type: "string", address: 0xD157, size: 11 }
+    playerId: {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     teamCount: { type: "int", address: 0xD162 }
     team:
-      - name: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2B4, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD16A, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2BF, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD196, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2CA, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD1C2, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2D5, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD1EE, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2E0, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD21A, macro: "pokemonInParty" }
-      - name: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2EB, size: 11, reference: "defaultCharacterMap" }
         _: { type: "macro", address: 0xD246, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD31C }
     items:
@@ -82,6 +106,8 @@ properties:
       - { type: "macro", address: 0xD33F, macro: "playerItem" }
       - { type: "macro", address: 0xD341, macro: "playerItem" }
       - { type: "macro", address: 0xD343, macro: "playerItem" }
+    safariBalls: { type: "int", address: 0xDA46 }
+    repelCount: { type: "int", address: 0xD0DA }
     money: { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
     gameCornerCoins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
     pokedexSeen: { type: "bitArray", address: 0xD309, size: 19 }
@@ -116,7 +142,6 @@ properties:
       rare:
         - { type: "macro", address: 0xD897, macro: "encounter" }
         - { type: "macro", address: 0xD899, macro: "encounter" }
-    sound: { type: "int", address: 0xC0ED } #unfinished
     events:
       vermilionCityGym:
         completed: { type: "bit", startingAddress: 0xD772, position: 0 }
@@ -189,14 +214,14 @@ properties:
       move3: { type: "reference", address: 0xCFEE, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xCFEF, size: 1, reference: "moves" }
     turnInfo:
-      criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
-      nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
-      yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
-      enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
-      yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
-      enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
       battleStart: { type: "int", address: 0xCCF5, size: 1, description: "When 0 battle is starting, when >=1 battle has begun" }
       trainerDefeated: { type: "int", address: 0xCCF6, size: 1, description: "When 1, the opponent has lost" }
+      # criticalHitOHKO: { type: "int", address: 0xD05D, size: 1 }
+      # nextAttackDamage: { type: "int", address: 0xD0D7, size: 1 }
+      # yourSubtituteHP: { type: "int", address: 0xCCD6, size: 1 }
+      # enemySubstituteHP: { type: "int", address: 0xCCD7, size: 1 }
+      # yourMove: { type: "reference", address: 0xCCDB, size: 1, reference: "moves" }
+      # enemyMove:  { type: "reference", address: 0xCCDC, size: 1, reference: "moves" }
   pokemart:
     itemCount: { type: "int", address: 0xCF7B }
     items:
@@ -215,39 +240,183 @@ properties:
     name: { type: "string", address: 0xD349, size: 8, description: "The rival's name." }
     finalTeam: { type: "reference", address: 0xD714, reference: "finalTeam" }
   audio:
-    channel1: { type: "int", address: 0xC026, size: 1, note: "When 1, the opponent has lost" }
-    channel2: { type: "int", address: 0xC027, size: 1, note: "When 1, the opponent has lost" }
-    channel3: { type: "int", address: 0xC028, size: 1, note: "When 1, the opponent has lost" }
-    channel4: { type: "int", address: 0xC029, size: 1, note: "When 1, the opponent has lost" }
-    channel5: { type: "int", address: 0xC02A, size: 1, note: "When 1, the opponent has lost" }
-    channel6: { type: "int", address: 0xC02B, size: 1, note: "When 1, the opponent has lost" }
-    channel7: { type: "int", address: 0xC02C, size: 1, note: "When 1, the opponent has lost" }
-    channel8: { type: "int", address: 0xC02D, size: 1, note: "When 1, the opponent has lost" }
-    currentSound: { type: "int", address: 0xC001, size: 1 }
-    newSoundID: { type: "int", address: 0xC0EE, size: 1, note: "When 1, the opponent has lost" }
-    audioBank: { type: "int", address: 0xC0EF, size: 1 }
-    overworldTrackCurrentMap: { type: "reference", address: 0xD35A, size: 1, reference: "audioTrack" }
-    audioBankCurrentMap: { type: "int", address: 0xD35B, size: 1, note: "When 1, the opponent has lost" }
+    channel1: { type: "int", address: 0xC026, description: "When 1, the opponent has lost" }
+    channel2: { type: "int", address: 0xC027, description: "When 1, the opponent has lost" }
+    channel3: { type: "int", address: 0xC028, description: "When 1, the opponent has lost" }
+    channel4: { type: "int", address: 0xC029, description: "When 1, the opponent has lost" }
+    channel5: { type: "int", address: 0xC02A, description: "When 1, the opponent has lost" }
+    channel6: { type: "int", address: 0xC02B, description: "When 1, the opponent has lost" }
+    channel7: { type: "int", address: 0xC02C, description: "When 1, the opponent has lost" }
+    channel8: { type: "int", address: 0xC02D, description: "When 1, the opponent has lost" }
+    currentSound: { type: "int", address: 0xC001 }
+    newSoundID: { type: "int", address: 0xC0EE, description: "When 1, the opponent has lost" }
+    audioBank: { type: "int", address: 0xC0EF }
+    overworldTrackCurrentMap: { type: "reference", address: 0xD35A, reference: "audioTrack" }
+    audioBankCurrentMap: { type: "int", address: 0xD35B, description: "When 1, the opponent has lost" }
     volume:
-      channel1: { type: "int", address: 0xC0DE, size: 1 }
-      channel2: { type: "int", address: 0xC0DF, size: 1 }
-      channel3: { type: "int", address: 0xC0E0, size: 1 }
-      channel4: { type: "int", address: 0xC0E1, size: 1 }
-      channel5: { type: "int", address: 0xC0E2, size: 1 }
-      channel6: { type: "int", address: 0xC0E3, size: 1 }
-      channel7: { type: "int", address: 0xC0E4, size: 1 }
-      channel8: { type: "int", address: 0xC0E5, size: 1 }
+      channel1: { type: "int", address: 0xC0DE }
+      channel2: { type: "int", address: 0xC0DF }
+      channel3: { type: "int", address: 0xC0E0 }
+      channel4: { type: "int", address: 0xC0E1 }
+      channel5: { type: "int", address: 0xC0E2 }
+      channel6: { type: "int", address: 0xC0E3 }
+      channel7: { type: "int", address: 0xC0E4 }
+      channel8: { type: "int", address: 0xC0E5 }
     tempo:
       music: { type: "int", address: 0xC0E8 , size: 2 }
       sfx: { type: "int", address: 0xC0EA, size: 2 }
-
+  pokemonStorage:
+      currentBoxCount: { type: "int", address: 0xDA7F }
+      currentBoxSummary:
+        pkmn1: { type: "reference", address: 0xDA80, size: 1, reference: "pokemon" }
+        pkmn2: { type: "reference", address: 0xDA81, size: 1, reference: "pokemon" }
+        pkmn3: { type: "reference", address: 0xDA82, size: 1, reference: "pokemon" }
+        pkmn4: { type: "reference", address: 0xDA83, size: 1, reference: "pokemon" }
+        pkmn5: { type: "reference", address: 0xDA84, size: 1, reference: "pokemon" }
+        pkmn6: { type: "reference", address: 0xDA85, size: 1, reference: "pokemon" }
+        pkmn7: { type: "reference", address: 0xDA86, size: 1, reference: "pokemon" }
+        pkmn8: { type: "reference", address: 0xDA87, size: 1, reference: "pokemon" }
+        pkmn9: { type: "reference", address: 0xDA88, size: 1, reference: "pokemon" }
+        pkmn10: { type: "reference", address: 0xDA89, size: 1, reference: "pokemon" }
+        pkmn11: { type: "reference", address: 0xDA8A, size: 1, reference: "pokemon" }
+        pkmn12: { type: "reference", address: 0xDA8B, size: 1, reference: "pokemon" }
+        pkmn13: { type: "reference", address: 0xDA8C, size: 1, reference: "pokemon" }
+        pkmn14: { type: "reference", address: 0xDA8D, size: 1, reference: "pokemon" }
+        pkmn15: { type: "reference", address: 0xDA8E, size: 1, reference: "pokemon" }
+        pkmn16: { type: "reference", address: 0xDA8F, size: 1, reference: "pokemon" }
+        pkmn17: { type: "reference", address: 0xDA90, size: 1, reference: "pokemon" }
+        pkmn18: { type: "reference", address: 0xDA91, size: 1, reference: "pokemon" }
+        pkmn19: { type: "reference", address: 0xDA92, size: 1, reference: "pokemon" }
+        pkmn20: { type: "reference", address: 0xDA93, size: 1, reference: "pokemon" }
+      currentBox:
+        - nickname: { type: "string", address: 0xDE05, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDA95, macro: "storedPokemon" }
+        - nickname: { type: "string", address: 0xDE10, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDAB6, macro: "storedPokemon" }    
+        - nickname: { type: "string", address: 0xDE1B, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDAD7, macro: "storedPokemon" }   
+        - nickname: { type: "string", address: 0xDE26, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDAF8, macro: "storedPokemon" }    
+        - nickname: { type: "string", address: 0xDE31, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDB19, macro: "storedPokemon" }  
+        - nickname: { type: "string", address: 0xDE3C, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDB3A, macro: "storedPokemon" }
+        - nickname: { type: "string", address: 0xDE47, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDB5B, macro: "storedPokemon" }   
+        - nickname: { type: "string", address: 0xDE52, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDB7C, macro: "storedPokemon" }  
+        - nickname: { type: "string", address: 0xDE5D, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDB9D, macro: "storedPokemon" }  
+        - nickname: { type: "string", address: 0xDE68, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDBBE, macro: "storedPokemon" } 
+        - nickname: { type: "string", address: 0xDE73, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDBDF, macro: "storedPokemon" }
+        - nickname: { type: "string", address: 0xDE7E, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDC00, macro: "storedPokemon" } 
+        - nickname: { type: "string", address: 0xDE89, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDC21, macro: "storedPokemon" } 
+        - nickname: { type: "string", address: 0xDE94, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDC42, macro: "storedPokemon" }
+        - nickname: { type: "string", address: 0xDE9F, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDC63, macro: "storedPokemon" } 
+        - nickname: { type: "string", address: 0xDEAA, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDC84, macro: "storedPokemon" }
+        - nickname: { type: "string", address: 0xDEB5, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDCA5, macro: "storedPokemon" }  
+        - nickname: { type: "string", address: 0xDEC0, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDCC6, macro: "storedPokemon" } 
+        - nickname: { type: "string", address: 0xDECB, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDCE7, macro: "storedPokemon" }   
+        - nickname: { type: "string", address: 0xDED6, size: 11, reference: "defaultCharacterMap" }
+          _: { type: "macro", address: 0xDD08, macro: "storedPokemon" } 
+      # box1: unsure where this is stored currently
+      # box2:
+      # box3:
+      # box4:
+      # box5:
+      # box6:
+      # box7:
+      # box8:
+      # box9:
+      # box10:
+      # box11:
+      # box12:
+      # box13:
+      # box14:
+      # box15:
+      # box16:
+      # box17:
+      # box18:
+      # box19:
+      # box20:  
+  itemStorage:
+    itemCount: { type: "int", address: 0xD539 }
+    items:
+      - { type: "macro", address: 0xD53A, macro: "playerItem" }
+      - { type: "macro", address: 0xD53C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD53E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD540, macro: "playerItem" }    
+      - { type: "macro", address: 0xD542, macro: "playerItem" }    
+      - { type: "macro", address: 0xD544, macro: "playerItem" }    
+      - { type: "macro", address: 0xD546, macro: "playerItem" }    
+      - { type: "macro", address: 0xD548, macro: "playerItem" }    
+      - { type: "macro", address: 0xD54A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD54C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD54E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD550, macro: "playerItem" }    
+      - { type: "macro", address: 0xD552, macro: "playerItem" }    
+      - { type: "macro", address: 0xD554, macro: "playerItem" }    
+      - { type: "macro", address: 0xD556, macro: "playerItem" }    
+      - { type: "macro", address: 0xD558, macro: "playerItem" }    
+      - { type: "macro", address: 0xD55A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD55C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD55E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD560, macro: "playerItem" }    
+      - { type: "macro", address: 0xD562, macro: "playerItem" }    
+      - { type: "macro", address: 0xD564, macro: "playerItem" }    
+      - { type: "macro", address: 0xD566, macro: "playerItem" }    
+      - { type: "macro", address: 0xD568, macro: "playerItem" }    
+      - { type: "macro", address: 0xD56A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD56C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD56E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD570, macro: "playerItem" }    
+      - { type: "macro", address: 0xD572, macro: "playerItem" }    
+      - { type: "macro", address: 0xD574, macro: "playerItem" }    
+      - { type: "macro", address: 0xD576, macro: "playerItem" }    
+      - { type: "macro", address: 0xD578, macro: "playerItem" }    
+      - { type: "macro", address: 0xD57A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD57C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD57E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD580, macro: "playerItem" }    
+      - { type: "macro", address: 0xD582, macro: "playerItem" }    
+      - { type: "macro", address: 0xD584, macro: "playerItem" }    
+      - { type: "macro", address: 0xD586, macro: "playerItem" }    
+      - { type: "macro", address: 0xD588, macro: "playerItem" }    
+      - { type: "macro", address: 0xD58A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD58C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD58E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD590, macro: "playerItem" }    
+      - { type: "macro", address: 0xD592, macro: "playerItem" }    
+      - { type: "macro", address: 0xD594, macro: "playerItem" }    
+      - { type: "macro", address: 0xD596, macro: "playerItem" }    
+      - { type: "macro", address: 0xD598, macro: "playerItem" }    
+      - { type: "macro", address: 0xD59A, macro: "playerItem" }    
+      - { type: "macro", address: 0xD59C, macro: "playerItem" }    
+      - { type: "macro", address: 0xD59E, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5A0, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5A2, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5A4, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5A6, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5A8, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5AA, macro: "playerItem" }    
+      - { type: "macro", address: 0xD5AC, macro: "playerItem" }
   screen:
     text:
       prompt: { type: "string", address: 0xC4F2, size: 1, reference: "textPrompt" }
 
   options:
     soloChallenge: { type: "reference", address: 0xD354, size: 1, reference: "options"}
- 
+
   settings:
     textSpeedMid: { type: "bit", address: 0xD354, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
     textSpeedSlow: { type: "bit", address: 0xD354, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
