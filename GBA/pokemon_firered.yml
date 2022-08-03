@@ -1,7 +1,7 @@
 meta:
   schemaVersion: 1
   id: 005fdd01-8921-468c-aca3-d4fa864d5909
-  gameName: "Pokemon FireRed"
+  gameName: "Pokemon FireRed & LeafGreen"
   gamePlatform: "GBA"
 
 macros:
@@ -62,42 +62,41 @@ macros:
       specialDefense: { offset: 98, type: "int", size: 2 }
   
   battleStructure: #there may be data in this structure before the species value
-      species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
-      attack: { offset: 2, type: "int", size: 2 }
-      defense: { offset: 4, type: "int", size: 2 }
-      speed: { offset: 6, type: "int", size: 2 }
-      specialAttack: { offset: 8, type: "int", size: 2 }
-      specialDefense: { offset: 10, type: "int", size: 2 }
-      move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
-      move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
-      move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
-      move4: { offset: 18, type: "reference", size: 2, reference: "moves" }
-      unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
-      modUnknown: { offset: 24, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageAttack: { offset: 25, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageDefense: { offset: 26, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageSpeed: { offset: 27, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageSpecialAttack: { offset: 28, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageSpecialDefense: { offset: 29, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageAccuracy: { offset: 30, type: "reference", size: 1, reference: "stageModifiers" }
-      modStageEvasion: { offset: 31, type: "reference", size: 1, reference: "stageModifiers" }
-      ability: { offset: 32, type: "reference", size: 1, reference: "abilities" }
-      type1: { offset: 33, type: "reference", size: 1, reference: "pokemonTypes" }
-      type2: { offset: 34, type: "reference", size: 1, reference: "pokemonTypes" }
-      unknownValue2: { offset: 35, type: "int", size: 1 }
-      move1pp: { offset: 36, type: "int", size: 1 }
-      move2pp: { offset: 37, type: "int", size: 1 }
-      move3pp: { offset: 38, type: "int", size: 1 }
-      move4pp: { offset: 39, type: "int", size: 1 }
-      battleStatHP: { offset: 40, type: "int", size: 2 }
-      unknownValue3: { offset: 42, type: "int", size: 2 }
-      battleStatMaxHP: { offset: 44, type: "int", size: 2 }
-      itemHeld: { offset: 46, type: "reference", size: 2, reference: "items" }
-
+    species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
+    attack: { offset: 2, type: "int", size: 2 }
+    defense: { offset: 4, type: "int", size: 2 }
+    speed: { offset: 6, type: "int", size: 2 }
+    specialAttack: { offset: 8, type: "int", size: 2 }
+    specialDefense: { offset: 10, type: "int", size: 2 }
+    move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
+    move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
+    move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
+    move4: { offset: 18, type: "reference", size: 2, reference: "moves" }
+    unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
+    modUnknown: { offset: 24, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageAttack: { offset: 25, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageDefense: { offset: 26, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpeed: { offset: 27, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpecialAttack: { offset: 28, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpecialDefense: { offset: 29, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageAccuracy: { offset: 30, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageEvasion: { offset: 31, type: "reference", size: 1, reference: "stageModifiers" }
+    ability: { offset: 32, type: "reference", size: 1, reference: "abilities" }
+    type1: { offset: 33, type: "reference", size: 1, reference: "pokemonTypes" }
+    type2: { offset: 34, type: "reference", size: 1, reference: "pokemonTypes" }
+    unknownValue2: { offset: 35, type: "int", size: 1 }
+    move1pp: { offset: 36, type: "int", size: 1 }
+    move2pp: { offset: 37, type: "int", size: 1 }
+    move3pp: { offset: 38, type: "int", size: 1 }
+    move4pp: { offset: 39, type: "int", size: 1 }
+    battleStatHP: { offset: 40, type: "int", size: 2 }
+    unknownValue3: { offset: 42, type: "int", size: 2 }
+    battleStatMaxHP: { offset: 44, type: "int", size: 2 }
+    itemHeld: { offset: 46, type: "reference", size: 2, reference: "items" }
 
 properties:
   player:
-     # playerId: { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    # playerId: { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     # name: { type: "string", address: 0xD157, size: 11 }
     teamCount: { type: "int", address: 0x20244E9 }
     team:
@@ -107,8 +106,13 @@ properties:
       - { type: "macro", address: 0x20243B0, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024414, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024478, macro: "pokemonInParty" }
+    items:
+      selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
+      selectedBagRow: { type: "int", address: 0x203AD06, size: 1, reference: "walkRunState"}
+  overworld:
+    walkRunState: { type: "reference", address: 0x2037078, size: 1, reference: "walkRunState"}
   battle:
-    # type: { type: "reference", address: 0xD056, size: 1, reference: "battleTypes" }
+    type: { type: "int", address: 0x20386AC, size: 1 } #maybe size 2, reference type - needs a glossary built
     # animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     # specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
     # lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
@@ -129,10 +133,87 @@ properties:
     yourSecondPokemon: { type: "macro", address: 0x2023C94, macro: "battleStructure" }
     enemyPokemon: { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
     enemySecondPokemon: { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
-  turnInfo:
-       battleWeather: { type: "reference", address: 0x2023F1C, reference: "battleWeather" } 
-       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
-    #   battleOutcome: { type: "int", address: 0x202433a, size: 1 } #Unknown values currently
+    turnInfo:
+      battleWeather: { type: "reference", address: 0x2023F1C, reference: "battleWeather" } 
+      battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
+      # battleOutcome: { type: "int", address: 0x202433a, size: 1 } #Unknown values currently
+  
+  # dma-pointers: # needs gamehook update to access memory locations
+  #   teamCount: { type: "int", address: 0x3005008, size: 4 }
+  #   teamCount: { type: "int", address: 0x300500C, size: 4 }
+  #   teamCount: { type: "int", address: 0x3005010, size: 4 }
+  #DMA BLOCK 1 - MAP DATA 
+    # 0x00000000 camera_position:coords16 ?
+    # 0x00000004 location:       warpdata ?
+    # 0x0000000C saved_warp:     warpdata ?
+    # 0x0000002C some_music_id:  .short ?
+    # 0x0000002E weather_probably:.byte ?
+    # 0x00000030 flash_used_on_map:.byte ?               @ 0 or 4
+    # 0x00000032 mapdata_idx_plus_1:.short ?             @ will be assigned to var 40AE by 08110E20
+    # 0x00000034 num_party_pokemon:.byte ?
+    # 0x000000A8 field_A8:       .long ?                 @ XREF: new_game+48/o
+    # 0x000000AC gamecode:       .byte ?                 @ XREF: new_game+4C/o
+    # 0x000000AD field_AD:       .byte ?                 @ XREF: new_game+54/o
+    # 0x000000B0 field_B0:       .byte 1012 dup(?)       @ XREF: sav2_B0_clear+C/o
+    # 0x00000218 money_maybe:    .long ?
+    # 0x0000021C pcitems:        .byte 124 dup(?)
+    # 0x00000298 bag_probably:   .long 42 dup(?)
+    # 0x00002F08 daycare_data:   .long ?
+    # 0x000039D4 rivals_name:    .byte 8 dup(?)
+  #DMA BLOCK 2 - TRAINER DATA  
+    # 0x00000000 name:           .byte 8
+    # 0x00000008 gender:         .byte ?
+    # 0x00000009 savebits:       .byte ?                 @ 0x01: skip "previously on your quest" - set by special 0x110 (hall of fame register)
+    # 0x00000009                                         @ 0x02: saving in a pokemon centre
+    # 0x00000009                                         @ 0x04: used by 0810B79C, which checks an empty map list
+    # 0x00000009                                         @ 0x08: used by 0810B7CC, which also checks an empty map list
+    # 0x0000000A trainerid:      .short ?
+    # 0x0000000C secretid:       .short ?
+    # 0x0000000E playtime_hours: .short ?
+    # 0x00000010 playtime_minutes:.byte ?
+    # 0x00000011 playtime_seconds:.byte ?
+    # 0x00000012 playtime_frames:.byte ?
+    # 0x00000013 options_button_style:.byte ?            @ HELP / LR / L=A
+    # 0x00000014 options_text_speed_maybe:.byte ?
+    # 0x0000001C first_seen_unown_pid:.long ?
+    # 0x00000020 first_seen_spinda_pid:.long ?
+    # 0x00000028 pokemon_flags_caught:.byte 52 dup(?)
+    # 0x0000005C pokemon_flags_seen:.byte 52 dup(?)
+    # 0x000004A4 fourCharacters: .byte 4 dup(?)
+    # 0x000004A8 field_4A8:      .byte 1008 dup(?)
+    # 0x00000898 mapdata:        .byte 600 dup(?)
+    # 0x00000AF0 field_AF0:      .short ?
+    # 0x00000AF2 field_AF2:      .short ?
+    # 0x00000AF4 field_AF4:      .short ?
+    # 0x00000AF6 field_AF6:      .short ?
+    # 0x00000AF8 field_AF8:      .byte 1064 dup(?)
+    # 0x00000F20 obfuscation_xor_key:.long ?
+    # 0x00000F24 field_F24:      .byte 127 dup(?)
+    # 0x00000FA3 last_byte_in_sav2:.byte ?
+  #DMA BLOCK 3 - BOX DATA
+  
+#TO MAP
+# 0x0203988C bag_pocket_0                                                                     
+# 0x02039890 bag_pocket_0_counter                                                             
+# 0x02039894 bag_pocket_1                                                                     
+# 0x02039898 bag_pocket_1_counter                                                             
+# 0x0203989C bag_pocket_2                                                                     
+# 0x020398A0 bag_pocket_2_counter                                                             
+# 0x020398A4 bag_pocket_3                                                                     
+# 0x020398A8 bag_pocket_3_counter                                                             
+# 0x020398AC bag_pocket_4                                                                     
+# 0x020398B0 bag_pocket_4_counter                                                             
+# 0x02039938 pokemart_item_list                                                               
+# 0x02039944 pokemart_item_count                                                              
+# 0x02039964 pokemart_itemdata                                                                
+# 0x02039968 pokemart_item_line_strings  
+# 0x02039994 safari_ball_count 
+# 0x02039996 safari_steps  
+# 0x0203ADC4 pcitem_list 
+# 0x0203F480 flags                                                                            
+# 0x0203F4EC switches 
+# 0x04000100 TM0CNT_L                                                                         
+# 0x04000102 TM0CNT_H   
 
 glossary:
   stageModifiers:
@@ -152,6 +233,20 @@ glossary:
     0x0D: 6
     0x0E: null
     0x14: null
+  gender:
+    0x0: Male
+    0x1: Female
+  walkRunState:
+    0x00: null
+    0x21: Walk (Post event)
+    0x01: Walk
+    0x81: Run
+  bagPockets:
+    0x00: Items
+    0x01: Key Items
+    0x02: Pokeballs #incomplete (TMs)
+    0x03: TMs? #check
+    0x04: HMs? #check
   pokemonTypes:
     0x00:	Normal
     0x01:	Fighting
