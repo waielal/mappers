@@ -132,7 +132,7 @@ properties:
         - { type: "macro", address: 0xD887, macro: "encounter" }
         - { type: "macro", address: 0xD889, macro: "encounter" }
         - { type: "macro", address: 0xD88B, macro: "encounter" }
-        - { type: "macro", address: 0xD88C, macro: "encounter" }
+        - { type: "macro", address: 0xD88D, macro: "encounter" }
         - { type: "macro", address: 0xD88F, macro: "encounter" }
       uncommon:
         - { type: "macro", address: 0xD889, macro: "encounter" }
