@@ -1205,7 +1205,7 @@ glossary:
     0xBB: { pokedexNumber: 45, name: "Vileplume" }
     0xBC: { pokedexNumber: 69, name: "Bellsprout" }
     0xBD: { pokedexNumber: 70, name: "Weepinbell" }
-    0xBE: { pokedexNumber: 71, name: "Victreebell" }
+    0xBE: { pokedexNumber: 71, name: "Victreebel" }
   maps:
     0x00: "Pallet Town"
     0x01: "Viridian City"
