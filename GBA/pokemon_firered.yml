@@ -97,7 +97,8 @@ macros:
 properties:
   player:
     # playerId: { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
-    # name: { type: "string", address: 0xD157, size: 11 }
+    name: { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 0)" }
+    gender: { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 8)" }
     teamCount: { type: "int", address: 0x20244E9 }
     team:
       - { type: "macro", address: 0x2024284, macro: "pokemonInParty" }
@@ -108,9 +109,21 @@ properties:
       - { type: "macro", address: 0x2024478, macro: "pokemonInParty" }
     items:
       selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
-      selectedBagRow: { type: "int", address: 0x203AD06, size: 1, reference: "walkRunState"}
+      selectedBagRow: { type: "reference", address: 0x203AD06, size: 1, reference: "bagPockets" } #needs to be a reference
+      safariBalls: { type: "int", address: 0x02039994 }
   overworld:
     walkRunState: { type: "reference", address: 0x2037078, size: 1, reference: "walkRunState"}
+    safariSteps: { type: "int", address: 0x02039996, size: 1 }
+    pokemart:
+      items:
+            item1: { type: "reference", address: 0x02039938, size: 1, reference: "items"}
+            item2: { type: "reference", address: 0x02039939, size: 1, reference: "items"}
+            item3: { type: "reference", address: 0x0203993A, size: 1, reference: "items"}
+            item4: { type: "reference", address: 0x0203993B, size: 1, reference: "items"}
+            item5: { type: "reference", address: 0x0203993C, size: 1, reference: "items"}
+            item6: { type: "reference", address: 0x0203993D, size: 1, reference: "items"}
+            item7: { type: "reference", address: 0x0203993E, size: 1, reference: "items"}
+            item8: { type: "reference", address: 0x0203993F, size: 1, reference: "items"}
   battle:
     type: { type: "int", address: 0x20386AC, size: 1 } #maybe size 2, reference type - needs a glossary built
     # animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
@@ -138,6 +151,12 @@ properties:
       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
       # battleOutcome: { type: "int", address: 0x202433a, size: 1 } #Unknown values currently
   
+  gameTime:
+    gameTimeHours: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 15)" }
+    gameTimeMinutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
+    gameTimeSeconds: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 17)" }
+    gameTimeFrames: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 18)" }
+
   # dma-pointers: # needs gamehook update to access memory locations
   #   teamCount: { type: "int", address: 0x3005008, size: 4 }
   #   teamCount: { type: "int", address: 0x300500C, size: 4 }
