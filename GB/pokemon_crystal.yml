@@ -256,7 +256,8 @@ properties:
   overworld:
     mapGroup:  { type: "reference", address: 0xDCB5, size: 1, reference: "mapGroups" }
     mapNumber: { type: "int", address: 0xDCB6, size: 1 }
-    # map: { type: "reference", address: 0xDCB5, size: 2, reference: "maps" }
+    y: { type: "int", address: 0xDCB7, size: 1 }
+    x: { type: "int", address: 0xDCB8, size: 1 }
 
   roamers:
     - { type: "macro", address: 0xDFCF, macro: "roamer" }
