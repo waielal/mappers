@@ -193,10 +193,10 @@ properties:
 
   events:
     overworldFlags:
-      countPlayTime: { type: "bit", address: 0xD732, position: 0, description: "play time being counted" }
+      countPlayTime: { type: "bit", address: 0xD731, position: 0, description: "play time being counted" }
       debugMode:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 1
         description: |
           Only set by the debug build. If true:
@@ -210,21 +210,21 @@ properties:
             * skips Pokémon Tower rival battle by holding down B
       flyOrDungeon:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 2
         description: >
           the target warp is a fly warp (bit 3 set or blacked out)
           or a dungeon warp (bit 4 set)
       flyWarp:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 3
         description: >
           used warp pad, escape rope, dig, teleport, or fly,
           so the target warp is a "fly warp"
       dungeonWarp:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 4
         description: >
           jumped into hole (Pokemon Mansion, Seafoam Islands, Victory Road)
@@ -232,17 +232,17 @@ properties:
           so the target warp is a "dungeon warp"
       forceBike:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 5
         description: "currently being forced to ride bike (cycling road)"
       destinationIsBlackout:
         type: "bit"
-        address: 0xD732
+        address: 0xD731
         position: 6
         description: >
           map destination is [wLastBlackoutMap]
           (usually the last used pokemon center, but could be the player's house)
-      unusedBit: { type: "bit", address: 0xD732, position: 7, description: "unused in game" }
+      unusedBit: { type: "bit", address: 0xD731, position: 7, description: "unused in game" }
     townMap:
       unknown1: { type: "bit", address: 0xD5F2, position: 0 }
       unknown2: { type: "bit", address: 0xD5F2, position: 1 }
