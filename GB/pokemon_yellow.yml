@@ -159,6 +159,24 @@ properties:
       earthBadge:   { type: "bit", address: 0xD355, position: 7 }
     starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
     joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
+    joypadIgnore:
+      type: "int"
+      address: 0xCD6B
+      size: 1
+      description: |
+        Buttons to ignore in the joypad (bit mask). Each button corresponds to the following bits:
+          * A Button:    bit 0 (0x01, dec 1)
+          * B Button:    bit 1 (0x02, dec 2)
+          * Select:      bit 2 (0x04, dec 4)
+          * Start:       bit 3 (0x08, dec 8)
+          * D-Pad Right: bit 4 (0x10, dec 16)
+          * D-Pad Left:  bit 5 (0x20, dec 32)
+          * D-Pad Up:    bit 6 (0x40, dec 64)
+          * D-Pad Down:  bit 7 (0x80, dec 128)
+        Example values:
+          * 0x00: no input is ignored (all buttons are processed)
+          * 0xFF: every button is ignored (no player input)
+          * 0xFC: only A and B are allowed
 
   overworld:
     map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
