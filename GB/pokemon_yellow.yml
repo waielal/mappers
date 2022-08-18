@@ -760,6 +760,8 @@ properties:
   screen:
     text:
       prompt: { type: "string", address: 0xC4F2, size: 1, reference: "textPrompt" }
+    menu:
+      currentItem: { type: "int", address: 0xCC26, size: 1 }
 
   options:
     soloChallenge: { type: "reference", address: 0xD354, size: 1, reference: "options"}
