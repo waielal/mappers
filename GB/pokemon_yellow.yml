@@ -162,6 +162,8 @@ properties:
 
   overworld:
     map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
+    y: { type: "int", address: 0xD360, size: 1 }
+    x: { type: "int", address: 0xD361, size: 1 }
     encounterRate: { type: "int", address: 0xD886 }
     encounters:
       common:
