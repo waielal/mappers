@@ -479,8 +479,8 @@ properties:
     yourPokemon:
       nickname: { type: "string", address: 0xD008, size: 11, reference: "defaultCharacterMap" }
       species:  { type: "reference", address: 0xD013, size: 1, reference: "pokemon" }
-      # type1:   { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" } #need memory addresses
-      # type2:   { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" } #need memory addresses
+      type1:   { type: "reference", address: 0xD018, size: 1, reference: "pokemonTypes" } #need memory addresses
+      type2:   { type: "reference", address: 0xD019, size: 1, reference: "pokemonTypes" } #need memory addresses
       modStageAttack:   { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageDefense:  { type: "reference", address: 0xCD1b, size: 1, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageSpeed:    { type: "reference", address: 0xCD1c, size: 1, reference: "stageModifiers" } #test, are they really the same in RB and Y?
@@ -493,6 +493,7 @@ properties:
       battleStatDefense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
       battleStatSpeed:   { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
       battleStatSpecial: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatusCondition: { type: "reference", address: 0xD017, size: 1, reference: "statusConditions" }
       tempStatusConfusion: { type: "reference", address: 0xd061, size: 1, reference: "tempStatusConfused" }
       tempStatusBadPoison: { type: "reference", address: 0xd063, size: 1, reference: "tempStatusBadPoison" }
       move1: { type: "reference", address: 0xD01B, size: 1, reference: "moves" }
