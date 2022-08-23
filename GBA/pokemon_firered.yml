@@ -6,99 +6,101 @@ meta:
 
 macros:
   pokemonInParty:
-      #MAIN DATA
-      personalityValue: { offset: 0, type: "uint", size: 4 }
-      otID: { offset: 4, type: "uint", size: 4 }
-      nickname: { offset: 8, type: "string", size: 10, reference: "defaultCharacterMap"}
-      language: { offset: 18, type: "reference", size: 1, reference: "language" }
-      eggName: { offset: 19, type: "int", size: 1 }
-      otName: { offset: 20, type: "string", size: 7, reference: "defaultCharacterMap" }
-      markings: { offset: 27, type: "int", size: 1 }
-      checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
-      
-      #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
-      #BLOCK1-GROWTH
-      species: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "reference", size: 2, reference: "pokemon" }
-      itemHeld: { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "reference", size: 2, reference: "items" }
-      experience: { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
-      ppBonuses: { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int" } #needs to be sorted out
-      friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
-      #unknown: { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
+    #MAIN DATA
+    personalityValue: { offset: 0, type: "uint", size: 4 }
+    # nature:   { offset: 0, type: "reference", size: 4, postprocessor: "x % 25", reference: "natures" } #nature is derived from the personality value modulo 25
+    otID:     { offset: 4, type: "uint", size: 4 }
+    nickname: { offset: 8, type: "string", size: 10, reference: "defaultCharacterMap"}
+    language: { offset: 18, type: "reference", size: 1, reference: "language" }
+    eggName:  { offset: 19, type: "int", size: 1 }
+    otName:   { offset: 20, type: "string", size: 7, reference: "defaultCharacterMap" }
+    markings: { offset: 27, type: "int", size: 1 }
+    checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
+    
+    #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
+    #BLOCK1-GROWTH
+    species:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "reference", size: 2, reference: "pokemon" }
+    itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "reference", size: 2, reference: "items" }
+    expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
+    # ppBonuses:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int" } #needs to be sorted out
+    friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
+    #unknown:   { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
 
-      #BLOCK2-Attacks
-      move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "reference", size: 2, reference: "moves" }
-      move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "reference", size: 2, reference: "moves" }
-      move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "reference", size: 2, reference: "moves" }
-      move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "reference", size: 2, reference: "moves" }
-      move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int", size: 1 }
-      move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int", size: 1 }
-      move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int", size: 1 }
-      move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int", size: 1 }
+    #BLOCK2-Attacks
+    move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "reference", size: 2, reference: "moves" }
+    move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "reference", size: 2, reference: "moves" }
+    move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "reference", size: 2, reference: "moves" }
+    move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "reference", size: 2, reference: "moves" }
+    move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int", size: 1 }
+    move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int", size: 1 }
+    move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int", size: 1 }
+    move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int", size: 1 }
 
-      #BLOCK3-EVs & Condition
-      evHP: { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
-      evAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
-      evDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
-      evSpeed: { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
-      evSpecialAttack: { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
-      evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
+    #BLOCK3-EVs & Condition
+    evHp:             { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
+    evAttack:         { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
+    evDefense:        { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
+    evSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
+    evSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
+    evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
 
-      #BLOCK4-MISC
-      pokerusStatus: { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
-      metLocation: { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
-      originsInfo: { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
-      IVsEggAbility: { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4} #bits
-      robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
+    #BLOCK4-MISC
+    # pokerusStatus:    { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
+    # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
+    # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
+    # IVsEggAbility:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4} #bits
+    # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
 
-      #MAIN DATA
-      level: { offset: 84, type: "int" }
-      pokerus: { offset: 85, type: "int" }
-      hp: { offset: 86, type: "int", size: 2 }
-      maxHp: { offset: 88, type: "int", size: 2 }
-      attack: { offset: 90, type: "int", size: 2 }
-      defense: { offset: 92, type: "int", size: 2 }
-      speed: { offset: 94, type: "int", size: 2 }
-      specialAttack: { offset: 96, type: "int", size: 2 }
-      specialDefense: { offset: 98, type: "int", size: 2 }
+    #MAIN DATA
+    level:   { offset: 84, type: "int" }
+    pokerus: { offset: 85, type: "int" }
+    hp:             { offset: 86, type: "int", size: 2 }
+    maxHp:          { offset: 88, type: "int", size: 2 }
+    attack:         { offset: 90, type: "int", size: 2 }
+    defense:        { offset: 92, type: "int", size: 2 }
+    speed:          { offset: 94, type: "int", size: 2 }
+    specialAttack:  { offset: 96, type: "int", size: 2 }
+    specialDefense: { offset: 98, type: "int", size: 2 }
   
   battleStructure: #there may be data in this structure before the species value
-    species: { offset: 0, type: "reference", size: 2, reference: "pokemon" }
-    attack: { offset: 2, type: "int", size: 2 }
-    defense: { offset: 4, type: "int", size: 2 }
-    speed: { offset: 6, type: "int", size: 2 }
-    specialAttack: { offset: 8, type: "int", size: 2 }
-    specialDefense: { offset: 10, type: "int", size: 2 }
+    species:  { offset: 0, type: "reference", size: 2, reference: "pokemon" }
+    ability:  { offset: 32, type: "reference", size: 1, reference: "abilities" }
+    heldItem: { offset: 46, type: "reference", size: 2, reference: "items" }
     move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
     move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
     move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
     move4: { offset: 18, type: "reference", size: 2, reference: "moves" }
-    unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
-    modUnknown: { offset: 24, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageAttack: { offset: 25, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageDefense: { offset: 26, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpeed: { offset: 27, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpecialAttack: { offset: 28, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpecialDefense: { offset: 29, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageAccuracy: { offset: 30, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageEvasion: { offset: 31, type: "reference", size: 1, reference: "stageModifiers" }
-    ability: { offset: 32, type: "reference", size: 1, reference: "abilities" }
-    type1: { offset: 33, type: "reference", size: 1, reference: "pokemonTypes" }
-    type2: { offset: 34, type: "reference", size: 1, reference: "pokemonTypes" }
-    unknownValue2: { offset: 35, type: "int", size: 1 }
     move1pp: { offset: 36, type: "int", size: 1 }
     move2pp: { offset: 37, type: "int", size: 1 }
     move3pp: { offset: 38, type: "int", size: 1 }
     move4pp: { offset: 39, type: "int", size: 1 }
-    battleStatHP: { offset: 40, type: "int", size: 2 }
-    unknownValue3: { offset: 42, type: "int", size: 2 }
-    battleStatMaxHP: { offset: 44, type: "int", size: 2 }
-    itemHeld: { offset: 46, type: "reference", size: 2, reference: "items" }
+    maxHp: { offset: 44, type: "int", size: 2 }
+    hp:    { offset: 40, type: "int", size: 2 }
+    attack:          { offset: 2, type: "int", size: 2 }
+    defense:         { offset: 4, type: "int", size: 2 }
+    speed:           { offset: 6, type: "int", size: 2 }
+    specialAttack:   { offset: 8, type: "int", size: 2 }
+    specialDefense:  { offset: 10, type: "int", size: 2 }
+    # unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
+    modUnknown:             { offset: 24, type: "reference", size: 1, reference: "stageModifiers" } #probably critical hit mod
+    modStageAttack:         { offset: 25, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageDefense:        { offset: 26, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpeed:          { offset: 27, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpecialAttack:  { offset: 28, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageSpecialDefense: { offset: 29, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageAccuracy: { offset: 30, type: "reference", size: 1, reference: "stageModifiers" }
+    modStageEvasion:  { offset: 31, type: "reference", size: 1, reference: "stageModifiers" }
+    focusEnergy:      { offset: 82, type: "bit", position: 4 }
+    type1:   { offset: 33, type: "reference", size: 1, reference: "pokemonTypes" }
+    type2:   { offset: 34, type: "reference", size: 1, reference: "pokemonTypes" }
+    # unknownValue2: { offset: 35, type: "int", size: 1 }
+    # unknownValue3: { offset: 42, type: "int", size: 2 }
 
 properties:
   player:
-    # playerId: { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
-    name: { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 0)" }
-    gender: { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 8)" }
+    # playerId:  { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    name:      { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 0)" }
+    gender:    { type: "reference", size: 1, preprocessor: "dma_967d10cc(0x0300500C, 8)", reference: "gender" }
     teamCount: { type: "int", address: 0x20244E9 }
     team:
       - { type: "macro", address: 0x2024284, macro: "pokemonInParty" }
@@ -107,25 +109,25 @@ properties:
       - { type: "macro", address: 0x20243B0, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024414, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024478, macro: "pokemonInParty" }
-    items:
-      selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
-      selectedBagRow: { type: "reference", address: 0x203AD06, size: 1, reference: "bagPockets" } #needs to be a reference
-      safariBalls: { type: "int", address: 0x02039994 }
-  overworld:
-    walkRunState: { type: "reference", address: 0x2037078, size: 1, reference: "walkRunState"}
-    safariSteps: { type: "int", address: 0x02039996, size: 1 }
-    pokemart:
-      items:
-            item1: { type: "reference", address: 0x02039938, size: 1, reference: "items"}
-            item2: { type: "reference", address: 0x02039939, size: 1, reference: "items"}
-            item3: { type: "reference", address: 0x0203993A, size: 1, reference: "items"}
-            item4: { type: "reference", address: 0x0203993B, size: 1, reference: "items"}
-            item5: { type: "reference", address: 0x0203993C, size: 1, reference: "items"}
-            item6: { type: "reference", address: 0x0203993D, size: 1, reference: "items"}
-            item7: { type: "reference", address: 0x0203993E, size: 1, reference: "items"}
-            item8: { type: "reference", address: 0x0203993F, size: 1, reference: "items"}
+    # items:
+    #   selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
+    #   selectedBagRow:    { type: "reference", address: 0x203AD06, size: 1, reference: "bagPockets" } #needs to be a reference
+    #   safariBalls:       { type: "int", address: 0x02039994 }
+  # overworld:
+  #   walkRunState: { type: "reference", address: 0x2037078, size: 1, reference: "walkRunState"}
+  #   safariSteps:  { type: "int", address: 0x02039996, size: 1 }
+  #   pokemart:
+  #     items:
+  #       item1: { type: "reference", address: 0x02039938, size: 1, reference: "items"}
+  #       item2: { type: "reference", address: 0x02039939, size: 1, reference: "items"}
+  #       item3: { type: "reference", address: 0x0203993A, size: 1, reference: "items"}
+  #       item4: { type: "reference", address: 0x0203993B, size: 1, reference: "items"}
+  #       item5: { type: "reference", address: 0x0203993C, size: 1, reference: "items"}
+  #       item6: { type: "reference", address: 0x0203993D, size: 1, reference: "items"}
+  #       item7: { type: "reference", address: 0x0203993E, size: 1, reference: "items"}
+  #       item8: { type: "reference", address: 0x0203993F, size: 1, reference: "items"}
   battle:
-    type: { type: "int", address: 0x20386AC, size: 1 } #maybe size 2, reference type - needs a glossary built
+    # type: { type: "int", address: 0x20386AC, size: 1 } #maybe size 2, reference type - needs a glossary built
     # animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     # specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
     # lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
@@ -142,20 +144,20 @@ properties:
         - { type: "macro", address: 0x2024158, macro: "pokemonInParty" }
         - { type: "macro", address: 0x20241BC, macro: "pokemonInParty" }
         - { type: "macro", address: 0x2024220, macro: "pokemonInParty" }
-    yourPokemon: { type: "macro", address: 0x2023BE4, macro: "battleStructure" }
-    yourSecondPokemon: { type: "macro", address: 0x2023C94, macro: "battleStructure" }
-    enemyPokemon: { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
+    yourPokemon:        { type: "macro", address: 0x2023BE4, macro: "battleStructure" }
+    yourSecondPokemon:  { type: "macro", address: 0x2023C94, macro: "battleStructure" }
+    enemyPokemon:       { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
     enemySecondPokemon: { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
     turnInfo:
       battleWeather: { type: "reference", address: 0x2023F1C, reference: "battleWeather" } 
       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
-      # battleOutcome: { type: "int", address: 0x202433a, size: 1 } #Unknown values currently
+      battleOutcome: { type: "int", address: 0x2023e8a, size: 1 }
   
   gameTime:
-    gameTimeHours: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 15)" }
+    gameTimeHours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 15)" }
     gameTimeMinutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
     gameTimeSeconds: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 17)" }
-    gameTimeFrames: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 18)" }
+    gameTimeFrames:  { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 18)" }
 
   # dma-pointers: # needs gamehook update to access memory locations
   #   teamCount: { type: "int", address: 0x3005008, size: 4 }
@@ -251,10 +253,11 @@ glossary:
     0x0C: 6
     0x0D: 6
     0x0E: null
+    0x0F: null
     0x14: null
   gender:
-    0x0: Male
-    0x1: Female
+    0x00: Male
+    0x01: Female
   walkRunState:
     0x00: null
     0x21: Walk (Post event)
@@ -267,32 +270,38 @@ glossary:
     0x03: TMs? #check
     0x04: HMs? #check
   pokemonTypes:
-    0x00:	Normal
-    0x01:	Fighting
-    0x02:	Flying
-    0x03:	Poison
-    0x04:	Ground
-    0x05:	Rock
-    0x06:	Bug
-    0x07:	Ghost
-    0x08:	Steel
-    0x09:	Mystery
-    0x0A:	Fire
-    0x0B:	Water
-    0x0C:	Grass
-    0x0D:	Electric
-    0x0E:	Psychic
-    0x0F:	Ice
-    0x10:	Dragon
-    0x11:	Dark
+    0x00: Normal
+    0x01: Fighting
+    0x02: Flying
+    0x03: Poison
+    0x04: Ground
+    0x05: Rock
+    0x06: Bug
+    0x07: Ghost
+    0x08: Steel
+    0x09: Mystery
+    0x0A: Fire
+    0x0B: Water
+    0x0C: Grass
+    0x0D: Electric
+    0x0E: Psychic
+    0x0F: Ice
+    0x10: Dragon
+    0x11: Dark
+  battleOutcome:
+    0x00: null #this will always be 0 when in battle; however, it is also set to 0 when you first load the ROM
+    0x01: "Won"
+    0x02: "Lost"
+    0x03: null #needs to be mapped
+    0x04: "Ran"
   battleWeather:
-    0: "NONE"
-    1: "RAIN"
-    8: "SANDSTORM"
-    32: "SUNNY"
+    0:   null
+    1:   "RAIN"
+    8:   "SANDSTORM"
+    32:  "SUNNY"
     128: "HAIL"
   abilities: 
-    0: "NONE"
+    0: null
     1: "STENCH"
     2: "DRIZZLE"
     3: "SPEED BOOST"
@@ -370,6 +379,32 @@ glossary:
     75: "SHELL ARMOR"
     76: "CACOPHONY"
     77: "AIR LOCK"
+  natures:
+    0:	Hardy
+    1:	Lonely
+    2:	Brave
+    3:	Adamant
+    4:	Naughty
+    5:	Bold
+    6:	Docile
+    7:	Relaxed
+    8:	Impish
+    9:	Lax
+    10:	Timid
+    11:	Hasty
+    12:	Serious
+    13:	Jolly
+    14:	Naive
+    15:	Modest
+    16:	Mild
+    17:	Quiet
+    18:	Bashful
+    19:	Rash
+    20:	Calm
+    21:	Gentle
+    22:	Sassy
+    23:	Careful
+    24:	Quirky
   moves:
     0: null
     1: "POUND"
@@ -1299,7 +1334,7 @@ glossary:
     0xFC: null
     0xFD: null
     0xFE: null
-    0xFF: null #padding
+    0xFF: null #denotes padding
   language:
     0x01: "Japanese" #eggs will always have the japanese language
     0x02: "English"
