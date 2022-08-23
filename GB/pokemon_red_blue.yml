@@ -35,74 +35,77 @@ meta:
   # trainers.vermilionCityGym.completed
 
 macros:
+  pokemonMacro:
+    species:       { offset: 0, type: "reference", reference: "pokemonSpecies" }
+    pokedexNumber: { offset: 0, type: "reference", reference: "pokemonPokedexNumbers" }
   pokemonInParty:
-      species: { offset: 0, type: "reference", reference: "pokemon" }
-      level:   { offset: 33, type: "int" }
-      expPoints:       { offset: 14, type: "int", size: 3 }
-      statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
-      maxHp:   { offset: 34, type: "int", size: 2 }
-      hp:      { offset: 1, type: "int", size: 2 }
-      attack:  { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      speed:   { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-      dvAttack:  { offset: 27, type: "int", postprocessor: "(x - (x % 16))/16" }
-      dvDefense: { offset: 27, type: "int", postprocessor: "x % 16" }
-      dvSpeed:   { offset: 28, type: "int", postprocessor: "(x - (x % 16))/16" }
-      dvSpecial: { offset: 28, type: "int", postprocessor: "x % 16" }
-      move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
-      move2: { offset: 9, type: "reference", reference: "moves", }
-      move3: { offset: 10, type: "reference", reference: "moves" }
-      move4: { offset: 11, type: "reference", reference: "moves",  description: "Bottom moveslot" }
-      move1pp: { offset: 29, type: "int", size: 1, postprocessor: "x % 64" }
-      move2pp: { offset: 30, type: "int", size: 1, postprocessor: "x % 64" }
-      move3pp: { offset: 31, type: "int", size: 1, postprocessor: "x % 64" }
-      move4pp: { offset: 32, type: "int", size: 1, postprocessor: "x % 64" }
-      move1ppUp: { offset: 29, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
-      move2ppUp: { offset: 30, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
-      move3ppUp: { offset: 31, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
-      move4ppUp: { offset: 32, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
-      statExpHp:      { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
-      statExpAttack:  { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
-      statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
-      statExpSpeed:   { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
-      statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
-      type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
-      type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
-      trainerId: { offset: 12, type: "int", size: 2 }
-      catchRate: { offset: 7, type: "int", description: "Held item when traded to gen2" }
+    _:     { offset: 0, type: "macro", macro: "pokemonMacro" }
+    level: { offset: 33, type: "int" }
+    expPoints:       { offset: 14, type: "int", size: 3 }
+    statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
+    maxHp:   { offset: 34, type: "int", size: 2 }
+    hp:      { offset: 1, type: "int", size: 2 }
+    attack:  { offset: 36, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+    defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+    speed:   { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+    special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
+    dvAttack:  { offset: 27, type: "int", postprocessor: "(x - (x % 16))/16" }
+    dvDefense: { offset: 27, type: "int", postprocessor: "x % 16" }
+    dvSpeed:   { offset: 28, type: "int", postprocessor: "(x - (x % 16))/16" }
+    dvSpecial: { offset: 28, type: "int", postprocessor: "x % 16" }
+    move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
+    move2: { offset: 9, type: "reference", reference: "moves", }
+    move3: { offset: 10, type: "reference", reference: "moves" }
+    move4: { offset: 11, type: "reference", reference: "moves",  description: "Bottom moveslot" }
+    move1pp: { offset: 29, type: "int", size: 1, postprocessor: "x % 64" }
+    move2pp: { offset: 30, type: "int", size: 1, postprocessor: "x % 64" }
+    move3pp: { offset: 31, type: "int", size: 1, postprocessor: "x % 64" }
+    move4pp: { offset: 32, type: "int", size: 1, postprocessor: "x % 64" }
+    move1ppUp: { offset: 29, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
+    move2ppUp: { offset: 30, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
+    move3ppUp: { offset: 31, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
+    move4ppUp: { offset: 32, type: "int", size: 1, postprocessor: "Floor(x / 64)" }
+    statExpHp:      { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
+    statExpAttack:  { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
+    statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
+    statExpSpeed:   { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
+    statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
+    type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
+    type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
+    trainerId: { offset: 12, type: "int", size: 2 }
+    catchRate: { offset: 7, type: "int", description: "Held item when traded to gen2" }
   playerItem:
       item:     { offset: 0, type: "reference", reference: "items" }
       quantity: { offset: 1, type: "int" }
   encounter:
     level:   { offset: 0, type: "int" }
-    pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemon" }
+    pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemonSpecies" }
   storedPokemon:
-      species: { offset: 0, type: "reference", reference: "pokemon" }
-      level:   { offset: 3, type: "int" }
-      expPoints: { offset: 14, type: "int", size: 3 }
-      statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
-      hp:        { offset: 1, type: "int", size: 2 }
-      dvAttack:  { offset: 27, type: "int", postprocessor: "(x - (x % 16))/16" }
-      dvDefense: { offset: 27, type: "int", postprocessor: "x % 16" }
-      dvSpeed:   { offset: 28, type: "int", postprocessor: "(x - (x % 16))/16" }
-      dvSpecial: { offset: 28, type: "int", postprocessor: "x % 16" }
-      statExpHp:      { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
-      statExpAttack:  { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
-      statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
-      statExpSpeed:   { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
-      statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
-      move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
-      move2: { offset: 9, type: "reference", reference: "moves", }
-      move3: { offset: 10, type: "reference", reference: "moves" }
-      move4: { offset: 11, type: "reference", reference: "moves",  description: "Bottom moveslot" }
-      move1pp: { offset: 29, type: "int" }
-      move2pp: { offset: 30, type: "int" }
-      move3pp: { offset: 31, type: "int" }
-      move4pp: { offset: 32, type: "int" }
-      type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
-      type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
-      trainerId: { offset: 12, type: "int", size: 2 }
+    _:     { offset: 0, type: "macro", macro: "pokemonMacro" }
+    level: { offset: 3, type: "int" }
+    expPoints: { offset: 14, type: "int", size: 3 }
+    statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
+    hp:        { offset: 1, type: "int", size: 2 }
+    dvAttack:  { offset: 27, type: "int", postprocessor: "(x - (x % 16))/16" }
+    dvDefense: { offset: 27, type: "int", postprocessor: "x % 16" }
+    dvSpeed:   { offset: 28, type: "int", postprocessor: "(x - (x % 16))/16" }
+    dvSpecial: { offset: 28, type: "int", postprocessor: "x % 16" }
+    statExpHp:      { offset: 17, type: "int", size: 2, description: "HP EV (stat experience)" }
+    statExpAttack:  { offset: 19, type: "int", size: 2, description: "Attack EV (stat experience)" }
+    statExpDefense: { offset: 21, type: "int", size: 2, description: "Defense EV (stat experience)" }
+    statExpSpeed:   { offset: 23, type: "int", size: 2, description: "Speed EV (stat experience)"  }
+    statExpSpecial: { offset: 25, type: "int", size: 2, description: "Special EV (stat experience)"  }
+    move1: { offset: 8, type: "reference", reference: "moves", description: "Top moveslot" }
+    move2: { offset: 9, type: "reference", reference: "moves", }
+    move3: { offset: 10, type: "reference", reference: "moves" }
+    move4: { offset: 11, type: "reference", reference: "moves",  description: "Bottom moveslot" }
+    move1pp: { offset: 29, type: "int" }
+    move2pp: { offset: 30, type: "int" }
+    move3pp: { offset: 31, type: "int" }
+    move4pp: { offset: 32, type: "int" }
+    type1: { offset: 5, type: "reference", reference: "pokemonTypes" }
+    type2: { offset: 6, type: "reference", reference: "pokemonTypes" }
+    trainerId: { offset: 12, type: "int", size: 2 }
       
 properties:
   player:
@@ -157,7 +160,7 @@ properties:
       marshBadge:   { type: "bit", address: 0xD356, position: 5 }
       volcanoBadge: { type: "bit", address: 0xD356, position: 6 }
       earthBadge:   { type: "bit", address: 0xD356, position: 7 }
-    starterPokemon:   { type: "reference", address: 0xD717, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
+    starterPokemon:   { type: "reference", address: 0xD717, size: 1, reference: "pokemonSpecies", description: "The starter Pokemon received from Oak."}
     joypadSimulation: { type: "bool", address: 0xCD39, description: "Setting this to true will disable collision for your character." }
 
   overworld:
@@ -211,15 +214,15 @@ properties:
       gymLeader:    { type: "int", address: 0xD05C }
       totalPokemon: { type: "int", address: 0xD89C }
       team:
-        - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD89F, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8A2, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD89D, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD89E, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD89F, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD8A2, size: 1, reference: "pokemonSpecies" }
     yourPokemon:
       nickname: { type: "string", address: 0xD009, size: 11, reference: "defaultCharacterMap" }
-      species:  { type: "reference", address: 0xD014, size: 1, reference: "pokemon" }
+      species:  { type: "reference", address: 0xD014, size: 1, reference: "pokemonSpecies" }
       # type1:   { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" } #need memory addresses
       # type2:   { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" } #need memory addresses
       modStageAttack:   { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" } #test, are they really the same in RB and Y?
@@ -241,7 +244,7 @@ properties:
       move3: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xD01F, size: 1, reference: "moves" }
     enemyPokemon:
-      species: { type: "reference", address: 0xCFD8, size: 1, reference: "pokemon" }
+      species: { type: "reference", address: 0xCFD8, size: 1, reference: "pokemonSpecies" }
       type1:   { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" }
       type2:   { type: "reference", address: 0xCFEB, size: 1, reference: "pokemonTypes" }
       level:   { type: "int", address: 0xCFF3 }
@@ -395,26 +398,26 @@ properties:
     pokemonStorage:
       currentBoxCount: { type: "int", address: 0xDA80 }
       currentBoxSummary:
-        pkmn1:  { type: "reference", address: 0xDA81, reference: "pokemon" }
-        pkmn2:  { type: "reference", address: 0xDA82, reference: "pokemon" }
-        pkmn3:  { type: "reference", address: 0xDA83, reference: "pokemon" }
-        pkmn4:  { type: "reference", address: 0xDA84, reference: "pokemon" }
-        pkmn5:  { type: "reference", address: 0xDA85, reference: "pokemon" }
-        pkmn6:  { type: "reference", address: 0xDA86, reference: "pokemon" }
-        pkmn7:  { type: "reference", address: 0xDA87, reference: "pokemon" }
-        pkmn8:  { type: "reference", address: 0xDA88, reference: "pokemon" }
-        pkmn9:  { type: "reference", address: 0xDA89, reference: "pokemon" }
-        pkmn10: { type: "reference", address: 0xDA8A, reference: "pokemon" }
-        pkmn11: { type: "reference", address: 0xDA8B, reference: "pokemon" }
-        pkmn12: { type: "reference", address: 0xDA8C, reference: "pokemon" }
-        pkmn13: { type: "reference", address: 0xDA8D, reference: "pokemon" }
-        pkmn14: { type: "reference", address: 0xDA8E, reference: "pokemon" }
-        pkmn15: { type: "reference", address: 0xDA8F, reference: "pokemon" }
-        pkmn16: { type: "reference", address: 0xDA90, reference: "pokemon" }
-        pkmn17: { type: "reference", address: 0xDA91, reference: "pokemon" }
-        pkmn18: { type: "reference", address: 0xDA92, reference: "pokemon" }
-        pkmn19: { type: "reference", address: 0xDA93, reference: "pokemon" }
-        pkmn20: { type: "reference", address: 0xDA94, reference: "pokemon" }
+        pkmn1:  { type: "reference", address: 0xDA81, reference: "pokemonSpecies" }
+        pkmn2:  { type: "reference", address: 0xDA82, reference: "pokemonSpecies" }
+        pkmn3:  { type: "reference", address: 0xDA83, reference: "pokemonSpecies" }
+        pkmn4:  { type: "reference", address: 0xDA84, reference: "pokemonSpecies" }
+        pkmn5:  { type: "reference", address: 0xDA85, reference: "pokemonSpecies" }
+        pkmn6:  { type: "reference", address: 0xDA86, reference: "pokemonSpecies" }
+        pkmn7:  { type: "reference", address: 0xDA87, reference: "pokemonSpecies" }
+        pkmn8:  { type: "reference", address: 0xDA88, reference: "pokemonSpecies" }
+        pkmn9:  { type: "reference", address: 0xDA89, reference: "pokemonSpecies" }
+        pkmn10: { type: "reference", address: 0xDA8A, reference: "pokemonSpecies" }
+        pkmn11: { type: "reference", address: 0xDA8B, reference: "pokemonSpecies" }
+        pkmn12: { type: "reference", address: 0xDA8C, reference: "pokemonSpecies" }
+        pkmn13: { type: "reference", address: 0xDA8D, reference: "pokemonSpecies" }
+        pkmn14: { type: "reference", address: 0xDA8E, reference: "pokemonSpecies" }
+        pkmn15: { type: "reference", address: 0xDA8F, reference: "pokemonSpecies" }
+        pkmn16: { type: "reference", address: 0xDA90, reference: "pokemonSpecies" }
+        pkmn17: { type: "reference", address: 0xDA91, reference: "pokemonSpecies" }
+        pkmn18: { type: "reference", address: 0xDA92, reference: "pokemonSpecies" }
+        pkmn19: { type: "reference", address: 0xDA93, reference: "pokemonSpecies" }
+        pkmn20: { type: "reference", address: 0xDA94, reference: "pokemonSpecies" }
       currentBox: #other boxes cannot be pulled because they exist in the other memory banks
         - nickname: { type: "string", address: 0xDE06, size: 11, reference: "defaultCharacterMap" }
           _:        { type: "macro", address: 0xDA96, macro: "storedPokemon" }
@@ -1122,7 +1125,7 @@ glossary:
     0xF9: "TM49: Tri Attack"
     0xFA: "TM50: Substitute"
     0xFF: "--End of list--"
-  pokemonNames:
+  pokemonPokedexNumbers:
     0x00: null
     0xFF: null
     0x01: 112
@@ -1314,7 +1317,7 @@ glossary:
     0xBC: 69
     0xBD: 70
     0xBE: 71
-  pokemonPokedexNumbers:
+  pokemonSpecies:
     0x00: null
     0xFF: null
     0x01: Rhydon

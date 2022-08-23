@@ -35,11 +35,11 @@ meta:
   # trainers.vermilionCityGym.completed
 
 macros:
-  pokemonSpecies:
-    species:       { offset: 0, type: "reference", reference: "pokemonNames" }
+  pokemonMacro:
+    species:       { offset: 0, type: "reference", reference: "pokemonSpecies" }
     pokedexNumber: { offset: 0, type: "reference", reference: "pokemonPokedexNumbers" }
   pokemonInParty:
-    _:     { offset: 0, type: "macro", macro: "pokemonSpecies" }
+    _:     { offset: 0, type: "macro", macro: "pokemonMacro" }
     level: { offset: 33, type: "int" }
     expPoints:       { offset: 14, type: "int", size: 3 }
     statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
@@ -79,9 +79,10 @@ macros:
     quantity: { offset: 1, type: "int" }
   encounter:
     level:   { offset: 0, type: "int" }
-    pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemon" }
+    pokemon: { offset: 1, type: "reference", size: 1, reference: "pokemonSpecies" }
   storedPokemon:
-    species: { offset: 0, type: "reference", reference: "pokemon" }
+    _:       { offset: 0, type: "macro", macro: "pokemonMacro" }
+    # species: { offset: 0, type: "reference", reference: "pokemon" }
     level:   { offset: 3, type: "int" }
     expPoints: { offset: 14, type: "int", size: 3 }
     statusCondition: { offset: 4, type: "reference", reference: "statusConditions" }
@@ -160,14 +161,10 @@ properties:
       marshBadge:   { type: "bit", address: 0xD355, position: 5 }
       volcanoBadge: { type: "bit", address: 0xD355, position: 6 }
       earthBadge:   { type: "bit", address: 0xD355, position: 7 }
-    starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemon", description: "The starter Pokemon received from Oak."}
+    starterPokemon: { type: "reference", address: 0xD716, size: 1, reference: "pokemonSpecies", description: "The starter Pokemon received from Oak."}
     joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
-    joypadIgnore:
-      type: "int"
-      address: 0xCD6B
-      size: 1
-      description: |
-        Buttons to ignore in the joypad (bit mask). Each button corresponds to the following bits:
+    joypadIgnore: { type: "int", address: 0xCD6B, size: 1, description: 
+        "Buttons to ignore in the joypad (bit mask). Each button corresponds to the following bits:
           * A Button:    bit 0 (0x01, dec 1)
           * B Button:    bit 1 (0x02, dec 2)
           * Select:      bit 2 (0x04, dec 4)
@@ -179,8 +176,7 @@ properties:
         Example values:
           * 0x00: no input is ignored (all buttons are processed)
           * 0xFF: every button is ignored (no player input)
-          * 0xFC: only A and B are allowed
-
+          * 0xFC: only A and B are allowed" }
   overworld:
     map: { type: "reference", address: 0xD35D, size: 1, reference: "maps" }
     y: { type: "int", address: 0xD360, size: 1 }
@@ -217,12 +213,8 @@ properties:
   events:
     overworldFlags:
       countPlayTime: { type: "bit", address: 0xD731, position: 0, description: "play time being counted" }
-      debugMode:
-        type: "bit"
-        address: 0xD731
-        position: 1
-        description: |
-          Only set by the debug build. If true:
+      debugMode: { type: "bit", address: 0xD731, position: 1, description: 
+          "Only set by the debug build. If true:
             * skips most of Prof. Oak's speech, and uses NINTEN as the player's name and SONY as the rival's name
             * does not have the player start in floor two of the player's house (instead sending them to [wLastMap])
             * allows wild battles to be avoided by holding down B
@@ -230,132 +222,103 @@ properties:
             * skips Safari Zone step counter by holding down B
             * skips the NPC who blocks Route 3 before beating Brock by holding down B
             * skips Cerulean City rival battle by holding down B
-            * skips Pokémon Tower rival battle by holding down B
-      flyOrDungeon:
-        type: "bit"
-        address: 0xD731
-        position: 2
-        description: >
-          the target warp is a fly warp (bit 3 set or blacked out)
-          or a dungeon warp (bit 4 set)
-      flyWarp:
-        type: "bit"
-        address: 0xD731
-        position: 3
-        description: >
-          used warp pad, escape rope, dig, teleport, or fly,
-          so the target warp is a "fly warp"
-      dungeonWarp:
-        type: "bit"
-        address: 0xD731
-        position: 4
-        description: >
-          jumped into hole (Pokemon Mansion, Seafoam Islands, Victory Road)
-          or went down waterfall (Seafoam Islands),
-          so the target warp is a "dungeon warp"
-      forceBike:
-        type: "bit"
-        address: 0xD731
-        position: 5
-        description: "currently being forced to ride bike (cycling road)"
-      destinationIsBlackout:
-        type: "bit"
-        address: 0xD731
-        position: 6
-        description: >
-          map destination is [wLastBlackoutMap]
-          (usually the last used pokemon center, but could be the player's house)
-      unusedBit: { type: "bit", address: 0xD731, position: 7, description: "unused in game" }
-    townMap:
-      unknown1: { type: "bit", address: 0xD5F2, position: 0 }
-      unknown2: { type: "bit", address: 0xD5F2, position: 1 }
-      unknown3: { type: "bit", address: 0xD5F2, position: 2 }
-      unknown4: { type: "bit", address: 0xD5F2, position: 3 }
-      unknown5: { type: "bit", address: 0xD5F2, position: 4 }
-      unknown6: { type: "bit", address: 0xD5F2, position: 5 }
-      unknown7: { type: "bit", address: 0xD5F2, position: 6 }
-      unknown8: { type: "bit", address: 0xD5F2, position: 7 }
-    oaksParcel:
-      unknown1: { type: "bit", address: 0xD60C, position: 0 }
-      unknown2: { type: "bit", address: 0xD60C, position: 1 }
-      unknown3: { type: "bit", address: 0xD60C, position: 2 }
-      unknown4: { type: "bit", address: 0xD60C, position: 3 }
-      unknown5: { type: "bit", address: 0xD60C, position: 4 }
-      unknown6: { type: "bit", address: 0xD60C, position: 5 }
-      unknown7: { type: "bit", address: 0xD60C, position: 6 }
-      unknown8: { type: "bit", address: 0xD60C, position: 7 }
-    fossils:
-      unknown1: { type: "bit", address: 0xD70F, position: 0 }
-      unknown2: { type: "bit", address: 0xD70F, position: 1 }
-      unknown3: { type: "bit", address: 0xD70F, position: 2 }
-      unknown4: { type: "bit", address: 0xD70F, position: 3 }
-      unknown5: { type: "bit", address: 0xD70F, position: 4 }
-      unknown6: { type: "bit", address: 0xD70F, position: 5 }
-      unknown7: { type: "bit", address: 0xD70F, position: 6 }
-      unknown8: { type: "bit", address: 0xD70F, position: 7 }
-    ssAnne:
-      unknown1: { type: "bit", address: 0xD802, position: 0 }
-      unknown2: { type: "bit", address: 0xD802, position: 1 }
-      unknown3: { type: "bit", address: 0xD802, position: 2 }
-      unknown4: { type: "bit", address: 0xD802, position: 3 }
-      unknown5: { type: "bit", address: 0xD802, position: 4 }
-      unknown6: { type: "bit", address: 0xD802, position: 5 }
-      unknown7: { type: "bit", address: 0xD802, position: 6 }
-      unknown8: { type: "bit", address: 0xD802, position: 7 }
+            * skips Pokémon Tower rival battle by holding down B" }
+      flyOrDungeon: { type: "bit", address: 0xD731, position: 2, description: "the target warp is a fly warp (bit 3 set or blacked out) or a dungeon warp (bit 4 set)" }
+      flyWarp: { type: "bit", address: 0xD731, position: 3 } # description: "used warp pad, escape rope, dig, teleport, or fly, so the target warp is a "fly warp"
+      dungeonWarp: { type: "bit", address: 0xD731, position: 4 } # jumped into hole (Pokemon Mansion, Seafoam Islands, Victory Road) or went down waterfall (Seafoam Islands), so the target warp is a "dungeon warp"
+      forceBike: { type: "bit", address: 0xD731, position: 5  } # currently being forced to ride bike (cycling road)"
+      destinationIsBlackout: { type: "bit", address: 0xD731, position: 6 } # map destination is [wLastBlackoutMap] (usually the last used pokemon center, but could be the player's house)
+      # unusedBit: { type: "bit", address: 0xD731, position: 7, description: "unused in game" }
+    # townMap:
+    #   unknown1: { type: "bit", address: 0xD5F2, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD5F2, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD5F2, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD5F2, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD5F2, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD5F2, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD5F2, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD5F2, position: 7 }
+    # oaksParcel:
+    #   unknown1: { type: "bit", address: 0xD60C, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD60C, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD60C, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD60C, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD60C, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD60C, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD60C, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD60C, position: 7 }
+    # fossils:
+    #   unknown1: { type: "bit", address: 0xD70F, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD70F, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD70F, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD70F, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD70F, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD70F, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD70F, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD70F, position: 7 }
+    # ssAnne:
+    #   unknown1: { type: "bit", address: 0xD802, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD802, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD802, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD802, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD802, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD802, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD802, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD802, position: 7 }
     trashCanPuzzle: { type: "bit", address: 0xD772, position: 0 } #set to 3 to solve the puzzle, freezing breaks the trainers
-    lapras:
-      unknown1: { type: "bit", address: 0xD72D, position: 0 }
-      unknown2: { type: "bit", address: 0xD72D, position: 1 }
-      unknown3: { type: "bit", address: 0xD72D, position: 2 }
-      unknown4: { type: "bit", address: 0xD72D, position: 3 }
-      unknown5: { type: "bit", address: 0xD72D, position: 4 }
-      unknown6: { type: "bit", address: 0xD72D, position: 5 }
-      unknown7: { type: "bit", address: 0xD72D, position: 6 }
-      unknown8: { type: "bit", address: 0xD72D, position: 7 }
-    articuno:
-      unknown1: { type: "bit", address: 0xD781, position: 0 }
-      unknown2: { type: "bit", address: 0xD781, position: 1 }
-      unknown3: { type: "bit", address: 0xD781, position: 2 }
-      unknown4: { type: "bit", address: 0xD781, position: 3 }
-      unknown5: { type: "bit", address: 0xD781, position: 4 }
-      unknown6: { type: "bit", address: 0xD781, position: 5 }
-      unknown7: { type: "bit", address: 0xD781, position: 6 }
-      unknown8: { type: "bit", address: 0xD781, position: 7 }
-    zapdos:
-      unknown1: { type: "bit", address: 0xD7D3, position: 0 }
-      unknown2: { type: "bit", address: 0xD7D3, position: 1 }
-      unknown3: { type: "bit", address: 0xD7D3, position: 2 }
-      unknown4: { type: "bit", address: 0xD7D3, position: 3 }
-      unknown5: { type: "bit", address: 0xD7D3, position: 4 }
-      unknown6: { type: "bit", address: 0xD7D3, position: 5 }
-      unknown7: { type: "bit", address: 0xD7D3, position: 6 }
-      unknown8: { type: "bit", address: 0xD7D3, position: 7 }
-    moltres:
-      unknown1: { type: "bit", address: 0xD7ED, position: 0 }
-      unknown2: { type: "bit", address: 0xD7ED, position: 1 }
-      unknown3: { type: "bit", address: 0xD7ED, position: 2 }
-      unknown4: { type: "bit", address: 0xD7ED, position: 3 }
-      unknown5: { type: "bit", address: 0xD7ED, position: 4 }
-      unknown6: { type: "bit", address: 0xD7ED, position: 5 }
-      unknown7: { type: "bit", address: 0xD7ED, position: 6 }
-      unknown8: { type: "bit", address: 0xD7ED, position: 7 }
-    mewtwo:
-      bit1Unknown1: { type: "bit", address: 0xD5BF, position: 0 }
-      bit1Unknown2: { type: "bit", address: 0xD5BF, position: 1 }
-      bit1Unknown3: { type: "bit", address: 0xD5BF, position: 2 }
-      bit1Unknown4: { type: "bit", address: 0xD5BF, position: 3 }
-      bit1Unknown5: { type: "bit", address: 0xD5BF, position: 4 }
-      bit1Unknown6: { type: "bit", address: 0xD5BF, position: 5 }
-      bit1Unknown7: { type: "bit", address: 0xD5BF, position: 6 }
-      bit1Unknown8: { type: "bit", address: 0xD5BF, position: 7 }
-      bit2Unknown1: { type: "bit", address: 0xD85E, position: 0 }
-      bit2Unknown2: { type: "bit", address: 0xD85E, position: 1 }
-      bit2Unknown3: { type: "bit", address: 0xD85E, position: 2 }
-      bit2Unknown4: { type: "bit", address: 0xD85E, position: 3 }
-      bit2Unknown5: { type: "bit", address: 0xD85E, position: 4 }
-      bit2Unknown6: { type: "bit", address: 0xD85E, position: 5 }
-      bit2Unknown7: { type: "bit", address: 0xD85E, position: 6 }
-      bit2Unknown8: { type: "bit", address: 0xD85E, position: 7 }
+    # lapras:
+    #   unknown1: { type: "bit", address: 0xD72D, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD72D, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD72D, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD72D, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD72D, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD72D, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD72D, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD72D, position: 7 }
+    # articuno:
+    #   unknown1: { type: "bit", address: 0xD781, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD781, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD781, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD781, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD781, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD781, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD781, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD781, position: 7 }
+    # zapdos:
+    #   unknown1: { type: "bit", address: 0xD7D3, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD7D3, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD7D3, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD7D3, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD7D3, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD7D3, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD7D3, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD7D3, position: 7 }
+    # moltres:
+    #   unknown1: { type: "bit", address: 0xD7ED, position: 0 }
+    #   unknown2: { type: "bit", address: 0xD7ED, position: 1 }
+    #   unknown3: { type: "bit", address: 0xD7ED, position: 2 }
+    #   unknown4: { type: "bit", address: 0xD7ED, position: 3 }
+    #   unknown5: { type: "bit", address: 0xD7ED, position: 4 }
+    #   unknown6: { type: "bit", address: 0xD7ED, position: 5 }
+    #   unknown7: { type: "bit", address: 0xD7ED, position: 6 }
+    #   unknown8: { type: "bit", address: 0xD7ED, position: 7 }
+    # mewtwo:
+    #   bit1Unknown1: { type: "bit", address: 0xD5BF, position: 0 }
+    #   bit1Unknown2: { type: "bit", address: 0xD5BF, position: 1 }
+    #   bit1Unknown3: { type: "bit", address: 0xD5BF, position: 2 }
+    #   bit1Unknown4: { type: "bit", address: 0xD5BF, position: 3 }
+    #   bit1Unknown5: { type: "bit", address: 0xD5BF, position: 4 }
+    #   bit1Unknown6: { type: "bit", address: 0xD5BF, position: 5 }
+    #   bit1Unknown7: { type: "bit", address: 0xD5BF, position: 6 }
+    #   bit1Unknown8: { type: "bit", address: 0xD5BF, position: 7 }
+    #   bit2Unknown1: { type: "bit", address: 0xD85E, position: 0 }
+    #   bit2Unknown2: { type: "bit", address: 0xD85E, position: 1 }
+    #   bit2Unknown3: { type: "bit", address: 0xD85E, position: 2 }
+    #   bit2Unknown4: { type: "bit", address: 0xD85E, position: 3 }
+    #   bit2Unknown5: { type: "bit", address: 0xD85E, position: 4 }
+    #   bit2Unknown6: { type: "bit", address: 0xD85E, position: 5 }
+    #   bit2Unknown7: { type: "bit", address: 0xD85E, position: 6 }
+    #   bit2Unknown8: { type: "bit", address: 0xD85E, position: 7 }
   trainers: #DO NO FREEZE THESE PROPERTIES OR TRAINERS WILL ENDLESSLY BATTLE YOU
     viridianForest:
       unknown1:     { type: "bit", address: 0xD7F2, position: 0 } #Scott's Thoughts: delete if nothing on final pass
@@ -442,7 +405,7 @@ properties:
       tamer4:         { type: "bit", address: 0xD751, position: 0 }
       coolTrainerM:   { type: "bit", address: 0xD751, position: 1 }
     
-    # bitArrayTesting: #useful for testing event flags
+    # bitArrayTemplate: #useful for testing event flags
     #   unknown1: { type: "bit", address: 0xD732, position: 0 }
     #   unknown2: { type: "bit", address: 0xD732, position: 1 }
     #   unknown3: { type: "bit", address: 0xD732, position: 2 }
@@ -463,15 +426,15 @@ properties:
       gymLeader:    { type: "int", address: 0xD05B }
       totalPokemon: { type: "int", address: 0xD89B }
       team:
-        - { type: "reference", address: 0xD89C, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD89D, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD89E, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD89F, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemon" }
-        - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemon" }
+        - { type: "reference", address: 0xD89C, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD89D, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD89E, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD89F, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD8A0, size: 1, reference: "pokemonSpecies" }
+        - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemonSpecies" }
     yourPokemon:
       nickname: { type: "string", address: 0xD008, size: 11, reference: "defaultCharacterMap" }
-      species:  { type: "reference", address: 0xD013, size: 1, reference: "pokemon" }
+      species:  { type: "reference", address: 0xD013, size: 1, reference: "pokemonSpecies" }
       type1:   { type: "reference", address: 0xD018, size: 1, reference: "pokemonTypes" } #need memory addresses
       type2:   { type: "reference", address: 0xD019, size: 1, reference: "pokemonTypes" } #need memory addresses
       modStageAttack:   { type: "reference", address: 0xCD1a, size: 1, reference: "stageModifiers" } #test, are they really the same in RB and Y?
@@ -494,7 +457,7 @@ properties:
       move3: { type: "reference", address: 0xD01D, size: 1, reference: "moves" }
       move4: { type: "reference", address: 0xD01E, size: 1, reference: "moves" }
     enemyPokemon:
-      species: { type: "reference", address: 0xCFD7, size: 1, reference: "pokemon" }
+      species: { type: "reference", address: 0xCFD7, size: 1, reference: "pokemonSpecies" }
       type1:   { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" }
       type2:   { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" }
       level:   { type: "int", address: 0xCFF2 }
@@ -648,26 +611,26 @@ properties:
     pokemonStorage:
       currentBoxCount: { type: "int", address: 0xDA7F }
       currentBoxSummary:
-        pkmn1:  { type: "reference", address: 0xDA80, reference: "pokemon" }
-        pkmn2:  { type: "reference", address: 0xDA81, reference: "pokemon" }
-        pkmn3:  { type: "reference", address: 0xDA82, reference: "pokemon" }
-        pkmn4:  { type: "reference", address: 0xDA83, reference: "pokemon" }
-        pkmn5:  { type: "reference", address: 0xDA84, reference: "pokemon" }
-        pkmn6:  { type: "reference", address: 0xDA85, reference: "pokemon" }
-        pkmn7:  { type: "reference", address: 0xDA86, reference: "pokemon" }
-        pkmn8:  { type: "reference", address: 0xDA87, reference: "pokemon" }
-        pkmn9:  { type: "reference", address: 0xDA88, reference: "pokemon" }
-        pkmn10: { type: "reference", address: 0xDA89, reference: "pokemon" }
-        pkmn11: { type: "reference", address: 0xDA8A, reference: "pokemon" }
-        pkmn12: { type: "reference", address: 0xDA8B, reference: "pokemon" }
-        pkmn13: { type: "reference", address: 0xDA8C, reference: "pokemon" }
-        pkmn14: { type: "reference", address: 0xDA8D, reference: "pokemon" }
-        pkmn15: { type: "reference", address: 0xDA8E, reference: "pokemon" }
-        pkmn16: { type: "reference", address: 0xDA8F, reference: "pokemon" }
-        pkmn17: { type: "reference", address: 0xDA90, reference: "pokemon" }
-        pkmn18: { type: "reference", address: 0xDA91, reference: "pokemon" }
-        pkmn19: { type: "reference", address: 0xDA92, reference: "pokemon" }
-        pkmn20: { type: "reference", address: 0xDA93, reference: "pokemon" }
+        pkmn1:  { type: "reference", address: 0xDA80, reference: "pokemonSpecies" }
+        pkmn2:  { type: "reference", address: 0xDA81, reference: "pokemonSpecies" }
+        pkmn3:  { type: "reference", address: 0xDA82, reference: "pokemonSpecies" }
+        pkmn4:  { type: "reference", address: 0xDA83, reference: "pokemonSpecies" }
+        pkmn5:  { type: "reference", address: 0xDA84, reference: "pokemonSpecies" }
+        pkmn6:  { type: "reference", address: 0xDA85, reference: "pokemonSpecies" }
+        pkmn7:  { type: "reference", address: 0xDA86, reference: "pokemonSpecies" }
+        pkmn8:  { type: "reference", address: 0xDA87, reference: "pokemonSpecies" }
+        pkmn9:  { type: "reference", address: 0xDA88, reference: "pokemonSpecies" }
+        pkmn10: { type: "reference", address: 0xDA89, reference: "pokemonSpecies" }
+        pkmn11: { type: "reference", address: 0xDA8A, reference: "pokemonSpecies" }
+        pkmn12: { type: "reference", address: 0xDA8B, reference: "pokemonSpecies" }
+        pkmn13: { type: "reference", address: 0xDA8C, reference: "pokemonSpecies" }
+        pkmn14: { type: "reference", address: 0xDA8D, reference: "pokemonSpecies" }
+        pkmn15: { type: "reference", address: 0xDA8E, reference: "pokemonSpecies" }
+        pkmn16: { type: "reference", address: 0xDA8F, reference: "pokemonSpecies" }
+        pkmn17: { type: "reference", address: 0xDA90, reference: "pokemonSpecies" }
+        pkmn18: { type: "reference", address: 0xDA91, reference: "pokemonSpecies" }
+        pkmn19: { type: "reference", address: 0xDA92, reference: "pokemonSpecies" }
+        pkmn20: { type: "reference", address: 0xDA93, reference: "pokemonSpecies" }
       currentBox: #other boxes cannot be pulled because they exist in the other memory banks
         - nickname: { type: "string", address: 0xDE05, size: 11, reference: "defaultCharacterMap" }
           _:        { type: "macro", address: 0xDA95, macro: "storedPokemon" }
@@ -1376,7 +1339,7 @@ glossary:
     0xF9: "TM49: Tri Attack"
     0xFA: "TM50: Substitute"
     0xFF: "--End of list--"
-  pokemonNames:
+  pokemonPokedexNumbers:
     0x00: null
     0xFF: null
     0x01: 112
@@ -1568,7 +1531,7 @@ glossary:
     0xBC: 69
     0xBD: 70
     0xBE: 71
-  pokemonPokedexNumbers:
+  pokemonSpecies:
     0x00: null
     0xFF: null
     0x01: Rhydon
