@@ -104,17 +104,17 @@ properties:
     gender:    { type: "reference", address: 0xD472, reference: "gender" }
     teamCount: { type: "int", address: 0xDCD7, size: 1 }
     team:
-      - nickname: { type: "string", address: 0xDE41, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE41, size: 11 }
         _:        { type: "macro", address: 0xDCDF, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDE4C, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE4C, size: 11 }
         _:        { type: "macro", address: 0xDD0F, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDE57, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE57, size: 11 }
         _:        { type: "macro", address: 0xDD3F, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDE62, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE62, size: 11 }
         _:        { type: "macro", address: 0xDD6F, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDE6D, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE6D, size: 11 }
         _:        { type: "macro", address: 0xDD9F, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDE78, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDE78, size: 11 }
         _:        { type: "macro", address: 0xDDCF, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD892 }
     items:
@@ -280,7 +280,7 @@ properties:
     battleStart: { type: "int", address: 0xD264, size: 1 }
 
     trainer:
-      name:  { type: "string", address: 0xD26B, size: 11, reference: "defaultCharacterMap" }
+      name:  { type: "string", address: 0xD26B, size: 11 }
       class: { type: "reference", address: 0xD22F, size: 1, reference: "trainerClasses" }
       id:    { type: "int", address: 0xD231, size: 1 }
       totalPokemon: { type: "int", address: 0xD280, size: 1 }
@@ -375,8 +375,8 @@ properties:
   #   item5: { type: "reference", address: 0xCFD1, size: 1, reference: "items" }
 
   options:
-    # clockDay: { type: "string", address: 0xXXXX, size: 5, reference: "defaultCharacterMap" }
-    # clockTime: { type: "string", address: 0xXXXX, size: 5, reference: "defaultCharacterMap" }
+    # clockDay: { type: "string", address: 0xXXXX, size: 5 }
+    # clockTime: { type: "string", address: 0xXXXX, size: 5 }
     textSpeed2:       { type: "bit", address: 0xCFCC, position: 1, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
     textSpeed3:       { type: "bit", address: 0xCFCC, position: 2, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
     sound:            { type: "bit", address: 0xCFCC, position: 5, description: "Mono = False, Stereo = True" }

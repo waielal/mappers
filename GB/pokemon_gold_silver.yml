@@ -104,17 +104,17 @@ properties:
     # gender:    { type: "reference", address: 0xXXXX, reference: "gender" } #needs GS memory address
     # teamCount: { type: "int", address: 0xDCD7, size: 1 } #needs GS memory address
     team:
-      - nickname: { type: "string", address: 0xDB8C, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDB8C, size: 11 }
         _:        { type: "macro", address: 0xDA2A, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDB97, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDB97, size: 11 }
         _:        { type: "macro", address: 0xDA5A, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDBA2, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDBA2, size: 11 }
         _:        { type: "macro", address: 0xDA8A, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDBAD, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDBAD, size: 11 }
         _:        { type: "macro", address: 0xDABA, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDBB8, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDBB8, size: 11 }
         _:        { type: "macro", address: 0xDAEA, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xDBC3, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xDBC3, size: 11 }
         _:        { type: "macro", address: 0xDB1A, macro: "pokemonInParty" }
     # itemCount: { type: "int", address: 0xD892 } #need GS memory addresses
     # items: #need GS memory addresses
@@ -279,7 +279,7 @@ properties:
     battleStart: { type: "int", address: 0xC664, size: 1 }
 
     # trainer: # needs GS memory addresses
-    #   name:  { type: "string", address: 0xXXXX, size: 11, reference: "defaultCharacterMap" }
+    #   name:  { type: "string", address: 0xXXXX, size: 11 }
     #   class: { type: "reference", address: 0xXXXX, size: 1, reference: "trainerClasses" }
     #   id:    { type: "int", address: 0xXXXX, size: 1 }
     #   totalPokemon: { type: "int", address: 0xXXXX, size: 1 }
@@ -374,8 +374,8 @@ properties:
   #   item5: { type: "reference", address: 0xCFD1, size: 1, reference: "items" }
 
   options:
-      # clockDay: { type: "string", address: 0xXXXX, size: 5, reference: "defaultCharacterMap" }
-      # clockTime: { type: "string", address: 0xXXXX, size: 5, reference: "defaultCharacterMap" }
+      # clockDay: { type: "string", address: 0xXXXX, size: 5 }
+      # clockTime: { type: "string", address: 0xXXXX, size: 5 }
       textSpeed2:       { type: "bit", address: 0xD199, position: 1, description: "False+False = Fast, True+False = Mid, True+True = Slow" }
       textSpeed3:       { type: "bit", address: 0xD199, position: 2 }
       sound:            { type: "bit", address: 0xD199, position: 5, description: "Mono = False, Stereo = True" }

@@ -113,17 +113,17 @@ properties:
     playerId:  {type: "int", address: 0xD35A, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     teamCount: { type: "int", address: 0xD163 }
     team:
-      - nickname: { type: "string", address: 0xD2B5, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2B5, size: 11 }
         _:        { type: "macro", address: 0xD16B, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2C0, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2C0, size: 11 }
         _:        { type: "macro", address: 0xD197, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2CB, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2CB, size: 11 }
         _:        { type: "macro", address: 0xD1C3, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2D6, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2D6, size: 11 }
         _:        { type: "macro", address: 0xD1EF, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2E1, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2E1, size: 11 }
         _:        { type: "macro", address: 0xD21B, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2EC, size: 11, reference: "defaultCharacterMap" }
+      - nickname: { type: "string", address: 0xD2EC, size: 11 }
         _:        { type: "macro", address: 0xD247, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD31D }
     items:
@@ -208,7 +208,7 @@ properties:
     specialType:    { type: "reference", address: 0xD05A, reference: "specialBattleTypes" }
     lowHealthAlarm: { type: "reference", address: 0xCCF5, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      name:         { type: "string", address: 0xD04A, size: 11, reference: "defaultCharacterMap" }
+      name:         { type: "string", address: 0xD04A, size: 11 }
       class:        { type: "reference", address: 0xD031, size: 1, reference: "trainerClasses" }
       number:       { type: "int", address: 0xD05D }
       gymLeader:    { type: "int", address: 0xD05C }
@@ -221,7 +221,7 @@ properties:
         - { type: "reference", address: 0xD8A1, size: 1, reference: "pokemonSpecies" }
         - { type: "reference", address: 0xD8A2, size: 1, reference: "pokemonSpecies" }
     yourPokemon:
-      nickname: { type: "string", address: 0xD009, size: 11, reference: "defaultCharacterMap" }
+      nickname: { type: "string", address: 0xD009, size: 11 }
       species:  { type: "reference", address: 0xD014, size: 1, reference: "pokemonSpecies" }
       # type1:   { type: "reference", address: 0xCFE9, size: 1, reference: "pokemonTypes" } #need memory addresses
       # type2:   { type: "reference", address: 0xCFEA, size: 1, reference: "pokemonTypes" } #need memory addresses
@@ -419,45 +419,45 @@ properties:
         pkmn19: { type: "reference", address: 0xDA93, reference: "pokemonSpecies" }
         pkmn20: { type: "reference", address: 0xDA94, reference: "pokemonSpecies" }
       currentBox: #other boxes cannot be pulled because they exist in the other memory banks
-        - nickname: { type: "string", address: 0xDE06, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE06, size: 11 }
           _:        { type: "macro", address: 0xDA96, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE11, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE11, size: 11 }
           _:        { type: "macro", address: 0xDAB7, macro: "storedPokemon" }    
-        - nickname: { type: "string", address: 0xDE1C, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE1C, size: 11 }
           _:        { type: "macro", address: 0xDAD8, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDE27, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE27, size: 11 }
           _:        { type: "macro", address: 0xDAF9, macro: "storedPokemon" }    
-        - nickname: { type: "string", address: 0xDE32, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE32, size: 11 }
           _:        { type: "macro", address: 0xDB1A, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE3D, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE3D, size: 11 }
           _:        { type: "macro", address: 0xDB3B, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE48, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE48, size: 11 }
           _:        { type: "macro", address: 0xDB5C, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDE53, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE53, size: 11 }
           _:        { type: "macro", address: 0xDB7D, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE5E, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE5E, size: 11 }
           _:        { type: "macro", address: 0xDB9E, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE69, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE69, size: 11 }
           _:        { type: "macro", address: 0xDBBF, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE74, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE74, size: 11 }
           _:        { type: "macro", address: 0xDBE0, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE7F, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE7F, size: 11 }
           _:        { type: "macro", address: 0xDC01, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE8A, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE8A, size: 11 }
           _:        { type: "macro", address: 0xDC22, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE95, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDE95, size: 11 }
           _:        { type: "macro", address: 0xDC43, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDEA0, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDEA0, size: 11 }
           _:        { type: "macro", address: 0xDC64, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDEAB, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDEAB, size: 11 }
           _:        { type: "macro", address: 0xDC85, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDEB6, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDEB6, size: 11 }
           _:        { type: "macro", address: 0xDCA6, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDEC1, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDEC1, size: 11 }
           _:        { type: "macro", address: 0xDCC7, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDECC, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDECC, size: 11 }
           _:        { type: "macro", address: 0xDCE8, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDED7, size: 11, reference: "defaultCharacterMap" }
+        - nickname: { type: "string", address: 0xDED7, size: 11 }
           _:        { type: "macro", address: 0xDD09, macro: "storedPokemon" }  
 
     itemStorage:
