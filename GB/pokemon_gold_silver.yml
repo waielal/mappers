@@ -227,22 +227,22 @@ properties:
       hm06: { type: "bit", address: 0xD5B5, position: 1 }
       hm07: { type: "bit", address: 0xD5B6, position: 1 }
     badges:
-      zephyrBadge:  { type: "bit", address: 0xD57C, position: 0 }
-      hiveBadge:    { type: "bit", address: 0xD57C, position: 1 }
-      plainBadge:   { type: "bit", address: 0xD57C, position: 3 }
-      fogBadge:     { type: "bit", address: 0xD57C, position: 4 }
-      stormBadge:   { type: "bit", address: 0xD57C, position: 2 }
-      mineralBadge: { type: "bit", address: 0xD57C, position: 5 }
-      glacierBadge: { type: "bit", address: 0xD57C, position: 6 }
-      risingBadge:  { type: "bit", address: 0xD57C, position: 7 }
-      boulderBadge: { type: "bit", address: 0xD57D, position: 0 }
-      cascadeBadge: { type: "bit", address: 0xD57D, position: 1 }
-      thunderBadge: { type: "bit", address: 0xD57D, position: 2 }
-      rainbowBadge: { type: "bit", address: 0xD57D, position: 3 }
-      soulBadge:    { type: "bit", address: 0xD57D, position: 4 }
-      marshBadge:   { type: "bit", address: 0xD57D, position: 5 }
-      volcanoBadge: { type: "bit", address: 0xD57D, position: 6 }
-      earthBadge:   { type: "bit", address: 0xD57D, position: 7 }
+      badge1: { type: "bit", address: 0xD57C, position: 0, description: "zephyrBadge" }
+      badge2: { type: "bit", address: 0xD57C, position: 1, description: "hiveBadge" }
+      badge3: { type: "bit", address: 0xD57C, position: 3, description: "plainBadge" }
+      badge4: { type: "bit", address: 0xD57C, position: 4, description: "fogBadge" }
+      badge5: { type: "bit", address: 0xD57C, position: 2, description: "stormBadge" }
+      badge6: { type: "bit", address: 0xD57C, position: 5, description: "mineralBadge" }
+      badge7: { type: "bit", address: 0xD57C, position: 6, description: "glacierBadge" }
+      badge8: { type: "bit", address: 0xD57C, position: 7, description: "risingBadge" }
+      badge9:  { type: "bit", address: 0xD57C, position: 0, description: "boulderBadge" }
+      badge10: { type: "bit", address: 0xD57C, position: 1, description: "cascadeBadge" }
+      badge11: { type: "bit", address: 0xD57C, position: 2, description: "thunderBadge" }
+      badge12: { type: "bit", address: 0xD57C, position: 3, description: "rainbowBadge" }
+      badge13: { type: "bit", address: 0xD57C, position: 4, description: "soulBadge" }
+      badge14: { type: "bit", address: 0xD57C, position: 5, description: "marshBadge" }
+      badge15: { type: "bit", address: 0xD57C, position: 6, description: "volcanoBadge" }
+      badge16: { type: "bit", address: 0xD57C, position: 7, description: "earthBadge" }
     # pokegear: # needs GS memeory locations
     #   mapCard:       {type: "bit", address: 0xXXXX, position: 0 }
     #   radioCard:     {type: "bit", address: 0xXXXX, position: 1 }

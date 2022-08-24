@@ -61,6 +61,7 @@ macros:
     speed:          { offset: 94, type: "int", size: 2 }
     specialAttack:  { offset: 96, type: "int", size: 2 }
     specialDefense: { offset: 98, type: "int", size: 2 }
+    statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
   
   battleStructure: #there may be data in this structure before the species value
     species:  { offset: 0, type: "reference", size: 2, reference: "pokemon" }
@@ -109,6 +110,15 @@ properties:
       - { type: "macro", address: 0x20243B0, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024414, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024478, macro: "pokemonInParty" }
+    # badges: #not the same flag offset as in Emerald
+    #   badge1: { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "boulderbadge" }
+    #   badge2: { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "cascadebadge" }
+    #   badge3: { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "thunderbadge" }
+    #   badge4: { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "rainbowbadge" }
+    #   badge5: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "soulbadge" }
+    #   badge6: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "marshbadge" }
+    #   badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "volcanobadge" }
+    #   badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "earthbadge" }
     # items:
     #   selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
     #   selectedBagRow:    { type: "reference", address: 0x203AD06, size: 1, reference: "bagPockets" } #needs to be a reference
@@ -288,6 +298,20 @@ glossary:
     0x0F: Ice
     0x10: Dragon
     0x11: Dark
+  statusConditions:
+    0: null
+    1: Asleep
+    2: Asleep
+    3: Asleep
+    4: Asleep
+    5: Asleep
+    6: Asleep
+    7: Asleep
+    8: Poisoned
+    16: Burned
+    32: Frozen
+    64: Paralyzed
+    128: Badly Posioned
   battleOutcome:
     0x00: null #this will always be 0 when in battle; however, it is also set to 0 when you first load the ROM
     0x01: "Won"

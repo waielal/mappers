@@ -152,14 +152,14 @@ properties:
     pokedexSeen:   { type: "bitArray", address: 0xD30A, size: 19 }
     pokedexCaught: { type: "bitArray", address: 0xD2F7, size: 19 }
     badges:
-      boulderBadge: { type: "bit", address: 0xD356, position: 0 }
-      cascadeBadge: { type: "bit", address: 0xD356, position: 1 }
-      thunderBadge: { type: "bit", address: 0xD356, position: 2 }
-      rainbowBadge: { type: "bit", address: 0xD356, position: 3 }
-      soulBadge:    { type: "bit", address: 0xD356, position: 4 }
-      marshBadge:   { type: "bit", address: 0xD356, position: 5 }
-      volcanoBadge: { type: "bit", address: 0xD356, position: 6 }
-      earthBadge:   { type: "bit", address: 0xD356, position: 7 }
+      badge1: { type: "bit", address: 0xD356, position: 0, description: "boulderbadge" }
+      badge2: { type: "bit", address: 0xD356, position: 1, description: "cascadebadge" }
+      badge3: { type: "bit", address: 0xD356, position: 2, description: "thunderbadge" }
+      badge4: { type: "bit", address: 0xD356, position: 3, description: "rainbowbadge" }
+      badge5: { type: "bit", address: 0xD356, position: 4, description: "soulbadge" }
+      badge6: { type: "bit", address: 0xD356, position: 5, description: "marshbadge" }
+      badge7: { type: "bit", address: 0xD356, position: 6, description: "volcanobadge" }
+      badge8: { type: "bit", address: 0xD356, position: 7, description: "earthbadge" }
     starterPokemon:   { type: "reference", address: 0xD717, size: 1, reference: "pokemonSpecies", description: "The starter Pokemon received from Oak."}
     joypadSimulation: { type: "bool", address: 0xCD39, description: "Setting this to true will disable collision for your character." }
 
