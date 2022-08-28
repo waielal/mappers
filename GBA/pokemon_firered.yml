@@ -8,33 +8,33 @@ macros:
   pokemonInParty:
     #MAIN DATA
     personalityValue: { offset: 0, type: "uint", size: 4 }
-    # nature:   { offset: 0, type: "reference", size: 4, postprocessor: "x % 25", reference: "natures" } #nature is derived from the personality value modulo 25
+    # nature:   { offset: 0, type: "int", size: 4, postprocessor: "x % 25", reference: "natures" } #nature is derived from the personality value modulo 25
     otID:     { offset: 4, type: "uint", size: 4 }
     nickname: { offset: 8, type: "string", size: 10}
-    language: { offset: 18, type: "reference", size: 1, reference: "language" }
-    eggName:  { offset: 19, type: "int", size: 1 }
+    language: { offset: 18, type: "int", reference: "language" }
+    eggName:  { offset: 19, type: "int" }
     otName:   { offset: 20, type: "string", size: 7 }
-    markings: { offset: 27, type: "int", size: 1 }
+    markings: { offset: 27, type: "int" }
     checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     
     #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
     #BLOCK1-GROWTH
-    species:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "reference", size: 2, reference: "pokemon" }
-    itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "reference", size: 2, reference: "items" }
+    species:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
+    itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "int", size: 2, reference: "items" }
     expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
     # ppBonuses:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int" } #needs to be sorted out
     friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
     #unknown:    { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
 
     #BLOCK2-Attacks
-    move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "reference", size: 2, reference: "moves" }
-    move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "reference", size: 2, reference: "moves" }
-    move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "reference", size: 2, reference: "moves" }
-    move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "reference", size: 2, reference: "moves" }
-    move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int", size: 1 }
-    move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int", size: 1 }
-    move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int", size: 1 }
-    move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int", size: 1 }
+    move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "int", size: 2, reference: "moves" }
+    move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "int", size: 2, reference: "moves" }
+    move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "int", size: 2, reference: "moves" }
+    move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "int", size: 2, reference: "moves" }
+    move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int" }
+    move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int" }
+    move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int" }
+    move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int" }
 
     #BLOCK3-EVs & Condition
     evHp:             { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
@@ -64,17 +64,17 @@ macros:
     statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
   
   battleStructure: #there may be data in this structure before the species value
-    species:  { offset: 0, type: "reference", size: 2, reference: "pokemon" }
-    ability:  { offset: 32, type: "reference", size: 1, reference: "abilities" }
-    heldItem: { offset: 46, type: "reference", size: 2, reference: "items" }
-    move1: { offset: 12, type: "reference", size: 2, reference: "moves" }
-    move2: { offset: 14, type: "reference", size: 2, reference: "moves" }
-    move3: { offset: 16, type: "reference", size: 2, reference: "moves" }
-    move4: { offset: 18, type: "reference", size: 2, reference: "moves" }
-    move1pp: { offset: 36, type: "int", size: 1 }
-    move2pp: { offset: 37, type: "int", size: 1 }
-    move3pp: { offset: 38, type: "int", size: 1 }
-    move4pp: { offset: 39, type: "int", size: 1 }
+    species:  { offset: 0, type: "int", size: 2, reference: "pokemon" }
+    ability:  { offset: 32, type: "int", reference: "abilities" }
+    heldItem: { offset: 46, type: "int", size: 2, reference: "items" }
+    move1: { offset: 12, type: "int", size: 2, reference: "moves" }
+    move2: { offset: 14, type: "int", size: 2, reference: "moves" }
+    move3: { offset: 16, type: "int", size: 2, reference: "moves" }
+    move4: { offset: 18, type: "int", size: 2, reference: "moves" }
+    move1pp: { offset: 36, type: "int" }
+    move2pp: { offset: 37, type: "int" }
+    move3pp: { offset: 38, type: "int" }
+    move4pp: { offset: 39, type: "int" }
     maxHp:           { offset: 44, type: "int", size: 2 }
     hp:              { offset: 40, type: "int", size: 2 }
     attack:          { offset: 2, type: "int", size: 2 }
@@ -83,25 +83,25 @@ macros:
     specialAttack:   { offset: 8, type: "int", size: 2 }
     specialDefense:  { offset: 10, type: "int", size: 2 }
     # unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
-    modUnknown:             { offset: 24, type: "reference", size: 1, reference: "stageModifiers" } #probably critical hit mod
-    modStageAttack:         { offset: 25, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageDefense:        { offset: 26, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpeed:          { offset: 27, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpecialAttack:  { offset: 28, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageSpecialDefense: { offset: 29, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageAccuracy: { offset: 30, type: "reference", size: 1, reference: "stageModifiers" }
-    modStageEvasion:  { offset: 31, type: "reference", size: 1, reference: "stageModifiers" }
+    modUnknown:             { offset: 24, type: "int", reference: "stageModifiers" } #probably critical hit mod
+    modStageAttack:         { offset: 25, type: "int", reference: "stageModifiers" }
+    modStageDefense:        { offset: 26, type: "int", reference: "stageModifiers" }
+    modStageSpeed:          { offset: 27, type: "int", reference: "stageModifiers" }
+    modStageSpecialAttack:  { offset: 28, type: "int", reference: "stageModifiers" }
+    modStageSpecialDefense: { offset: 29, type: "int", reference: "stageModifiers" }
+    modStageAccuracy: { offset: 30, type: "int", reference: "stageModifiers" }
+    modStageEvasion:  { offset: 31, type: "int", reference: "stageModifiers" }
     focusEnergy:      { offset: 82, type: "bit", position: 4 }
-    type1:   { offset: 33, type: "reference", size: 1, reference: "pokemonTypes" }
-    type2:   { offset: 34, type: "reference", size: 1, reference: "pokemonTypes" }
-    # unknownValue2: { offset: 35, type: "int", size: 1 }
+    type1:   { offset: 33, type: "int", reference: "pokemonTypes" }
+    type2:   { offset: 34, type: "int", reference: "pokemonTypes" }
+    # unknownValue2: { offset: 35, type: "int" }
     # unknownValue3: { offset: 42, type: "int", size: 2 }
 
 properties:
   player:
-    # playerId:  { type: "string", address: 0x020228CC, size: 2, reference: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    # playerId:  { type: "string", address: 0x020228CC, size: 2, int: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     name:      { type: "string", size: 8, preprocessor: "dma_967d10cc(0x0300500C, 0)" }
-    gender:    { type: "reference", size: 1, preprocessor: "dma_967d10cc(0x0300500C, 8)", reference: "gender" }
+    gender:    { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 8)", reference: "gender" }
     teamCount: { type: "int", address: 0x20244E9 }
     team:
       - { type: "macro", address: 0x2024284, macro: "pokemonInParty" }
@@ -120,32 +120,32 @@ properties:
     #   badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "volcanobadge" }
     #   badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "earthbadge" }
     # items:
-    #   selectedBagPocket: { type: "reference", address: 0x203AD02, size: 1, reference: "bagPockets"}
-    #   selectedBagRow:    { type: "reference", address: 0x203AD06, size: 1, reference: "bagPockets" } #needs to be a reference
+    #   selectedBagPocket: { type: "int", address: 0x203AD02, reference: "bagPockets"}
+    #   selectedBagRow:    { type: "int", address: 0x203AD06, reference: "bagPockets" } #needs to be a reference
     #   safariBalls:       { type: "int", address: 0x02039994 }
   # overworld:
-  #   walkRunState: { type: "reference", address: 0x2037078, size: 1, reference: "walkRunState"}
-  #   safariSteps:  { type: "int", address: 0x02039996, size: 1 }
+  #   walkRunState: { type: "int", address: 0x2037078, reference: "walkRunState"}
+  #   safariSteps:  { type: "int", address: 0x02039996 }
   #   pokemart:
   #     items:
-  #       item1: { type: "reference", address: 0x02039938, size: 1, reference: "items"}
-  #       item2: { type: "reference", address: 0x02039939, size: 1, reference: "items"}
-  #       item3: { type: "reference", address: 0x0203993A, size: 1, reference: "items"}
-  #       item4: { type: "reference", address: 0x0203993B, size: 1, reference: "items"}
-  #       item5: { type: "reference", address: 0x0203993C, size: 1, reference: "items"}
-  #       item6: { type: "reference", address: 0x0203993D, size: 1, reference: "items"}
-  #       item7: { type: "reference", address: 0x0203993E, size: 1, reference: "items"}
-  #       item8: { type: "reference", address: 0x0203993F, size: 1, reference: "items"}
+  #       item1: { type: "int", address: 0x02039938, reference: "items"}
+  #       item2: { type: "int", address: 0x02039939, reference: "items"}
+  #       item3: { type: "int", address: 0x0203993A, reference: "items"}
+  #       item4: { type: "int", address: 0x0203993B, reference: "items"}
+  #       item5: { type: "int", address: 0x0203993C, reference: "items"}
+  #       item6: { type: "int", address: 0x0203993D, reference: "items"}
+  #       item7: { type: "int", address: 0x0203993E, reference: "items"}
+  #       item8: { type: "int", address: 0x0203993F, reference: "items"}
   battle:
-    # type: { type: "reference", address: 0x20386AC, size: 1 } #maybe size 2, reference type - needs a glossary built
-    # animationTurn: { type: "reference", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
-    # specialType: { type: "reference", address: 0xD059, reference: "specialBattleTypes" }
-    # lowHealthAlarm: { type: "reference", address: 0xCCF6, size: 1, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
+    # type: { type: "int", address: 0x20386AC } #maybe size 2, reference type - needs a glossary built
+    # animationTurn: { type: "int", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
+    # specialType: { type: "int", address: 0xD059, reference: "specialBattleTypes" }
+    # lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      # class: { type: "reference", address: 0xD030, size: 1, reference: "trainerClasses" }
-      # number: { type: "int", address: 0xD05C, size: 1 }
+      # class: { type: "int", address: 0xD030, reference: "trainerClasses" }
+      # number: { type: "int", address: 0xD05C }
       # name: { type: "string", address: 0xD049, size: 11 }
-      # gymLeader: { type: "int", address: 0xD05B, size: 1 }
+      # gymLeader: { type: "int", address: 0xD05B }
       totalPokemon: { type: "int", address: 0x2024029 }
       team:
         - { type: "macro", address: 0x202402C, macro: "pokemonInParty" }
@@ -159,9 +159,9 @@ properties:
     enemyPokemon:       { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
     enemySecondPokemon: { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
     turnInfo:
-      battleWeather: { type: "reference", address: 0x2023F1C, reference: "battleWeather" } 
+      battleWeather: { type: "int", address: 0x2023F1C, reference: "battleWeather" } 
       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
-      battleOutcome: { type: "int", address: 0x2023e8a, size: 1 }
+      battleOutcome: { type: "int", address: 0x2023e8a }
   
   gameTime:
     gameTimeHours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
