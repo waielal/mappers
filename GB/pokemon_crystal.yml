@@ -5,11 +5,11 @@ meta:
   gamePlatform: "GB"
 
 macros:
-  pokemonMarco:
+  pokemonMacro:
     species:       { offset: 0, type: "reference", reference: "pokemonSpecies" }
     pokedexNumber: { offset: 0, type: "reference", reference: "pokemonPokedexNumbers" }
   pokemonInParty:
-    species:         { offset: 0, type: "reference", reference: "pokemon" }
+    _:               { offset: 0, type: "macro", macro: "pokemonMacro" }
     level:           { offset: 31, type: "int", size: 1 }
     expPoints:       { offset: 8, type: "int", size: 3 }
     friendship:      { offset: 27, type: "int", size: 1 }
@@ -87,7 +87,7 @@ macros:
     # Field2f: { offset: 46, type: "int", size: 1 }
     # Field30: { offset: 47, type: "int", size: 1 }
   roamer:
-    species:   { offset: 0, type: "reference", reference: "pokemon" }
+    _:         { offset: 0, type: "macro", macro: "pokemonMacro" }
     level:     { offset: 1, type: "int", size: 1 }
     mapGroup:  { offset: 2, type: "reference", size: 1, reference: "mapGroups" }
     mapNumber: { offset: 3, type: "int", size: 1 }
@@ -284,12 +284,12 @@ properties:
       class: { type: "reference", address: 0xD22F, size: 1, reference: "trainerClasses" }
       id:    { type: "int", address: 0xD231, size: 1 }
       totalPokemon: { type: "int", address: 0xD280, size: 1 }
-      slot1: { type: "reference", address: 0xD281, size: 1, reference: "pokemon" }
-      slot2: { type: "reference", address: 0xD282, size: 1, reference: "pokemon" }
-      slot3: { type: "reference", address: 0xD283, size: 1, reference: "pokemon" }
-      slot4: { type: "reference", address: 0xD284, size: 1, reference: "pokemon" }
-      slot5: { type: "reference", address: 0xD285, size: 1, reference: "pokemon" }
-      slot6: { type: "reference", address: 0xD286, size: 1, reference: "pokemon" }
+      slot1: { type: "reference", address: 0xD281, size: 1, reference: "pokemonSpecies" }
+      slot2: { type: "reference", address: 0xD282, size: 1, reference: "pokemonSpecies" }
+      slot3: { type: "reference", address: 0xD283, size: 1, reference: "pokemonSpecies" }
+      slot4: { type: "reference", address: 0xD284, size: 1, reference: "pokemonSpecies" }
+      slot5: { type: "reference", address: 0xD285, size: 1, reference: "pokemonSpecies" }
+      slot6: { type: "reference", address: 0xD286, size: 1, reference: "pokemonSpecies" }
     yourPokemon:
       # heldItem:  { type: "reference", address: 0xXXXX, size: 1, reference: "items" } # needs crystal memory location
       # hp: { type: "int", address: 0xXXXX, size: 2 } # needs crystal memory location
@@ -320,7 +320,7 @@ properties:
       move3ppUp: { type: "int", address: 0xC636, postprocessor: "Floor(x / 64)" }
       move4ppUp: { type: "int", address: 0xC637, postprocessor: "Floor(x / 64)" }
     enemyPokemon:
-      species: { type: "reference", address: 0xd206, reference: "pokemon" }
+      species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
       # type1: { type: "reference", address: 0xD127, size: 1, reference: "types" } #need crystal memory address
       # type2: { type: "reference", address: 0xD128, size: 1, reference: "types" } #need crystal memory address
       heldItem:    { type: "reference", address: 0xd207, size: 1, reference: "items" }
