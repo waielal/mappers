@@ -118,21 +118,21 @@ macros:
 
 properties:
   player:
-    name:      { type: "string", address: 0xD1571 }
+    name:      { type: "string", address: 0xD157, size: 11 }
     playerId:  {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     teamCount: { type: "int", address: 0xD162 }
     team:
-      - nickname: { type: "string", address: 0xD2B41 }
+      - nickname: { type: "string", address: 0xD2B4, size: 11 }
         _:        { type: "macro", address: 0xD16A, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2BF1 }
+      - nickname: { type: "string", address: 0xD2BF, size: 11 }
         _:        { type: "macro", address: 0xD196, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2CA1 }
+      - nickname: { type: "string", address: 0xD2CA, size: 11 }
         _:        { type: "macro", address: 0xD1C2, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2D51 }
+      - nickname: { type: "string", address: 0xD2D5, size: 11 }
         _:        { type: "macro", address: 0xD1EE, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2E01 }
+      - nickname: { type: "string", address: 0xD2E0, size: 11 }
         _:        { type: "macro", address: 0xD21A, macro: "pokemonInParty" }
-      - nickname: { type: "string", address: 0xD2EB1 }
+      - nickname: { type: "string", address: 0xD2EB, size: 11 }
         _:        { type: "macro", address: 0xD246, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD31C }
     items:
@@ -158,8 +158,8 @@ properties:
       - { type: "macro", address: 0xD343, macro: "playerItem" }
     money:           { type: "binaryCodedDecimal", address: 0xD346, size: 3 }
     gameCornerCoins: { type: "binaryCodedDecimal", address: 0xD5A3, size: 2 }
-    pokedexSeen:   { type: "bitArray", address: 0xD3099 }
-    pokedexCaught: { type: "bitArray", address: 0xD2F69 }
+    pokedexSeen:   { type: "bitArray", address: 0xD309, size: 19 }
+    pokedexCaught: { type: "bitArray", address: 0xD2F6, size: 19 }
     badges:
       badge1: { type: "bit", address: 0xD355, position: 0, description: "boulderbadge" }
       badge2: { type: "bit", address: 0xD355, position: 1, description: "cascadebadge" }
@@ -428,7 +428,7 @@ properties:
     specialType:    { type: "int", address: 0xD059, reference: "specialBattleTypes" }
     lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      name:         { type: "string", address: 0xD0491 }
+      name:         { type: "string", address: 0xD049, size: 11 }
       class:        { type: "int", address: 0xD030, reference: "trainerClasses" }
       number:       { type: "int", address: 0xD05C }
       gymLeader:    { type: "int", address: 0xD05B }
@@ -441,16 +441,16 @@ properties:
         - { type: "int", address: 0xD8A0, reference: "pokemonSpecies" }
         - { type: "int", address: 0xD8A1, reference: "pokemonSpecies" }
     yourPokemon:
-      nickname: { type: "string", address: 0xD0081 }
+      nickname: { type: "string", address: 0xD008, size: 11 }
       species:  { type: "int", address: 0xD013, reference: "pokemonSpecies" }
       type1:   { type: "int", address: 0xD018, reference: "pokemonTypes" } #need memory addresses
       type2:   { type: "int", address: 0xD019, reference: "pokemonTypes" } #need memory addresses
-      modStageAttack:   { type: "int", address: 0xCD1a, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageDefense:  { type: "int", address: 0xCD1b, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageSpeed:    { type: "int", address: 0xCD1c, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageSpecial:  { type: "int", address: 0xCD1d, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageAccuracy: { type: "int", address: 0xCD1e, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageEvasion:  { type: "int", address: 0xCD1f, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageAttack:   { type: "int", address: 0xCD1A, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageDefense:  { type: "int", address: 0xCD1B, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageSpeed:    { type: "int", address: 0xCD1C, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageSpecial:  { type: "int", address: 0xCD1D, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageAccuracy: { type: "int", address: 0xCD1E, reference: "stageModifiers" } #test, are they really the same in RB and Y?
+      modStageEvasion:  { type: "int", address: 0xCD1F, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       battleStatHp:      { type: "int", address: 0xD014, size: 2 }
       battleStatMaxHp:   { type: "int", address: 0xD022, size: 2 }
       battleStatAttack:  { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
@@ -640,45 +640,45 @@ properties:
         pkmn19: { type: "int", address: 0xDA92, reference: "pokemonSpecies" }
         pkmn20: { type: "int", address: 0xDA93, reference: "pokemonSpecies" }
       currentBox: #other boxes cannot be pulled because they exist in the other memory banks
-        - nickname: { type: "string", address: 0xDE051 }
+        - nickname: { type: "string", address: 0xDE05, size: 11 }
           _:        { type: "macro", address: 0xDA95, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE101 }
+        - nickname: { type: "string", address: 0xDE10, size: 11 }
           _:        { type: "macro", address: 0xDAB6, macro: "storedPokemon" }    
-        - nickname: { type: "string", address: 0xDE1B1 }
+        - nickname: { type: "string", address: 0xDE1B, size: 11 }
           _:        { type: "macro", address: 0xDAD7, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDE261 }
+        - nickname: { type: "string", address: 0xDE26, size: 11 }
           _:        { type: "macro", address: 0xDAF8, macro: "storedPokemon" }    
-        - nickname: { type: "string", address: 0xDE311 }
+        - nickname: { type: "string", address: 0xDE31, size: 11 }
           _:        { type: "macro", address: 0xDB19, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE3C1 }
+        - nickname: { type: "string", address: 0xDE3C, size: 11 }
           _:        { type: "macro", address: 0xDB3A, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE471 }
+        - nickname: { type: "string", address: 0xDE47, size: 11 }
           _:        { type: "macro", address: 0xDB5B, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDE521 }
+        - nickname: { type: "string", address: 0xDE52, size: 11 }
           _:        { type: "macro", address: 0xDB7C, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE5D1 }
+        - nickname: { type: "string", address: 0xDE5D, size: 11 }
           _:        { type: "macro", address: 0xDB9D, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDE681 }
+        - nickname: { type: "string", address: 0xDE68, size: 11 }
           _:        { type: "macro", address: 0xDBBE, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE731 }
+        - nickname: { type: "string", address: 0xDE73, size: 11 }
           _:        { type: "macro", address: 0xDBDF, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE7E1 }
+        - nickname: { type: "string", address: 0xDE7E, size: 11 }
           _:        { type: "macro", address: 0xDC00, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE891 }
+        - nickname: { type: "string", address: 0xDE89, size: 11 }
           _:        { type: "macro", address: 0xDC21, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDE941 }
+        - nickname: { type: "string", address: 0xDE94, size: 11 }
           _:        { type: "macro", address: 0xDC42, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDE9F1 }
+        - nickname: { type: "string", address: 0xDE9F, size: 11 }
           _:        { type: "macro", address: 0xDC63, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDEAA1 }
+        - nickname: { type: "string", address: 0xDEAA, size: 11 }
           _:        { type: "macro", address: 0xDC84, macro: "storedPokemon" }
-        - nickname: { type: "string", address: 0xDEB51 }
+        - nickname: { type: "string", address: 0xDEB5, size: 11 }
           _:        { type: "macro", address: 0xDCA5, macro: "storedPokemon" }  
-        - nickname: { type: "string", address: 0xDEC01 }
+        - nickname: { type: "string", address: 0xDEC0, size: 11 }
           _:        { type: "macro", address: 0xDCC6, macro: "storedPokemon" } 
-        - nickname: { type: "string", address: 0xDECB1 }
+        - nickname: { type: "string", address: 0xDECB, size: 11 }
           _:        { type: "macro", address: 0xDCE7, macro: "storedPokemon" }   
-        - nickname: { type: "string", address: 0xDED61 }
+        - nickname: { type: "string", address: 0xDED6, size: 11 }
           _:        { type: "macro", address: 0xDD08, macro: "storedPokemon" }   
     itemStorage:
       itemCount: { type: "int", address: 0xD539 }
