@@ -119,7 +119,7 @@ macros:
 properties:
   player:
     name:      { type: "string", address: 0xD158, size: 11 }
-    playerId:  {type: "int", address: 0xD35A, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    playerId:  {type: "int", address: 0xD359, size: 2, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     teamCount: { type: "int", address: 0xD163 }
     team:
       - nickname: { type: "string", address: 0xD2B5, size: 11 }
@@ -170,8 +170,8 @@ properties:
       badge7: { type: "bit", address: 0xD356, position: 6, description: "volcanobadge" }
       badge8: { type: "bit", address: 0xD356, position: 7, description: "earthbadge" }
     starterPokemon: { type: "int", address: 0xD717, reference: "pokemonSpecies", description: "The starter Pokemon received from Oak."}
-    joypadSimulation: { type: "bool", address: 0xCD39, description: "Setting this to true will disable collision for your character." }
-    joypadIgnore:     { type: "int", address: 0xCD6C, description:
+    joypadSimulation: { type: "bool", address: 0xCD38, description: "Setting this to true will disable collision for your character." }
+    joypadIgnore:     { type: "int", address: 0xCD6B, description:
         "Buttons to ignore in the joypad (bit mask). Each button corresponds to the following bits:
           * A Button:    bit 0 (0x01, dec 1)
           * B Button:    bit 1 (0x02, dec 2)
@@ -187,8 +187,8 @@ properties:
           * 0xFC: only A and B are allowed" }
   overworld:
     map: { type: "int", address: 0xD35E, reference: "maps" }
-    y: { type: "int", address: 0xD35F }
-    x: { type: "int", address: 0xD360 }
+    y: { type: "int", address: 0xD361 }
+    x: { type: "int", address: 0xD362 }
     encounterRate: { type: "int", address: 0xD887 }
     encounters:
       common:
@@ -219,7 +219,7 @@ properties:
       lastMapLocation: { type: "int", address: 0xD366, size: 1, reference: "maps" } #test
 
   events:
-  overworldFlags:
+    overworldFlags:
       countPlayTime: { type: "bit", address: 0xD731, position: 0, description: "play time being counted" }
       debugMode: { type: "bit", address: 0xD731, position: 1, description: 
           "Only set by the debug build. If true:
@@ -328,7 +328,7 @@ properties:
     #   bit2Unknown7: { type: "bit", address: 0xD85F, position: 6 }
     #   bit2Unknown8: { type: "bit", address: 0xD85F, position: 7 }
   trainers: #DO NO FREEZE THESE PROPERTIES OR TRAINERS WILL ENDLESSLY BATTLE YOU
-      viridianForest:
+    viridianForest:
       # unknown1:     { type: "bit", address: 0xD7F3, position: 0 } #Scott's Thoughts: delete if nothing on final pass
       # unknown2:     { type: "bit", address: 0xD7F3, position: 1 } #Scott's Thoughts: delete if nothing on final pass
       bugcatcher1:  { type: "bit", address: 0xD7F3, position: 2 }
@@ -426,7 +426,7 @@ properties:
     type:           { type: "int", address: 0xD057, reference: "battleTypes" }
     animationTurn:  { type: "int", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType:    { type: "int", address: 0xD05A, reference: "specialBattleTypes" }
-    lowHealthAlarm: { type: "int", address: 0xCCF5, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
+    lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
       name:         { type: "string", address: 0xD04A, size: 11 }
       class:        { type: "int", address: 0xD031, reference: "trainerClasses" }
