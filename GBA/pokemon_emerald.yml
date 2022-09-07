@@ -5,26 +5,47 @@ meta:
   gamePlatform: "GBA"
 
 macros:
+  pokemonMacro:
+    species:       { offset: 0, type: "int", size: 2, reference: "pokemonSpecies" }
+    pokedexNumber: { offset: 0, type: "int", size: 2, reference: "pokemonPokedexNumbers" }
+  pokemonMacroEncrypted:
+    species:       { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonSpecies" }
+    pokedexNumber: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonPokedexNumbers" }
   pokemonInParty:
     #MAIN DATA
     personalityValue: { offset: 0, type: "uint", size: 4 }
-    # nature:   { offset: 0, type: "int", size: 4, postprocessor: "x % 25", reference: "natures" } #nature is derived from the personality value modulo 25
+    nature:   { offset: 0, type: "uint", size: 4, postprocessor: "x % 25" }
     otID:     { offset: 4, type: "uint", size: 4 }
     nickname: { offset: 8, type: "string", size: 10}
     language: { offset: 18, type: "int", reference: "language" }
-    eggName:  { offset: 19, type: "int", }
+    eggName:  { offset: 19, type: "int" }
     otName:   { offset: 20, type: "string", size: 7 }
-    markings: { offset: 27, type: "int", }
+    markings: { offset: 27, type: "int" }
     checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     
     #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
     #BLOCK1-GROWTH
-    species:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
+    _: { offset: 0, type: "macro", macro: "pokemonMacroEncrypted" }
+    speciesArray:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
     itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "int", size: 2, reference: "items" }
     expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
-    # ppBonuses:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int" } #needs to be sorted out
+    move1ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "x & 3" }
+    move2ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 12) >> 2" }
+    move3ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 48) >> 4" }
+    move4ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 192) >> 6" }
     friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
     # unknown:    { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
+
+    # bitwise masking - pairs of 2 bytes
+    # 00000011 3   (no shift) formula: (x & 3)
+    # 00001100 12  (>>2)      formula: (x & 12) >> 2
+    # 00110000 48  (>>4)      formula: (x & 48) >> 4
+    # 11000000 192 (>>6)      formula: (x & 192) >> 6
+
+    # bisewise nybble masking
+    # 00001111 15 (>>0)  formula: (x & 15)
+    # 11110000 240 (>>4) formula: (x & 240) >> 4
+
 
     #BLOCK2-Attacks
     move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "int", size: 2, reference: "moves" }
@@ -48,10 +69,24 @@ macros:
     # pokerusStatus:    { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
     # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
     # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
-    # IVsEggAbility:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4} #bits
+    # ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
+    ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
+    ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
+    ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
+    ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 3968) >> 7"}
+    ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 496) >> 4"}
+    ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 15872) >> 9"}
+    isEgg: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 6 }
+    ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
 
-    #MAIN DATA #to be sorted later
+    # 0x20244EC
+    #   202450C-block1
+    #   2024518-block2
+    #   2024524-block3
+    #   2024530-block4
+
+    #MAIN DATA
     level:   { offset: 84, type: "int" }
     pokerus: { offset: 85, type: "int" }
     hp:             { offset: 86, type: "int", size: 2 }
@@ -64,7 +99,8 @@ macros:
     statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
       
   battleStructure: #there may be data in this structure before the species value
-    species:  { offset: 0, type: "int", size: 2, reference: "pokemon" }
+    _: { offset: 0, type: "macro", macro: "pokemonMacro" }
+    speciesArray: { offset: 0, type: "int", size: 2, reference: "pokemon" }
     ability:  { offset: 32, type: "int", reference: "abilities" }
     heldItem: { offset: 46, type: "int", size: 2, reference: "items" }
     move1: { offset: 12, type: "int", size: 2, reference: "moves" }
@@ -99,7 +135,7 @@ macros:
 
 properties:
   player:
-    # playerId:  {type: "int", address: 0xD359, description: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    # playerId:  { type: "string", address: 0x020228CC, size: 2, int: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
     name:      { type: "string", size: 8, preprocessor: "dma_967d10cc(0x03005D90, 0)", characterMap: "defaultCharacterMap" }
     gender:    { type: "int", preprocessor: "dma_967d10cc(0x03005D90, 8)", reference: "gender" }
     teamCount: { type: "int", address: 0x20244E9 }
@@ -110,10 +146,6 @@ properties:
       - { type: "macro", address: 0x2024618, macro: "pokemonInParty" }
       - { type: "macro", address: 0x202467C, macro: "pokemonInParty" }
       - { type: "macro", address: 0x20246E0, macro: "pokemonInParty" }
-    # items: #imported from FireRed to ensure same structure - do not use these addresses
-    #   selectedBagPocket: { type: "int", address: 0x203AD02, reference: "bagPockets"}
-    #   selectedBagRow:    { type: "int", address: 0x203AD06, reference: "bagPockets" } #needs to be a reference
-    #   safariBalls:       { type: "int", address: 0x02039994 }
     badges:
       badge1: { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8890)", description: "stonebadge"} 
       badge2: { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8890)", description: "knucklebadge"}
@@ -123,6 +155,10 @@ properties:
       badge6: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8890)", description: "featherbadge"}
       badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8890)", description: "mindbadge"}
       badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8890)", description: "rainbadge"}
+    # items: #imported from FireRed to ensure same structure - do not use these addresses
+    #   selectedBagPocket: { type: "int", address: 0x203AD02, reference: "bagPockets"}
+    #   selectedBagRow:    { type: "int", address: 0x203AD06, reference: "bagPockets" } #needs to be a reference
+    #   safariBalls:       { type: "int", address: 0x02039994 }
   overworld:
     walkRunState: { type: "int", address: 0x2037078, reference: "walkRunState"}
     safariSteps:  { type: "int", address: 0x02039996 }
@@ -154,7 +190,6 @@ properties:
         - { type: "macro", address: 0x202474A, macro: "pokemonInParty" }
         - { type: "macro", address: 0x202474C, macro: "pokemonInParty" }
         - { type: "macro", address: 0x202474E, macro: "pokemonInParty" }
-
     yourPokemon:        { type: "macro", address: 0x2024084, macro: "battleStructure" }
     yourSecondPokemon:  { type: "macro", address: 0x2024134, macro: "battleStructure" }
     enemyPokemon:       { type: "macro", address: 0x20240DC, macro: "battleStructure" }
@@ -163,6 +198,9 @@ properties:
       battleWeather: { type: "int", address: 0x20243cc, reference: "battleWeather" }
       battleWeatherTurnCounter: { type: "int", address: 0x20243F8 }
       battleOutcome: { type: "int", address: 0x202433a, reference: "battleOutcome" } #Unknown values currently
+      battleBackgroundTiles: { type: "int", address: 0x202305c, size: 4 }
+      battleBackgroundTilesBuffer: { type: "int", address: 0x2023060, size: 4 }
+      battleDialogue: { type: "int", address: 0x2023064, reference: battleDialogue } #Scott's Thoughts only
 
   events:
     rayquazaAwakeOW:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8742)" } #0x50 in documentation of events https://www.pokecommunity.com/showthread.php?t=330008
@@ -506,24 +544,17 @@ glossary:
     0x04: "Ran"
   battleWeather:
     0:   null
-    1:   "RAIN"
-    8:   "SANDSTORM"
-    32:  "SUNNY"
-    128: "HAIL"
-  statusConditions:
-    0: null
-    1: Asleep
-    2: Asleep
-    3: Asleep
-    4: Asleep
-    5: Asleep
-    6: Asleep
-    7: Asleep
-    8: Poisoned
-    16: Burned
-    32: Frozen
-    64: Paralyzed
-    128: Badly Posioned
+    1:   "Rain"
+    8:   "Sandstorm"
+    32:  "Sunny"
+    128: "Hail"
+  battleDialogue: #Scott's Thoughts only
+    0x00: null
+    0x10: "Player Not In Control"
+    0x12: "Player Control"
+    0x14: "Selecting Move"
+    0x15: "Bag"
+    0x16: "Party Screen"
   statusConditions:
     0: null
     1: Asleep
@@ -2429,7 +2460,7 @@ glossary:
     0x09: Blastoise
     0x0A: Caterpie"
     0x0B: Metapod
-    0x0C: Butterfree"
+    0x0C: Butterfree
     0x0D: Weedle
     0x0E: Kakuna
     0x0F: Beedrill
@@ -2522,7 +2553,7 @@ glossary:
     0x66: Exeggcute
     0x67: Exeggutor
     0x68: Cubone
-    0x69: Marowak"
+    0x69: Marowak
     0x6A: Hitmonlee
     0x6B: Hitmonchan
     0x6C: Lickitung

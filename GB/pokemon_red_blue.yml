@@ -216,7 +216,7 @@ properties:
       tileset: { type: "int", address: 0xD367 } #reference
       height:  { type: "int", address: 0xD368 }
       width:   { type: "int", address: 0xD369 }
-      lastMapLocation: { type: "int", address: 0xD366, size: 1, reference: "maps" } #test
+      lastMapLocation: { type: "int", address: 0xD366, reference: "maps" } #test
 
   events:
     overworldFlags:
@@ -327,91 +327,91 @@ properties:
     #   bit2Unknown6: { type: "bit", address: 0xD85F, position: 5 }
     #   bit2Unknown7: { type: "bit", address: 0xD85F, position: 6 }
     #   bit2Unknown8: { type: "bit", address: 0xD85F, position: 7 }
-  trainers: #DO NO FREEZE THESE PROPERTIES OR TRAINERS WILL ENDLESSLY BATTLE YOU
-    viridianForest:
-      # unknown1:     { type: "bit", address: 0xD7F3, position: 0 } #Scott's Thoughts: delete if nothing on final pass
-      # unknown2:     { type: "bit", address: 0xD7F3, position: 1 } #Scott's Thoughts: delete if nothing on final pass
-      bugcatcher1:  { type: "bit", address: 0xD7F3, position: 2 }
-      bugcatcher2:  { type: "bit", address: 0xD7F3, position: 3 }
-      bugcatcher3:  { type: "bit", address: 0xD7F3, position: 4 }
-      lass19:       { type: "bit", address: 0xD7F3, position: 5 } #check trainer number
-      bugcatcher15: { type: "bit", address: 0xD7F3, position: 6 }
-      # unknown8:     { type: "bit", address: 0xD7F3, position: 7 } #Scott's Thoughts: delete if nothing on final pass
-    pewterCityGym:
-      unknown1:       { type: "bit", address: 0xD755, position: 0 } #Scott's Thoughts: delete if nothing on final pass
-      unknown2:       { type: "bit", address: 0xD755, position: 1 } #Scott's Thoughts: delete if nothing on final pass
-      jrTrainerM1:    { type: "bit", address: 0xD755, position: 2 }
-      unknown4:       { type: "bit", address: 0xD755, position: 3 } #Scott's Thoughts: delete if nothing on final pass
-      unknown5:       { type: "bit", address: 0xD755, position: 4 } #Scott's Thoughts: delete if nothing on final pass
-      unknown6:       { type: "bit", address: 0xD755, position: 5 } #Scott's Thoughts: delete if nothing on final pass
-      tmReceived:     { type: "bit", address: 0xD755, position: 6 }
-      leaderDefeated: { type: "bit", address: 0xD755, position: 7 }
-    ceruleanCityGym:
-      # unknown1:       { type: "bit", address: 0xD75E, position: 0 } #Scott's Thoughts: delete if nothing on final pass
-      # unknown2:       { type: "bit", address: 0xD75E, position: 1 } #Scott's Thoughts: delete if nothing on final pass
-      jrTrainerF1:    { type: "bit", address: 0xD75E, position: 2 }
-      swimmer1:       { type: "bit", address: 0xD75E, position: 3 }
-      # unknown5:       { type: "bit", address: 0xD75E, position: 4 } #Scott's Thoughts: delete if nothing on final pass
-      # unknown6:       { type: "bit", address: 0xD75E, position: 5 } #Scott's Thoughts: delete if nothing on final pass
-      tmReceived:     { type: "bit", address: 0xD75E, position: 6 }
-      leaderDefeated: { type: "bit", address: 0xD75E, position: 7 }
-    vermilionCityGym:
-      gentleman3:     { type: "bit", address: 0xD773, position: 2 }
-      rocker1:        { type: "bit", address: 0xD773, position: 3 } 
-      sailor8:        { type: "bit", address: 0xD773, position: 4 }
-      tmReceived:     { type: "bit", address: 0xD773, position: 6 }
-      leaderDefeated: { type: "bit", address: 0xD773, position: 7 }
-    celadonCityGym:
-      tmReceived:     { type: "bit", address: 0xD77C, position: 0 }
-      leaderDefeated: { type: "bit", address: 0xD77C, position: 1 }
-      lass17:         { type: "bit", address: 0xD77C, position: 2 }
-      beauty1:        { type: "bit", address: 0xD77C, position: 3 }
-      jrTrainerF11:   { type: "bit", address: 0xD77C, position: 4 }
-      beauty2:        { type: "bit", address: 0xD77C, position: 5 }
-      lass18:         { type: "bit", address: 0xD77C, position: 6 }
-      beauty3:        { type: "bit", address: 0xD77C, position: 7 }
-      cooltrainerF1:  { type: "bit", address: 0xD77D, position: 0 }
-    fucshiaCityGym:
-      tmReceived:     { type: "bit", address: 0xD792, position: 0 }
-      leaderDefeated: { type: "bit", address: 0xD792, position: 1 }
-      juggler7:       { type: "bit", address: 0xD792, position: 2 }
-      juggler3:       { type: "bit", address: 0xD792, position: 3 }
-      juggler8:       { type: "bit", address: 0xD792, position: 4 }
-      tamer1:         { type: "bit", address: 0xD792, position: 5 }
-      tamer2:         { type: "bit", address: 0xD792, position: 6 }
-      juggler4:       { type: "bit", address: 0xD792, position: 7 }
-    # route15: D7DC
-    cinnabarIslandGym:
-      tmReceived:     { type: "bit", address: 0xD79A, position: 0 }
-      leaderDefeated: { type: "bit", address: 0xD79A, position: 1 }
-      superNerd9:     { type: "bit", address: 0xD79A, position: 2 }
-      burglar4:       { type: "bit", address: 0xD79A, position: 3 }
-      superNerd10:    { type: "bit", address: 0xD79A, position: 4 }
-      burglar5:       { type: "bit", address: 0xD79A, position: 5 }
-      superNerd11:    { type: "bit", address: 0xD79A, position: 6 }
-      burglar6:       { type: "bit", address: 0xD79A, position: 7 }
-      superNerd12:    { type: "bit", address: 0xD79B, position: 0 }
-    saffronCityGym:
-      tmReceived:     { type: "bit", address: 0xD7B3, position: 0 }
-      leaderDefeated: { type: "bit", address: 0xD7B3, position: 1 }
-      channeler22:    { type: "bit", address: 0xD7B3, position: 2 } #Top Middle
-      psychic1:       { type: "bit", address: 0xD7B3, position: 3 } #Top Right
-      channeler23:    { type: "bit", address: 0xD7B3, position: 4 } #Middle Left
-      psychic2:       { type: "bit", address: 0xD7B3, position: 5 } #Middle Right
-      channeler24:    { type: "bit", address: 0xD7B3, position: 6 } #Bottom Left
-      psychic3:       { type: "bit", address: 0xD7B3, position: 7 } #Bottom Right
-      psychic4:       { type: "bit", address: 0xD7B4, position: 0 } #Top Left
-    viridianCityGym:
-      tmReceived:     { type: "bit", address: 0xD751, position: 0 }
-      leaderDefeated: { type: "bit", address: 0xD751, position: 1 }
-      cooltrainerM9:  { type: "bit", address: 0xD751, position: 2 }
-      blackbelt6:     { type: "bit", address: 0xD751, position: 3 }
-      tamer3:         { type: "bit", address: 0xD751, position: 4 }
-      blackbelt7:     { type: "bit", address: 0xD751, position: 5 }
-      cooltrainerM10: { type: "bit", address: 0xD751, position: 6 }
-      blackbelt8:     { type: "bit", address: 0xD751, position: 7 }
-      tamer4:         { type: "bit", address: 0xD752, position: 0 }
-      coolTrainerM:   { type: "bit", address: 0xD752, position: 1 }
+  # trainers: #DO NO FREEZE THESE PROPERTIES OR TRAINERS WILL ENDLESSLY BATTLE YOU
+  #     viridianForest:
+  #     # unknown1:     { type: "bit", address: 0xD7F3, position: 0 } #Scott's Thoughts: delete if nothing on final pass
+  #     # unknown2:     { type: "bit", address: 0xD7F3, position: 1 } #Scott's Thoughts: delete if nothing on final pass
+  #     bugcatcher1:  { type: "bit", address: 0xD7F3, position: 2 }
+  #     bugcatcher2:  { type: "bit", address: 0xD7F3, position: 3 }
+  #     bugcatcher3:  { type: "bit", address: 0xD7F3, position: 4 }
+  #     lass19:       { type: "bit", address: 0xD7F3, position: 5 } #check trainer number
+  #     bugcatcher15: { type: "bit", address: 0xD7F3, position: 6 }
+  #     # unknown8:     { type: "bit", address: 0xD7F3, position: 7 } #Scott's Thoughts: delete if nothing on final pass
+  #   pewterCityGym:
+  #     unknown1:       { type: "bit", address: 0xD755, position: 0 } #Scott's Thoughts: delete if nothing on final pass
+  #     unknown2:       { type: "bit", address: 0xD755, position: 1 } #Scott's Thoughts: delete if nothing on final pass
+  #     jrTrainerM1:    { type: "bit", address: 0xD755, position: 2 }
+  #     unknown4:       { type: "bit", address: 0xD755, position: 3 } #Scott's Thoughts: delete if nothing on final pass
+  #     unknown5:       { type: "bit", address: 0xD755, position: 4 } #Scott's Thoughts: delete if nothing on final pass
+  #     unknown6:       { type: "bit", address: 0xD755, position: 5 } #Scott's Thoughts: delete if nothing on final pass
+  #     tmReceived:     { type: "bit", address: 0xD755, position: 6 }
+  #     leaderDefeated: { type: "bit", address: 0xD755, position: 7 }
+  #   ceruleanCityGym:
+  #     # unknown1:       { type: "bit", address: 0xD75E, position: 0 } #Scott's Thoughts: delete if nothing on final pass
+  #     # unknown2:       { type: "bit", address: 0xD75E, position: 1 } #Scott's Thoughts: delete if nothing on final pass
+  #     jrTrainerF1:    { type: "bit", address: 0xD75E, position: 2 }
+  #     swimmer1:       { type: "bit", address: 0xD75E, position: 3 }
+  #     # unknown5:       { type: "bit", address: 0xD75E, position: 4 } #Scott's Thoughts: delete if nothing on final pass
+  #     # unknown6:       { type: "bit", address: 0xD75E, position: 5 } #Scott's Thoughts: delete if nothing on final pass
+  #     tmReceived:     { type: "bit", address: 0xD75E, position: 6 }
+  #     leaderDefeated: { type: "bit", address: 0xD75E, position: 7 }
+  #   vermilionCityGym:
+  #     gentleman3:     { type: "bit", address: 0xD773, position: 2 }
+  #     rocker1:        { type: "bit", address: 0xD773, position: 3 } 
+  #     sailor8:        { type: "bit", address: 0xD773, position: 4 }
+  #     tmReceived:     { type: "bit", address: 0xD773, position: 6 }
+  #     leaderDefeated: { type: "bit", address: 0xD773, position: 7 }
+  #   celadonCityGym:
+  #     tmReceived:     { type: "bit", address: 0xD77C, position: 0 }
+  #     leaderDefeated: { type: "bit", address: 0xD77C, position: 1 }
+  #     lass17:         { type: "bit", address: 0xD77C, position: 2 }
+  #     beauty1:        { type: "bit", address: 0xD77C, position: 3 }
+  #     jrTrainerF11:   { type: "bit", address: 0xD77C, position: 4 }
+  #     beauty2:        { type: "bit", address: 0xD77C, position: 5 }
+  #     lass18:         { type: "bit", address: 0xD77C, position: 6 }
+  #     beauty3:        { type: "bit", address: 0xD77C, position: 7 }
+  #     cooltrainerF1:  { type: "bit", address: 0xD77D, position: 0 }
+  #   fucshiaCityGym:
+  #     tmReceived:     { type: "bit", address: 0xD792, position: 0 }
+  #     leaderDefeated: { type: "bit", address: 0xD792, position: 1 }
+  #     juggler7:       { type: "bit", address: 0xD792, position: 2 }
+  #     juggler3:       { type: "bit", address: 0xD792, position: 3 }
+  #     juggler8:       { type: "bit", address: 0xD792, position: 4 }
+  #     tamer1:         { type: "bit", address: 0xD792, position: 5 }
+  #     tamer2:         { type: "bit", address: 0xD792, position: 6 }
+  #     juggler4:       { type: "bit", address: 0xD792, position: 7 }
+  #   # route15: D7DC
+  #   cinnabarIslandGym:
+  #     tmReceived:     { type: "bit", address: 0xD79A, position: 0 }
+  #     leaderDefeated: { type: "bit", address: 0xD79A, position: 1 }
+  #     superNerd9:     { type: "bit", address: 0xD79A, position: 2 }
+  #     burglar4:       { type: "bit", address: 0xD79A, position: 3 }
+  #     superNerd10:    { type: "bit", address: 0xD79A, position: 4 }
+  #     burglar5:       { type: "bit", address: 0xD79A, position: 5 }
+  #     superNerd11:    { type: "bit", address: 0xD79A, position: 6 }
+  #     burglar6:       { type: "bit", address: 0xD79A, position: 7 }
+  #     superNerd12:    { type: "bit", address: 0xD79B, position: 0 }
+  #   saffronCityGym:
+  #     tmReceived:     { type: "bit", address: 0xD7B3, position: 0 }
+  #     leaderDefeated: { type: "bit", address: 0xD7B3, position: 1 }
+  #     channeler22:    { type: "bit", address: 0xD7B3, position: 2 } #Top Middle
+  #     psychic1:       { type: "bit", address: 0xD7B3, position: 3 } #Top Right
+  #     channeler23:    { type: "bit", address: 0xD7B3, position: 4 } #Middle Left
+  #     psychic2:       { type: "bit", address: 0xD7B3, position: 5 } #Middle Right
+  #     channeler24:    { type: "bit", address: 0xD7B3, position: 6 } #Bottom Left
+  #     psychic3:       { type: "bit", address: 0xD7B3, position: 7 } #Bottom Right
+  #     psychic4:       { type: "bit", address: 0xD7B4, position: 0 } #Top Left
+  #   viridianCityGym:
+  #     tmReceived:     { type: "bit", address: 0xD751, position: 0 }
+  #     leaderDefeated: { type: "bit", address: 0xD751, position: 1 }
+  #     cooltrainerM9:  { type: "bit", address: 0xD751, position: 2 }
+  #     blackbelt6:     { type: "bit", address: 0xD751, position: 3 }
+  #     tamer3:         { type: "bit", address: 0xD751, position: 4 }
+  #     blackbelt7:     { type: "bit", address: 0xD751, position: 5 }
+  #     cooltrainerM10: { type: "bit", address: 0xD751, position: 6 }
+  #     blackbelt8:     { type: "bit", address: 0xD751, position: 7 }
+  #     tamer4:         { type: "bit", address: 0xD752, position: 0 }
+  #     coolTrainerM:   { type: "bit", address: 0xD752, position: 1 }
     
     # bitArrayTemplate: #useful for testing event flags
     #   unknown1: { type: "bit", address: 0xD732, position: 0 }
@@ -434,17 +434,17 @@ properties:
       gymLeader:    { type: "int", address: 0xD05C }
       totalPokemon: { type: "int", address: 0xD89C }
       team:
-        - { type: "int", address: 0xD89D, size: 1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD89E, size: 1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD89F, size: 1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A0, size: 1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A1, size: 1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A2, size: 1, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD89D, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD89E, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD89F, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD8A0, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD8A1, reference: "pokemonSpecies" }
+        - { type: "int", address: 0xD8A2, reference: "pokemonSpecies" }
     yourPokemon:
       nickname: { type: "string", address: 0xD009, size: 11 }
       species:  { type: "int", address: 0xD014, reference: "pokemonSpecies" }
-      # type1:   { type: "int", address: 0xCFE9, size: 1, reference: "pokemonTypes" } #need memory addresses
-      # type2:   { type: "int", address: 0xCFEA, size: 1, reference: "pokemonTypes" } #need memory addresses
+      # type1:   { type: "int", address: 0xCFE9, reference: "pokemonTypes" } #need memory addresses
+      # type2:   { type: "int", address: 0xCFEA, reference: "pokemonTypes" } #need memory addresses
       modStageAttack:   { type: "int", address: 0xCD1a, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageDefense:  { type: "int", address: 0xCD1b, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageSpeed:    { type: "int", address: 0xCD1c, reference: "stageModifiers" } #test, are they really the same in RB and Y?
