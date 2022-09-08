@@ -11,22 +11,35 @@ macros:
   pokemonMacroEncrypted:
     species:       { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonSpecies" }
     pokedexNumber: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonPokedexNumbers" }
+  pokemonMacro:
+    species:       { offset: 0, type: "int", size: 2, reference: "pokemonSpecies" }
+    pokedexNumber: { offset: 0, type: "int", size: 2, reference: "pokemonPokedexNumbers" }
+  pokemonMacroEncrypted:
+    species:       { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonSpecies" }
+    pokedexNumber: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemonPokedexNumbers" }
   pokemonInParty:
     #MAIN DATA
     personalityValue: { offset: 0, type: "uint", size: 4 }
-    nature:   { offset: 0, type: "uint", size: 4, postprocessor: "x % 25" }
-    otID:     { offset: 4, type: "uint", size: 4 }
-    nickname: { offset: 8, type: "string", size: 10}
-    language: { offset: 18, type: "int", reference: "language" }
-    eggName:  { offset: 19, type: "int" }
-    otName:   { offset: 20, type: "string", size: 7 }
-    markings: { offset: 27, type: "int" }
-    checksum: { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
+    nature:     { offset: 0, type: "uint", size: 4, postprocessor: "x % 25" }
+    otID:       { offset: 4, type: "uint", size: 4 }
+    nickname:   { offset: 8, type: "string", size: 10}
+    language:   { offset: 18, type: "int", reference: "language" }
+    isBadEgg:   { offset: 19, type: "bit", position: 0 }
+    hasSpecies: { offset: 19, type: "bit", position: 1 }
+    useEggName: { offset: 19, type: "bit", position: 2 }
+    otName:     { offset: 20, type: "string", size: 7 }
+    markingCircle:   { offset: 27, type: "bit", position: 0 }
+    markingSquare:   { offset: 27, type: "bit", position: 1 }
+    markingTriangle: { offset: 27, type: "bit", position: 2 }
+    markingHeart:    { offset: 27, type: "bit", position: 3 }
+    otName:     { offset: 20, type: "string", size: 7 }
+    markings:   { offset: 27, type: "int" }
+    checksum:   { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     
     #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
     #BLOCK1-GROWTH
     _: { offset: 0, type: "macro", macro: "pokemonMacroEncrypted" }
-    speciesArray:    { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
+    speciesArray: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
     itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "int", size: 2, reference: "items" }
     expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
     move1ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "x & 3" }
@@ -69,7 +82,7 @@ macros:
     # pokerusStatus:    { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
     # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
     # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
-    # ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
+    ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
     ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
     ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
     ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
