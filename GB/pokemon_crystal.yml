@@ -235,22 +235,22 @@ properties:
       hm06: { type: "bit", address: 0xD890, position: 1 }
       hm07: { type: "bit", address: 0xD891, position: 1 }
     badges:
-      badge1: { type: "bit", address: 0xDA73, position: 0, description: "zephyrBadge" }
-      badge2: { type: "bit", address: 0xDA73, position: 1, description: "hiveBadge" }
-      badge3: { type: "bit", address: 0xDA73, position: 3, description: "plainBadge" }
-      badge4: { type: "bit", address: 0xDA73, position: 4, description: "fogBadge" }
-      badge5: { type: "bit", address: 0xDA73, position: 2, description: "stormBadge" }
-      badge6: { type: "bit", address: 0xDA73, position: 5, description: "mineralBadge" }
-      badge7: { type: "bit", address: 0xDA73, position: 6, description: "glacierBadge" }
-      badge8: { type: "bit", address: 0xDA73, position: 7, description: "risingBadge" }
-      badge9:  { type: "bit", address: 0xDA74, position: 0, description: "boulderBadge" }
-      badge10: { type: "bit", address: 0xDA74, position: 1, description: "cascadeBadge" }
-      badge11: { type: "bit", address: 0xDA74, position: 2, description: "thunderBadge" }
-      badge12: { type: "bit", address: 0xDA74, position: 3, description: "rainbowBadge" }
-      badge13: { type: "bit", address: 0xDA74, position: 4, description: "soulBadge" }
-      badge14: { type: "bit", address: 0xDA74, position: 5, description: "marshBadge" }
-      badge15: { type: "bit", address: 0xDA74, position: 6, description: "volcanoBadge" }
-      badge16: { type: "bit", address: 0xDA74, position: 7, description: "earthBadge" }
+      badge1: { type: "bit", address: 0xd857, position: 0, description: "zephyrBadge" }
+      badge2: { type: "bit", address: 0xd857, position: 1, description: "hiveBadge" }
+      badge3: { type: "bit", address: 0xd857, position: 3, description: "plainBadge" }
+      badge4: { type: "bit", address: 0xd857, position: 4, description: "fogBadge" }
+      badge5: { type: "bit", address: 0xd857, position: 2, description: "stormBadge" }
+      badge6: { type: "bit", address: 0xd857, position: 5, description: "mineralBadge" }
+      badge7: { type: "bit", address: 0xd857, position: 6, description: "glacierBadge" }
+      badge8: { type: "bit", address: 0xd857, position: 7, description: "risingBadge" }
+      badge9:  { type: "bit", address: 0xd858, position: 0, description: "boulderBadge" }
+      badge10: { type: "bit", address: 0xd858, position: 1, description: "cascadeBadge" }
+      badge11: { type: "bit", address: 0xd858, position: 2, description: "thunderBadge" }
+      badge12: { type: "bit", address: 0xd858, position: 3, description: "rainbowBadge" }
+      badge13: { type: "bit", address: 0xd858, position: 4, description: "soulBadge" }
+      badge14: { type: "bit", address: 0xd858, position: 5, description: "marshBadge" }
+      badge15: { type: "bit", address: 0xd858, position: 6, description: "volcanoBadge" }
+      badge16: { type: "bit", address: 0xd858, position: 7, description: "earthBadge" }
     pokegear:
       mapCard:       {type: "bit", address: 0xD957, position: 0 }
       radioCard:     {type: "bit", address: 0xD957, position: 1 }
@@ -404,6 +404,9 @@ properties:
     minutes: { type: "int", address: 0xD4C6 }
     seconds: { type: "int", address: 0xD4C7 }
     frames:  { type: "int", address: 0xD4C8 }
+
+  gameClock:
+    day: { type: "int", address: 0xD4B6, reference: "dayNames" }
 
   audio:
     mapMusic: { type: "int", address: 0xC2C0 }
@@ -1959,3 +1962,11 @@ glossary:
   gender:
     0x0: "Male"
     0x1: "Female"
+  dayNames:
+    0: "Sunday"
+    1: "Monday"
+    2: "Tuesday"
+    3: "Wednesday"
+    4: "Thursday"
+    5: "Friday"
+    6: "Saturday"
