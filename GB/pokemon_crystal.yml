@@ -237,10 +237,10 @@ properties:
     badges:
       badge1: { type: "bit", address: 0xd857, position: 0, description: "zephyrBadge" }
       badge2: { type: "bit", address: 0xd857, position: 1, description: "hiveBadge" }
-      badge3: { type: "bit", address: 0xd857, position: 3, description: "plainBadge" }
-      badge4: { type: "bit", address: 0xd857, position: 4, description: "fogBadge" }
-      badge5: { type: "bit", address: 0xd857, position: 2, description: "stormBadge" }
-      badge6: { type: "bit", address: 0xd857, position: 5, description: "mineralBadge" }
+      badge3: { type: "bit", address: 0xd857, position: 2, description: "plainBadge" }
+      badge4: { type: "bit", address: 0xd857, position: 3, description: "fogBadge" }
+      badge5: { type: "bit", address: 0xd857, position: 5, description: "stormBadge" }
+      badge6: { type: "bit", address: 0xd857, position: 4, description: "mineralBadge" }
       badge7: { type: "bit", address: 0xd857, position: 6, description: "glacierBadge" }
       badge8: { type: "bit", address: 0xd857, position: 7, description: "risingBadge" }
       badge9:  { type: "bit", address: 0xd858, position: 0, description: "boulderBadge" }
