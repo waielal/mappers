@@ -336,10 +336,10 @@ properties:
       level:   { type: "int", address: 0xD12D }
       # statsCondition: { type: "reference", address: 0xD9FD, reference: "statusConditions" } #need crystal memory address
       # gender: { type: "reference", address: 0xD0F0, reference: "gender" } #need crystal memory address
-      moves1: { type: "reference", address: 0xD208, reference: "moves" }
-      moves2: { type: "reference", address: 0xD209, reference: "moves" }
-      moves3: { type: "reference", address: 0xD20A, reference: "moves" }
-      moves4: { type: "reference", address: 0xD20B, reference: "moves" }
+      move1: { type: "reference", address: 0xD208, reference: "moves" }
+      move2: { type: "reference", address: 0xD209, reference: "moves" }
+      move3: { type: "reference", address: 0xD20A, reference: "moves" }
+      move4: { type: "reference", address: 0xD20B, reference: "moves" }
       move1pp: { type: "int", address: 0xd20e, postprocessor: "x % 64" }
       move2pp: { type: "int", address: 0xd20f, postprocessor: "x % 64" }
       move3pp: { type: "int", address: 0xd210, postprocessor: "x % 64" }
