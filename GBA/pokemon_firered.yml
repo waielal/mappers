@@ -159,15 +159,15 @@ properties:
       - { type: "macro", address: 0x20243B0, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024414, macro: "pokemonInParty" }
       - { type: "macro", address: 0x2024478, macro: "pokemonInParty" }
-    # badges: #not the same flag offset as in Emerald
-    #   badge1: { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "boulderbadge" }
-    #   badge2: { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "cascadebadge" }
-    #   badge3: { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "thunderbadge" }
-    #   badge4: { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "rainbowbadge" }
-    #   badge5: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "soulbadge" }
-    #   badge6: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "marshbadge" }
-    #   badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "volcanobadge" }
-    #   badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x0300500C, 8890)", description: "earthbadge" }
+    badges:
+      badge1: { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "boulderbadge" }
+      badge2: { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "cascadebadge" }
+      badge3: { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "thunderbadge" }
+      badge4: { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "rainbowbadge" }
+      badge5: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "soulbadge" }
+      badge6: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "marshbadge" }
+      badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "volcanobadge" }
+      badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "earthbadge" }
     # items:
     #   selectedBagPocket: { type: "int", address: 0x203AD02, reference: "bagPockets"}
     #   selectedBagRow:    { type: "int", address: 0x203AD06, reference: "bagPockets" } #needs to be a reference
@@ -211,9 +211,9 @@ properties:
       battleWeather: { type: "int", address: 0x2023F1C, reference: "battleWeather" } 
       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }
       battleOutcome: { type: "int", address: 0x2023e8a }
-      # battleBackgroundTiles: { type: "int", address: 0x202305c, size: 4 }
-      # battleBackgroundTilesBuffer: { type: "int", address: 0x2023060, size: 4 }
-      # battleDialogue: { type: "int", address: 0x2023064, reference: battleDialogue } #Scott's Thoughts only
+      battleBackgroundTiles: { type: "int", address: 0x2024018, size: 4 }
+      battleBackgroundTilesBuffer: { type: "int", address: 0x202401c, size: 4 }
+      battleDialogue: { type: "int", address: 0x2024020, reference: battleDialogue } #Scott's Thoughts only
   
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
