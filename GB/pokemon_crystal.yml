@@ -301,9 +301,10 @@ properties:
         - { type: "reference", address: 0xD286, reference: "pokemonSpecies" }
     yourPokemon:
       # heldItem:  { type: "reference", address: 0xXXXX, reference: "items" } # needs crystal memory location
-      # hp: { type: "int", address: 0xXXXX, size: 2 } # needs crystal memory location
-      # type1: { type: "reference", address: 0xXXXX, reference: "types" } # needs crystal memory location
-      # type2: { type: "reference", address: 0xXXXX, reference: "types" } # needs crystal memory location
+      battleStatHp:      { type: "int", address: 0xC63C, size: 2 }
+      battleStatMaxHp:   { type: "int", address: 0xC63E, size: 2 }
+      type1: { type: "reference", address: 0xC64A, reference: "types" }
+      type2: { type: "reference", address: 0xC64B, reference: "types" }
       modStageAttack:         { type: "reference", address: 0xC6CC, reference: "stageModifiers" } #test
       modStageDefense:        { type: "reference", address: 0xC6CD, reference: "stageModifiers" } #test
       modStageSpeed:          { type: "reference", address: 0xC6CE, reference: "stageModifiers" } #test
@@ -330,8 +331,8 @@ properties:
       move4ppUp: { type: "int", address: 0xC637, postprocessor: "Floor(x / 64)" }
     enemyPokemon:
       species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
-      # type1: { type: "reference", address: 0xD127, reference: "types" } #need crystal memory address
-      # type2: { type: "reference", address: 0xD128, reference: "types" } #need crystal memory address
+      type1: { type: "reference", address: 0xD224, reference: "types" }
+      type2: { type: "reference", address: 0xD225, reference: "types" }
       heldItem:    { type: "reference", address: 0xd207, reference: "items" }
       level:   { type: "int", address: 0xD12D }
       # statsCondition: { type: "reference", address: 0xD9FD, reference: "statusConditions" } #need crystal memory address
