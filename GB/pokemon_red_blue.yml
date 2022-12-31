@@ -108,10 +108,10 @@ macros:
     move2: { offset: 9, type: "int", reference: "moves", }
     move3: { offset: 10, type: "int", reference: "moves" }
     move4: { offset: 11, type: "int", reference: "moves",  description: "Bottom moveslot" }
-    move1pp: { offset: 29, type: "int" }
-    move2pp: { offset: 30, type: "int" }
-    move3pp: { offset: 31, type: "int" }
-    move4pp: { offset: 32, type: "int" }
+    move1pp: { offset: 29, type: "int", postprocessor: "x % 64" }
+    move2pp: { offset: 30, type: "int", postprocessor: "x % 64" }
+    move3pp: { offset: 31, type: "int", postprocessor: "x % 64" }
+    move4pp: { offset: 32, type: "int", postprocessor: "x % 64" }
     type1: { offset: 5, type: "int", reference: "pokemonTypes" }
     type2: { offset: 6, type: "int", reference: "pokemonTypes" }
     trainerId: { offset: 12, type: "int", size: 2 }
@@ -443,8 +443,9 @@ properties:
     yourPokemon:
       nickname: { type: "string", address: 0xD009, size: 11 }
       species:  { type: "int", address: 0xD014, reference: "pokemonSpecies" }
-      # type1:   { type: "int", address: 0xCFE9, reference: "pokemonTypes" } #need memory addresses
-      # type2:   { type: "int", address: 0xCFEA, reference: "pokemonTypes" } #need memory addresses
+      type1:   { type: "int", address: 0xD019, reference: "pokemonTypes" } #need memory addresses
+      type2:   { type: "int", address: 0xD01A, reference: "pokemonTypes" } #need memory addresses
+      pokedexNumber: { type: "int", address: 0xD014, reference: "pokemonPokedexNumbers" }
       modStageAttack:   { type: "int", address: 0xCD1a, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageDefense:  { type: "int", address: 0xCD1b, reference: "stageModifiers" } #test, are they really the same in RB and Y?
       modStageSpeed:    { type: "int", address: 0xCD1c, reference: "stageModifiers" } #test, are they really the same in RB and Y?
@@ -464,6 +465,10 @@ properties:
       move2: { type: "int", address: 0xD01D, reference: "moves" }
       move3: { type: "int", address: 0xD01E, reference: "moves" }
       move4: { type: "int", address: 0xD01F, reference: "moves" }
+      move1pp: { type: "int", address: 0xD02D, postprocessor: "x % 64" }
+      move2pp: { type: "int", address: 0xD02E, postprocessor: "x % 64" }
+      move3pp: { type: "int", address: 0xD02F, postprocessor: "x % 64" }
+      move4pp: { type: "int", address: 0xD030, postprocessor: "x % 64" }
     enemyPokemon:
       species: { type: "int", address: 0xCFD8, reference: "pokemonSpecies" }
       type1:   { type: "int", address: 0xCFEA, reference: "pokemonTypes" }
@@ -750,9 +755,18 @@ properties:
       currentItem: { type: "int", address: 0xCC27 }
 
   options:
-    soloChallenge: { type: "int", address: 0xD355, reference: "options"}
+    # bit1: { type: "bit", address: 0xD355, position: 0 } #Unknown function
+    textSpeed1: { type: "bit", address: 0xD355, position: 1, description: "Fast text speed is set when both 1 & 2 are set to false"  }
+    textSpeed2: { type: "bit", address: 0xD355, position: 2, description: "Fast text speed is set when both 1 & 2 are set to false"  }
+    # bit4: { type: "bit", address: 0xD355, position: 3 } #Unknown function
+    sound1: { type: "bit", address: 0xD355, position: 4 } #These bits work together to control sound
+    sound2: { type: "bit", address: 0xD355, position: 5 } #These bits work together to control sound
+    battleStyle: { type: "bit", address: 0xD355, position: 6 } #Set = true, Shift = false
+    battleAnimations: { type: "bit", address: 0xD355, position: 7 } #this bit is true when battle animations are off, it's false when they are on
+    #print options are not stored in this byte
+    soloChallenge: { type: "int", address: 0xD355, reference: "options"} #Scott's Thoughts only, deprecated
  
-  settings:
+  settings: #deprecated
     textSpeedMid:    { type: "bit", address: 0xD355, position: 1, description: "Fast text speed is set when both Mid and Slow are set to false" }
     textSpeedSlow:   { type: "bit", address: 0xD355, position: 2, description: "Fast text speed is set when both Mid and Slow are set to false" }
     battleAnimation: { type: "bit", address: 0xD355, position: 7 }
