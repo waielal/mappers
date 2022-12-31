@@ -213,7 +213,7 @@ properties:
       battleOutcome: { type: "int", address: 0x2023e8a }
       battleBackgroundTiles: { type: "int", address: 0x2024018, size: 4 }
       battleBackgroundTilesBuffer: { type: "int", address: 0x202401c, size: 4 }
-      battleDialogue: { type: "int", address: 0x2024020, reference: battleDialogue } #Scott's Thoughts only
+      battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts only
   
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
