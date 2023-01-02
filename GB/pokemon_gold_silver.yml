@@ -569,7 +569,7 @@ glossary:
     0x1A: "Dragon"
     0x1B: "Dark"
   statusConditions:
-    0x00: " "
+    0x00: null
     0x01: "SLP" #rest
     0x02: "SLP" #rest
     0x03: "SLP"
@@ -701,7 +701,7 @@ glossary:
   hms: #need completing
     0x01: "Cut"
   moves:
-    0x00: " " #battle starting
+    0x00: null #battle starting
     0x01: "POUND"
     0x02: "KARATE CHOP"
     0x03: "DOUBLESLAP"
