@@ -329,6 +329,8 @@ properties:
       move2ppUp: { type: "int", address: 0xC635, postprocessor: "Floor(x / 64)" }
       move3ppUp: { type: "int", address: 0xC636, postprocessor: "Floor(x / 64)" }
       move4ppUp: { type: "int", address: 0xC637, postprocessor: "Floor(x / 64)" }
+      rolloutCounter: { type: "int", address: 0xC672 }
+      furyCutterCounter: { type: "int", address: 0xC678 }
     enemyPokemon:
       species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
       type1: { type: "reference", address: 0xD224, reference: "types" }
