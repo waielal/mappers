@@ -168,6 +168,447 @@ properties:
       badge6: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "marshbadge" }
       badge7: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "volcanobadge" }
       badge8: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005008, 3958)", description: "earthbadge" }
+    items:
+      quantityDecyptionKey: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x0300500C, 3872)" }
+      bagPocket_Items:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  784)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  786)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  788)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  790)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  792)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  794)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  796)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  798)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  800)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  802)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  804)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  806)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  808)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  810)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  812)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  814)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  816)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  818)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  820)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  822)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  824)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  826)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  828)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  830)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  832)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  834)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  836)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  838)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  840)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  842)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  844)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  846)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  848)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  850)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  852)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  854)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  856)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  858)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  860)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  862)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  864)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  866)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  868)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  870)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  872)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  874)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  876)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  878)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  880)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  882)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  884)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  886)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  888)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  890)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  892)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  894)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  896)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  898)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  900)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  902)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  904)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  906)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  908)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  910)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  912)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  914)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  916)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  918)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  920)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  922)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  924)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  926)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  928)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  930)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  932)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  934)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  936)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  938)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  940)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  942)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  944)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  946)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  948)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  950)" } # xor value with [quantityDecyptionKey]
+      bagPocket_PokeBalls:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1072)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1074)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1076)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1078)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1080)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1082)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1084)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1086)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1088)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1090)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1092)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1094)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1096)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1098)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1100)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1102)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1104)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1106)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1108)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1110)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1112)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1114)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1116)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1118)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1120)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1122)" } # xor value with [quantityDecyptionKey]
+      bagPocket_TMHM:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1124)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1126)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1128)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1130)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1132)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1134)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1136)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1138)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1140)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1142)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1144)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1146)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1148)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1150)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1152)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1154)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1156)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1158)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1160)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1162)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1164)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1166)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1168)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1170)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1172)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1174)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1176)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1178)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1180)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1182)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1184)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1186)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1188)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1190)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1192)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1194)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1196)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1198)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1200)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1202)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1204)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1206)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1208)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1210)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1212)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1214)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1216)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1218)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1220)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1222)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1224)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1226)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1228)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1230)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1232)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1234)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1236)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1238)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1240)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1242)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1244)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1246)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1248)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1250)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1252)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1254)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1256)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1258)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1260)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1262)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1264)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1266)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1268)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1270)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1272)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1274)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1276)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1278)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1280)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1282)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1284)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1286)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1288)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1290)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1292)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1294)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1296)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1298)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1300)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1302)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1304)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1306)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1308)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1310)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1312)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1314)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1316)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1318)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1320)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1322)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1324)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1326)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1328)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1330)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1332)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1334)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1336)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1338)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1340)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1342)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1344)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1346)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1348)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1350)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1352)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1354)" } # xor value with [quantityDecyptionKey]
+      bagPocket_Berries:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1356)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1358)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1360)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1362)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1364)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1366)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1368)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1370)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1372)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1374)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1376)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1378)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1380)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1382)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1384)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1386)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1388)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1390)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1392)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1394)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1396)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1398)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1400)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1402)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1404)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1406)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1408)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1410)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1412)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1414)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1416)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1418)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1420)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1422)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1424)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1426)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1428)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1430)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1432)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1434)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1436)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1438)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1440)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1442)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1444)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1446)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1448)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1450)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1452)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1454)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1456)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1458)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1460)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1462)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1464)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1466)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1468)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1470)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1472)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1474)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1476)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1478)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1480)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1482)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1484)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1486)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1488)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1490)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1492)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1494)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1496)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1498)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1500)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1502)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1504)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1506)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1508)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1510)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1512)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1514)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1516)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1518)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1520)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1522)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1524)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1526)" } # xor value with [quantityDecyptionKey]
+      bagPocket_KeyItems:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  952)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  954)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  956)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  958)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  960)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  962)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  964)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  966)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  968)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  970)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  972)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  974)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  976)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  978)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  980)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  982)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  984)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  986)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  988)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  990)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  992)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  994)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  996)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  998)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1000)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1002)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1004)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1006)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1008)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1010)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1012)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1014)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1016)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1018)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1020)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1022)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1024)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1026)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1028)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1030)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1032)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1034)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1036)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1038)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1040)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1042)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1044)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1046)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1048)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1050)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1052)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1054)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1056)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1058)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1060)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1062)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1064)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1066)" } # xor value with [quantityDecyptionKey]
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1068)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  1070)" } # xor value with [quantityDecyptionKey]
+      pcItems:
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  664)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  666)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  668)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  670)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  672)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  674)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  676)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  678)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  680)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  682)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  684)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  686)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  688)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  690)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  692)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  694)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  696)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  698)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  700)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  702)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  704)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  706)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  708)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  710)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  712)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  714)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  716)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  718)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  720)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  722)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  724)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  726)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  728)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  730)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  732)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  734)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  736)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  738)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  740)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  742)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  744)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  746)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  748)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  750)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  752)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  754)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  756)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  758)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  760)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  762)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  764)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  766)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  768)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  770)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  772)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  774)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  776)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  778)" } # value not encrypted
+        - itemId:   { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  780)", reference: "items" }
+          quantity: { type: "int", size: 2, preprocessor: "dma_967d10cc(0x03005008,  782)" } # value not encrypted
+      
     # items:
     #   selectedBagPocket: { type: "int", address: 0x203AD02, reference: "bagPockets"}
     #   selectedBagRow:    { type: "int", address: 0x203AD06, reference: "bagPockets" } #needs to be a reference
