@@ -693,6 +693,8 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005008 } #map data
     dma2: { type: "uint", size: 4, address: 0x300500C } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005010 } #box data
+    callback1: { type: "int", size: 4, address: 0x030030f0, reference: "mainState" } # main
+    callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub 
 
   # dma-pointers: # needs gamehook update to access memory locations
   #   teamCount: { type: "int", address: 0x3005008, size: 4 }
@@ -772,6 +774,38 @@ properties:
 # 0x04000102 TM0CNT_H   
 
 glossary:
+  mainState:
+    0: null
+    134571337: Overworld
+    134292473: Battle
+  subState:
+    134571465: Overworld
+    135298953: Opening Bag
+    135298905: Bag
+    134572061: Black Transition (Short)
+    135469277: TM Case
+    135515769: Berry Case
+    134571873: Black Transition
+    134571825: Black Transition
+    135044113: Black Transition
+    135392329: Opening Party Menu
+    135392281: Party Menu
+    134775913: Opening Options Menu
+    134775665: Options Menu
+    134780365: Opening Trainer Card
+    134779013: Trainer Card
+    135275853: Pokedex
+    135276501: Opening Pokedex
+    135276753: Closing Pokedex
+    135006409: Fly Menu
+    135004437: Opening Fly Menu
+    135044069: White Transition
+    134571453: Battle Animation
+    134287637: Battle
+    134284573: Battle Transition - Black
+    134282673: Battle Transition - Black
+    134852089: Mart Menu
+    134852137: Opening Mart Menu
   stageModifiers:
     0x00: -6
     0x01: -5
