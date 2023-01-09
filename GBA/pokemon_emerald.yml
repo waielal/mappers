@@ -965,6 +965,8 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005D8C } #map data
     dma2: { type: "uint", size: 4, address: 0x3005D90 } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005D94 } #box data
+    callback1: { type: "int", size: 4, address: 0x030022c0, reference: "mainState" } # main
+    callback2: { type: "int", size: 4, address: 0x030022c4, reference: "subState" } # sub
 
 # dynamic memory allocation memory pointers
 # dma1: 0x03005D8C
@@ -1002,6 +1004,51 @@ properties:
 # test: 2026C8E when DMA1-0x3005D90 setto-0x2025A14 offset 126A (4714 in decimal)
 
 glossary:
+  mainState:
+    0: null
+    134766085: Overworld
+    134455025: Battle
+  subState:
+    0: null
+    134766173: Overworld
+    134448161: Battle
+    134766161: Battle Animation
+    134442925: Black Transition #battle transition
+    134767153: Black Transition #from main menu to overworld
+    135147013: Black Transition #to naming screen after catching a Pokemon
+    135415441: Black Transition #to Fly menu
+    135492097: Black Transition #door
+    135134613: Black Transition #to mart
+    134766793: Black Transition #closing pc
+    134766541: Black Transition #door
+    135134565: Mart Menu Opening
+    135134565: Mart Menu
+    134766589: Transition to Overworld
+    135416021: Fly Menu
+    134440801: Intro to Battle
+    135987633: Party Menu
+    135966045: Bag
+    136082433: Pokenav
+    135014161: Trainer Card
+    134980785: Options Menu
+    134985589: Pokedex
+    135712429: Owners
+    135711745: Intro Cinematic
+    135711829: White Screen
+    134916005: Transition to Title Screen
+    134916909: Title Screen
+    134411887: Transition to Main Menu
+    134411953: Main Menu
+    134766997: Black Transition
+    134766837: Transition to Overworld
+    134985013: Opening Pokedex
+    135987681: Opening Party Menu
+    135966093: Opening Bag
+    136082001: Opening Pokenav
+    135015553: Opening Trainer Card
+    134980829: Opening Options
+    135155545: Naming Screen #character naming & Pokemon naming
+    135036245: PC
   stageModifiers:
     0x00: -6
     0x01: -5
