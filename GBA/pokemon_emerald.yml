@@ -696,8 +696,10 @@ properties:
     # animationTurn: { type: "int", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     # lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      opponentAId: { type: "int", size: 2, address: 0x2038bca, reference: "trainerClasses" }
-      opponentBId: { type: "int", size: 2, address: 0x2038bcc, reference: "trainerClasses" } # 2nd opponent, if in a double battle
+      opponentA: { type: "int", size: 2, address: 0x2038bca, reference: "trainerClasses" }
+      opponentAId: { type: "int", size: 2, address: 0x2038bca }
+      opponentB: { type: "int", size: 2, address: 0x2038bcc, reference: "trainerClasses" } # 2nd opponent, if in a double battle
+      opponentBId: { type: "int", size: 2, address: 0x2038bcc } # 2nd opponent, if in a double battle
       partnerId:   { type: "int", size: 2, address: 0x2038bce, reference: "trainerClasses" } # partner (otherwise 0 if you fight alone)
       totalPokemon: { type: "int", address: 0x20244ea }
       team:
@@ -961,11 +963,13 @@ properties:
     seconds: { type: "int", preprocessor: "dma_967d10cc(0x03005D90, 17)" }
     frames:  { type: "int", preprocessor: "dma_967d10cc(0x03005D90, 18)" }
 
-  dmaPointers:
+  pointers:
     dma1: { type: "uint", size: 4, address: 0x3005D8C } #map data
     dma2: { type: "uint", size: 4, address: 0x3005D90 } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005D94 } #box data
+    callback1testrer: { type: "uint", size: 4, address: 0x030022c0 } # main
     callback1: { type: "int", size: 4, address: 0x030022c0, reference: "mainState" } # main
+    callback2tester: { type: "uint", size: 4, address: 0x030022c4 } # sub
     callback2: { type: "int", size: 4, address: 0x030022c4, reference: "subState" } # sub
 
 # dynamic memory allocation memory pointers

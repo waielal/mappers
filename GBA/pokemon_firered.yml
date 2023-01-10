@@ -662,7 +662,8 @@ properties:
       legenadry_frlg: { type: "bit", address: 0x02022b4c, size: 4, position: 18 }
       trainer_tower: { type: "bit", address: 0x02022b4c, size: 4, position: 19 }
     trainer:
-      opponentId:   { type: "int", address: 0x20386AE, size: 2, reference: "trainerClasses" }
+      opponent:   { type: "int", address: 0x20386AE, size: 2, reference: "trainerClasses" }
+      opponentId:   { type: "int", address: 0x20386AE, size: 2 }
       totalPokemon: { type: "int", address: 0x2024029 }
       team:
         - { type: "macro", address: 0x202402C, macro: "pokemonInParty" }
@@ -689,11 +690,13 @@ properties:
     minutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
     seconds: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 17)" }
     frames:  { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 18)" }
-  dmaPointers:
+  pointers:
     dma1: { type: "uint", size: 4, address: 0x3005008 } #map data
     dma2: { type: "uint", size: 4, address: 0x300500C } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005010 } #box data
+    callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
     callback1: { type: "int", size: 4, address: 0x030030f0, reference: "mainState" } # main
+    callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
     callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub 
 
   # dma-pointers: # needs gamehook update to access memory locations
@@ -806,6 +809,8 @@ glossary:
     134282673: Battle Transition - Black
     134852089: Mart Menu
     134852137: Opening Mart Menu
+    135457673: New Game
+    134871941: Naming Screen
   stageModifiers:
     0x00: -6
     0x01: -5
