@@ -664,7 +664,7 @@ properties:
     trainer:
       opponent:   { type: "int", address: 0x20386AE, size: 2, reference: "trainerClasses" }
       opponentId:   { type: "int", address: 0x20386AE, size: 2 }
-      totalPokemon: { type: "int", address: 0x2024029 }
+      totalPokemon: { type: "int", address: 0x202402A }
       team:
         - { type: "macro", address: 0x202402C, macro: "pokemonInParty" }
         - { type: "macro", address: 0x2024090, macro: "pokemonInParty" }
