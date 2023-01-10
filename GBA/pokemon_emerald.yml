@@ -673,26 +673,26 @@ properties:
   battle:
     outcome: { type: "int", address: 0x0202433a, reference: "battleOutcome" }
     type:
-      double: { type: "bit", address: 0x20386AC, size: 4, position: 0 }
-      link: { type: "bit", address: 0x20386AC, size: 4, position: 1 }
-      is_battle: { type: "bit", address: 0x20386AC, size: 4, position: 2 } #wild battles
-      trainer: { type: "bit", address: 0x20386AC, size: 4, position: 3 }
-      first_battle: { type: "bit", address: 0x20386AC, size: 4, position: 4 }
-      link_in_battle: { type: "bit", address: 0x20386AC, size: 4, position: 5 }
-      multi: { type: "bit", address: 0x20386AC, size: 4, position: 6 }
-      safari: { type: "bit", address: 0x20386AC, size: 4, position: 7 }
-      battle_tower: { type: "bit", address: 0x20386AC, size: 4, position: 8 }
-      old_man_tutorial: { type: "bit", address: 0x20386AC, size: 4, position: 9 } #wally & old man
-      roamer: { type: "bit", address: 0x20386AC, size: 4, position: 10 }
-      eReader_trainer: { type: "bit", address: 0x20386AC, size: 4, position: 11 }
-      kyogre_groudon: { type: "bit", address: 0x20386AC, size: 4, position: 12 }
-      ghost_unveiled: { type: "bit", address: 0x20386AC, size: 4, position: 13 }
-      regi: { type: "bit", address: 0x20386AC, size: 4, position: 14 }
-      ghost: { type: "bit", address: 0x20386AC, size: 4, position: 15 }
-      pokedude: { type: "bit", address: 0x20386AC, size: 4, position: 16 }
-      wild_scripted: { type: "bit", address: 0x20386AC, size: 4, position: 17 }
-      legenadry_frlg: { type: "bit", address: 0x20386AC, size: 4, position: 18 }
-      trainer_tower: { type: "bit", address: 0x20386AC, size: 4, position: 19 }
+      double: { type: "bit", address: 0x02022fec, size: 4, position: 0 }
+      link: { type: "bit", address: 0x02022fec, size: 4, position: 1 }
+      is_battle: { type: "bit", address: 0x02022fec, size: 4, position: 2 } #wild battles
+      trainer: { type: "bit", address: 0x02022fec, size: 4, position: 3 }
+      first_battle: { type: "bit", address: 0x02022fec, size: 4, position: 4 }
+      link_in_battle: { type: "bit", address: 0x02022fec, size: 4, position: 5 }
+      multi: { type: "bit", address: 0x02022fec, size: 4, position: 6 }
+      safari: { type: "bit", address: 0x02022fec, size: 4, position: 7 }
+      battle_tower: { type: "bit", address: 0x02022fec, size: 4, position: 8 }
+      old_man_tutorial: { type: "bit", address: 0x02022fec, size: 4, position: 9 } #wally & old man
+      roamer: { type: "bit", address: 0x02022fec, size: 4, position: 10 }
+      eReader_trainer: { type: "bit", address: 0x02022fec, size: 4, position: 11 }
+      kyogre_groudon: { type: "bit", address: 0x02022fec, size: 4, position: 12 }
+      ghost_unveiled: { type: "bit", address: 0x02022fec, size: 4, position: 13 }
+      regi: { type: "bit", address: 0x02022fec, size: 4, position: 14 }
+      ghost: { type: "bit", address: 0x02022fec, size: 4, position: 15 }
+      pokedude: { type: "bit", address: 0x02022fec, size: 4, position: 16 }
+      wild_scripted: { type: "bit", address: 0x02022fec, size: 4, position: 17 }
+      legenadry_frlg: { type: "bit", address: 0x02022fec, size: 4, position: 18 }
+      trainer_tower: { type: "bit", address: 0x02022fec, size: 4, position: 19 }
     # animationTurn: { type: "int", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     # lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
