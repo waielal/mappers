@@ -219,6 +219,7 @@ properties:
       lastMapLocation: { type: "int", address: 0xD365, reference: "maps" } #test
 
   events:
+    beatChampion:    { type: "bit", position: 1, address: 0xd866 }
     overworldFlags:
       countPlayTime: { type: "bit", address: 0xD731, position: 0, description: "play time being counted" }
       debugMode: { type: "bit", address: 0xD731, position: 1, description: 

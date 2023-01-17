@@ -269,7 +269,8 @@ properties:
     mapNumber: { type: "int", address: 0xDCB6 }
     y: { type: "int", address: 0xDCB7 }
     x: { type: "int", address: 0xDCB8 }
-
+  events:
+    beatChampion:    { type: "bit", position: 1, address: 0xdb29  }
   roamers:
     - { type: "macro", address: 0xDFCF, macro: "roamer" }
     - { type: "macro", address: 0xDFD6, macro: "roamer" }

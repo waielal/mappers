@@ -219,6 +219,7 @@ properties:
       lastMapLocation: { type: "int", address: 0xD366, reference: "maps" } #test
 
   events:
+    beatChampion:   { type: "bit", position: 1, address: 0xd867 }
     overworldFlags:
       countPlayTime: { type: "bit", address: 0xD731, position: 0, description: "play time being counted" }
       debugMode: { type: "bit", address: 0xD731, position: 1, description: 
@@ -423,6 +424,7 @@ properties:
     #   unknown7: { type: "bit", address: 0xD732, position: 6 }
 
   battle:
+    attackDamage:   { type: "int", address: 0xD0D8, description: "Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." }
     type:           { type: "int", address: 0xD057, reference: "battleTypes" }
     animationTurn:  { type: "int", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType:    { type: "int", address: 0xD05A, reference: "specialBattleTypes" }
@@ -568,8 +570,8 @@ properties:
       disable:   { type: "int", address: 0xD072 }
 
     turnInfo:
-      battleStart:     { type: "int", address: 0xCCF5, description: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF6, description: "When 1, the opponent has lost" }
+      battleStart:     { type: "int", address: 0xCCF6, description: "When 0 battle is starting, when >=1 battle has begun" }
+      trainerDefeated: { type: "int", address: 0xCCF7, description: "When 1, the opponent has lost" }
       # criticalHitOHKO: { type: "int", address: 0xD05E }
       nextAttackDamage: { type: "int", address: 0xD0D8 }
       # yourSubtituteHp: { type: "int", address: 0xCCD7 }

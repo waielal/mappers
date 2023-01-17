@@ -280,7 +280,8 @@ properties:
   #   day:     { type: "int", address: 0xXXXX }
   #   night:   { type: "int", address: 0xXXXX }
   #   water:   { type: "int", address: 0xXXXX }
-
+  events:
+    beatChampion:    { type: "bit", position: 1, address: 0xd866 }
   battle:
     mode:    { type: "reference", address: 0xD116, reference: "battleModes" }
     #type:   { type: "reference", address: 0xXXXX, reference: "battleTypes" } # needs GS memory address
