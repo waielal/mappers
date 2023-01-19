@@ -378,6 +378,10 @@ properties:
     info:
       currentDamage:  { type: "int", address: 0xd256, size: 2 }
       lowHealthAlarm: { type: "reference", address: 0xC6FD, reference: "lowHealthAlarm" }
+      miss:  { type: "int", address: 0xc667, size: 1 } #non-zero values indicate a miss
+      turnEnded:  { type: "int", address: 0xc6b4, size: 1 } #non-zero values indicate a miss
+      playerTurnTaken:  { type: "int", address: 0xc6dd, size: 1 } #non-zero values indicate a miss
+      enemyTurnTaken:  { type: "int", address: 0xc6dc, size: 1 } #non-zero values indicate a miss
     weather:
       weatherType:  { type: "reference", address: 0xc70a, reference: "weather" }
       weatherTurnsRemaining: { type: int, address: 0xc70b }
@@ -408,6 +412,27 @@ properties:
     minutes: { type: "int", address: 0xD4C6 }
     seconds: { type: "int", address: 0xD4C7 }
     frames:  { type: "int", address: 0xD4C8 }
+
+  time:
+    current: # read-only, result of [rtc + start]
+      day:       { type: "int", address: 0xd4cb, reference: "dayNames", postprocessor: "x % 7" }
+      hour:      { type: "int", address: 0xff94 }
+      minute:    { type: "int", address: 0xff96 }
+      second:    { type: "int", address: 0xff98 }
+      dst:       { type: "bit", address: 0xd4c2, position: 7 } # Daylight Saving Time
+      timeOfDay: { type: "int", address: 0xd269, reference: "timeOfDay" }
+    start:
+      day:       { type: "int", address: 0xd4b6, reference: "dayNames" }
+      hour:      { type: "int", address: 0xd4b7 }
+      minute:    { type: "int", address: 0xd4b8 }
+      second:    { type: "int", address: 0xd4b9 }
+    rtc: # read-only, fetched from RTC module on the MBC3 chip
+      day:       { type: "int", address: 0xff8d, size: 2, postprocessor: "(x % 512) % 7" } # combines the 2 above and limits them to 0-6
+      hour:      { type: "int", address: 0xff8f }
+      minute:    { type: "int", address: 0xff90 }
+      second:    { type: "int", address: 0xff91 }
+      # dayHi:   { type: "int", address: 0xff8d }
+      # dayLo:   { type: "int", address: 0xff8e }
 
   gameClock:
     day: { type: "int", address: 0xD4B6, reference: "dayNames" }
@@ -440,6 +465,18 @@ properties:
       prompt: { type: "string", address: 0xC606, reference: "textPrompt" }
 
 glossary:
+  day:
+    0: SUNDAY
+    1: MONDAY
+    2: TUESDAY
+    3: WEDNESDAY
+    4: THURSDAY
+    5: FRIDAY
+    6: SATURDAY
+  timeOfDay:
+    0: MORNING
+    1: DAY
+    2: NIGHT
   battleModes: # wBattleMode values
     0x00: "NONE"
     0x01: "WILD"
