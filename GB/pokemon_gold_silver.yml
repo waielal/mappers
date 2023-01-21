@@ -371,9 +371,13 @@ properties:
       dvDefense: { type: "int", address: 0xD0F5, postprocessor: "x % 16" } #test
       dvSpeed:   { type: "int", address: 0xD0F6, postprocessor: "(x - (x % 16))/16" } #test
       dvSpecial: { type: "int", address: 0xD0F6, postprocessor: "x % 16" } #test
-    # info: #needs GS memory address
+    info: #needs GS memory address
     #   currentDamage: { type: "int", address: 0xXXXX, size: 2 }
     #   lowHealthAlarm: { type: "reference", address: 0xXXXX, reference: "lowHealthAlarm" }
+      miss:  { type: "int", address: 0xcb45, size: 1 } #non-zero values indicate a miss
+      turnEnded:  { type: "int", address: 0xcb92, size: 1 } #non-zero values indicate a miss
+      playerTurnTaken:  { type: "int", address: 0xcbbb, size: 1 } #non-zero values indicate a miss
+      enemyTurnTaken:  { type: "int", address: 0xcbba, size: 1 } #non-zero values indicate a miss
     # weather: #needs GS memory address
     #   weatherType: { type: "reference", address: 0xXXXX, reference: "weather" }
     #   weatherTurnsRemaining: { type: int, address: 0xXXXX }
@@ -405,6 +409,27 @@ properties:
     seconds: { type: "int", address: 0xD1EE }
     frames: { type: "int", address: 0xD1EF }
 
+   time:
+    current: # read-only, result of [rtc + start]
+      day:       { type: "int", address: 0xd1f2, reference: "dayNames", postprocessor: "x % 7" }
+      hour:      { type: "int", address: 0xff96 }
+      minute:    { type: "int", address: 0xff98 }
+      second:    { type: "int", address: 0xff9a }
+      dst:       { type: "bit", address: 0xd1e8, position: 7 } # Daylight Saving Time
+      timeOfDay: { type: "int", address: 0xd157, reference: "timeOfDay" }
+    start:
+      day:       { type: "int", address: 0xd1dc, reference: "dayNames" }
+      hour:      { type: "int", address: 0xd1dd }
+      minute:    { type: "int", address: 0xd1de }
+      second:    { type: "int", address: 0xd1df }
+    rtc: # read-only, fetched from RTC module on the MBC3 chip
+      day:       { type: "int", address: 0xff8f, size: 2, postprocessor: "(x % 512) % 7" } # combines the 2 above and limits them to 0-6
+      hour:      { type: "int", address: 0xff91 }
+      minute:    { type: "int", address: 0xff92 }
+      second:    { type: "int", address: 0xff93 }
+      # dayHi:   { type: "int", address: 0xff8f }
+      # dayLo:   { type: "int", address: 0xff90 }
+
   # audio: # needs GS memory addresses
   #   mapMusic: { type: "int", address: 0xXXXX }
   #   currentSound: { type: "int", address: 0xXXXX }
@@ -433,6 +458,18 @@ properties:
   #     prompt: { type: "string", address: 0xC606, reference: "textPrompt" }
 
 glossary:
+  day:
+    0: SUNDAY
+    1: MONDAY
+    2: TUESDAY
+    3: WEDNESDAY
+    4: THURSDAY
+    5: FRIDAY
+    6: SATURDAY
+  timeOfDay:
+    0: MORNING
+    1: DAY
+    2: NIGHT
   battleModes: # wBattleMode values
     0x00: "NONE"
     0x01: "WILD"
