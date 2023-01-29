@@ -330,8 +330,47 @@ properties:
       move2ppUp: { type: "int", address: 0xC635, postprocessor: "Floor(x / 64)" }
       move3ppUp: { type: "int", address: 0xC636, postprocessor: "Floor(x / 64)" }
       move4ppUp: { type: "int", address: 0xC637, postprocessor: "Floor(x / 64)" }
-      rolloutCounter: { type: "int", address: 0xC672 }
-      furyCutterCounter: { type: "int", address: 0xC678 }
+      counters:
+        rollout:    { type: "int", address: 0xC672 }
+        confuse:    { type: "int", address: 0xC673 }
+        toxic:      { type: "int", address: 0xC674 }
+        disable:    { type: "int", address: 0xC675 }
+        encore:     { type: "int", address: 0xC676 }
+        perish:     { type: "int", address: 0xC677 }
+        furyCutter: { type: "int", address: 0xC678 }
+        protect:    { type: "int", address: 0xC679 }
+      status:
+        nightmare:   { type: "bit", address: 0xc668, position: 0 }
+        curse:       { type: "bit", address: 0xc668, position: 1 }
+        protect:     { type: "bit", address: 0xc668, position: 2 }
+        identified:  { type: "bit", address: 0xc668, position: 3 }
+        perish:      { type: "bit", address: 0xc668, position: 4 }
+        endure:      { type: "bit", address: 0xc668, position: 5 }
+        rollout:     { type: "bit", address: 0xc668, position: 6 }
+        in_love:     { type: "bit", address: 0xc668, position: 7 }
+        curled:      { type: "bit", address: 0xc669, position: 0 }
+        bide:        { type: "bit", address: 0xc66a, position: 0 }
+        rampage:     { type: "bit", address: 0xc66a, position: 1 }
+        in_loop:     { type: "bit", address: 0xc66a, position: 2 }
+        flinched:    { type: "bit", address: 0xc66a, position: 3 }
+        charged:     { type: "bit", address: 0xc66a, position: 4 }
+        underground: { type: "bit", address: 0xc66a, position: 5 }
+        flying:      { type: "bit", address: 0xc66a, position: 6 }
+        confused:    { type: "bit", address: 0xc66a, position: 7 }
+        x_accuracy:  { type: "bit", address: 0xc66b, position: 0 }
+        mist:        { type: "bit", address: 0xc66b, position: 1 }
+        focus_energ: { type: "bit", address: 0xc66b, position: 2 }
+        substitute:  { type: "bit", address: 0xc66b, position: 4 }
+        recharge:    { type: "bit", address: 0xc66b, position: 5 }
+        rage:        { type: "bit", address: 0xc66b, position: 6 }
+        leech_seed:  { type: "bit", address: 0xc66b, position: 7 }
+        toxic:       { type: "bit", address: 0xc66c, position: 0 }
+        transformed: { type: "bit", address: 0xc66c, position: 3 }
+        encored:     { type: "bit", address: 0xc66c, position: 4 }
+        lock_on:     { type: "bit", address: 0xc66c, position: 5 }
+        destiny_bon: { type: "bit", address: 0xc66c, position: 6 }
+        cant_run:    { type: "bit", address: 0xc66c, position: 7 }
+
     enemyPokemon:
       species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
       type1: { type: "reference", address: 0xD224, reference: "types" }
@@ -375,6 +414,47 @@ properties:
       # dvDefense: { type: "int", address: 0xD0F5, postprocessor: "x % 16" } #needs crystal address
       # dvSpeed:   { type: "int", address: 0xD0F6, postprocessor: "(x - (x % 16))/16" } #needs crystal address
       # dvSpecial: { type: "int", address: 0xD0F6, postprocessor: "x % 16" } #needs crystal address
+      counters:
+        rollout:    { type: "int", address: 0xc67a }
+        confuse:    { type: "int", address: 0xc67b }
+        toxic:      { type: "int", address: 0xc67c }
+        disable:    { type: "int", address: 0xc67d }
+        encore:     { type: "int", address: 0xc67e }
+        perish:     { type: "int", address: 0xc67f }
+        furyCutter: { type: "int", address: 0xc680 }
+        protect:    { type: "int", address: 0xc681 }
+      status:
+        nightmare:   { type: "bit", address: 0xc66d, position: 0 }
+        curse:       { type: "bit", address: 0xc66d, position: 1 }
+        protect:     { type: "bit", address: 0xc66d, position: 2 }
+        identified:  { type: "bit", address: 0xc66d, position: 3 }
+        perish:      { type: "bit", address: 0xc66d, position: 4 }
+        endure:      { type: "bit", address: 0xc66d, position: 5 }
+        rollout:     { type: "bit", address: 0xc66d, position: 6 }
+        in_love:     { type: "bit", address: 0xc66d, position: 7 }
+        curled:      { type: "bit", address: 0xc66e, position: 0 }
+        bide:        { type: "bit", address: 0xc66f, position: 0 }
+        rampage:     { type: "bit", address: 0xc66f, position: 1 }
+        in_loop:     { type: "bit", address: 0xc66f, position: 2 }
+        flinched:    { type: "bit", address: 0xc66f, position: 3 }
+        charged:     { type: "bit", address: 0xc66f, position: 4 }
+        underground: { type: "bit", address: 0xc66f, position: 5 }
+        flying:      { type: "bit", address: 0xc66f, position: 6 }
+        confused:    { type: "bit", address: 0xc66f, position: 7 }
+        x_accuracy:  { type: "bit", address: 0xc670, position: 0 }
+        mist:        { type: "bit", address: 0xc670, position: 1 }
+        focus_energ: { type: "bit", address: 0xc670, position: 2 }
+        substitute:  { type: "bit", address: 0xc670, position: 4 }
+        recharge:    { type: "bit", address: 0xc670, position: 5 }
+        rage:        { type: "bit", address: 0xc670, position: 6 }
+        leech_seed:  { type: "bit", address: 0xc670, position: 7 }
+        toxic:       { type: "bit", address: 0xc671, position: 0 }
+        transformed: { type: "bit", address: 0xc671, position: 3 }
+        encored:     { type: "bit", address: 0xc671, position: 4 }
+        lock_on:     { type: "bit", address: 0xc671, position: 5 }
+        destiny_bon: { type: "bit", address: 0xc671, position: 6 }
+        cant_run:    { type: "bit", address: 0xc671, position: 7 }
+
     info:
       currentDamage:  { type: "int", address: 0xd256, size: 2 }
       lowHealthAlarm: { type: "reference", address: 0xC6FD, reference: "lowHealthAlarm" }
@@ -463,6 +543,10 @@ properties:
   screen:
     text:
       prompt: { type: "string", address: 0xC606, reference: "textPrompt" }
+
+  patch: # scott's thoughts turn counter patch
+    patchPresent: { type: "int", size: 1, address: 0x3fb5, postprocessor: "x != 0" } 
+    turnCounter:  { type: "int", size: 2, address: 0xcfd8 }
 
 glossary:
   day:
