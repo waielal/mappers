@@ -442,6 +442,7 @@ properties:
         - { type: "int", address: 0xD8A0, reference: "pokemonSpecies" }
         - { type: "int", address: 0xD8A1, reference: "pokemonSpecies" }
     yourPokemon:
+      partyPos: { type: "int", address: 0xCC2F }
       nickname: { type: "string", address: 0xD008, size: 11 }
       species:  { type: "int", address: 0xD013, reference: "pokemonSpecies" }
       pokedexNumber: { type: "int", address: 0xD013, reference: "pokemonPokedexNumbers" }
@@ -478,6 +479,7 @@ properties:
       move3pp: { type: "int", address: 0xD02E, postprocessor: "x % 64" }
       move4pp: { type: "int", address: 0xD02F, postprocessor: "x % 64" }
     enemyPokemon:
+      partyPos: { type: "int", address: 0xCFE7 }
       species: { type: "int", address: 0xCFD7, reference: "pokemonSpecies" }
       pokedexNumber: { type: "int", address: 0xCFD7, reference: "pokemonPokedexNumbers" }
       type1:   { type: "int", address: 0xCFE9, reference: "pokemonTypes" }
