@@ -672,10 +672,18 @@ properties:
         - { type: "macro", address: 0x2024158, macro: "pokemonInParty" }
         - { type: "macro", address: 0x20241BC, macro: "pokemonInParty" }
         - { type: "macro", address: 0x2024220, macro: "pokemonInParty" }
-    yourPokemon:        { type: "macro", address: 0x2023BE4, macro: "battleStructure" }
-    yourSecondPokemon:  { type: "macro", address: 0x2023C94, macro: "battleStructure" }
-    enemyPokemon:       { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
-    enemySecondPokemon: { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
+    yourPokemon:
+      partyPos: { type: "int", address: 0x02023BCE, size: 2 }
+      _:        { type: "macro", address: 0x2023BE4, macro: "battleStructure" }
+    yourSecondPokemon:
+      partyPos: { type: "int", address: 0x02023BD2, size: 2 }
+      _:        { type: "macro", address: 0x2023C94, macro: "battleStructure" }
+    enemyPokemon:
+      partyPos: { type: "int", address: 0x02023BD0, size: 2 }
+      _:        { type: "macro", address: 0x2023C3C, macro: "battleStructure" }
+    enemySecondPokemon:
+      partyPos: { type: "int", address: 0x02023BD4, size: 2 }
+      _:        { type: "macro", address: 0x2023CEC, macro: "battleStructure" }
     turnInfo:
       battleWeather: { type: "int", address: 0x2023F1C, reference: "battleWeather" } 
       battleWeatherTurnCounter: { type: "int", address: 0x02023F48 }

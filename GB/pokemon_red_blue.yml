@@ -443,6 +443,7 @@ properties:
         - { type: "int", address: 0xD8A1, reference: "pokemonSpecies" }
         - { type: "int", address: 0xD8A2, reference: "pokemonSpecies" }
     yourPokemon:
+      partyPos: { type: "int", address: 0xCC2F }
       nickname: { type: "string", address: 0xD009, size: 11 }
       species:  { type: "int", address: 0xD014, reference: "pokemonSpecies" }
       type1:   { type: "int", address: 0xD019, reference: "pokemonTypes" } #need memory addresses
@@ -472,6 +473,7 @@ properties:
       move3pp: { type: "int", address: 0xD02F, postprocessor: "x % 64" }
       move4pp: { type: "int", address: 0xD030, postprocessor: "x % 64" }
     enemyPokemon:
+      partyPos: { type: "int", address: 0xCFE8 }
       species: { type: "int", address: 0xCFD8, reference: "pokemonSpecies" }
       type1:   { type: "int", address: 0xCFEA, reference: "pokemonTypes" }
       type2:   { type: "int", address: 0xCFEB, reference: "pokemonTypes" }

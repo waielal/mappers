@@ -300,6 +300,7 @@ properties:
     #   slot5: { type: "reference", address: 0xXXXX, reference: "pokemonSpecies" }
     #   slot6: { type: "reference", address: 0xXXXX, reference: "pokemonSpecies" }
     yourPokemon:
+      partyPos: { type: "int", address: 0xCFC6 }
       heldItem:  { type: "reference", address: 0xCB0D, reference: "items" }
       hp: { type: "int", address: 0xCB1C, size: 2 }
       type1: { type: "reference", address: 0xCB2A, reference: "types" }
@@ -329,6 +330,7 @@ properties:
       move3ppUp: { type: "int", address: 0xCB16, postprocessor: "Floor(x / 64)" }
       move4ppUp: { type: "int", address: 0xCB17, postprocessor: "Floor(x / 64)" }
     enemyPokemon:
+      partyPos: { type: "int", address: 0xCB41 }
       # species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" } #needs GS memory address
       # type1: { type: "reference", address: 0xD127, reference: "types" } #needs GS memory address
       # type2: { type: "reference", address: 0xD128, reference: "types" } #needs GS memory address

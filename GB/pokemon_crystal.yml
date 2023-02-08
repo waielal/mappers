@@ -301,6 +301,7 @@ properties:
         - { type: "reference", address: 0xD285, reference: "pokemonSpecies" }
         - { type: "reference", address: 0xD286, reference: "pokemonSpecies" }
     yourPokemon:
+      partyPos: { type: "int", address: 0xD0D4 }
       # heldItem:  { type: "reference", address: 0xXXXX, reference: "items" } # needs crystal memory location
       battleStatHp:      { type: "int", address: 0xC63C, size: 2 }
       battleStatMaxHp:   { type: "int", address: 0xC63E, size: 2 }
@@ -372,6 +373,7 @@ properties:
         cant_run:    { type: "bit", address: 0xc66c, position: 7 }
 
     enemyPokemon:
+      partyPos: { type: "int", address: 0xC663 }
       species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
       type1: { type: "reference", address: 0xD224, reference: "types" }
       type2: { type: "reference", address: 0xD225, reference: "types" }
