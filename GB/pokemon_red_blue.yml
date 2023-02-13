@@ -4,41 +4,6 @@ meta:
   gameName: "Pokemon Red and Blue"
   gamePlatform: "GB"
 
-#THIS UPDATE CHANGES:
-# The trash can puzzle is now accessible through the following properties:
-  # events.trashCanPuzzle
-  # OR
-  # trainers.vermilionCityGym.gentleman3.bytes
-  # Syntax
-  # Removed "size: 1" wherever it occurs because it is superfluous
-  # Changed all "type: reference" properties to "type: int" with a reference
-
-#OLDER MAJOR CHANGES - DOCUMENTATION (By Scott's Thoughts)
-# All stats were previously: Attack, Defense, Special, Speed. These have been updated to:
-  # old
-    # Attack
-    # Defense
-    # Speed    
-    # Special
-  # new
-    # attack
-    # defense
-    # speed    
-    # special
-# Old properties for DVs have been replaced with new DV properties
-  # old
-    # dvAttackDefense
-    # dvSpeedSpecial
-  # new
-    # dvAttack
-    # dvDefense
-    # dvSpeed
-    # dvSpecial
-# PP values now correctly display in Gamehook
-# PP Ups used are now tracked
-  # move1ppUp
-  # etc
-
 macros:
   pokemonMacro:
     species:       { offset: 0, type: "int", reference: "pokemonSpecies" }
@@ -54,10 +19,6 @@ macros:
     defense: { offset: 38, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
     speed:   { offset: 40, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
     special: { offset: 42, type: "int", size: 2, description: "The Attack stat as it appears in the Pokemon's summary page in game" }
-    # dvAttack:  { offset: 27, type: "nibble", position: 0 }
-    # dvDefense: { offset: 27, type: "nibble", position: 1 }
-    # dvSpeed:   { offset: 28, type: "nibble", position: 0 }
-    # dvSpecial: { offset: 28, type: "nibble", position: 1 }
     dvAttack:  { offset: 27, type: "int", postprocessor: "(x - (x % 16))/16" }
     dvDefense: { offset: 27, type: "int", postprocessor: "x % 16" }
     dvSpeed:   { offset: 28, type: "int", postprocessor: "(x - (x % 16))/16" }
@@ -84,8 +45,8 @@ macros:
     trainerId: { offset: 12, type: "int", size: 2 }
     catchRate: { offset: 7, type: "int", description: "Held item when traded to gen2" }
   playerItem:
-      item:     { offset: 0, type: "int", reference: "items" }
-      quantity: { offset: 1, type: "int" }
+    item:     { offset: 0, type: "int", reference: "items" }
+    quantity: { offset: 1, type: "int" }
   encounter:
     level:   { offset: 0, type: "int" }
     pokemon: { offset: 1, type: "int", reference: "pokemonSpecies" }
@@ -115,7 +76,7 @@ macros:
     type1: { offset: 5, type: "int", reference: "pokemonTypes" }
     type2: { offset: 6, type: "int", reference: "pokemonTypes" }
     trainerId: { offset: 12, type: "int", size: 2 }
-      
+
 properties:
   player:
     name:      { type: "string", address: 0xD158, size: 11 }
@@ -206,12 +167,12 @@ properties:
         - { type: "macro", address: 0xD898, macro: "encounter" }
         - { type: "macro", address: 0xD89A, macro: "encounter" }
     repelCount:    { type: "int", address: 0xD0DB }
-    flash:         { type: "int", address: 0xD35E } #testing required
-    safariZone: #test this region
-      safariTime:  { type: "int", address: 0xD70D, size: 2 } #requires testing 
+    # flash:         { type: "int", address: 0xD35E } #wrong address or it needs a reference
+    safariZone:
+      safariTime:  { type: "int", address: 0xD70D, size: 2 }
       safariBalls: { type: "int", address: 0xDA47 }
-      oppEscapingFactor: { type: "int", address: 0xCCE8 } #test
-      oppBaitingFactor:  { type: "int", address: 0xCCE9 } #test
+      # oppEscapingFactor: { type: "int", address: 0xCCE8 }
+      oppBaitingFactor:  { type: "int", address: 0xCCE9 }
     mapData:
       tileset: { type: "int", address: 0xD367 } #reference
       height:  { type: "int", address: 0xD368 }
@@ -238,96 +199,7 @@ properties:
       forceBike: { type: "bit", address: 0xD731, position: 5  } # currently being forced to ride bike (cycling road)"
       destinationIsBlackout: { type: "bit", address: 0xD731, position: 6 } # map destination is [wLastBlackoutMap] (usually the last used pokemon center, but could be the player's house)
       # unusedBit: { type: "bit", address: 0xD731, position: 7, description: "unused in game" }
-    # townMap:
-    #   unknown1: { type: "bit", address: 0xD5F3, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD5F3, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD5F3, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD5F3, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD5F3, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD5F3, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD5F3, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD5F3, position: 7 }
-    # oaksParcel:
-    #   unknown1: { type: "bit", address: 0xD60D, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD60D, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD60D, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD60D, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD60D, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD60D, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD60D, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD60D, position: 7 }
-    # fossils:
-    #   unknown1: { type: "bit", address: 0xD710, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD710, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD710, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD710, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD710, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD710, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD710, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD710, position: 7 }
-    # ssAnne:
-    #   unknown1: { type: "bit", address: 0xD803, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD803, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD803, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD803, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD803, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD803, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD803, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD803, position: 7 }
-    trashCanPuzzle: { type: "bit", address: 0xD773, position: 0 } #set to 3 to solve the puzzle, freezing breaks the trainers
-    # lapras:
-    #   unknown1: { type: "bit", address: 0xD72E, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD72E, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD72E, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD72E, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD72E, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD72E, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD72E, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD72E, position: 7 }
-    # articuno:
-    #   unknown1: { type: "bit", address: 0xD782, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD782, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD782, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD782, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD782, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD782, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD782, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD782, position: 7 }
-    # zapdos:
-    #   unknown1: { type: "bit", address: 0xD7D4, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD7D4, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD7D4, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD7D4, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD7D4, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD7D4, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD7D4, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD7D4, position: 7 }
-    # moltres:
-    #   unknown1: { type: "bit", address: 0xD7EE, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD7EE, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD7EE, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD7EE, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD7EE, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD7EE, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD7EE, position: 6 }
-    #   unknown8: { type: "bit", address: 0xD7EE, position: 7 }
-    # mewtwo:
-    #   bit1Unknown1: { type: "bit", address: 0xD5C0, position: 0 }
-    #   bit1Unknown2: { type: "bit", address: 0xD5C0, position: 1 }
-    #   bit1Unknown3: { type: "bit", address: 0xD5C0, position: 2 }
-    #   bit1Unknown4: { type: "bit", address: 0xD5C0, position: 3 }
-    #   bit1Unknown5: { type: "bit", address: 0xD5C0, position: 4 }
-    #   bit1Unknown6: { type: "bit", address: 0xD5C0, position: 5 }
-    #   bit1Unknown7: { type: "bit", address: 0xD5C0, position: 6 }
-    #   bit1Unknown8: { type: "bit", address: 0xD5C0, position: 7 }
-    #   bit2Unknown1: { type: "bit", address: 0xD85F, position: 0 }
-    #   bit2Unknown2: { type: "bit", address: 0xD85F, position: 1 }
-    #   bit2Unknown3: { type: "bit", address: 0xD85F, position: 2 }
-    #   bit2Unknown4: { type: "bit", address: 0xD85F, position: 3 }
-    #   bit2Unknown5: { type: "bit", address: 0xD85F, position: 4 }
-    #   bit2Unknown6: { type: "bit", address: 0xD85F, position: 5 }
-    #   bit2Unknown7: { type: "bit", address: 0xD85F, position: 6 }
-    #   bit2Unknown8: { type: "bit", address: 0xD85F, position: 7 }
+    trashCanPuzzle: { type: "bit", address: 0xD773, position: 0, description: "Set value to 3 to solve the puzzle. Freezing this property breaks the gym trainers."  }
   # trainers: #DO NO FREEZE THESE PROPERTIES OR TRAINERS WILL ENDLESSLY BATTLE YOU
   #     viridianForest:
   #     # unknown1:     { type: "bit", address: 0xD7F3, position: 0 } #Scott's Thoughts: delete if nothing on final pass
@@ -413,22 +285,13 @@ properties:
   #     blackbelt8:     { type: "bit", address: 0xD751, position: 7 }
   #     tamer4:         { type: "bit", address: 0xD752, position: 0 }
   #     coolTrainerM:   { type: "bit", address: 0xD752, position: 1 }
-    
-    # bitArrayTemplate: #useful for testing event flags
-    #   unknown1: { type: "bit", address: 0xD732, position: 0 }
-    #   unknown2: { type: "bit", address: 0xD732, position: 1 }
-    #   unknown3: { type: "bit", address: 0xD732, position: 2 }
-    #   unknown4: { type: "bit", address: 0xD732, position: 3 }
-    #   unknown5: { type: "bit", address: 0xD732, position: 4 }
-    #   unknown6: { type: "bit", address: 0xD732, position: 5 }
-    #   unknown7: { type: "bit", address: 0xD732, position: 6 }
 
   battle:
-    attackDamage:   { type: "int", address: 0xD0D8, description: "Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." }
     type:           { type: "int", address: 0xD057, reference: "battleTypes" }
     animationTurn:  { type: "int", address: 0xFFF4, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
     specialType:    { type: "int", address: 0xD05A, reference: "specialBattleTypes" }
     lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
+    attackDamage:   { type: "int", address: 0xD0D8, description: "Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." } #duplicate property
     trainer:
       name:         { type: "string", address: 0xD04A, size: 11 }
       class:        { type: "int", address: 0xD031, reference: "trainerClasses" }
@@ -446,21 +309,28 @@ properties:
       partyPos: { type: "int", address: 0xCC2F }
       nickname: { type: "string", address: 0xD009, size: 11 }
       species:  { type: "int", address: 0xD014, reference: "pokemonSpecies" }
-      type1:   { type: "int", address: 0xD019, reference: "pokemonTypes" } #need memory addresses
-      type2:   { type: "int", address: 0xD01A, reference: "pokemonTypes" } #need memory addresses
       pokedexNumber: { type: "int", address: 0xD014, reference: "pokemonPokedexNumbers" }
-      modStageAttack:   { type: "int", address: 0xCD1a, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageDefense:  { type: "int", address: 0xCD1b, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageSpeed:    { type: "int", address: 0xCD1c, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageSpecial:  { type: "int", address: 0xCD1d, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageAccuracy: { type: "int", address: 0xCD1e, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      modStageEvasion:  { type: "int", address: 0xCD1f, reference: "stageModifiers" } #test, are they really the same in RB and Y?
-      battleStatHp:      { type: "int", address: 0xD015, size: 2 }
-      battleStatMaxHp:   { type: "int", address: 0xD023, size: 2 }
-      battleStatAttack:  { type: "int", address: 0xD025, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatDefense: { type: "int", address: 0xD027, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
-      battleStatSpeed:   { type: "int", address: 0xD029, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"}
-      battleStatSpecial: { type: "int", address: 0xD02B, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      type1:   { type: "int", address: 0xD019, reference: "pokemonTypes" }
+      type2:   { type: "int", address: 0xD01A, reference: "pokemonTypes" }
+      level:   { type: "int", address: 0xD022 }
+      modStageAttack:   { type: "int", address: 0xCD1A, reference: "stageModifiers" } #same memory location across all Gen1 games
+      modStageDefense:  { type: "int", address: 0xCD1B, reference: "stageModifiers" } #same memory location across all Gen1 games
+      modStageSpeed:    { type: "int", address: 0xCD1C, reference: "stageModifiers" } #same memory location across all Gen1 games
+      modStageSpecial:  { type: "int", address: 0xCD1D, reference: "stageModifiers" } #same memory location across all Gen1 games
+      modStageAccuracy: { type: "int", address: 0xCD1E, reference: "stageModifiers" } #same memory location across all Gen1 games
+      modStageEvasion:  { type: "int", address: 0xCD1F, reference: "stageModifiers" } #same memory location across all Gen1 games
+      hp:      { type: "int", address: 0xD015, size: 2, description: "The Player's active Pokemon's current HP" }
+      maxHp:   { type: "int", address: 0xD023, size: 2, description: "The Player's active Pokemon's max HP" }
+      attack:  { type: "int", address: 0xD025, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      defense: { type: "int", address: 0xD027, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      speed:   { type: "int", address: 0xD029, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" }
+      special: { type: "int", address: 0xD02B, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" }
+      battleStatHp:      { type: "int", address: 0xD015, size: 2 } #deprecated
+      battleStatMaxHp:   { type: "int", address: 0xD023, size: 2 } #deprecated
+      battleStatAttack:  { type: "int", address: 0xD025, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #deprecated
+      battleStatDefense: { type: "int", address: 0xD027, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" } #deprecated
+      battleStatSpeed:   { type: "int", address: 0xD029, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included"} #deprecated
+      battleStatSpecial: { type: "int", address: 0xD02B, size: 2, description: "The Player's active Pokemon's Special stat as calculated in battle (badge boosts and stat modifications included" } #deprecated
       battleStatusCondition: { type: "int", address: 0xD018, reference: "statusConditions" }
       tempStatusConfusion: { type: "int", address: 0xd062, reference: "tempStatusConfused" }
       tempStatusBadPoison: { type: "int", address: 0xd064, reference: "tempStatusBadPoison" }
@@ -475,6 +345,7 @@ properties:
     enemyPokemon:
       partyPos: { type: "int", address: 0xCFE8 }
       species: { type: "int", address: 0xCFD8, reference: "pokemonSpecies" }
+      pokedexNumber: { type: "int", address: 0xCFD8, reference: "pokemonPokedexNumbers" }
       type1:   { type: "int", address: 0xCFEA, reference: "pokemonTypes" }
       type2:   { type: "int", address: 0xCFEB, reference: "pokemonTypes" }
       level:   { type: "int", address: 0xCFF3 }
@@ -574,11 +445,11 @@ properties:
     turnInfo:
       battleStart:     { type: "int", address: 0xCCF5, description: "When 0 battle is starting, when >=1 battle has begun" }
       trainerDefeated: { type: "int", address: 0xCCF6, description: "When 1, the opponent has lost" }
+<<<<<<< HEAD
+=======
       # criticalHitOHKO: { type: "int", address: 0xD05E }
+>>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30
       nextAttackDamage: { type: "int", address: 0xD0D8 }
-      # yourSubtituteHp: { type: "int", address: 0xCCD7 }
-      # enemySubstituteHp: { type: "int", address: 0xCCD8 }
-      # bideAccumulation: { type: "int", address: 0xCD05, size: 2 }
 
   pokemart:
     itemCount: { type: "int", address: 0xCF7C }

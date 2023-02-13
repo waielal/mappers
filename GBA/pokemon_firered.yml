@@ -48,7 +48,7 @@ macros:
     move4ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 192) >> 6" }
     friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
     # unknown:    { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
-    
+
     # bitwise masking - pairs of 2 bytes
     # 00000011 3   (no shift) formula: (x & 3)
     # 00001100 12  (>>2)      formula: (x & 12) >> 2
@@ -58,7 +58,6 @@ macros:
     # bisewise nybble masking
     # 00001111 15 (>>0)  formula: (x & 15)
     # 11110000 240 (>>4) formula: (x & 240) >> 4
-
 
     #BLOCK2-Attacks
     move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "int", size: 2, reference: "moves" }
@@ -93,12 +92,6 @@ macros:
     ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
 
-    # 0x20244EC
-    #   202450C-block1
-    #   2024518-block2
-    #   2024524-block3
-    #   2024530-block4
-
     #MAIN DATA
     level:   { offset: 84, type: "int" }
     pokerus: { offset: 85, type: "int" }
@@ -110,8 +103,8 @@ macros:
     specialAttack:  { offset: 96, type: "int", size: 2 }
     specialDefense: { offset: 98, type: "int", size: 2 }
     statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
-  
-  battleStructure: #there may be data in this structure before the species value
+
+  battleStructure:
     nickname: { offset: 48, type: string, size: 11, characterMap: "defaultCharacterMap" }
     _: { offset: 0, type: "macro", macro: "pokemonMacro" }
     speciesArray: { offset: 0, type: "int", size: 2, reference: "pokemon" }
@@ -625,19 +618,9 @@ properties:
     #   safariBalls:       { type: "int", address: 0x02039994 }
   overworld:
     mapName:  { type: "int", size: 2, address: 0x02031dbc, reference: "mapName" }
-
   #   walkRunState: { type: "int", address: 0x2037078, reference: "walkRunState"}
   #   safariSteps:  { type: "int", address: 0x02039996 }
-  #   pokemart:
-  #     items:
-  #       item1: { type: "int", address: 0x02039938, reference: "items"}
-  #       item2: { type: "int", address: 0x02039939, reference: "items"}
-  #       item3: { type: "int", address: 0x0203993A, reference: "items"}
-  #       item4: { type: "int", address: 0x0203993B, reference: "items"}
-  #       item5: { type: "int", address: 0x0203993C, reference: "items"}
-  #       item6: { type: "int", address: 0x0203993D, reference: "items"}
-  #       item7: { type: "int", address: 0x0203993E, reference: "items"}
-  #       item8: { type: "int", address: 0x0203993F, reference: "items"}
+
   battle:
     outcome: { type: "int", address: 0x02023e8a, reference: "battleOutcome" }
     type:
@@ -662,7 +645,7 @@ properties:
       legenadry_frlg: { type: "bit", address: 0x02022b4c, size: 4, position: 18 }
       trainer_tower: { type: "bit", address: 0x02022b4c, size: 4, position: 19 }
     trainer:
-      opponent:   { type: "int", address: 0x20386AE, size: 2, reference: "trainerClasses" }
+      opponent:     { type: "int", address: 0x20386AE, size: 2, reference: "trainerClasses" }
       opponentId:   { type: "int", address: 0x20386AE, size: 2 }
       totalPokemon: { type: "int", address: 0x202402A }
       team:
@@ -690,11 +673,17 @@ properties:
       battleOutcome: { type: "int", address: 0x2023e8a }
       battleBackgroundTiles: { type: "int", address: 0x2024018, size: 4 }
       battleBackgroundTilesBuffer: { type: "int", address: 0x202401c, size: 4 }
-      battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts only
+<<<<<<< HEAD
+      battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts
+
   events:
     trashCanPuzzle: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3884)" } #This flag is checked when the player enters the gym. Changing this flag while being inside the gym only takes effect when leaving and entering the gym again.
     beatChampion:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3959)" }
     gameClear: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 4069)" }
+=======
+      battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts only
+  
+>>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
     minutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
@@ -704,87 +693,10 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005008 } #map data
     dma2: { type: "uint", size: 4, address: 0x300500C } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005010 } #box data
-    callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
+    # callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
     callback1: { type: "int", size: 4, address: 0x030030f0, reference: "mainState" } # main
-    callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
-    callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub 
-
-  # dma-pointers: # needs gamehook update to access memory locations
-  #   teamCount: { type: "int", address: 0x3005008, size: 4 }
-  #   teamCount: { type: "int", address: 0x300500C, size: 4 }
-  #   teamCount: { type: "int", address: 0x3005010, size: 4 }
-  #DMA BLOCK 1 - MAP DATA 
-    # 0x00000000 camera_position:coords16 ?
-    # 0x00000004 location:       warpdata ?
-    # 0x0000000C saved_warp:     warpdata ?
-    # 0x0000002C some_music_id:  .short ?
-    # 0x0000002E weather_probably:.byte ?
-    # 0x00000030 flash_used_on_map:.byte ?               @ 0 or 4
-    # 0x00000032 mapdata_idx_plus_1:.short ?             @ will be assigned to var 40AE by 08110E20
-    # 0x00000034 num_party_pokemon:.byte ?
-    # 0x000000A8 field_A8:       .long ?                 @ XREF: new_game+48/o
-    # 0x000000AC gamecode:       .byte ?                 @ XREF: new_game+4C/o
-    # 0x000000AD field_AD:       .byte ?                 @ XREF: new_game+54/o
-    # 0x000000B0 field_B0:       .byte 1012 dup(?)       @ XREF: sav2_B0_clear+C/o
-    # 0x00000218 money_maybe:    .long ?
-    # 0x0000021C pcitems:        .byte 124 dup(?)
-    # 0x00000298 bag_probably:   .long 42 dup(?)
-    # 0x00002F08 daycare_data:   .long ?
-    # 0x000039D4 rivals_name:    .byte 8 dup(?)
-  #DMA BLOCK 2 - TRAINER DATA  
-    # 0x00000000 name:           .byte 8
-    # 0x00000008 gender:         .byte ?
-    # 0x00000009 savebits:       .byte ?                 @ 0x01: skip "previously on your quest" - set by special 0x110 (hall of fame register)
-    # 0x00000009                                         @ 0x02: saving in a pokemon centre
-    # 0x00000009                                         @ 0x04: used by 0810B79C, which checks an empty map list
-    # 0x00000009                                         @ 0x08: used by 0810B7CC, which also checks an empty map list
-    # 0x0000000A trainerid:      .short ?
-    # 0x0000000C secretid:       .short ?
-    # 0x0000000E playtime_hours: .short ?
-    # 0x00000010 playtime_minutes:.byte ?
-    # 0x00000011 playtime_seconds:.byte ?
-    # 0x00000012 playtime_frames:.byte ?
-    # 0x00000013 options_button_style:.byte ?            @ HELP / LR / L=A
-    # 0x00000014 options_text_speed_maybe:.byte ?
-    # 0x0000001C first_seen_unown_pid:.long ?
-    # 0x00000020 first_seen_spinda_pid:.long ?
-    # 0x00000028 pokemon_flags_caught:.byte 52 dup(?)
-    # 0x0000005C pokemon_flags_seen:.byte 52 dup(?)
-    # 0x000004A4 fourCharacters: .byte 4 dup(?)
-    # 0x000004A8 field_4A8:      .byte 1008 dup(?)
-    # 0x00000898 mapdata:        .byte 600 dup(?)
-    # 0x00000AF0 field_AF0:      .short ?
-    # 0x00000AF2 field_AF2:      .short ?
-    # 0x00000AF4 field_AF4:      .short ?
-    # 0x00000AF6 field_AF6:      .short ?
-    # 0x00000AF8 field_AF8:      .byte 1064 dup(?)
-    # 0x00000F20 obfuscation_xor_key:.long ?
-    # 0x00000F24 field_F24:      .byte 127 dup(?)
-    # 0x00000FA3 last_byte_in_sav2:.byte ?
-  #DMA BLOCK 3 - BOX DATA
-  
-#TO MAP
-# 0x0203988C bag_pocket_0                                                                     
-# 0x02039890 bag_pocket_0_counter                                                             
-# 0x02039894 bag_pocket_1                                                                     
-# 0x02039898 bag_pocket_1_counter                                                             
-# 0x0203989C bag_pocket_2                                                                     
-# 0x020398A0 bag_pocket_2_counter                                                             
-# 0x020398A4 bag_pocket_3                                                                     
-# 0x020398A8 bag_pocket_3_counter                                                             
-# 0x020398AC bag_pocket_4                                                                     
-# 0x020398B0 bag_pocket_4_counter                                                             
-# 0x02039938 pokemart_item_list                                                               
-# 0x02039944 pokemart_item_count                                                              
-# 0x02039964 pokemart_itemdata                                                                
-# 0x02039968 pokemart_item_line_strings  
-# 0x02039994 safari_ball_count 
-# 0x02039996 safari_steps  
-# 0x0203ADC4 pcitem_list 
-# 0x0203F480 flags                                                                            
-# 0x0203F4EC switches 
-# 0x04000100 TM0CNT_L                                                                         
-# 0x04000102 TM0CNT_H   
+    # callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
+    callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub
 
 glossary:
   mainState:
@@ -888,8 +800,8 @@ glossary:
     0:   null
     1:   "Rain"
     8:   "Sandstorm"
-    24: "Sandstorm"
-    32:  "Sunny"
+    24:  "Sandstorm"
+    32:  "Sun"
     128: "Hail"
   battleDialogue: #Scott's Thoughts only
     0x00: null
@@ -3206,6 +3118,7 @@ glossary:
     0x19C: Pokemon Egg
     0x19D: Unown
     0x19E: Unown
+<<<<<<< HEAD
   trainerClasses:
     0x0000: null
     # Dummy trainers form Ruby/Sapphire
@@ -4378,3 +4291,5 @@ glossary:
     0x0029: "SIX_ISLAND - WATER_PATH_HOUSE1"
     0x0129: "SIX_ISLAND - WATER_PATH_HOUSE2"
     0x002a: "SEVEN_ISLAND - SEVAULT_CANYON_HOUSE"
+=======
+>>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30

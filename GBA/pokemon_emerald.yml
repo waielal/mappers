@@ -32,6 +32,8 @@ macros:
     markingSquare:   { offset: 27, type: "bit", position: 1 }
     markingTriangle: { offset: 27, type: "bit", position: 2 }
     markingHeart:    { offset: 27, type: "bit", position: 3 }
+    # otName:     { offset: 20, type: "string", size: 7 } #memoryLocation
+    # markings:   { offset: 27, type: "int" } #memoryLocation
     checksum:   { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     
     #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
@@ -80,6 +82,14 @@ macros:
     # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
     # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
     ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
+    # ivTest1:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 0) % 31" }
+    # ivTest2:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 5) % 31" }
+    # ivTest3:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 10) % 31" }
+    # ivTest4:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 15) % 31" }
+    # ivTest5:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 20) % 31" }
+    # ivTest6:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 25) % 31" }
+    # ivTest7:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 30) % 31" }
+    # ivTest8:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 31) % 31" }
     ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
     ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
     ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
@@ -89,12 +99,6 @@ macros:
     isEgg: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 6 }
     ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
-
-    # 0x20244EC
-    #   202450C-block1
-    #   2024518-block2
-    #   2024524-block3
-    #   2024530-block4
 
     #MAIN DATA
     level:   { offset: 84, type: "int" }
@@ -107,8 +111,8 @@ macros:
     specialAttack:  { offset: 96, type: "int", size: 2 }
     specialDefense: { offset: 98, type: "int", size: 2 }
     statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
-      
-  battleStructure: #there may be data in this structure before the species value
+
+  battleStructure:
     nickname: { offset: 48, type: string, size: 11, characterMap: "defaultCharacterMap" }
     _: { offset: 0, type: "macro", macro: "pokemonMacro" }
     speciesArray: { offset: 0, type: "int", size: 2, reference: "pokemon" }
@@ -660,16 +664,7 @@ properties:
     mapName: { type: "int", size: 2, address: 0x020322e4, reference: "mapName" }
     walkRunState: { type: "int", address: 0x2037078, reference: "walkRunState"}
     safariSteps:  { type: "int", address: 0x02039996 }
-  #   pokemart:
-  #     items:
-  #       item1: { type: "int", address: 0x02039938, reference: "items"}
-  #       item2: { type: "int", address: 0x02039939, reference: "items"}
-  #       item3: { type: "int", address: 0x0203993A, reference: "items"}
-  #       item4: { type: "int", address: 0x0203993B, reference: "items"}
-  #       item5: { type: "int", address: 0x0203993C, reference: "items"}
-  #       item6: { type: "int", address: 0x0203993D, reference: "items"}
-  #       item7: { type: "int", address: 0x0203993E, reference: "items"}
-  #       item8: { type: "int", address: 0x0203993F, reference: "items"}
+
   battle:
     outcome: { type: "int", address: 0x0202433a, reference: "battleOutcome" }
     type:
@@ -693,14 +688,12 @@ properties:
       wild_scripted: { type: "bit", address: 0x02022fec, size: 4, position: 17 }
       legenadry_frlg: { type: "bit", address: 0x02022fec, size: 4, position: 18 }
       trainer_tower: { type: "bit", address: 0x02022fec, size: 4, position: 19 }
-    # animationTurn: { type: "int", address: 0xFFF3, reference: "battleTurn", description: "This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" }
-    # lowHealthAlarm: { type: "int", address: 0xCCF6, reference: "lowHealthAlarm", description: "This is set to 0 at the start of battle and 1 when the opponent has lost" }
     trainer:
-      opponentA: { type: "int", size: 2, address: 0x2038bca, reference: "trainerClasses" }
-      opponentAId: { type: "int", size: 2, address: 0x2038bca }
-      opponentB: { type: "int", size: 2, address: 0x2038bcc, reference: "trainerClasses" } # 2nd opponent, if in a double battle
-      opponentBId: { type: "int", size: 2, address: 0x2038bcc } # 2nd opponent, if in a double battle
-      partnerId:   { type: "int", size: 2, address: 0x2038bce, reference: "trainerClasses" } # partner (otherwise 0 if you fight alone)
+      opponentA:    { type: "int", size: 2, address: 0x2038bca, reference: "trainerClasses" }
+      opponentAId:  { type: "int", size: 2, address: 0x2038bca }
+      opponentB:    { type: "int", size: 2, address: 0x2038bcc, reference: "trainerClasses" } # 2nd opponent, if in a double battle
+      opponentBId:  { type: "int", size: 2, address: 0x2038bcc } # 2nd opponent, if in a double battle
+      partnerId:    { type: "int", size: 2, address: 0x2038bce, reference: "trainerClasses" } # partner (otherwise 0 if you fight alone)
       totalPokemon: { type: "int", address: 0x20244ea }
       team:
         - { type: "macro", address: 0x2024744, macro: "pokemonInParty" }
@@ -724,235 +717,38 @@ properties:
     turnInfo:
       battleWeather: { type: "int", address: 0x20243cc, reference: "battleWeather" }
       battleWeatherTurnCounter: { type: "int", address: 0x20243F8 }
-      battleOutcome: { type: "int", address: 0x202433a, reference: "battleOutcome" } #Unknown values currently
+      battleOutcome: { type: "int", address: 0x202433a, reference: "battleOutcome" }
       battleBackgroundTiles: { type: "int", address: 0x202305c, size: 4 }
       battleBackgroundTilesBuffer: { type: "int", address: 0x2023060, size: 4 }
-      battleDialogue: { type: "int", address: 0x2023064, reference: battleDialogue } #Scott's Thoughts only
+      battleDialogue: { type: "int", address: 0x2023064, reference: battleDialogue } #Scott's Thoughts
 
   events:
+    shoalCaveTidePatch: { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D8C, 4995)" } # 1: High Tide, 0: Low Tide #Scott's Thoughts Only
     rayquazaAwakeOW:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8742)" } #0x50 in documentation of events https://www.pokecommunity.com/showthread.php?t=330008
     gameclockSet:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8742)" } #tested and verified
     savedBirch:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
     afterKyogre:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
     pokeballContestRoomOW:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
-    unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8742)" }
-
     labAssistant:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #"Player has spoken to lab assistant before Littleroot"
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8743)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8743)" }
     mauvilleRewardReceived:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #"set after new mauville reward"
     scottBattleFrontier:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #"Set speaking to Scott Battle Frontier"
     safariZoneEntrance:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #"cleared safari zone entrance, set in safari zone speaking to worker"
     wailmerPail:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #"Has been given Wailmer Pail Flower Shop"
     pokeblockCase:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8743)" } #unused of this - needs verification
-
     secretPowerTM:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8744)" } #"Player has been given TM Secret Power, player has made secret base"
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
     tvPersonMauville:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8744)" } #"Player has spoken to TV person Mauville"
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8744)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
     obtainedFlash:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8745)" } #"Player has received Flash from Granite Cave hiker"
     obtainedFly:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8745)" } #"Player has received Fly Route 119"
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8745)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8746)" }
     aquaHideoutCleared:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8746)" } #"Player has cleared Aqua Hideout"
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8746)" } 
     obtainedMeteorite:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8746)" } #"Player has taken Meteorite Mt. Chimney"
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8746)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8746)" }
     obtainedHiddenPower:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8746)" } #"Player has spoken to Hidden Power lady Fortree"
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8746)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
     obtainedBrickBreak:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8747)" } #"Player has received TM Brick Break"
     obtainedSurf:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8747)" } #"Wally's Dad has given Surf"
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8747)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8748)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8749)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8750)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8751)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    gym1tmReceived:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    gym2tmReceived:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-    gym3tmReceived:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8752)" }
-  
-    gym4tmReceived:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    gym5tmReceived:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    gym6tmReceived:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    gym7tmReceived:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    gym8tmReceived:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8753)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8754)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8755)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8756)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8757)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8758)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8759)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8760)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
     tide:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 9007)" }
-
-    # #tempalte
-    # unused1:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused2:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused3:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused4:   { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused5:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused6:   { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused7:   { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-    # unused8:   { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 8761)" }
-
-    #0x9C2 badge aquisition (8890, 0x22BA)
-    # badge test
-    # value
-    # 2026D72 @01 for roxanne
-    # dma
-    # 2024AB8
-    # offset
-    # 0x22BA
-    # decimal
-    # 8890
     menu:
       pokemon:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
       pokedex:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
       pokenav:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
-
-    badges:
-      badge1: { type: "bit", position: 7, preprocessor: "dma_967d10cc(0x03005D90, 9000)" } #"actives first badge" - need to test the meaning of this statement
-      badge2: { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge3: { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge4: { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge5: { type: "bit", position: 3, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge6: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge7: { type: "bit", position: 5, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
-      badge8: { type: "bit", position: 6, preprocessor: "dma_967d10cc(0x03005D90, 9001)" }
 
   trainers:
     eliteFour:    
@@ -975,45 +771,10 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005D8C } #map data
     dma2: { type: "uint", size: 4, address: 0x3005D90 } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005D94 } #box data
-    callback1testrer: { type: "uint", size: 4, address: 0x030022c0 } # main
+    # callback1test: { type: "uint", size: 4, address: 0x030022c0 } # main
     callback1: { type: "int", size: 4, address: 0x030022c0, reference: "mainState" } # main
-    callback2tester: { type: "uint", size: 4, address: 0x030022c4 } # sub
+    # callback2test: { type: "uint", size: 4, address: 0x030022c4 } # sub
     callback2: { type: "int", size: 4, address: 0x030022c4, reference: "subState" } # sub
-
-# dynamic memory allocation memory pointers
-# dma1: 0x03005D8C
-# dma2: 0x03005D90
-# dma3: 0x03005D94
-
-#dma2 2024A68
-#flags 2026C8E
-#offset 0x2226
-# offsetdec 8742
-
-# clock offset by 8 from start of flags
-# badges offset 160 from start of flags
-# therefore
-# flags are offset from DMA by 8734 (0x221E)
-
-#dma2 
-
-# flags: all flags are offset near 4714 from DMA block 2
-# test: 2026C8E when DMA1-0x3005D90 setto-0x2025A14 offset 126A (4714 in decimal)
-
-#dma2 2024A68
-#flags 2026C8E
-#offset 0x2226
-# offsetdec 8742
-
-# clock offset by 8 from start of flags
-# badges offset 160 from start of flags
-# therefore
-# flags are offset from DMA by 8734 (0x221E)
-
-#dma2 
-
-# flags: all flags are offset near 4714 from DMA block 2
-# test: 2026C8E when DMA1-0x3005D90 setto-0x2025A14 offset 126A (4714 in decimal)
 
 glossary:
   mainState:
@@ -1129,7 +890,7 @@ glossary:
     1:   "Rain"
     8:   "Sandstorm"
     24:  "Sandstorm"
-    32:  "Sunny"
+    32:  "Sun"
     128: "Hail"
   battleDialogue: #Scott's Thoughts only
     0x00: null
@@ -1334,7 +1095,7 @@ glossary:
     73: "LEECH SEED"
     74: "GROWTH"
     75: "RAZOR LEAF"
-    76: "SOLAR BEAM"
+    76: "SOLARBEAM"
     77: "POISON POWDER"
     78: "STUN SPORE"
     79: "SLEEP POWDER"

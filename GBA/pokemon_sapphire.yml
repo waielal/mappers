@@ -32,6 +32,8 @@ macros:
     markingSquare:   { offset: 27, type: "bit", position: 1 }
     markingTriangle: { offset: 27, type: "bit", position: 2 }
     markingHeart:    { offset: 27, type: "bit", position: 3 }
+    # otName:     { offset: 20, type: "string", size: 7 } #memoryLocation
+    # markings:   { offset: 27, type: "int" } #memoryLocation
     checksum:   { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     
     #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
@@ -90,12 +92,6 @@ macros:
     ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
 
-    # 0x20244EC
-    #   202450C-block1
-    #   2024518-block2
-    #   2024524-block3
-    #   2024530-block4
-
     #MAIN DATA
     level:   { offset: 84, type: "int" }
     pokerus: { offset: 85, type: "int" }
@@ -107,10 +103,15 @@ macros:
     specialAttack:  { offset: 96, type: "int", size: 2 }
     specialDefense: { offset: 98, type: "int", size: 2 }
     statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
-      
-  battleStructure: #there may be data in this structure before the species value
+
+  battleStructure:
+    nickname: { offset: 48, type: string, size: 11, characterMap: "defaultCharacterMap" }
     _: { offset: 0, type: "macro", macro: "pokemonMacro" }
     speciesArray: { offset: 0, type: "int", size: 2, reference: "pokemon" }
+    level: { offset: 42, type: "int" }
+    expPoints: { offset: 68, type: "uint", size: 4 }
+    friendship: { offset: 43, type: "int" }
+    personalityValue: { offset: 72, type: "uint", size: 4 }
     ability:  { offset: 32, type: "int", reference: "abilities" }
     heldItem: { offset: 46, type: "int", size: 2, reference: "items" }
     move1: { offset: 12, type: "int", size: 2, reference: "moves" }
@@ -121,6 +122,7 @@ macros:
     move2pp: { offset: 37, type: "int" }
     move3pp: { offset: 38, type: "int" }
     move4pp: { offset: 39, type: "int" }
+    # ppBonuses: { offset: 59, type: "int" } #needs new data type for gamehook to read
     maxHp:           { offset: 44, type: "int", size: 2 }
     hp:              { offset: 40, type: "int", size: 2 }
     attack:          { offset: 2, type: "int", size: 2 }
@@ -128,8 +130,8 @@ macros:
     speed:           { offset: 6, type: "int", size: 2 }
     specialAttack:   { offset: 8, type: "int", size: 2 }
     specialDefense:  { offset: 10, type: "int", size: 2 }
-    # unknownValue1-4Bytes: { offset: 20, type: "int", size: 4 }
-    modUnknown:             { offset: 24, type: "int", reference: "stageModifiers" } #probably critical hit mod
+    # ivEggAbilityBlock:      { offset: 20, type: "uint", size: 4} #needs new data type for gamehook to read
+    # modUnknown:             { offset: 24, type: "int", reference: "stageModifiers" } #probably critical hit mod
     modStageAttack:         { offset: 25, type: "int", reference: "stageModifiers" }
     modStageDefense:        { offset: 26, type: "int", reference: "stageModifiers" }
     modStageSpeed:          { offset: 27, type: "int", reference: "stageModifiers" }
@@ -140,13 +142,14 @@ macros:
     focusEnergy:      { offset: 82, type: "bit", position: 4 }
     type1:   { offset: 33, type: "int", reference: "pokemonTypes" }
     type2:   { offset: 34, type: "int", reference: "pokemonTypes" }
-    # unknownValue2: { offset: 35, type: "int" }
-    # unknownValue3: { offset: 42, type: "int", size: 2 }
+    status1:   { offset: 76, type: "int",  reference: "statusConditions" }
+    status2:   { offset: 76, type: "int",  reference: "statusConditions" }
+    otName: { offset: 60, type: string, size: 8, characterMap: "defaultCharacterMap" }
 
 properties:
   player:
-    name: { type: "string", size: 8, address: 0x030045d4, characterMap: "defaultCharacterMap" }
-    #gender: ???
+    # playerId:  { type: "string", address: 0x020228CC, size: 2, int: "defaultCharacterdescription: "The active player user Id, better tracking for if the game has loaded a new or saved game" }
+    name:   { type: "string", size: 8, address: 0x030045d4, characterMap: "defaultCharacterMap" }
     teamCount: { type: "int", address: 0x03004350, }
     team:
       - { type: "macro", address: 0x3004360, macro: "pokemonInParty" }
@@ -155,16 +158,49 @@ properties:
       - { type: "macro", address: 0x300448c, macro: "pokemonInParty" }
       - { type: "macro", address: 0x30044f0, macro: "pokemonInParty" }
       - { type: "macro", address: 0x3004554, macro: "pokemonInParty" }
+
+  # overworld: #memoryLocation
+    # mapName: { type: "int", size: 2, address: 0x020322e4, reference: "mapName" }
+    # walkRunState: { type: "int", address: 0x2037078, reference: "walkRunState"}
+    # safariSteps:  { type: "int", address: 0x02039996 }
+
   battle:
-    trainer: 
-        #totalPokemon: ???
-        team: 
-            - { type: "macro", address: 0x30045c0, macro: "pokemonInParty" }
-            - { type: "macro", address: 0x3004624, macro: "pokemonInParty" }
-            - { type: "macro", address: 0x3004688, macro: "pokemonInParty" }
-            - { type: "macro", address: 0x30046ec, macro: "pokemonInParty" }
-            - { type: "macro", address: 0x3004750, macro: "pokemonInParty" }
-            - { type: "macro", address: 0x30047b4, macro: "pokemonInParty" }
+    # outcome: { type: "int", address: 0x0202433a, reference: "battleOutcome" } #memoryLocation
+    # type: #memoryLocation
+    #   double: { type: "bit", address: 0x02022fec, size: 4, position: 0 }
+    #   link: { type: "bit", address: 0x02022fec, size: 4, position: 1 }
+    #   is_battle: { type: "bit", address: 0x02022fec, size: 4, position: 2 } #wild battles
+    #   trainer: { type: "bit", address: 0x02022fec, size: 4, position: 3 }
+    #   first_battle: { type: "bit", address: 0x02022fec, size: 4, position: 4 }
+    #   link_in_battle: { type: "bit", address: 0x02022fec, size: 4, position: 5 }
+    #   multi: { type: "bit", address: 0x02022fec, size: 4, position: 6 }
+    #   safari: { type: "bit", address: 0x02022fec, size: 4, position: 7 }
+    #   battle_tower: { type: "bit", address: 0x02022fec, size: 4, position: 8 }
+    #   old_man_tutorial: { type: "bit", address: 0x02022fec, size: 4, position: 9 } #wally & old man
+    #   roamer: { type: "bit", address: 0x02022fec, size: 4, position: 10 }
+    #   eReader_trainer: { type: "bit", address: 0x02022fec, size: 4, position: 11 }
+    #   kyogre_groudon: { type: "bit", address: 0x02022fec, size: 4, position: 12 }
+    #   ghost_unveiled: { type: "bit", address: 0x02022fec, size: 4, position: 13 }
+    #   regi: { type: "bit", address: 0x02022fec, size: 4, position: 14 }
+    #   ghost: { type: "bit", address: 0x02022fec, size: 4, position: 15 }
+    #   pokedude: { type: "bit", address: 0x02022fec, size: 4, position: 16 }
+    #   wild_scripted: { type: "bit", address: 0x02022fec, size: 4, position: 17 }
+    #   legenadry_frlg: { type: "bit", address: 0x02022fec, size: 4, position: 18 }
+    #   trainer_tower: { type: "bit", address: 0x02022fec, size: 4, position: 19 }
+    trainer:
+      # opponentA:    { type: "int", size: 2, address: 0x2038bca, reference: "trainerClasses" } #memoryLocation
+      # opponentAId:  { type: "int", size: 2, address: 0x2038bca } #memoryLocation
+      # opponentB:    { type: "int", size: 2, address: 0x2038bcc, reference: "trainerClasses" } # 2nd opponent, if in a double battle #memoryLocation
+      # opponentBId:  { type: "int", size: 2, address: 0x2038bcc } # 2nd opponent, if in a double battle #memoryLocation
+      # partnerId:    { type: "int", size: 2, address: 0x2038bce, reference: "trainerClasses" } # partner (otherwise 0 if you fight alone) #memoryLocation
+      # totalPokemon: { type: "int", address: 0x20244ea } #memoryLocation
+      team: 
+          - { type: "macro", address: 0x30045c0, macro: "pokemonInParty" }
+          - { type: "macro", address: 0x3004624, macro: "pokemonInParty" }
+          - { type: "macro", address: 0x3004688, macro: "pokemonInParty" }
+          - { type: "macro", address: 0x30046ec, macro: "pokemonInParty" }
+          - { type: "macro", address: 0x3004750, macro: "pokemonInParty" }
+          - { type: "macro", address: 0x30047b4, macro: "pokemonInParty" }
     yourPokemon:
       partyPos: { type: "int", address: 0x02024A6A, size: 2 }
       _:        { type: "macro", address: 0x2024A80, macro: "battleStructure" }
@@ -180,9 +216,13 @@ properties:
     turnInfo:
       battleWeather: { type: "int", address: 0x2024db8, reference: "battleWeather" }
       battleWeatherTurnCounter: { type: "int", address: 0x2024DE4 }
- 
+      # battleOutcome: { type: "int", address: 0x202433a, reference: "battleOutcome" } #memoryLocation
+      # battleBackgroundTiles: { type: "int", address: 0x202305c, size: 4 } #memoryLocation
+      # battleBackgroundTilesBuffer: { type: "int", address: 0x2023060, size: 4 } #memoryLocation
+      # battleDialogue: { type: "int", address: 0x2023064, reference: battleDialogue } #Scott's Thoughts #memoryLocation
 
-  
+  # events:
+  # trainers:
 
   gameTime:
     hours:   { type: "int", size: 2, address: 0x02024eb2 }
@@ -190,9 +230,61 @@ properties:
     seconds: { type: "int", address: 0x02024eb5 }
     frames:  { type: "int", address: 0x02024eb6 }
 
-  
+  # pointers: #memoryAddress
+  #   dma1: { type: "uint", size: 4, address: 0x3005D8C } #map data
+  #   dma2: { type: "uint", size: 4, address: 0x3005D90 } #player info, gametime, flags (trainer data)
+  #   dma3: { type: "uint", size: 4, address: 0x3005D94 } #box data
+  #   # callback1test: { type: "uint", size: 4, address: 0x030022c0 } # main
+  #   callback1: { type: "int", size: 4, address: 0x030022c0, reference: "mainState" } # main
+  #   # callback2test: { type: "uint", size: 4, address: 0x030022c4 } # sub
+  #   callback2: { type: "int", size: 4, address: 0x030022c4, reference: "subState" } # sub
 
 glossary:
+  mainState: #unknown if these references work
+    0: null
+    134766085: Overworld
+    134455025: Battle
+  subState: #unknown if these references work
+    0: null
+    134766173: Overworld
+    134448161: Battle
+    134766161: Battle Animation
+    134442925: Black Transition #battle transition
+    134767153: Black Transition #from main menu to overworld
+    135147013: Black Transition #to naming screen after catching a Pokemon
+    135415441: Black Transition #to Fly menu
+    135492097: Black Transition #door
+    135134613: Black Transition #to mart
+    134766793: Black Transition #closing pc
+    134766541: Black Transition #door
+    135134565: Mart Menu Opening
+    135134565: Mart Menu
+    134766589: Transition to Overworld
+    135416021: Fly Menu
+    134440801: Intro to Battle
+    135987633: Party Menu
+    135966045: Bag
+    136082433: Pokenav
+    135014161: Trainer Card
+    134980785: Options Menu
+    134985589: Pokedex
+    135712429: Owners
+    135711745: Intro Cinematic
+    135711829: White Screen
+    134916005: Transition to Title Screen
+    134916909: Title Screen
+    134411887: Transition to Main Menu
+    134411953: Main Menu
+    134766997: Black Transition
+    134766837: Transition to Overworld
+    134985013: Opening Pokedex
+    135987681: Opening Party Menu
+    135966093: Opening Bag
+    136082001: Opening Pokenav
+    135015553: Opening Trainer Card
+    134980829: Opening Options
+    135155545: Naming Screen #character naming & Pokemon naming
+    135036245: PC
   stageModifiers:
     0x00: -6
     0x01: -5
@@ -245,16 +337,23 @@ glossary:
     0x10: Dragon
     0x11: Dark
   battleOutcome:
-    0x00: null #this will always be 0 when in battle; however, it is also set to 0 when you first load the ROM
-    0x01: "Won"
-    0x02: "Lost"
-    0x03: null #needs to be mapped
-    0x04: "Ran"
+    0x00: null
+    0x01: WON
+    0x02: LOST
+    0x03: DRAW
+    0x04: RAN
+    0x05: PLAYER_TELEPORTED
+    0x06: POKEMON_FLED
+    0x07: CAUGHT
+    0x08: NO_SAFARI_BALLS
+    0x09: FORFEITED
+    0x0A: POKEMON_TELEPORTED
   battleWeather:
     0:   null
     1:   "Rain"
     8:   "Sandstorm"
-    32:  "Sunny"
+    24:  "Sandstorm"
+    32:  "Sun"
     128: "Hail"
   battleDialogue: #Scott's Thoughts only
     0x00: null
@@ -459,7 +558,7 @@ glossary:
     73: "LEECH SEED"
     74: "GROWTH"
     75: "RAZOR LEAF"
-    76: "SOLAR BEAM"
+    76: "SOLARBEAM"
     77: "POISON POWDER"
     78: "STUN SPORE"
     79: "SLEEP POWDER"
@@ -467,7 +566,7 @@ glossary:
     81: "STRING SHOT"
     82: "DRAGON RAGE"
     83: "FIRE SPIN"
-    84: "THUNDER SHOCK"
+    84: "THUNDERSHOCK"
     85: "THUNDERBOLT"
     86: "THUNDER WAVE"
     87: "THUNDER"
