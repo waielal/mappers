@@ -572,8 +572,8 @@ properties:
       disable:   { type: "int", address: 0xD072 }
 
     turnInfo:
-      battleStart:     { type: "int", address: 0xCCF6, description: "When 0 battle is starting, when >=1 battle has begun" }
-      trainerDefeated: { type: "int", address: 0xCCF7, description: "When 1, the opponent has lost" }
+      battleStart:     { type: "int", address: 0xCCF5, description: "When 0 battle is starting, when >=1 battle has begun" }
+      trainerDefeated: { type: "int", address: 0xCCF6, description: "When 1, the opponent has lost" }
       # criticalHitOHKO: { type: "int", address: 0xD05E }
       nextAttackDamage: { type: "int", address: 0xD0D8 }
       # yourSubtituteHp: { type: "int", address: 0xCCD7 }
