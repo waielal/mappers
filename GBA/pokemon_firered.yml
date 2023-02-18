@@ -673,17 +673,13 @@ properties:
       battleOutcome: { type: "int", address: 0x2023e8a }
       battleBackgroundTiles: { type: "int", address: 0x2024018, size: 4 }
       battleBackgroundTilesBuffer: { type: "int", address: 0x202401c, size: 4 }
-<<<<<<< HEAD
       battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts
 
   events:
     trashCanPuzzle: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3884)" } #This flag is checked when the player enters the gym. Changing this flag while being inside the gym only takes effect when leaving and entering the gym again.
     beatChampion:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3959)" }
-    gameClear: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 4069)" }
-=======
-      battleDialogue: { type: "int", address: 0x2023D44 } #Scott's Thoughts only
-  
->>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30
+    gameClear: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 4069)" }  
+
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
     minutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
@@ -3118,7 +3114,6 @@ glossary:
     0x19C: Pokemon Egg
     0x19D: Unown
     0x19E: Unown
-<<<<<<< HEAD
   trainerClasses:
     0x0000: null
     # Dummy trainers form Ruby/Sapphire
@@ -4291,5 +4286,3 @@ glossary:
     0x0029: "SIX_ISLAND - WATER_PATH_HOUSE1"
     0x0129: "SIX_ISLAND - WATER_PATH_HOUSE2"
     0x002a: "SEVEN_ISLAND - SEVAULT_CANYON_HOUSE"
-=======
->>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30
