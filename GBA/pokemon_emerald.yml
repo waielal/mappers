@@ -714,9 +714,26 @@ properties:
     enemySecondPokemon:
       partyPos: { type: "int", address: 0x02024074, size: 2 }
       _:        { type: "macro", address: 0x202418C, macro: "battleStructure" }
+    field:
+      player:
+        statusSafeguard:    { type: "bit", address: 0x0202428E, size: 2, position: 5 }
+        statusReflect:      { type: "bit", address: 0x0202428E, size: 2, position: 0 }
+        statusLightScreen:  { type: "bit", address: 0x0202428E, size: 2, position: 1 }
+        safeguardCount:     { type: "int", address: 0x0202429A }
+        lightScreenCount:   { type: "int", address: 0x02024296 }
+        reflectCount:       { type: "int", address: 0x02024294 }
+      enemy:
+        statusSafeguard:    { type: "bit", address: 0x02024290, size: 2, position: 5 }
+        statusReflect:      { type: "bit", address: 0x02024290, size: 2, position: 0 }
+        statusLightScreen:  { type: "bit", address: 0x02024290, size: 2, position: 1 }
+        safeguardCount:     { type: "int", address: 0x020242A5 }
+        lightScreenCount:   { type: "int", address: 0x020242A1 }
+        reflectCount:       { type: "int", address: 0x0202429F }
+      weather: { type: "int", address: 0x20243cc, reference: "battleWeather" }
+      weatherCount: { type: "int", address: 0x20243F8 }
     turnInfo:
-      battleWeather: { type: "int", address: 0x20243cc, reference: "battleWeather" }
-      battleWeatherTurnCounter: { type: "int", address: 0x20243F8 }
+      battleWeather: { type: "int", address: 0x20243cc, reference: "battleWeather" } #deprecated
+      battleWeatherTurnCounter: { type: "int", address: 0x20243F8 } #deprecated
       battleOutcome: { type: "int", address: 0x202433a, reference: "battleOutcome" }
       battleBackgroundTiles: { type: "int", address: 0x202305c, size: 4 }
       battleBackgroundTilesBuffer: { type: "int", address: 0x2023060, size: 4 }

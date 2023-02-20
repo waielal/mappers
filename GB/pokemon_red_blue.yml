@@ -445,10 +445,7 @@ properties:
     turnInfo:
       battleStart:     { type: "int", address: 0xCCF5, description: "When 0 battle is starting, when >=1 battle has begun" }
       trainerDefeated: { type: "int", address: 0xCCF6, description: "When 1, the opponent has lost" }
-<<<<<<< HEAD
-=======
       # criticalHitOHKO: { type: "int", address: 0xD05E }
->>>>>>> 443d2c41e650ed5bb7ff2b7d9edeb72661854d30
       nextAttackDamage: { type: "int", address: 0xD0D8 }
 
   pokemart:

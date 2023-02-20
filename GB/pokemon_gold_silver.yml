@@ -459,10 +459,24 @@ properties:
       turnEnded:  { type: "int", address: 0xcb92, size: 1 } #non-zero values indicate a miss
       playerTurnTaken:  { type: "int", address: 0xcbbb, size: 1 } #non-zero values indicate a miss
       enemyTurnTaken:  { type: "int", address: 0xcbba, size: 1 } #non-zero values indicate a miss
-    # weather: #memoryLocation
-    #   weatherType: { type: "reference", address: 0xXXXX, reference: "weather" }
-    #   weatherTurnsRemaining: { type: int, address: 0xXXXX }
     # lowHealthAlarm: { type: "reference", address: 0xC6FD, reference: "lowHealthAlarm" } #memoryLocation
+    field:
+      playerScreens:
+        statusSafeguard:    { type: "bit", address: 0xCBDD, position: 2 }
+        statusReflect:      { type: "bit", address: 0xCBDD, position: 4 }
+        statusLightScreen:  { type: "int", address: 0xCBDD, position: 3 }
+        safeguardCount:     { type: "int", address: 0xCBDF }
+        lightScreenCount:   { type: "int", address: 0xCBE0 }
+        reflectCount:       { type: "int", address: 0xCBE1 }
+      enemyScreens:
+        statusSafeguard:    { type: "bit", address: 0xCBDE, position: 2 }
+        statusReflect:      { type: "bit", address: 0xCBDE, position: 4 }
+        statusLightScreen:  { type: "int", address: 0xCBDE, position: 3 }
+        safeguardCount:     { type: "int", address: 0xCBE3 }
+        lightScreenCount:   { type: "int", address: 0xCBE4 }
+        reflectCount:       { type: "int", address: 0xCBE5 }
+      # weather:  { type: "reference", address: 0xc70a, reference: "weather" }
+      # weatherCount: { type: int, address: 0xc70b }
 
   options:
     # clockDay: { type: "string", address: 0xXXXX, size: 5 }

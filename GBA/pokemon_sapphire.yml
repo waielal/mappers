@@ -213,6 +213,23 @@ properties:
     enemySecondPokemon:
       partyPos: { type: "int", address: 0x02024A70, size: 2 }
       _:        { type: "macro", address: 0x2024B88, macro: "battleStructure" }
+    field:
+      player:
+        statusSafeguard:    { type: "bit", address: 0x02024C7A, size: 2, position: 5 }
+        statusReflect:      { type: "bit", address: 0x02024C7A, size: 2, position: 0 }
+        statusLightScreen:  { type: "bit", address: 0x02024C7A, size: 2, position: 1 }
+        safeguardCount:     { type: "int", address: 0x02024C86 }
+        lightScreenCount:   { type: "int", address: 0x02024C82 }
+        reflectCount:       { type: "int", address: 0x02024C80 }
+      enemy:
+        statusSafeguard:    { type: "bit", address: 0x02024C7C, size: 2, position: 5 }
+        statusReflect:      { type: "bit", address: 0x02024C7C, size: 2, position: 0 }
+        statusLightScreen:  { type: "bit", address: 0x02024C7C, size: 2, position: 1 }
+        safeguardCount:     { type: "int", address: 0x02024C91 }
+        lightScreenCount:   { type: "int", address: 0x02024C8D }
+        reflectCount:       { type: "int", address: 0x02024C8B }
+      # weather: { type: "int", address: 0x20243cc, reference: "battleWeather" } #memoryLocation
+      # weatherCount: { type: "int", address: 0x20243F8 } #memoryLocation
     turnInfo:
       battleWeather: { type: "int", address: 0x2024db8, reference: "battleWeather" }
       battleWeatherTurnCounter: { type: "int", address: 0x2024DE4 }

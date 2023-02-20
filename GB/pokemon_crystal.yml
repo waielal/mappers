@@ -279,7 +279,6 @@ properties:
     type:   { type: "reference", address: 0xD230, reference: "battleTypes" }
     result: { type: "reference", address: 0xD0EE, reference: "battleResults" }
     battleStart: { type: "int", address: 0xD264 }
-
     trainer:
       name:  { type: "string", address: 0xD26B, size: 11 }
       class: { type: "reference", address: 0xD22F, reference: "trainerClasses" }
@@ -295,8 +294,11 @@ properties:
     yourPokemon:
       partyPos: { type: "int", address: 0xD0D4 }
       # heldItem:  { type: "reference", address: 0xXXXX, reference: "items" } #memoryLocation
+      species: { type: "int", address: 0xC62C, reference: "pokemonSpecies" }
+      pokedexNumber: { type: "int", address: 0xC62C, reference: "pokemonPokedexNumbers" }
       type1: { type: "reference", address: 0xC64A, reference: "types" }
       type2: { type: "reference", address: 0xC64B, reference: "types" }
+      level: { type: "int", address: 0xC639 }
       modStageAttack:         { type: "reference", address: 0xC6CC, reference: "stageModifiers" }
       modStageDefense:        { type: "reference", address: 0xC6CD, reference: "stageModifiers" }
       modStageSpeed:          { type: "reference", address: 0xC6CE, reference: "stageModifiers" }
@@ -304,13 +306,13 @@ properties:
       modStageSpecialDefense: { type: "reference", address: 0xC6D0, reference: "stageModifiers" }
       modStageAccuracy:       { type: "reference", address: 0xC6D1, reference: "stageModifiers" }
       modStageEvasion:        { type: "reference", address: 0xC6D2, reference: "stageModifiers" }
-      # hp: { type: "int", address: 0xCB1C, size: 2 } #memoryLocation
-      # maxHp:   { type: "int", address: 0xD022, size: 2, "The Player's active Pokemon's max HP" } #memoryLocation
-      # attack:  { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # defense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # speed:   { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # specialAttack: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # specialDefense: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      hp: { type: "int", address: 0xC63C, size: 2 } #memoryLocation
+      maxHp:   { type: "int", address: 0xC63E, size: 2, "The Player's active Pokemon's max HP" } #memoryLocation
+      attack:  { type: "int", address: 0xC640, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      defense: { type: "int", address: 0xC642, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      speed:   { type: "int", address: 0xC644, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      specialAttack: { type: "int", address: 0xC646, size: 2, description: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      specialDefense: { type: "int", address: 0xC648, size: 2, description: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
       battleStatHp:      { type: "int", address: 0xC63C, size: 2 } #deprecated
       battleStatMaxHp:   { type: "int", address: 0xC63E, size: 2 } #deprecated
       battleStatAttack:         { type: "int", address: 0xC640, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #deprecated
@@ -370,10 +372,10 @@ properties:
         lock_on:     { type: "bit", address: 0xc66c, position: 5 }
         destiny_bon: { type: "bit", address: 0xc66c, position: 6 }
         cant_run:    { type: "bit", address: 0xc66c, position: 7 }
-
     enemyPokemon:
       partyPos: { type: "int", address: 0xC663 }
       species: { type: "reference", address: 0xd206, reference: "pokemonSpecies" }
+      pokedexNumber: { type: "reference", address: 0xd206, reference: "pokemonPokedexNumbers" }
       type1: { type: "reference", address: 0xD224, reference: "types" }
       type2: { type: "reference", address: 0xD225, reference: "types" }
       heldItem:    { type: "reference", address: 0xd207, reference: "items" }
@@ -451,7 +453,6 @@ properties:
         lock_on:     { type: "bit", address: 0xc671, position: 5 }
         destiny_bon: { type: "bit", address: 0xc671, position: 6 }
         cant_run:    { type: "bit", address: 0xc671, position: 7 }
-
     info:
       currentDamage:  { type: "int", address: 0xd256, size: 2 }
       lowHealthAlarm: { type: "reference", address: 0xC6FD, reference: "lowHealthAlarm" }
@@ -459,9 +460,26 @@ properties:
       turnEnded:  { type: "int", address: 0xc6b4, size: 1 } #non-zero values indicate a miss
       playerTurnTaken:  { type: "int", address: 0xc6dd, size: 1 } #non-zero values indicate a miss
       enemyTurnTaken:  { type: "int", address: 0xc6dc, size: 1 } #non-zero values indicate a miss
-    weather:
-      weatherType:  { type: "reference", address: 0xc70a, reference: "weather" }
-      weatherTurnsRemaining: { type: int, address: 0xc70b }
+    field:
+      player:
+        statusSafeguard:    { type: "bit", address: 0xC6FF, position: 2 }
+        statusReflect:      { type: "bit", address: 0xC6FF, position: 4 }
+        statusLightScreen:  { type: "int", address: 0xC6FF, position: 3 }
+        safeguardCount:     { type: "int", address: 0xC701 }
+        lightScreenCount:   { type: "int", address: 0xC702 }
+        reflectCount:       { type: "int", address: 0xC703 }
+      enemy:
+        statusSafeguard:    { type: "bit", address: 0xC700, position: 2 }
+        statusReflect:      { type: "bit", address: 0xC700, position: 4 }
+        statusLightScreen:  { type: "int", address: 0xC700, position: 3 }
+        safeguardCount:     { type: "int", address: 0xCBE3 }
+        lightScreenCount:   { type: "int", address: 0xCBE4 }
+        reflectCount:       { type: "int", address: 0xCBE5 }
+      weather:  { type: "reference", address: 0xc70a, reference: "weather" }
+      weatherCount: { type: int, address: 0xc70b }
+    weather:  #deprecated
+      weatherType:  { type: "reference", address: 0xc70a, reference: "weather" } #deprecated
+      weatherTurnsRemaining: { type: int, address: 0xc70b } #deprecated
     lowHealthAlarm: { type: "reference", address: 0xC6FD, reference: "lowHealthAlarm" }
 
   options:
@@ -2068,11 +2086,6 @@ glossary:
   textPrompt:
     0x58: "▼"
     0xEE: "▼"
-  weather:
-    0x0: "NONE"
-    0x1: "RAIN"
-    0x2: "SUN"
-    0x3: "SANDSTORM"
   gender:
     0x0: "Male"
     0x1: "Female"
