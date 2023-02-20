@@ -299,12 +299,18 @@ properties:
       gymLeader:    { type: "int", address: 0xD05C }
       totalPokemon: { type: "int", address: 0xD89C }
       team:
-        - { type: "int", address: 0xD89D, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD89E, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD89F, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A0, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A1, reference: "pokemonSpecies" }
-        - { type: "int", address: 0xD8A2, reference: "pokemonSpecies" }
+        - nickname: { type: "string", address: 0xD9EE, size: 11 }
+          _:        { type: "macro", address: 0xD8A4, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD9F9, size: 11 }
+          _:        { type: "macro", address: 0xD8D0, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDA04, size: 11 }
+          _:        { type: "macro", address: 0xD8FC, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDA0F, size: 11 }
+          _:        { type: "macro", address: 0xD928, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDA1A, size: 11 }
+          _:        { type: "macro", address: 0xD954, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDA25, size: 11 }
+          _:        { type: "macro", address: 0xD980, macro: "pokemonInParty" }
     yourPokemon:
       partyPos: { type: "int", address: 0xCC2F }
       nickname: { type: "string", address: 0xD009, size: 11 }
@@ -342,6 +348,31 @@ properties:
       move2pp: { type: "int", address: 0xD02E, postprocessor: "x % 64" }
       move3pp: { type: "int", address: 0xD02F, postprocessor: "x % 64" }
       move4pp: { type: "int", address: 0xD030, postprocessor: "x % 64" }
+      effects:
+        bide:         { type: "bit", address: 0xD062, position: 0 }
+        thrash:       { type: "bit", address: 0xD062, position: 1 }
+        multiHit:     { type: "bit", address: 0xD062, position: 2 }
+        flinch:       { type: "bit", address: 0xD062, position: 3 }
+        charging:     { type: "bit", address: 0xD062, position: 4 }
+        multiTurn:    { type: "bit", address: 0xD062, position: 5 }
+        invulnerable: { type: "bit", address: 0xD062, position: 6 } #using fly/dig
+        confusion:    { type: "bit", address: 0xD062, position: 6 }     
+        xAccuracy:     { type: "bit", address: 0xD063, position: 0 }
+        mist:          { type: "bit", address: 0xD063, position: 1 }
+        focusEnergy:   { type: "bit", address: 0xD063, position: 2 }
+        hasSubstitute: { type: "bit", address: 0xD063, position: 4 }
+        recharge:      { type: "bit", address: 0xD063, position: 5 }
+        rage:          { type: "bit", address: 0xD063, position: 6 }
+        leechSeeded:   { type: "bit", address: 0xD063, position: 7 }
+        toxic:       { type: "bit", address: 0xD064, position: 0 }
+        lightScreen: { type: "bit", address: 0xD064, position: 1 }
+        reflect:     { type: "bit", address: 0xD064, position: 2 }
+        transformed: { type: "bit", address: 0xD064, position: 3 }
+      counters:
+        multiHit:  { type: "int", address: 0xD06A }
+        confusion: { type: "int", address: 0xD064 }
+        toxic:     { type: "int", address: 0xD06B }
+        disable:   { type: "int", address: 0xD06D, size: 2 }
     enemyPokemon:
       partyPos: { type: "int", address: 0xCFE8 }
       species: { type: "int", address: 0xCFD8, reference: "pokemonSpecies" }
@@ -376,7 +407,32 @@ properties:
       baseSpeed:   { type: "int", address: 0xD005, postprocessor: "x % 16" }
       baseSpecial: { type: "int", address: 0xD006, postprocessor: "x % 16" }
       baseExp:     { type: "int", address: 0xD008, postprocessor: "x % 16" }
-    
+      effects:
+        bide:         { type: "bit", address: 0xD067, position: 0 }
+        thrash:       { type: "bit", address: 0xD067, position: 1 }
+        multiHit:     { type: "bit", address: 0xD067, position: 2 }
+        flinch:       { type: "bit", address: 0xD067, position: 3 }
+        charging:     { type: "bit", address: 0xD067, position: 4 }
+        multiTurn:    { type: "bit", address: 0xD067, position: 5 }
+        invulnerable: { type: "bit", address: 0xD067, position: 6 } #using fly/dig
+        confusion:    { type: "bit", address: 0xD067, position: 6 }     
+        xAccuracy:     { type: "bit", address: 0xD068, position: 0 }
+        mist:          { type: "bit", address: 0xD068, position: 1 }
+        focusEnergy:   { type: "bit", address: 0xD068, position: 2 }
+        hasSubstitute: { type: "bit", address: 0xD068, position: 4 }
+        recharge:      { type: "bit", address: 0xD068, position: 5 }
+        rage:          { type: "bit", address: 0xD068, position: 6 }
+        leechSeeded:   { type: "bit", address: 0xD068, position: 7 }
+        toxic:       { type: "bit", address: 0xD069, position: 0 }
+        lightScreen: { type: "bit", address: 0xD069, position: 1 }
+        reflect:     { type: "bit", address: 0xD069, position: 2 }
+        transformed: { type: "bit", address: 0xD069, position: 3 }
+      counters:
+        multiHit:  { type: "int", address: 0xD06F }
+        confusion: { type: "int", address: 0xD070 }
+        toxic:     { type: "int", address: 0xD071 }
+        disable:   { type: "int", address: 0xD072 }
+
     playerMove:
       move:     { type: "reference", address: 0xCFD2, reference: "moves" }
       effect:   { type: "int", address: 0xCFD3 } #Will need a reference table  - Player's Move Effect
@@ -391,56 +447,6 @@ properties:
       type:     { type: "int", address: 0xCFCF, reference: "pokemonTypes" }
       accuracy: { type: "int", address: 0xCFD0, postprocessor: "Round(((x / 255) * 100), 2)" }
       maxPP:    { type: "int", address: 0xCFD1 }
-    effectsPlayer:
-      bide:         { type: "bit", address: 0xD062, position: 0 }
-      thrash:       { type: "bit", address: 0xD062, position: 1 }
-      multiHit:     { type: "bit", address: 0xD062, position: 2 }
-      flinch:       { type: "bit", address: 0xD062, position: 3 }
-      charging:     { type: "bit", address: 0xD062, position: 4 }
-      multiTurn:    { type: "bit", address: 0xD062, position: 5 }
-      invulnerable: { type: "bit", address: 0xD062, position: 6 } #using fly/dig
-      confusion:    { type: "bit", address: 0xD062, position: 6 }     
-      xAccuracy:     { type: "bit", address: 0xD063, position: 0 }
-      mist:          { type: "bit", address: 0xD063, position: 1 }
-      focusEnergy:   { type: "bit", address: 0xD063, position: 2 }
-      hasSubstitute: { type: "bit", address: 0xD063, position: 4 }
-      recharge:      { type: "bit", address: 0xD063, position: 5 }
-      rage:          { type: "bit", address: 0xD063, position: 6 }
-      leechSeeded:   { type: "bit", address: 0xD063, position: 7 }
-      toxic:       { type: "bit", address: 0xD064, position: 0 }
-      lightScreen: { type: "bit", address: 0xD064, position: 1 }
-      reflect:     { type: "bit", address: 0xD064, position: 2 }
-      transformed: { type: "bit", address: 0xD064, position: 3 }
-    countersPlayer:
-      multiHit:  { type: "int", address: 0xD06A }
-      confusion: { type: "int", address: 0xD064 }
-      toxic:     { type: "int", address: 0xD06B }
-      disable:   { type: "int", address: 0xD06D, size: 2 }
-    effectsCPU:
-      bide:         { type: "bit", address: 0xD067, position: 0 }
-      thrash:       { type: "bit", address: 0xD067, position: 1 }
-      multiHit:     { type: "bit", address: 0xD067, position: 2 }
-      flinch:       { type: "bit", address: 0xD067, position: 3 }
-      charging:     { type: "bit", address: 0xD067, position: 4 }
-      multiTurn:    { type: "bit", address: 0xD067, position: 5 }
-      invulnerable: { type: "bit", address: 0xD067, position: 6 } #using fly/dig
-      confusion:    { type: "bit", address: 0xD067, position: 6 }     
-      xAccuracy:     { type: "bit", address: 0xD068, position: 0 }
-      mist:          { type: "bit", address: 0xD068, position: 1 }
-      focusEnergy:   { type: "bit", address: 0xD068, position: 2 }
-      hasSubstitute: { type: "bit", address: 0xD068, position: 4 }
-      recharge:      { type: "bit", address: 0xD068, position: 5 }
-      rage:          { type: "bit", address: 0xD068, position: 6 }
-      leechSeeded:   { type: "bit", address: 0xD068, position: 7 }
-      toxic:       { type: "bit", address: 0xD069, position: 0 }
-      lightScreen: { type: "bit", address: 0xD069, position: 1 }
-      reflect:     { type: "bit", address: 0xD069, position: 2 }
-      transformed: { type: "bit", address: 0xD069, position: 3 }
-    countersCPU:
-      multiHit:  { type: "int", address: 0xD06F }
-      confusion: { type: "int", address: 0xD070 }
-      toxic:     { type: "int", address: 0xD071 }
-      disable:   { type: "int", address: 0xD072 }
 
     turnInfo:
       battleStart:     { type: "int", address: 0xCCF5, description: "When 0 battle is starting, when >=1 battle has begun" }

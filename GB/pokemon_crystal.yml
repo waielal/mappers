@@ -139,6 +139,19 @@ properties:
       - { type: "macro", address: 0xD8B7, macro: "playerItem" }
       - { type: "macro", address: 0xD8B9, macro: "playerItem" }
       - { type: "macro", address: 0xD8BA, macro: "playerItem" }
+    pokeBalls:
+      - { type: "macro", address: 0xD8D7, macro: "playerItem" }
+      - { type: "macro", address: 0xD8D9, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DB, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DD, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DF, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E1, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E3, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E5, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E7, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E9, macro: "playerItem" }
+      - { type: "macro", address: 0xD8EA, macro: "playerItem" }
+      - { type: "macro", address: 0xD8EB, macro: "playerItem" }
     totalKeyItems: { type: "int", address: 0xD8BC }
     keyItems:
       - { type: "reference", address: 0xD8BD, reference: "items" }
@@ -285,12 +298,18 @@ properties:
       id:    { type: "int", address: 0xD231 }
       totalPokemon: { type: "int", address: 0xD280 }
       team: 
-        - { type: "reference", address: 0xD281, reference: "pokemonSpecies" }
-        - { type: "reference", address: 0xD282, reference: "pokemonSpecies" }
-        - { type: "reference", address: 0xD283, reference: "pokemonSpecies" }
-        - { type: "reference", address: 0xD284, reference: "pokemonSpecies" }
-        - { type: "reference", address: 0xD285, reference: "pokemonSpecies" }
-        - { type: "reference", address: 0xD286, reference: "pokemonSpecies" }
+        - nickname: { type: "string", address: 0xD3EA, size: 11 }
+          _:        { type: "macro", address: 0xD288, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD3F5, size: 11 }
+          _:        { type: "macro", address: 0xD2B8, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD400, size: 11 }
+          _:        { type: "macro", address: 0xD2E8, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD40B, size: 11 }
+          _:        { type: "macro", address: 0xD318, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD416, size: 11 }
+          _:        { type: "macro", address: 0xD348, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xD421, size: 11 }
+          _:        { type: "macro", address: 0xD378, macro: "pokemonInParty" }
     yourPokemon:
       partyPos: { type: "int", address: 0xD0D4 }
       # heldItem:  { type: "reference", address: 0xXXXX, reference: "items" } #memoryLocation

@@ -280,18 +280,24 @@ properties:
     #result: { type: "reference", address: 0xXXXX, reference: "battleResults" } #memoryLocation
     battleStart: { type: "int", address: 0xC664 }
 
-    # trainer: #memoryLocation
-    #   name:  { type: "string", address: 0xXXXX, size: 11 }
-    #   class: { type: "reference", address: 0xXXXX, reference: "trainerClasses" }
-    #   id:    { type: "int", address: 0xXXXX }
-    #   totalPokemon: { type: "int", address: 0xXXXX }
-      # team: #memoryLocation
-      #   - { type: "reference", address: 0xD281, reference: "pokemonSpecies" }
-      #   - { type: "reference", address: 0xD282, reference: "pokemonSpecies" }
-      #   - { type: "reference", address: 0xD283, reference: "pokemonSpecies" }
-      #   - { type: "reference", address: 0xD284, reference: "pokemonSpecies" }
-      #   - { type: "reference", address: 0xD285, reference: "pokemonSpecies" }
-      #   - { type: "reference", address: 0xD286, reference: "pokemonSpecies" }
+    trainer: 
+    #   name:  { type: "string", address: 0xXXXX, size: 11 } #memoryLocation
+    #   class: { type: "reference", address: 0xXXXX, reference: "trainerClasses" } #memoryLocation
+    #   id:    { type: "int", address: 0xXXXX } #memoryLocation
+    #   totalPokemon: { type: "int", address: 0xXXXX } #memoryLocation
+      team: 
+        - nickname: { type: "string", address: 0xDEBF, size: 11 }
+          _:        { type: "macro", address: 0xDD5D, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDECA, size: 11 }
+          _:        { type: "macro", address: 0xDD8D, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDED5, size: 11 }
+          _:        { type: "macro", address: 0xDDBD, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDEE0, size: 11 }
+          _:        { type: "macro", address: 0xDDED, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDEEB, size: 11 }
+          _:        { type: "macro", address: 0xDE1D, macro: "pokemonInParty" }
+        - nickname: { type: "string", address: 0xDEF6, size: 11 }
+          _:        { type: "macro", address: 0xDE4D, macro: "pokemonInParty" }
     yourPokemon:
       partyPos: { type: "int", address: 0xCFC6 }
       heldItem:  { type: "reference", address: 0xCB0D, reference: "items" }
@@ -304,13 +310,13 @@ properties:
       modStageSpecialDefense: { type: "reference", address: 0xC6D0, reference: "stageModifiers" }
       modStageAccuracy:       { type: "reference", address: 0xC6D1, reference: "stageModifiers" }
       modStageEvasion:        { type: "reference", address: 0xC6D2, reference: "stageModifiers" }
-      hp: { type: "int", address: 0xCB1C, size: 2 } #this is the correct memory location
-      # maxHp:   { type: "int", address: 0xD022, size: 2, "The Player's active Pokemon's max HP" } #memoryLocation
-      # attack:  { type: "int", address: 0xD024, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # defense: { type: "int", address: 0xD026, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # speed:   { type: "int", address: 0xD028, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # specialAttack: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
-      # specialDefense: { type: "int", address: 0xD02A, size: 2, description: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included" } #memoryLocation
+      hp: { type: "int", address: 0xCB1C, size: 2 }
+      maxHp:   { type: "int", address: 0xCBBF, size: 2, "The Player's active Pokemon's max HP" }
+      attack:  { type: "int", address: 0xCBC1, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      defense: { type: "int", address: 0xCBC3, size: 2, description: "The Player's active Pokemon's Defense stat as calculated in battle (badge boosts and stat modifications included" }
+      speed:   { type: "int", address: 0xCBC5, size: 2, description: "The Player's active Pokemon's Speed stat as calculated in battle (badge boosts and stat modifications included" }
+      specialAttack: { type: "int", address: 0xCBC7, size: 2, description: "The Player's active Pokemon's Special Attack stat as calculated in battle (badge boosts and stat modifications included" }
+      specialDefense: { type: "int", address: 0xCBC9, size: 2, description: "The Player's active Pokemon's Special Defense stat as calculated in battle (badge boosts and stat modifications included" }
       # battleStatHp:      { type: "int", address: 0xC63C, size: 2 } #no address required 
       # battleStatMaxHp:   { type: "int", address: 0xC63E, size: 2 } #no address required
       battleStatAttack:         { type: "int", address: 0xCBC1, size: 2, description: "The Player's active Pokemon's Attack stat as calculated in battle (badge boosts and stat modifications included" } #deprecated
