@@ -483,14 +483,14 @@ properties:
       player:
         statusSafeguard:    { type: "bit", address: 0xC6FF, position: 2 }
         statusReflect:      { type: "bit", address: 0xC6FF, position: 4 }
-        statusLightScreen:  { type: "int", address: 0xC6FF, position: 3 }
+        statusLightScreen:  { type: "bit", address: 0xC6FF, position: 3 }
         safeguardCount:     { type: "int", address: 0xC701 }
         lightScreenCount:   { type: "int", address: 0xC702 }
         reflectCount:       { type: "int", address: 0xC703 }
       enemy:
         statusSafeguard:    { type: "bit", address: 0xC700, position: 2 }
         statusReflect:      { type: "bit", address: 0xC700, position: 4 }
-        statusLightScreen:  { type: "int", address: 0xC700, position: 3 }
+        statusLightScreen:  { type: "bit", address: 0xC700, position: 3 }
         safeguardCount:     { type: "int", address: 0xCBE3 }
         lightScreenCount:   { type: "int", address: 0xCBE4 }
         reflectCount:       { type: "int", address: 0xCBE5 }

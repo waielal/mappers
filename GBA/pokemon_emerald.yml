@@ -697,11 +697,11 @@ properties:
       totalPokemon: { type: "int", address: 0x20244ea }
       team:
         - { type: "macro", address: 0x2024744, macro: "pokemonInParty" }
-        - { type: "macro", address: 0x2024746, macro: "pokemonInParty" }
-        - { type: "macro", address: 0x2024748, macro: "pokemonInParty" }
-        - { type: "macro", address: 0x202474A, macro: "pokemonInParty" }
-        - { type: "macro", address: 0x202474C, macro: "pokemonInParty" }
-        - { type: "macro", address: 0x202474E, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x20247A8, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x202480C, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x2024870, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x20248D4, macro: "pokemonInParty" }
+        - { type: "macro", address: 0x2024938, macro: "pokemonInParty" }
     yourPokemon:
       partyPos: { type: "int", address: 0x0202406E, size: 2 }
       _:        { type: "macro", address: 0x2024084, macro: "battleStructure" }

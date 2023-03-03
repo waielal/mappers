@@ -706,9 +706,9 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005008 } #map data
     dma2: { type: "uint", size: 4, address: 0x300500C } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005010 } #box data
-    # callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
+    callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
     callback1: { type: "int", size: 4, address: 0x030030f0, reference: "mainState" } # main
-    # callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
+    callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
     callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub
 
 glossary:
@@ -746,6 +746,7 @@ glossary:
     134852137: Opening Mart Menu
     135457673: New Game
     134871941: Naming Screen
+    135186485: Owners
   stageModifiers:
     0x00: -6
     0x01: -5
