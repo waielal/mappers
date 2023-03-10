@@ -569,6 +569,30 @@ properties:
   screen: #deprecated
     text:
       prompt: { type: "string", address: 0xC606, reference: "textPrompt" }
+    menu:
+      currentItem: { type: "int", address: 0xCC26 }
+      wMenuFlags: { type: "int", address: 0xCF81 }
+      wMenuCursorPosition:           { type: "int", address: 0xcf88 }
+      wPCItemsCursor:                { type: "int", address: 0xd0d7 }
+      wPartyMenuCursor:              { type: "int", address: 0xd0d8 }
+      wItemsPocketCursor:            { type: "int", address: 0xd0d9 }
+      wKeyItemsPocketCursor:         { type: "int", address: 0xd0da }
+      wBallsPocketCursor:            { type: "int", address: 0xd0db }
+      wTMHMPocketCursor:             { type: "int", address: 0xd0dc }
+      wPCItemsScrollPosition:        { type: "int", address: 0xd0dd }
+      wItemsPocketScrollPosition:    { type: "int", address: 0xd0df }
+      wKeyItemsPocketScrollPosition: { type: "int", address: 0xd0e0 }
+      wBallsPocketScrollPosition:    { type: "int", address: 0xd0e1 }
+      wTMHMPocketScrollPosition:     { type: "int", address: 0xd0e2 }
+    tiles:
+      column1:
+        tile1: { type: "int", address: 0x980C }
+        tile2: { type: "int", address: 0x982C }
+        tile3: { type: "int", address: 0x984C }
+        tile4: { type: "int", address: 0x986C }
+        tile5: { type: "int", address: 0x988C }
+        tile6: { type: "int", address: 0x98AC }
+        tile7: { type: "int", address: 0x98CC }
 
   patch: # Scott's Thoughts turn counter patch (used for rollout power display)
     patchPresent: { type: "int", size: 1, address: 0x3fb5, postprocessor: "x != 0" } 
@@ -1765,7 +1789,7 @@ glossary:
     0xD0: "Steelix"
     0xD1: "Snubbull"
     0xD2: "Granbull"
-    0xD3: "Qwillfish"
+    0xD3: "Qwilfish"
     0xD4: "Scizor"
     0xD5: "Shuckle"
     0xD6: "Heracross"

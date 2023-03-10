@@ -629,6 +629,15 @@ properties:
       prompt: { type: "string", address: 0xC4F2, reference: "textPrompt" }
     menu:
       currentItem: { type: "int", address: 0xCC26 }
+    tiles:
+      column1:
+        tile1: { type: "int", address: 0x9C0C }
+        tile2: { type: "int", address: 0x9C2C }
+        tile3: { type: "int", address: 0x9C4C }
+        tile4: { type: "int", address: 0x9C6C }
+        tile5: { type: "int", address: 0x9C8C }
+        tile6: { type: "int", address: 0x9CAC }
+        tile7: { type: "int", address: 0x9CCC }
 
   options:
     # bit1: { type: "bit", address: 0xD354, position: 0 } #Unknown function
