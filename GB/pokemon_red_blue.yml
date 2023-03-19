@@ -1243,7 +1243,7 @@ glossary:
     0xF8: "TM48: Rock Slide"
     0xF9: "TM49: Tri Attack"
     0xFA: "TM50: Substitute"
-    0xFF: "--End of list--"
+    0xFF: null
   pokemonPokedexNumbers:
     0x00: null
     0xFF: null
