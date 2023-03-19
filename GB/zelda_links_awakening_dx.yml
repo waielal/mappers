@@ -6,11 +6,20 @@ meta:
 
 properties:
   map:
-    loadedMap: { type: "reference", address: 0xD700, size: 155, reference: "maps" }
+    #loadedMap: { type: "referenceArray", address: 0xD700, size: 155, reference: "maps" }
     #worldMap: { Each screen status is represented by a byte, which is a combination of the following masks : }
   heldItemA: { type: "reference", address: 0xDB00, reference: "items" }
   heldItemB: { type: "reference", address: 0xDB01, reference: "items" }
-  inventory: { type: "referenceArray", address: 0xDB02, size: 9, reference: "items" }
+  inventory: 
+    - { type: "int", address: 0xDB02, reference: "items" }
+    - { type: "int", address: 0xDB03, reference: "items" }
+    - { type: "int", address: 0xDB04, reference: "items" }
+    - { type: "int", address: 0xDB05, reference: "items" }
+    - { type: "int", address: 0xDB06, reference: "items" }
+    - { type: "int", address: 0xDB07, reference: "items" }
+    - { type: "int", address: 0xDB08, reference: "items" }
+    - { type: "int", address: 0xDB09, reference: "items" }
+    - { type: "int", address: 0xDB0A, reference: "items" }
   haveFlippers: { type: "bool", address: 0xDB0C }
   havePotion: { type: "bool", address: 0xDB0C }
   tradingSequenceItem: { type: "reference", address: 0xDB0E, reference: "tradingItems" }
@@ -24,7 +33,7 @@ properties:
   # DB16 - DB3D - Beginning of dungeon item flags. 5 bytes fo each dungeon, 5th byte is quantity of keys for that dungeon
   powerBraceletLevel: { type: "int", address: 0xDB43 }
   shieldLevel: { type: "int", address: 0xDB44 }
-  arrows: { type: "int", address: 0xDB45 }
+  arrowsCount: { type: "int", address: 0xDB45 }
   # DB49 - Ocarina songs in possession (3 bits mask, 0=no songs, 7=all songs)
   ocarinaSelectedSong: { type: "reference", address: 0xDB4A, reference: "ocarinaSongs" }
   magicPowderQuantity: { type: "int", address: 0xDB4C }
