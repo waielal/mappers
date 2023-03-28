@@ -117,6 +117,13 @@ properties:
       - nickname: { type: "string", address: 0xDE78, size: 11 }
         _:        { type: "macro", address: 0xDDCF, macro: "pokemonInParty" }
     itemCount: { type: "int", address: 0xD892 }
+    otNames:
+      - otName:   { type: "string", address: 0xDDFF, size: 11 }
+      - otName:   { type: "string", address: 0xDE0A, size: 11 }
+      - otName:   { type: "string", address: 0xDE15, size: 11 }
+      - otName:   { type: "string", address: 0xDE20, size: 11 }
+      - otName:   { type: "string", address: 0xDE2B, size: 11 }
+      - otName:   { type: "string", address: 0xDE36, size: 11 }
     items:
       - { type: "macro", address: 0xD893, macro: "playerItem" }
       - { type: "macro", address: 0xD895, macro: "playerItem" }
@@ -139,19 +146,20 @@ properties:
       - { type: "macro", address: 0xD8B7, macro: "playerItem" }
       - { type: "macro", address: 0xD8B9, macro: "playerItem" }
       - { type: "macro", address: 0xD8BA, macro: "playerItem" }
+    pokeBallCount: { type: "int", address: 0xD8D7 }
     pokeBalls:
-      - { type: "macro", address: 0xD8D7, macro: "playerItem" }
-      - { type: "macro", address: 0xD8D9, macro: "playerItem" }
-      - { type: "macro", address: 0xD8DB, macro: "playerItem" }
-      - { type: "macro", address: 0xD8DD, macro: "playerItem" }
-      - { type: "macro", address: 0xD8DF, macro: "playerItem" }
-      - { type: "macro", address: 0xD8E1, macro: "playerItem" }
-      - { type: "macro", address: 0xD8E3, macro: "playerItem" }
-      - { type: "macro", address: 0xD8E5, macro: "playerItem" }
-      - { type: "macro", address: 0xD8E7, macro: "playerItem" }
-      - { type: "macro", address: 0xD8E9, macro: "playerItem" }
+      - { type: "macro", address: 0xD8D8, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DA, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DC, macro: "playerItem" }
+      - { type: "macro", address: 0xD8DE, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E0, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E2, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E4, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E6, macro: "playerItem" }
+      - { type: "macro", address: 0xD8E8, macro: "playerItem" }
       - { type: "macro", address: 0xD8EA, macro: "playerItem" }
-      - { type: "macro", address: 0xD8EB, macro: "playerItem" }
+      - { type: "macro", address: 0xD8EC, macro: "playerItem" }
+      - { type: "macro", address: 0xD8ED, macro: "playerItem" }
     totalKeyItems: { type: "int", address: 0xD8BC }
     keyItems:
       - { type: "reference", address: 0xD8BD, reference: "items" }
@@ -291,6 +299,7 @@ properties:
     mode:   { type: "reference", address: 0xD22D, reference: "battleModes" }
     type:   { type: "reference", address: 0xD230, reference: "battleTypes" }
     result: { type: "reference", address: 0xD0EE, reference: "battleResults" }
+    textBuffer:  { type: "string", address: 0xD073, size: 11 }
     battleStart: { type: "int", address: 0xD264 }
     trainer:
       name:  { type: "string", address: 0xD26B, size: 11 }

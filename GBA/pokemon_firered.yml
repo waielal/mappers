@@ -697,6 +697,97 @@ properties:
     beatChampion:   { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 3959)" }
     gameClear: { type: "bit", position: 4, preprocessor: "dma_967d10cc(0x03005008, 4069)" }  
 
+  # screen:
+  #   menu:
+  #     itemsMenu:      {type: "int", address: 0x0203ad0a, size: 2}
+  #     itemsOffset:    {type: "int", address: 0x0203ad04, size: 2}
+  #     keyItemsMenu:   {type: "int", address: 0x0203ad0c, size: 2}
+  #     keyItemsOffset: {type: "int", address: 0x0203ad06, size: 2}
+  #     ballsMenu:      {type: "int", address: 0x0203ad0e, size: 2}
+  #     ballsOffset:    {type: "int", address: 0x0203ad08, size: 2}
+  #     partyMenu:      {type: "int", address: 0x0203b0a9}
+  #     battleAction:
+  #         playerL:    {type: "int", address: 0x02023ff8, reference: "battleAction"}
+  #         enemyL:     {type: "int", address: 0x02023ff9, reference: "battleAction"}
+  #         playerR:    {type: "int", address: 0x02023ffa, reference: "battleAction"}
+  #         enemyR:     {type: "int", address: 0x02023ffb, reference: "battleAction"}
+  #     battleMove:
+  #         playerL:    {type: "int", address: 0x02023ffc}
+  #         enemyL:     {type: "int", address: 0x02023ffd}
+  #         playerR:    {type: "int", address: 0x02023ffe}
+  #         enemyR:     {type: "int", address: 0x02023fff}
+  #   enemy_sprite:
+  #     battlerSpriteIndex:
+  #         playerL:    {type: "int", address: 0x02023d44}
+  #         enemyL:     {type: "int", address: 0x02023d45}
+  #         playerR:    {type: "int", address: 0x02023d46}
+  #         enemyR:     {type: "int", address: 0x02023d47}
+      # spriteInUse:
+      #   - {address: 0x0202067a, type: "bit", position: 0}
+      #   - {address: 0x020206be, type: "bit", position: 0}
+      #   - {address: 0x02020702, type: "bit", position: 0}
+      #   - {address: 0x02020746, type: "bit", position: 0}
+      #   - {address: 0x0202078a, type: "bit", position: 0}
+      #   - {address: 0x020207ce, type: "bit", position: 0}
+      #   - {address: 0x02020812, type: "bit", position: 0}
+      #   - {address: 0x02020856, type: "bit", position: 0}
+      #   - {address: 0x0202089a, type: "bit", position: 0}
+      #   - {address: 0x020208de, type: "bit", position: 0}
+      #   - {address: 0x02020922, type: "bit", position: 0}
+      #   - {address: 0x02020966, type: "bit", position: 0}
+      #   - {address: 0x020209aa, type: "bit", position: 0}
+      #   - {address: 0x020209ee, type: "bit", position: 0}
+      #   - {address: 0x02020a32, type: "bit", position: 0}
+      #   - {address: 0x02020a76, type: "bit", position: 0}
+      #   - {address: 0x02020aba, type: "bit", position: 0}
+      #   - {address: 0x02020afe, type: "bit", position: 0}
+      #   - {address: 0x02020b42, type: "bit", position: 0}
+      #   - {address: 0x02020b86, type: "bit", position: 0}
+      #   - {address: 0x02020bca, type: "bit", position: 0}
+      #   - {address: 0x02020c0e, type: "bit", position: 0}
+      #   - {address: 0x02020c52, type: "bit", position: 0}
+      #   - {address: 0x02020c96, type: "bit", position: 0}
+      #   - {address: 0x02020cda, type: "bit", position: 0}
+      #   - {address: 0x02020d1e, type: "bit", position: 0}
+      #   - {address: 0x02020d62, type: "bit", position: 0}
+      #   - {address: 0x02020da6, type: "bit", position: 0}
+      #   - {address: 0x02020dea, type: "bit", position: 0}
+      #   - {address: 0x02020e2e, type: "bit", position: 0}
+      #   - {address: 0x02020e72, type: "bit", position: 0}
+      #   - {address: 0x02020eb6, type: "bit", position: 0}
+      #   - {address: 0x02020efa, type: "bit", position: 0}
+      #   - {address: 0x02020f3e, type: "bit", position: 0}
+      #   - {address: 0x02020f82, type: "bit", position: 0}
+      #   - {address: 0x02020fc6, type: "bit", position: 0}
+      #   - {address: 0x0202100a, type: "bit", position: 0}
+      #   - {address: 0x0202104e, type: "bit", position: 0}
+      #   - {address: 0x02021092, type: "bit", position: 0}
+      #   - {address: 0x020210d6, type: "bit", position: 0}
+      #   - {address: 0x0202111a, type: "bit", position: 0}
+      #   - {address: 0x0202115e, type: "bit", position: 0}
+      #   - {address: 0x020211a2, type: "bit", position: 0}
+      #   - {address: 0x020211e6, type: "bit", position: 0}
+      #   - {address: 0x0202122a, type: "bit", position: 0}
+      #   - {address: 0x0202126e, type: "bit", position: 0}
+      #   - {address: 0x020212b2, type: "bit", position: 0}
+      #   - {address: 0x020212f6, type: "bit", position: 0}
+      #   - {address: 0x0202133a, type: "bit", position: 0}
+      #   - {address: 0x0202137e, type: "bit", position: 0}
+      #   - {address: 0x020213c2, type: "bit", position: 0}
+      #   - {address: 0x02021406, type: "bit", position: 0}
+      #   - {address: 0x0202144a, type: "bit", position: 0}
+      #   - {address: 0x0202148e, type: "bit", position: 0}
+      #   - {address: 0x020214d2, type: "bit", position: 0}
+      #   - {address: 0x02021516, type: "bit", position: 0}
+      #   - {address: 0x0202155a, type: "bit", position: 0}
+      #   - {address: 0x0202159e, type: "bit", position: 0}
+      #   - {address: 0x020215e2, type: "bit", position: 0}
+      #   - {address: 0x02021626, type: "bit", position: 0}
+      #   - {address: 0x0202166a, type: "bit", position: 0}
+      #   - {address: 0x020216ae, type: "bit", position: 0}
+      #   - {address: 0x020216f2, type: "bit", position: 0}
+      #   - {address: 0x02021736, type: "bit", position: 0}
+
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
     minutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
@@ -747,6 +838,23 @@ glossary:
     135457673: New Game
     134871941: Naming Screen
     135186485: Owners
+  battleAction:
+    0x00: "USE_MOVE"
+    0x01: "USE_ITEM"
+    0x02: "SWITCH"
+    0x03: "RUN"
+    0x04: "SAFARI_WATCH_CAREFULLY"
+    0x05: "SAFARI_BALL"
+    0x06: "SAFARI_BAIT"
+    0x07: "SAFARI_GO_NEAR"
+    0x08: "SAFARI_RUN"
+    0x09: "TEACHER_THROW"
+    0x0A: "EXEC_SCRIPT"
+    0x0B: "TRY_FINISH"
+    0x0C: "FINISHED"
+    0x0C: "CANCEL_PARTNER"  # when choosing an action
+    0x0D: "NOTHING_FAINTED" # when choosing an action
+    0xFF: "NONE"
   stageModifiers:
     0x00: -6
     0x01: -5

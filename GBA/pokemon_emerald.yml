@@ -82,22 +82,22 @@ macros:
     # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
     # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
     ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
-    # ivTest1:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 0) % 31" }
-    # ivTest2:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 5) % 31" }
-    # ivTest3:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 10) % 31" }
-    # ivTest4:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 15) % 31" }
-    # ivTest5:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 20) % 31" }
-    # ivTest6:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 25) % 31" }
-    # ivTest7:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 30) % 31" }
-    # ivTest8:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4, postprocessor: "(x >> 31) % 31" }
-    ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
-    ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
-    ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
-    ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 3968) >> 7"}
-    ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 496) >> 4"}
-    ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 15872) >> 9"}
-    isEgg: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 6 }
-    ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
+    ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 4, 0)"}
+    ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 9, 5)"}
+    ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 14, 10)"}
+    ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 19, 15)"}
+    ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 24, 20)"}
+    ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 29, 25)"}
+    isEgg:            { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "bit", size: 4, position: 30 }
+    ability:          { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "bit", size: 4, position: 31 }
+    # ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
+    # ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
+    # ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
+    # ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 3968) >> 7"}
+    # ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 496) >> 4"}
+    # ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 15872) >> 9"}
+    # isEgg: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 6 }
+    # ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
 
     #MAIN DATA
@@ -765,7 +765,102 @@ properties:
     menu:
       pokemon:   { type: "bit", position: 0, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
       pokedex:   { type: "bit", position: 1, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
-      pokenav:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }
+      pokenav:   { type: "bit", position: 2, preprocessor: "dma_967d10cc(0x03005D90, 9000)" }     
+
+  screen:
+    menu:
+      itemsMenu:      {type: "int", address: 0x0203ce60, size: 2}
+      itemsOffset:    {type: "int", address: 0x0203ce6a, size: 2}
+      ballsMenu:      {type: "int", address: 0x0203ce62, size: 2}
+      ballsOffset:    {type: "int", address: 0x0203ce6c, size: 2}
+      tmhmMenu:       {type: "int", address: 0x0203ce64, size: 2}
+      tmhmOffset:     {type: "int", address: 0x0203ce6e, size: 2}
+      berriesMenu:    {type: "int", address: 0x0203ce66, size: 2}
+      berriesOffset:  {type: "int", address: 0x0203ce70, size: 2}
+      keyItemsMenu:   {type: "int", address: 0x0203ce68, size: 2}
+      keyItemsOffset: {type: "int", address: 0x0203ce72, size: 2}
+      partyMenu:      {type: "int", address: 0x0203ced1}
+      battleAction:
+          playerL:    {type: "int", address: 0x020244ac, reference: "battleAction"}
+          enemyL:     {type: "int", address: 0x020244ad, reference: "battleAction"}
+          playerR:    {type: "int", address: 0x020244ae, reference: "battleAction"}
+          enemyR:     {type: "int", address: 0x020244af, reference: "battleAction"}
+      battleMove:
+          playerL:    {type: "int", address: 0x020244b0}
+          enemyL:     {type: "int", address: 0x020244b1}
+          playerR:    {type: "int", address: 0x020244b2}
+          enemyR:     {type: "int", address: 0x020244b3}
+    enemy_sprite:
+      battlerSpriteIndex:
+            playerL: {type: "int", address: 0x020241e4}
+            enemyL:  {type: "int", address: 0x020241e5}
+            playerR: {type: "int", address: 0x020241e6}
+            enemyR:  {type: "int", address: 0x020241e7}
+      # spriteInUse:
+      #   - {address: 0x0202066e, type: "bit", position: 0}
+      #   - {address: 0x020206b2, type: "bit", position: 0}
+      #   - {address: 0x020206f6, type: "bit", position: 0}
+      #   - {address: 0x0202073a, type: "bit", position: 0}
+      #   - {address: 0x0202077e, type: "bit", position: 0}
+      #   - {address: 0x020207c2, type: "bit", position: 0}
+      #   - {address: 0x02020806, type: "bit", position: 0}
+      #   - {address: 0x0202084a, type: "bit", position: 0}
+      #   - {address: 0x0202088e, type: "bit", position: 0}
+      #   - {address: 0x020208d2, type: "bit", position: 0}
+      #   - {address: 0x02020916, type: "bit", position: 0}
+      #   - {address: 0x0202095a, type: "bit", position: 0}
+      #   - {address: 0x0202099e, type: "bit", position: 0}
+      #   - {address: 0x020209e2, type: "bit", position: 0}
+      #   - {address: 0x02020a26, type: "bit", position: 0}
+      #   - {address: 0x02020a6a, type: "bit", position: 0}
+      #   - {address: 0x02020aae, type: "bit", position: 0}
+      #   - {address: 0x02020af2, type: "bit", position: 0}
+      #   - {address: 0x02020b36, type: "bit", position: 0}
+      #   - {address: 0x02020b7a, type: "bit", position: 0}
+      #   - {address: 0x02020bbe, type: "bit", position: 0}
+      #   - {address: 0x02020c02, type: "bit", position: 0}
+      #   - {address: 0x02020c46, type: "bit", position: 0}
+      #   - {address: 0x02020c8a, type: "bit", position: 0}
+      #   - {address: 0x02020cce, type: "bit", position: 0}
+      #   - {address: 0x02020d12, type: "bit", position: 0}
+      #   - {address: 0x02020d56, type: "bit", position: 0}
+      #   - {address: 0x02020d9a, type: "bit", position: 0}
+      #   - {address: 0x02020dde, type: "bit", position: 0}
+      #   - {address: 0x02020e22, type: "bit", position: 0}
+      #   - {address: 0x02020e66, type: "bit", position: 0}
+      #   - {address: 0x02020eaa, type: "bit", position: 0}
+      #   - {address: 0x02020eee, type: "bit", position: 0}
+      #   - {address: 0x02020f32, type: "bit", position: 0}
+      #   - {address: 0x02020f76, type: "bit", position: 0}
+      #   - {address: 0x02020fba, type: "bit", position: 0}
+      #   - {address: 0x02020ffe, type: "bit", position: 0}
+      #   - {address: 0x02021042, type: "bit", position: 0}
+      #   - {address: 0x02021086, type: "bit", position: 0}
+      #   - {address: 0x020210ca, type: "bit", position: 0}
+      #   - {address: 0x0202110e, type: "bit", position: 0}
+      #   - {address: 0x02021152, type: "bit", position: 0}
+      #   - {address: 0x02021196, type: "bit", position: 0}
+      #   - {address: 0x020211da, type: "bit", position: 0}
+      #   - {address: 0x0202121e, type: "bit", position: 0}
+      #   - {address: 0x02021262, type: "bit", position: 0}
+      #   - {address: 0x020212a6, type: "bit", position: 0}
+      #   - {address: 0x020212ea, type: "bit", position: 0}
+      #   - {address: 0x0202132e, type: "bit", position: 0}
+      #   - {address: 0x02021372, type: "bit", position: 0}
+      #   - {address: 0x020213b6, type: "bit", position: 0}
+      #   - {address: 0x020213fa, type: "bit", position: 0}
+      #   - {address: 0x0202143e, type: "bit", position: 0}
+      #   - {address: 0x02021482, type: "bit", position: 0}
+      #   - {address: 0x020214c6, type: "bit", position: 0}
+      #   - {address: 0x0202150a, type: "bit", position: 0}
+      #   - {address: 0x0202154e, type: "bit", position: 0}
+      #   - {address: 0x02021592, type: "bit", position: 0}
+      #   - {address: 0x020215d6, type: "bit", position: 0}
+      #   - {address: 0x0202161a, type: "bit", position: 0}
+      #   - {address: 0x0202165e, type: "bit", position: 0}
+      #   - {address: 0x020216a2, type: "bit", position: 0}
+      #   - {address: 0x020216e6, type: "bit", position: 0}
+      #   - {address: 0x0202172a, type: "bit", position: 0}
 
   trainers:
     eliteFour:    
@@ -788,9 +883,9 @@ properties:
     dma1: { type: "uint", size: 4, address: 0x3005D8C } #map data
     dma2: { type: "uint", size: 4, address: 0x3005D90 } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005D94 } #box data
-    # callback1test: { type: "uint", size: 4, address: 0x030022c0 } # main
+    callback1test: { type: "uint", size: 4, address: 0x030022c0 } # main
     callback1: { type: "int", size: 4, address: 0x030022c0, reference: "mainState" } # main
-    # callback2test: { type: "uint", size: 4, address: 0x030022c4 } # sub
+    callback2test: { type: "uint", size: 4, address: 0x030022c4 } # sub
     callback2: { type: "int", size: 4, address: 0x030022c4, reference: "subState" } # sub
 
 glossary:
@@ -839,6 +934,23 @@ glossary:
     134980829: Opening Options
     135155545: Naming Screen #character naming & Pokemon naming
     135036245: PC
+  battleAction:
+    0x00: "USE_MOVE"
+    0x01: "USE_ITEM"
+    0x02: "SWITCH"
+    0x03: "RUN"
+    0x04: "SAFARI_WATCH_CAREFULLY"
+    0x05: "SAFARI_BALL"
+    0x06: "SAFARI_BAIT"
+    0x07: "SAFARI_GO_NEAR"
+    0x08: "SAFARI_RUN"
+    0x09: "TEACHER_THROW"
+    0x0A: "EXEC_SCRIPT"
+    0x0B: "TRY_FINISH"
+    0x0C: "FINISHED"
+    0x0C: "CANCEL_PARTNER"  # when choosing an action
+    0x0D: "NOTHING_FAINTED" # when choosing an action
+    0xFF: "NONE"
   stageModifiers:
     0x00: -6
     0x01: -5
