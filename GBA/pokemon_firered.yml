@@ -20,9 +20,59 @@ macros:
   pokemonInParty:
     #MAIN DATA
     personalityValue: { offset: 0, type: "uint", size: 4 }
-    nature:     { offset: 0, type: "uint", size: 4, postprocessor: "x % 25" }
+    checksum:   { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
     otID:       { offset: 4, type: "uint", size: 4 }
     nickname:   { offset: 8, type: "string", size: 10}
+    otName:     { offset: 20, type: "string", size: 7 }
+    _: { offset: 0, type: "macro", macro: "pokemonMacroEncrypted" }
+    speciesArray: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
+    level:   { offset: 84, type: "int" }
+    expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
+    nature:     { offset: 0, type: "uint", size: 4, postprocessor: "x % 25" }
+    friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
+    pokerus: { offset: 85, type: "int" }
+    itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "int", size: 2, reference: "items" }
+    statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
+
+    #STATS
+    hp:             { offset: 86, type: "int", size: 2 }
+    maxHp:          { offset: 88, type: "int", size: 2 }
+    attack:         { offset: 90, type: "int", size: 2 }
+    defense:        { offset: 92, type: "int", size: 2 }
+    speed:          { offset: 94, type: "int", size: 2 }
+    specialAttack:  { offset: 96, type: "int", size: 2 }
+    specialDefense: { offset: 98, type: "int", size: 2 }
+    ivEggAbilityBlock: { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
+    ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 4, 0)"}
+    ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 9, 5)"}
+    ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 14, 10)"}
+    ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 19, 15)"}
+    ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 24, 20)"}
+    ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "int", size: 4, postprocessor: "BitRange(x, 29, 25)"}
+    isEgg:            { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "bit", size: 4, position: 30 }
+    ability:          { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "bit", size: 4, position: 31 }
+    evHp:             { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
+    evAttack:         { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
+    evDefense:        { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
+    evSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
+    evSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
+    evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
+
+    #MOVES
+    move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "int", size: 2, reference: "moves" }
+    move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "int", size: 2, reference: "moves" }
+    move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "int", size: 2, reference: "moves" }
+    move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "int", size: 2, reference: "moves" }
+    move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int" }
+    move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int" }
+    move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int" }
+    move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int" }
+    move1ppUp: { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "BitRange(x, 1, 0)" }
+    move2ppUp: { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "BitRange(x, 3, 2)" }
+    move3ppUp: { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "BitRange(x, 5, 4)" }
+    move4ppUp: { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "BitRange(x, 7, 6)" }
+
+    #MISC
     language:   { offset: 18, type: "int", reference: "language" }
     isBadEgg:   { offset: 19, type: "bit", position: 0 }
     hasSpecies: { offset: 19, type: "bit", position: 1 }
@@ -32,77 +82,10 @@ macros:
     markingSquare:   { offset: 27, type: "bit", position: 1 }
     markingTriangle: { offset: 27, type: "bit", position: 2 }
     markingHeart:    { offset: 27, type: "bit", position: 3 }
-    otName:     { offset: 20, type: "string", size: 7 }
-    markings:   { offset: 27, type: "int" }
-    checksum:   { offset: 28, type: "int", size: 2, description: "Used to valid the decrypted data block" }
-    
-    #ENCRYPTED DATA (48 bytes, 4 blocks of 12)
-    #BLOCK1-GROWTH
-    _: { offset: 0, type: "macro", macro: "pokemonMacroEncrypted" }
-    speciesArray: { offset: 0, preprocessor: "data_block_a245dcac(0, 0)", type: "int", size: 2, reference: "pokemon" }
-    itemHeld:   { offset: 0, preprocessor: "data_block_a245dcac(0, 2)", type: "int", size: 2, reference: "items" }
-    expPoints:  { offset: 0, preprocessor: "data_block_a245dcac(0, 4)", type: "uint", size: 4 }
-    move1ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "x & 3" }
-    move2ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 12) >> 2" }
-    move3ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 48) >> 4" }
-    move4ppUp:  { offset: 0, preprocessor: "data_block_a245dcac(0, 8)", type: "int", postprocessor: "(x & 192) >> 6" }
-    friendship: { offset: 0, preprocessor: "data_block_a245dcac(0, 9)", type: "int" }
-    # unknown:    { offset: 0, preprocessor: "data_block_a245dcac(0, 10)", type: "int" } #likely padding
-
-    # bitwise masking - pairs of 2 bytes
-    # 00000011 3   (no shift) formula: (x & 3)
-    # 00001100 12  (>>2)      formula: (x & 12) >> 2
-    # 00110000 48  (>>4)      formula: (x & 48) >> 4
-    # 11000000 192 (>>6)      formula: (x & 192) >> 6
-
-    # bisewise nybble masking
-    # 00001111 15 (>>0)  formula: (x & 15)
-    # 11110000 240 (>>4) formula: (x & 240) >> 4
-
-    #BLOCK2-Attacks
-    move1: { offset: 0, preprocessor: "data_block_a245dcac(1, 0)",  type: "int", size: 2, reference: "moves" }
-    move2: { offset: 0, preprocessor: "data_block_a245dcac(1, 2)",  type: "int", size: 2, reference: "moves" }
-    move3: { offset: 0, preprocessor: "data_block_a245dcac(1, 4)",  type: "int", size: 2, reference: "moves" }
-    move4: { offset: 0, preprocessor: "data_block_a245dcac(1, 6)",  type: "int", size: 2, reference: "moves" }
-    move1pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 8)",  type: "int" }
-    move2pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 9)",  type: "int" }
-    move3pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 10)",  type: "int" }
-    move4pp: { offset: 0, preprocessor: "data_block_a245dcac(1, 11)",  type: "int" }
-
-    #BLOCK3-EVs & Condition
-    evHp:             { offset: 0, preprocessor: "data_block_a245dcac(2, 0)", type: "int" }
-    evAttack:         { offset: 0, preprocessor: "data_block_a245dcac(2, 1)", type: "int" }
-    evDefense:        { offset: 0, preprocessor: "data_block_a245dcac(2, 2)", type: "int" }
-    evSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(2, 3)", type: "int" }
-    evSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(2, 4)", type: "int" }
-    evSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(2, 5)", type: "int" }
-
-    #BLOCK4-MISC
     # pokerusStatus:    { offset: 0, preprocessor: "data_block_a245dcac(3, 0)", type: "int" }
     # metLocation:      { offset: 0, preprocessor: "data_block_a245dcac(3, 1)", type: "int" } #probably reference
     # originsInfo:      { offset: 0, preprocessor: "data_block_a245dcac(3, 2)", type: "int", size: 2 } #probably reference
-    ivEggAbilityBlock:    { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 4}
-    ivHp:             { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "x & 31"}
-    ivAttack:         { offset: 0, preprocessor: "data_block_a245dcac(3, 4)", type: "uint", size: 2, postprocessor: "(x & 992) >> 5"}
-    ivDefense:        { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 124) >> 2"}
-    ivSpeed:          { offset: 0, preprocessor: "data_block_a245dcac(3, 5)", type: "uint", size: 2, postprocessor: "(x & 3968) >> 7"}
-    ivSpecialAttack:  { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 496) >> 4"}
-    ivSpecialDefense: { offset: 0, preprocessor: "data_block_a245dcac(3, 6)", type: "uint", size: 2, postprocessor: "(x & 15872) >> 9"}
-    isEgg: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 6 }
-    ability: { offset: 0, preprocessor: "data_block_a245dcac(3, 7)", type: "bit", position: 7 }
     # robbinsObedience: { offset: 0, preprocessor: "data_block_a245dcac(3, 8)", type: "int", size: 4 }
-
-    #MAIN DATA
-    level:   { offset: 84, type: "int" }
-    pokerus: { offset: 85, type: "int" }
-    hp:             { offset: 86, type: "int", size: 2 }
-    maxHp:          { offset: 88, type: "int", size: 2 }
-    attack:         { offset: 90, type: "int", size: 2 }
-    defense:        { offset: 92, type: "int", size: 2 }
-    speed:          { offset: 94, type: "int", size: 2 }
-    specialAttack:  { offset: 96, type: "int", size: 2 }
-    specialDefense: { offset: 98, type: "int", size: 2 }
-    statusCondition: { offset: 80, type: "int", reference: "statusConditions" }
 
   battleStructure:
     nickname: { offset: 48, type: string, size: 11, characterMap: "defaultCharacterMap" }
@@ -114,6 +97,24 @@ macros:
     personalityValue: { offset: 72, type: "uint", size: 4 }
     ability:  { offset: 32, type: "int", reference: "abilities" }
     heldItem: { offset: 46, type: "int", size: 2, reference: "items" }
+
+    #STATS
+    maxHp:           { offset: 44, type: "int", size: 2 }
+    hp:              { offset: 40, type: "int", size: 2 }
+    attack:          { offset: 2, type: "int", size: 2 }
+    defense:         { offset: 4, type: "int", size: 2 }
+    speed:           { offset: 6, type: "int", size: 2 }
+    specialAttack:   { offset: 8, type: "int", size: 2 }
+    specialDefense:  { offset: 10, type: "int", size: 2 }
+    ivEggAbilityBlock: { offset: 20, type: "uint", size: 4}
+    ivHp:             { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 4, 0)"}
+    ivAttack:         { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 9, 5)"}
+    ivDefense:        { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 14, 10)"}
+    ivSpeed:          { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 19, 15)"}
+    ivSpecialAttack:  { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 24, 20)"}
+    ivSpecialDefense: { offset: 20, type: "int", size: 4, postprocessor: "BitRange(x, 29, 25)"}
+    
+    #MOVES
     move1: { offset: 12, type: "int", size: 2, reference: "moves" }
     move2: { offset: 14, type: "int", size: 2, reference: "moves" }
     move3: { offset: 16, type: "int", size: 2, reference: "moves" }
@@ -122,15 +123,11 @@ macros:
     move2pp: { offset: 37, type: "int" }
     move3pp: { offset: 38, type: "int" }
     move4pp: { offset: 39, type: "int" }
-    # ppBonuses: { offset: 59, type: "int" } #needs new data type for gamehook to read
-    maxHp:           { offset: 44, type: "int", size: 2 }
-    hp:              { offset: 40, type: "int", size: 2 }
-    attack:          { offset: 2, type: "int", size: 2 }
-    defense:         { offset: 4, type: "int", size: 2 }
-    speed:           { offset: 6, type: "int", size: 2 }
-    specialAttack:   { offset: 8, type: "int", size: 2 }
-    specialDefense:  { offset: 10, type: "int", size: 2 }
-    # ivEggAbilityBlock:      { offset: 20, type: "uint", size: 4} #needs new data type for gamehook to read
+    move1ppUp: { offset: 59, type: "int", postprocessor: "BitRange(x, 1, 0)" }
+    move2ppUp: { offset: 59, type: "int", postprocessor: "BitRange(x, 3, 2)" }
+    move3ppUp: { offset: 59, type: "int", postprocessor: "BitRange(x, 5, 4)" }
+    move4ppUp: { offset: 59, type: "int", postprocessor: "BitRange(x, 7, 6)" }
+
     # modUnknown:             { offset: 24, type: "int", reference: "stageModifiers" } #probably critical hit mod
     modStageAttack:         { offset: 25, type: "int", reference: "stageModifiers" }
     modStageDefense:        { offset: 26, type: "int", reference: "stageModifiers" }
@@ -787,19 +784,27 @@ properties:
       #   - {address: 0x020216ae, type: "bit", position: 0}
       #   - {address: 0x020216f2, type: "bit", position: 0}
       #   - {address: 0x02021736, type: "bit", position: 0}
+  options: 
+      textSpeed:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 20), 2, 0)", postprocessor: "BitRange(x, 2, 0)" } # 0:SLOW, 1:MID, 2:FAST
+      battleAnim:  { type: "bit", preprocessor: "dma_967d10cc(0x0300500C, 21)", position: 2 }    # 0:ON, 1:OFF
+      battleStyle: { type: "bit", preprocessor: "dma_967d10cc(0x0300500C, 21)", position: 1 }    # 0:SHIFT, 1:SET
+      sound:       { type: "bit", preprocessor: "dma_967d10cc(0x0300500C, 21)", position: 0 }    # 0:MONO, 1:STEREO
+      buttonMode:  { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 19)" }                 # 0:NORMAL, 1:LR, 2:L_EQUALS_A
+      windowFrame: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 20), 7, 3)", postprocessor: "BitRange(x, 2, 0)" } # 
 
   gameTime:
     hours:   { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 14)" }
     minutes: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 16)" }
     seconds: { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 17)" }
     frames:  { type: "int", preprocessor: "dma_967d10cc(0x0300500C, 18)" }
+
   pointers:
     dma1: { type: "uint", size: 4, address: 0x3005008 } #map data
     dma2: { type: "uint", size: 4, address: 0x300500C } #player info, gametime, flags (trainer data)
     dma3: { type: "uint", size: 4, address: 0x3005010 } #box data
-    callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
+    # callback1test: { type: "uint", size: 4, address: 0x030030f0 } # main
     callback1: { type: "int", size: 4, address: 0x030030f0, reference: "mainState" } # main
-    callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
+    # callback2test: { type: "uint", size: 4, address: 0x030030f4 } # sub 
     callback2: { type: "int", size: 4, address: 0x030030f4, reference: "subState"  } # sub
 
 glossary:
@@ -836,8 +841,11 @@ glossary:
     134852089: Mart Menu
     134852137: Opening Mart Menu
     135457673: New Game
+    134267625: Main Menu
     134871941: Naming Screen
     135186485: Owners
+    135186921: Intro Cinematic
+    134712241: Title Screen
   battleAction:
     0x00: "USE_MOVE"
     0x01: "USE_ITEM"
@@ -1061,9 +1069,9 @@ glossary:
     6: "PAY DAY"
     7: "FIRE PUNCH"
     8: "ICE PUNCH"
-    9: "THUNDER PUNCH"
+    9: "THUNDERPUNCH"
     10: "SCRATCH"
-    11: "VICE GRIP"
+    11: "VICEGRIP"
     12: "GUILLOTINE"
     13: "RAZOR WIND"
     14: "SWORDS DANCE"
@@ -1080,7 +1088,7 @@ glossary:
     25: "MEGA KICK"
     26: "JUMP KICK"
     27: "ROLLING KICK"
-    28: "SAND ATTACK"
+    28: "SAND-ATTACK"
     29: "HEADBUTT"
     30: "HORN ATTACK"
     31: "FURY ATTACK"
@@ -1113,7 +1121,7 @@ glossary:
     58: "ICE BEAM"
     59: "BLIZZARD"
     60: "PSYBEAM"
-    61: "BUBBLE BEAM"
+    61: "BUBBLEBEAM"
     62: "AURORA BEAM"
     63: "HYPER BEAM"
     64: "PECK"
@@ -1128,8 +1136,8 @@ glossary:
     73: "LEECH SEED"
     74: "GROWTH"
     75: "RAZOR LEAF"
-    76: "SOLAR BEAM"
-    77: "POISON POWDER"
+    76: "SOLARBEAM"
+    77: "POISONPOWDER"
     78: "STUN SPORE"
     79: "SLEEP POWDER"
     80: "PETAL DANCE"
@@ -1241,7 +1249,7 @@ glossary:
     186: "SWEET KISS"
     187: "BELLY DRUM"
     188: "SLUDGE BOMB"
-    189: "MUD SLAP"
+    189: "MUD-SLAP"
     190: "OCTAZOOKA"
     191: "SPIKES"
     192: "ZAP CANNON"
@@ -1275,9 +1283,9 @@ glossary:
     220: "PAIN SPLIT" 
     221: "SACRED FIRE" 
     222: "MAGNITUDE" 
-    223: "DYNAMIC PUNCH" 
+    223: "DYNAMICPUNCH" 
     224: "MEGAHORN" 
-    225: "DRAGON BREATH" 
+    225: "DRAGONBREATH" 
     226: "BATON PASS" 
     227: "ENCORE" 
     228: "PURSUIT" 
@@ -1297,8 +1305,8 @@ glossary:
     242: "CRUNCH" 
     243: "MIRROR COAT" 
     244: "PSYCH UP" 
-    245: "EXTREME SPEED" 
-    246: "ANCIENT POWER" 
+    245: "EXTREMESPEED" 
+    246: "ANCIENTPOWER" 
     247: "SHADOW BALL" 
     248: "FUTURE SIGHT" 
     249: "ROCK SMASH" 
@@ -1317,7 +1325,7 @@ glossary:
     262: "MEMENTO" 
     263: "FACADE" 
     264: "FOCUS PUNCH" 
-    265: "SMELLING SALT"
+    265: "SMELLINGSALT"
     266: "FOLLOW ME" 
     267: "NATURE POWER" 
     268: "CHARGE" 
@@ -1349,7 +1357,7 @@ glossary:
     294: "TAIL GLOW" 
     295: "LUSTER PURGE" 
     296: "MIST BALL" 
-    297: "FEATHER DANCE" 
+    297: "FEATHERDANCE" 
     298: "TEETER DANCE" 
     299: "BLAZE KICK" 
     300: "MUD SPORT" 
@@ -1372,7 +1380,7 @@ glossary:
     317: "ROCK TOMB"
     318: "SILVER WIND"
     319: "METAL SOUND"
-    320: "GRASS WHISTLE"
+    320: "GRASSWHISTLE"
     321: "TICKLE"
     322: "COSMIC POWER"
     323: "WATER SPOUT"
