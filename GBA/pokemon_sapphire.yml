@@ -508,7 +508,7 @@ glossary:
     6: "PAY DAY"
     7: "FIRE PUNCH"
     8: "ICE PUNCH"
-    9: "THUNDER PUNCH"
+    9: "ThunderPunch"
     10: "SCRATCH"
     11: "VICE GRIP"
     12: "GUILLOTINE"
@@ -527,7 +527,7 @@ glossary:
     25: "MEGA KICK"
     26: "JUMP KICK"
     27: "ROLLING KICK"
-    28: "SAND ATTACK"
+    28: "Sand-Attack"
     29: "HEADBUTT"
     30: "HORN ATTACK"
     31: "FURY ATTACK"
@@ -548,7 +548,7 @@ glossary:
     46: "ROAR"
     47: "SING"
     48: "SUPERSONIC"
-    49: "SONIC BOOM"
+    49: "SonicBoom"
     50: "DISABLE"
     51: "ACID"
     52: "EMBER"
@@ -560,7 +560,7 @@ glossary:
     58: "ICE BEAM"
     59: "BLIZZARD"
     60: "PSYBEAM"
-    61: "BUBBLE BEAM"
+    61: "BubbleBeam"
     62: "AURORA BEAM"
     63: "HYPER BEAM"
     64: "PECK"
@@ -576,7 +576,7 @@ glossary:
     74: "GROWTH"
     75: "RAZOR LEAF"
     76: "SOLARBEAM"
-    77: "POISON POWDER"
+    77: "PoisonPowder"
     78: "STUN SPORE"
     79: "SLEEP POWDER"
     80: "PETAL DANCE"
@@ -619,7 +619,7 @@ glossary:
     117: "BIDE"
     118: "METRONOME"
     119: "MIRROR MOVE"
-    120: "SELF DESTRUCT"
+    120: "Selfdestruct"
     121: "EGG BOMB"
     122: "LICK"
     123: "SMOG"
@@ -688,7 +688,7 @@ glossary:
     186: "SWEET KISS"
     187: "BELLY DRUM"
     188: "SLUDGE BOMB"
-    189: "MUD SLAP"
+    189: "Mud-Slap"
     190: "OCTAZOOKA"
     191: "SPIKES"
     192: "ZAP CANNON"
@@ -745,7 +745,7 @@ glossary:
     243: "MIRROR COAT" 
     244: "PSYCH UP" 
     245: "EXTREME SPEED" 
-    246: "ANCIENT POWER" 
+    246: "AncientPower" 
     247: "SHADOW BALL" 
     248: "FUTURE SIGHT" 
     249: "ROCK SMASH" 
@@ -764,7 +764,7 @@ glossary:
     262: "MEMENTO" 
     263: "FACADE" 
     264: "FOCUS PUNCH" 
-    265: "SMELLING SALT"
+    265: "SmellingSalt"
     266: "FOLLOW ME" 
     267: "NATURE POWER" 
     268: "CHARGE" 
@@ -796,7 +796,7 @@ glossary:
     294: "TAIL GLOW" 
     295: "LUSTER PURGE" 
     296: "MIST BALL" 
-    297: "FEATHER DANCE" 
+    297: "FeatherDance" 
     298: "TEETER DANCE" 
     299: "BLAZE KICK" 
     300: "MUD SPORT" 
@@ -1252,7 +1252,7 @@ glossary:
     # : "TM19 GIGA DRAIN ITEM TM19
     # : "TM20 SAFEGUARD ITEM TM20
     # : "TM21 FRUSTRATION ITEM TM21
-    # : "TM22 SOLAR BEAM ITEM TM22
+    # : "TM22 SolarBeam ITEM TM22
     # : "TM23 IRON TAIL ITEM TM23
     # : "TM24 THUNDERBOLT ITEM TM24
     # : "TM25 THUNDER ITEM TM25

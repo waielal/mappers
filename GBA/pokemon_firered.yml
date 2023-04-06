@@ -1069,7 +1069,7 @@ glossary:
     6: "PAY DAY"
     7: "FIRE PUNCH"
     8: "ICE PUNCH"
-    9: "THUNDERPUNCH"
+    9: "ThunderPunch"
     10: "SCRATCH"
     11: "VICEGRIP"
     12: "GUILLOTINE"
@@ -1109,7 +1109,7 @@ glossary:
     46: "ROAR"
     47: "SING"
     48: "SUPERSONIC"
-    49: "SONIC BOOM"
+    49: "SonicBoom"
     50: "DISABLE"
     51: "ACID"
     52: "EMBER"
@@ -1180,7 +1180,7 @@ glossary:
     117: "BIDE"
     118: "METRONOME"
     119: "MIRROR MOVE"
-    120: "SELF DESTRUCT"
+    120: "SELFDESTRUCT"
     121: "EGG BOMB"
     122: "LICK"
     123: "SMOG"
@@ -1813,7 +1813,7 @@ glossary:
     # : "TM19 GIGA DRAIN ITEM TM19
     # : "TM20 SAFEGUARD ITEM TM20
     # : "TM21 FRUSTRATION ITEM TM21
-    # : "TM22 SOLAR BEAM ITEM TM22
+    # : "TM22 SolarBeam ITEM TM22
     # : "TM23 IRON TAIL ITEM TM23
     # : "TM24 THUNDERBOLT ITEM TM24
     # : "TM25 THUNDER ITEM TM25

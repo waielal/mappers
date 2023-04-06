@@ -229,7 +229,7 @@ properties:
       tm38-fireblast:    { type: "int", address: 0xD87E }
       tm39-swift:        { type: "int", address: 0xD87F }
       tm40-defensecurl:  { type: "int", address: 0xD880 }
-      tm41-thunderpunch: { type: "int", address: 0xD881 }
+      tm41-ThunderPunch: { type: "int", address: 0xD881 }
       tm42-dreameater:   { type: "int", address: 0xD882 }
       tm43-detect:       { type: "int", address: 0xD883 }
       tm44-rest:         { type: "int", address: 0xD884 }
@@ -898,7 +898,7 @@ glossary:
     0x06: "PAY DAY"
     0x07: "FIRE PUNCH"
     0x08: "ICE PUNCH"
-    0x09: "THUNDERPUNCH"
+    0x09: "ThunderPunch"
     0x0A: "SCRATCH"
     0x0B: "VICEGRIP"
     0x0C: "GUILLOTINE"
@@ -938,7 +938,7 @@ glossary:
     0x2E: "ROAR"
     0x2F: "SING"
     0x30: "SUPERSONIC"
-    0x31: "SONICBOOM"
+    0x31: "SonicBoom"
     0x32: "DISABLE"
     0x33: "ACID"
     0x34: "EMBER"
