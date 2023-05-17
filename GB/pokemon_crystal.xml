@@ -1,0 +1,1378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper id="9f46da7e-5087-439d-bcc8-7fe81e54e988" name="Pokemon Crystal" platform="GB"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://schemas.gamehook.io/mapper https://schemas.gamehook.io/mapper.xsd"
+    xmlns:var="https://schemas.gamehook.io/attributes/var">
+    <macros>
+        <pokemon>
+            <property name="species" address="address" type="int" reference="pokemonSpecies" />
+            <property name="pokedexNumber" address="address" type="int" reference="pokemonPokedexNumbers" />
+        </pokemon>
+    </macros>
+
+    <classes>
+        <pokemonInParty>
+            <macro type="pokemon" />
+            <property name="nickname" type="string" address="nicknameAddress" length="11" />
+            <property name="level" type="int" address="address + 31" />
+            <property name="experiencePoints" type="int" address="address + 8" />
+            <property name="friendshipPoints" type="int" address="address + 27" />
+            <property name="statusCondition" type="int" address="address + 32" reference="statusConditions" />
+            <property name="heldItem" type="int" address="address + 1" reference="items" />
+            <property name="health" type="int" address="address + 34" length="2" />
+            <property name="maxHealth" type="int" address="address + 36" length="2" />
+            <property name="attack" type="int" address="address + 38" length="2" />
+            <property name="defense" type="int" address="address + 40" length="2" />
+            <property name="specialAttack" type="int" address="address + 44" length="2" />
+            <property name="specialDefense" type="int" address="address + 46" length="2" />
+            <property name="speed" type="int" address="address + 42" length="2" />
+
+            <property name="dvAttack" type="int" address="address + 21" postprocessor-reader="(x - (x % 16))/16" />
+            <property name="dvDefense" type="int" address="address + 21" postprocessor-reader="x % 16" />
+            <property name="dvSpeed" type="int" address="address + 22" postprocessor-reader="(x - (x % 16))/16" />
+            <property name="dvSpecial" type="int" address="address + 22" postprocessor-reader="x % 16" />
+
+            <array name="moves" type="pokemonInPartyMoveset">
+                <class name="0" type="pokemonInPartyMoveset" var:moveAddress="address + 2" />
+                <class name="1" type="pokemonInPartyMoveset" var:moveAddress="address + 3" />
+                <class name="2" type="pokemonInPartyMoveset" var:moveAddress="address + 4" />
+                <class name="3" type="pokemonInPartyMoveset" var:moveAddress="address + 5" />
+            </array>
+
+            <property name="statExpHealth" type="int" address="address + 11" length="2" />
+            <property name="statExpAttack" type="int" address="address + 13" length="2" />
+            <property name="statExpDefense" type="int" address="address + 15" length="2" />
+            <property name="statExpSpeed" type="int" address="address + 17" length="2" />
+            <property name="statExpSpecial" type="int" address="address + 19" length="2" />
+
+            <property name="pokerus" type="int" address="address + 28" />
+            <property name="trainerId" type="int" address="address + 6" length="2" />
+
+            <script type="text/typescript">
+                <![CDATA[
+                    get hpPercentage() {
+                        return this.hp.value / this.maxHp.value * 100
+                    }
+                ]]>
+            </script>
+        </pokemonInParty>
+
+        <pokemonInPartyMoveset>
+            <property name="type" type="int" address="moveAddress" reference="moves" />
+            <property name="pp" type="int" address="moveAddress + 21" postprocessor-reader="x % 64" />
+            <property name="ppUp" type="int" address="moveAddress + 21" postprocessor-reader="Floor(x / 64)" />
+        </pokemonInPartyMoveset>
+    </classes>
+
+    <properties>
+        <player>
+            <property name="name" type="string" address="0xD47D" length="11" />
+
+            <array name="team" type="pokemonInParty">
+                <class name="0" type="pokemonInParty" var:address="0xDCDF" var:nicknameAddress="0xDE41" />
+                <class name="1" type="pokemonInParty" var:address="0xDD0F" var:nicknameAddress="0xDE4C" />
+                <class name="2" type="pokemonInParty" var:address="0xDD3F" var:nicknameAddress="0xDE57" />
+                <class name="3" type="pokemonInParty" var:address="0xDD6F" var:nicknameAddress="0xDE62" />
+                <class name="4" type="pokemonInParty" var:address="0xDD9F" var:nicknameAddress="0xDE6D" />
+                <class name="5" type="pokemonInParty" var:address="0xDDCF" var:nicknameAddress="0xDE78" />
+            </array>
+
+            <property name="teamCount" type="int" address="0xDCD7" />
+
+            <script type="text/typescript">
+                <![CDATA[
+                    getTeam() {
+                        if (this.teamCount == 0) { return [] }
+                        return this.team[0..this.teamCount]
+                    }
+                ]]>
+            </script>
+        </player>
+    </properties>
+
+    <references>
+        <dayNames>
+            <entry key="0x00" value="Sunday" />
+            <entry key="0x01" value="Monday" />
+            <entry key="0x02" value="Tuesday" />
+            <entry key="0x03" value="Wednesday" />
+            <entry key="0x04" value="Thursday" />
+            <entry key="0x05" value="Friday" />
+            <entry key="0x06" value="Satuday" />
+        </dayNames>
+        <timeOfDay>
+            <entry key="0x00" value="Morning" />
+            <entry key="0x01" value="Day" />
+            <entry key="0x02" value="Night" />
+        </timeOfDay>
+        <battleModes>
+            <entry key="0x00" />
+            <entry key="0x01" value="Wild" />
+            <entry key="0x02" value="Trainer" />
+        </battleModes>
+        <battleTypes>
+            <entry key="0x00" value="NORMAL" />
+            <entry key="0x01" value="CANLOSE" />
+            <entry key="0x02" value="DEBUG" />
+            <entry key="0x03" value="TUTORIAL" />
+            <entry key="0x04" value="FISH" />
+            <entry key="0x05" value="ROAMING" />
+            <entry key="0x06" value="CONTEST" />
+            <entry key="0x07" value="SHINY" />
+            <entry key="0x08" value="TREE" />
+            <entry key="0x09" value="TRAP" />
+            <entry key="0x0A" value="FORCEITEM" />
+            <entry key="0x0B" value="CELEBI" />
+            <entry key="0x0C" value="SUICUNE" />
+        </battleTypes>
+        <battleResults>
+            <entry key="0x00" value="WIN" />
+            <entry key="0x01" value="LOSE" />
+            <entry key="0x02" value="DRAW" />
+            <entry key="0x40" value="WIN" />
+            <entry key="0x41" value="LOSE" />
+            <entry key="0x42" value="DRAW" />
+            <entry key="0x80" value="WIN" />
+            <entry key="0x81" value="LOSE" />
+            <entry key="0x82" value="DRAW" />
+            <entry key="0xC0" value="WIN" />
+            <entry key="0xC1" value="LOSE" />
+            <entry key="0xC2" value="DRAW" />
+        </battleResults>
+        <lowHealthAlarm>
+            <entry key="0x00" value="Enabled" />
+            <entry key="0x01" value="Disabled" />
+        </lowHealthAlarm>
+        <trainerClasses>
+            <entry key="0x00" value="NOBODY" />
+            <entry key="0x01" value="FALKNER" />
+            <entry key="0x02" value="WHITNEY" />
+            <entry key="0x03" value="BUGSY" />
+            <entry key="0x04" value="MORTY" />
+            <entry key="0x05" value="PRYCE" />
+            <entry key="0x06" value="JASMINE" />
+            <entry key="0x07" value="CHUCK" />
+            <entry key="0x08" value="CLAIR" />
+            <entry key="0x09" value="RIVAL1" />
+            <entry key="0x0A" value="POKEMON PROF." />
+            <entry key="0x0B" value="WILL" />
+            <entry key="0x0C" value="CAL" />
+            <entry key="0x0D" value="BRUNO" />
+            <entry key="0x0E" value="KAREN" />
+            <entry key="0x0F" value="KOGA" />
+            <entry key="0x10" value="CHAMPION" />
+            <entry key="0x11" value="BROCK" />
+            <entry key="0x12" value="MISTY" />
+            <entry key="0x13" value="LT. SURGE" />
+            <entry key="0x14" value="SCIENTIST" />
+            <entry key="0x15" value="ERIKA" />
+            <entry key="0x16" value="YOUNGSTER" />
+            <entry key="0x17" value="SCHOOLBOY" />
+            <entry key="0x18" value="BIRD KEEPER" />
+            <entry key="0x19" value="LASS" />
+            <entry key="0x1A" value="JANINE" />
+            <entry key="0x1B" value="COOLTRAINER M" />
+            <entry key="0x1C" value="COOLTRAINER F" />
+            <entry key="0x1D" value="BEAUTY" />
+            <entry key="0x1E" value="POKEMANIAC" />
+            <entry key="0x1F" value="GRUNT M" />
+            <entry key="0x20" value="GENTLEMAN" />
+            <entry key="0x21" value="SKIER" />
+            <entry key="0x22" value="TEACHER" />
+            <entry key="0x23" value="SABRINA" />
+            <entry key="0x24" value="BUG CATCHER" />
+            <entry key="0x25" value="FISHER" />
+            <entry key="0x26" value="SWIMMER M" />
+            <entry key="0x27" value="SWIMMER F" />
+            <entry key="0x28" value="SAILOR" />
+            <entry key="0x29" value="SUPER NERD" />
+            <entry key="0x2A" value="RIVAL2" />
+            <entry key="0x2B" value="GUITARIST" />
+            <entry key="0x2C" value="HIKER" />
+            <entry key="0x2D" value="BIKER" />
+            <entry key="0x2E" value="BLAINE" />
+            <entry key="0x2F" value="BURGLAR" />
+            <entry key="0x30" value="FIREBREATHER" />
+            <entry key="0x31" value="JUGGLER" />
+            <entry key="0x32" value="BLACKBELT" />
+            <entry key="0x33" value="EXECUTIVE M" />
+            <entry key="0x34" value="PSYCHIC" />
+            <entry key="0x35" value="PICNICKER" />
+            <entry key="0x36" value="CAMPER" />
+            <entry key="0x37" value="EXECUTIVE F" />
+            <entry key="0x38" value="SAGE" />
+            <entry key="0x39" value="MEDIUM" />
+            <entry key="0x3A" value="BOARDER" />
+            <entry key="0x3B" value="POKEFAN M" />
+            <entry key="0x3C" value="KIMONO GIRL" />
+            <entry key="0x3D" value="TWINS" />
+            <entry key="0x3E" value="POKEFAN F" />
+            <entry key="0x3F" value="RED" />
+            <entry key="0x40" value="BLUE" />
+            <entry key="0x41" value="OFFICER" />
+            <entry key="0x42" value="GRUNT F" />
+            <entry key="0x43" value="MYSTICAL MAN" />
+        </trainerClasses>
+        <bikeStatus>
+            <entry key="0x00" value="Walking" />
+            <entry key="0x01" value="Biking" />
+        </bikeStatus>
+        <gender>
+            <entry key="0x00" value="Male" />
+            <entry key="0x01" value="Female" />
+        </gender>
+        <weather>
+            <entry key="0x00" />
+            <entry key="0x01" value="Rain" />
+            <entry key="0x02" value="Sun" />
+            <entry key="0x03" value="Sandstorm" />
+        </weather>
+        <types>
+            <entry key="0x00" value="Normal" />
+            <entry key="0x01" value="Fighting" />
+            <entry key="0x02" value="Flying" />
+            <entry key="0x03" value="Poison" />
+            <entry key="0x04" value="Ground" />
+            <entry key="0x05" value="Rock" />
+            <entry key="0x07" value="Bug" />
+            <entry key="0x08" value="Ghost" />
+            <entry key="0x09" value="Steel" />
+            <entry key="0x13" value="Curse" />
+            <entry key="0x14" value="Fire" />
+            <entry key="0x15" value="Water" />
+            <entry key="0x16" value="Grass" />
+            <entry key="0x17" value="Electric" />
+            <entry key="0x18" value="Psychic" />
+            <entry key="0x19" value="Ice" />
+            <entry key="0x1A" value="Dragon" />
+            <entry key="0x1B" value="Dark" />
+        </types>
+        <statusConditions>
+            <entry key="0x00" />
+            <entry key="0x01" value="SLP" />
+            <entry key="0x02" value="SLP" />
+            <entry key="0x03" value="SLP" />
+            <entry key="0x04" value="SLP" />
+            <entry key="0x05" value="SLP" />
+            <entry key="0x06" value="SLP" />
+            <entry key="0x08" value="PSN" />
+            <entry key="0x10" value="BRN" />
+            <entry key="0x20" value="FRZ" />
+            <entry key="0x40" value="PRZ" />
+        </statusConditions>
+        <defaultCharacterMap>
+            <entry key="0x50" />
+            <entry key="0x00" value=" " />
+            <entry key="0x54" value="#" />
+            <entry key="0x75" value="…" />
+            <entry key="0x79" value="┌" />
+            <entry key="0x7A" value="─" />
+            <entry key="0x7B" value="┐" />
+            <entry key="0x7C" value="│" />
+            <entry key="0x7D" value="└" />
+            <entry key="0x7E" value="┘" />
+            <entry key="0x74" value="№" />
+            <entry key="0x7F" value=" " />
+            <entry key="0x80" value="A" />
+            <entry key="0x81" value="B" />
+            <entry key="0x82" value="C" />
+            <entry key="0x83" value="D" />
+            <entry key="0x84" value="E" />
+            <entry key="0x85" value="F" />
+            <entry key="0x86" value="G" />
+            <entry key="0x87" value="H" />
+            <entry key="0x88" value="I" />
+            <entry key="0x89" value="J" />
+            <entry key="0x8A" value="K" />
+            <entry key="0x8B" value="L" />
+            <entry key="0x8C" value="M" />
+            <entry key="0x8D" value="N" />
+            <entry key="0x8E" value="O" />
+            <entry key="0x8F" value="P" />
+            <entry key="0x90" value="Q" />
+            <entry key="0x91" value="R" />
+            <entry key="0x92" value="S" />
+            <entry key="0x93" value="T" />
+            <entry key="0x94" value="U" />
+            <entry key="0x95" value="V" />
+            <entry key="0x96" value="W" />
+            <entry key="0x97" value="X" />
+            <entry key="0x98" value="Y" />
+            <entry key="0x99" value="Z" />
+            <entry key="0x9A" value="(" />
+            <entry key="0x9B" />
+            <entry key="0x9C" value=":" />
+            <entry key="0x9D" value=";" />
+            <entry key="0x9E" value="[" />
+            <entry key="0x9F" value="]" />
+            <entry key="0xA0" value="a" />
+            <entry key="0xA1" value="b" />
+            <entry key="0xA2" value="c" />
+            <entry key="0xA3" value="d" />
+            <entry key="0xA4" value="e" />
+            <entry key="0xA5" value="f" />
+            <entry key="0xA6" value="g" />
+            <entry key="0xA7" value="h" />
+            <entry key="0xA8" value="i" />
+            <entry key="0xA9" value="j" />
+            <entry key="0xAA" value="k" />
+            <entry key="0xAB" value="l" />
+            <entry key="0xAC" value="m" />
+            <entry key="0xAD" value="n" />
+            <entry key="0xAE" value="o" />
+            <entry key="0xAF" value="p" />
+            <entry key="0xB0" value="q" />
+            <entry key="0xB1" value="r" />
+            <entry key="0xB2" value="s" />
+            <entry key="0xB3" value="t" />
+            <entry key="0xB4" value="u" />
+            <entry key="0xB5" value="v" />
+            <entry key="0xB6" value="w" />
+            <entry key="0xB7" value="x" />
+            <entry key="0xB8" value="y" />
+            <entry key="0xB9" value="z" />
+            <entry key="0xBA" value="é" />
+            <entry key="0xBB" value="d" />
+            <entry key="0xBC" value="l" />
+            <entry key="0xBD" value="s" />
+            <entry key="0xBE" value="t" />
+            <entry key="0xBF" value="v" />
+            <entry key="0xE0" value=" " />
+            <entry key="0xE3" value="-" />
+            <entry key="0xE4" value="r" />
+            <entry key="0xE5" value="m" />
+            <entry key="0xE6" value=" " />
+            <entry key="0xE7" value="!" />
+            <entry key="0xE8" value="." />
+            <entry key="0xED" value="▶" />
+            <entry key="0xEF" value="♂" />
+            <entry key="0xF0" value="¥" />
+            <entry key="0xF1" value="×" />
+            <entry key="0xF3" value="/" />
+            <entry key="0xF4" value=":" />
+            <entry key="0xF5" value="♀" />
+            <entry key="0xF6" value="0" />
+            <entry key="0xF7" value="1" />
+            <entry key="0xF8" value="2" />
+            <entry key="0xF9" value="3" />
+            <entry key="0xFA" value="4" />
+            <entry key="0xFB" value="5" />
+            <entry key="0xFC" value="6" />
+            <entry key="0xFD" value="7" />
+            <entry key="0xFE" value="8" />
+            <entry key="0xFF" value="9" />
+        </defaultCharacterMap>
+        <stageModifiers>
+            <entry key="0x00" />
+            <entry key="0x01" value="-6" />
+            <entry key="0x02" value="-5" />
+            <entry key="0x03" value="-4" />
+            <entry key="0x04" value="-3" />
+            <entry key="0x05" value="-2" />
+            <entry key="0x06" value="-1" />
+            <entry key="0x07" value="0" />
+            <entry key="0x08" value="1" />
+            <entry key="0x09" value="2" />
+            <entry key="0x0A" value="3" />
+            <entry key="0x0B" value="4" />
+            <entry key="0x0C" value="5" />
+            <entry key="0x0D" value="6" />
+            <entry key="0x0E" />
+            <entry key="0x14" />
+        </stageModifiers>
+        <hms>
+            <entry key="0x01" value="Cut" />
+        </hms>
+        <moves>
+            <entry key="0x00" />
+            <entry key="0x01" value="POUND" />
+            <entry key="0x02" value="KARATE CHOP" />
+            <entry key="0x03" value="DOUBLESLAP" />
+            <entry key="0x04" value="COMET PUNCH" />
+            <entry key="0x05" value="MEGA PUNCH" />
+            <entry key="0x06" value="PAY DAY" />
+            <entry key="0x07" value="FIRE PUNCH" />
+            <entry key="0x08" value="ICE PUNCH" />
+            <entry key="0x09" value="ThunderPunch" />
+            <entry key="0x0A" value="SCRATCH" />
+            <entry key="0x0B" value="VICEGRIP" />
+            <entry key="0x0C" value="GUILLOTINE" />
+            <entry key="0x0D" value="RAZOR WIND" />
+            <entry key="0x0E" value="SWORDS DANCE" />
+            <entry key="0x0F" value="CUT" />
+            <entry key="0x10" value="GUST" />
+            <entry key="0x11" value="WING ATTACK" />
+            <entry key="0x12" value="WHIRLWIND" />
+            <entry key="0x13" value="FLY" />
+            <entry key="0x14" value="BIND" />
+            <entry key="0x15" value="SLAM" />
+            <entry key="0x16" value="VINE WHIP" />
+            <entry key="0x17" value="STOMP" />
+            <entry key="0x18" value="DOUBLE KICK" />
+            <entry key="0x19" value="MEGA KICK" />
+            <entry key="0x1A" value="JUMP KICK" />
+            <entry key="0x1B" value="ROLLING KICK" />
+            <entry key="0x1C" value="SAND-ATTACK" />
+            <entry key="0x1D" value="HEADBUTT" />
+            <entry key="0x1E" value="HORN ATTACK" />
+            <entry key="0x1F" value="FURY ATTACK" />
+            <entry key="0x20" value="HORN DRILL" />
+            <entry key="0x21" value="TACKLE" />
+            <entry key="0x22" value="BODY SLAM" />
+            <entry key="0x23" value="WRAP" />
+            <entry key="0x24" value="TAKE DOWN" />
+            <entry key="0x25" value="THRASH" />
+            <entry key="0x26" value="DOUBLE-EDGE" />
+            <entry key="0x27" value="TAIL WHIP" />
+            <entry key="0x28" value="POISON STING" />
+            <entry key="0x29" value="TWINEEDLE" />
+            <entry key="0x2A" value="PIN MISSILE" />
+            <entry key="0x2B" value="LEER" />
+            <entry key="0x2C" value="BITE" />
+            <entry key="0x2D" value="GROWL" />
+            <entry key="0x2E" value="ROAR" />
+            <entry key="0x2F" value="SING" />
+            <entry key="0x30" value="SUPERSONIC" />
+            <entry key="0x31" value="SonicBoom" />
+            <entry key="0x32" value="DISABLE" />
+            <entry key="0x33" value="ACID" />
+            <entry key="0x34" value="EMBER" />
+            <entry key="0x35" value="FLAMETHROWER" />
+            <entry key="0x36" value="MIST" />
+            <entry key="0x37" value="WATER GUN" />
+            <entry key="0x38" value="HYDRO PUMP" />
+            <entry key="0x39" value="SURF" />
+            <entry key="0x3A" value="ICE BEAM" />
+            <entry key="0x3B" value="BLIZZARD" />
+            <entry key="0x3C" value="PSYBEAM" />
+            <entry key="0x3D" value="BUBBLEBEAM" />
+            <entry key="0x3E" value="AURORA BEAM" />
+            <entry key="0x3F" value="HYPER BEAM" />
+            <entry key="0x40" value="PECK" />
+            <entry key="0x41" value="DRILL PECK" />
+            <entry key="0x42" value="SUBMISSION" />
+            <entry key="0x43" value="LOW KICK" />
+            <entry key="0x44" value="COUNTER" />
+            <entry key="0x45" value="SEISMIC TOSS" />
+            <entry key="0x46" value="STRENGTH" />
+            <entry key="0x47" value="ABSORB" />
+            <entry key="0x48" value="MEGA DRAIN" />
+            <entry key="0x49" value="LEECH SEED" />
+            <entry key="0x4A" value="GROWTH" />
+            <entry key="0x4B" value="RAZOR LEAF" />
+            <entry key="0x4C" value="SOLARBEAM" />
+            <entry key="0x4D" value="POISONPOWDER" />
+            <entry key="0x4E" value="STUN SPORE" />
+            <entry key="0x4F" value="SLEEP POWDER" />
+            <entry key="0x50" value="PETAL DANCE" />
+            <entry key="0x51" value="STRING SHOT" />
+            <entry key="0x52" value="DRAGON RAGE" />
+            <entry key="0x53" value="FIRE SPIN" />
+            <entry key="0x54" value="THUNDERSHOCK" />
+            <entry key="0x55" value="THUNDERBOLT" />
+            <entry key="0x56" value="THUNDER WAVE" />
+            <entry key="0x57" value="THUNDER" />
+            <entry key="0x58" value="ROCK THROW" />
+            <entry key="0x59" value="EARTHQUAKE" />
+            <entry key="0x5A" value="FISSURE" />
+            <entry key="0x5B" value="DIG" />
+            <entry key="0x5C" value="TOXIC" />
+            <entry key="0x5D" value="CONFUSION" />
+            <entry key="0x5E" value="PSYCHIC" />
+            <entry key="0x5F" value="HYPNOSIS" />
+            <entry key="0x60" value="MEDITATE" />
+            <entry key="0x61" value="AGILITY" />
+            <entry key="0x62" value="QUICK ATTACK" />
+            <entry key="0x63" value="RAGE" />
+            <entry key="0x64" value="TELEPORT" />
+            <entry key="0x65" value="NIGHT SHADE" />
+            <entry key="0x66" value="MIMIC" />
+            <entry key="0x67" value="SCREECH" />
+            <entry key="0x68" value="DOUBLE TEAM" />
+            <entry key="0x69" value="RECOVER" />
+            <entry key="0x6A" value="HARDEN" />
+            <entry key="0x6B" value="MINIMIZE" />
+            <entry key="0x6C" value="SMOKESCREEN" />
+            <entry key="0x6D" value="CONFUSE RAY" />
+            <entry key="0x6E" value="WITHDRAW" />
+            <entry key="0x6F" value="DEFENSE CURL" />
+            <entry key="0x70" value="BARRIER" />
+            <entry key="0x71" value="LIGHT SCREEN" />
+            <entry key="0x72" value="HAZE" />
+            <entry key="0x73" value="REFLECT" />
+            <entry key="0x74" value="FOCUS ENERGY" />
+            <entry key="0x75" value="BIDE" />
+            <entry key="0x76" value="METRONOME" />
+            <entry key="0x77" value="MIRROR MOVE" />
+            <entry key="0x78" value="SELFDESTRUCT" />
+            <entry key="0x79" value="EGG BOMB" />
+            <entry key="0x7A" value="LICK" />
+            <entry key="0x7B" value="SMOG" />
+            <entry key="0x7C" value="SLUDGE" />
+            <entry key="0x7D" value="BONE CLUB" />
+            <entry key="0x7E" value="FIRE BLAST" />
+            <entry key="0x7F" value="WATERFALL" />
+            <entry key="0x80" value="CLAMP" />
+            <entry key="0x81" value="SWIFT" />
+            <entry key="0x82" value="SKULL BASH" />
+            <entry key="0x83" value="SPIKE CANNON" />
+            <entry key="0x84" value="CONSTRICT" />
+            <entry key="0x85" value="AMNESIA" />
+            <entry key="0x86" value="KINESIS" />
+            <entry key="0x87" value="SOFTBOILED" />
+            <entry key="0x88" value="HI JUMP KICK" />
+            <entry key="0x89" value="GLARE" />
+            <entry key="0x8A" value="DREAM EATER" />
+            <entry key="0x8B" value="POISON GAS" />
+            <entry key="0x8C" value="BARRAGE" />
+            <entry key="0x8D" value="LEECH LIFE" />
+            <entry key="0x8E" value="LOVELY KISS" />
+            <entry key="0x8F" value="SKY ATTACK" />
+            <entry key="0x90" value="TRANSFORM" />
+            <entry key="0x91" value="BUBBLE" />
+            <entry key="0x92" value="DIZZY PUNCH" />
+            <entry key="0x93" value="SPORE" />
+            <entry key="0x94" value="FLASH" />
+            <entry key="0x95" value="PSYWAVE" />
+            <entry key="0x96" value="SPLASH" />
+            <entry key="0x97" value="ACID ARMOR" />
+            <entry key="0x98" value="CRABHAMMER" />
+            <entry key="0x99" value="EXPLOSION" />
+            <entry key="0x9A" value="FURY SWIPES" />
+            <entry key="0x9B" value="BONEMERANG" />
+            <entry key="0x9C" value="REST" />
+            <entry key="0x9D" value="ROCK SLIDE" />
+            <entry key="0x9E" value="HYPER FANG" />
+            <entry key="0x9F" value="SHARPEN" />
+            <entry key="0xA0" value="CONVERSION" />
+            <entry key="0xA1" value="TRI ATTACK" />
+            <entry key="0xA2" value="SUPER FANG" />
+            <entry key="0xA3" value="SLASH" />
+            <entry key="0xA4" value="SUBSTITUTE" />
+            <entry key="0xA5" value="STRUGGLE" />
+            <entry key="0xA6" value="SKETCH" />
+            <entry key="0xA7" value="TRIPLE KICK" />
+            <entry key="0xA8" value="THIEF" />
+            <entry key="0xA9" value="SPIDER WEB" />
+            <entry key="0xAA" value="MIND READER" />
+            <entry key="0xAB" value="NIGHTMARE" />
+            <entry key="0xAC" value="FLAME WHEEL" />
+            <entry key="0xAD" value="SNORE" />
+            <entry key="0xAE" value="CURSE" />
+            <entry key="0xAF" value="FLAIL" />
+            <entry key="0xB0" value="CONVERSION2" />
+            <entry key="0xB1" value="AEROBLAST" />
+            <entry key="0xB2" value="COTTON SPORE" />
+            <entry key="0xB3" value="REVERSAL" />
+            <entry key="0xB4" value="SPITE" />
+            <entry key="0xB5" value="POWDER SNOW" />
+            <entry key="0xB6" value="PROTECT" />
+            <entry key="0xB7" value="MACH PUNCH" />
+            <entry key="0xB8" value="SCARY FACE" />
+            <entry key="0xB9" value="FAINT ATTACK" />
+            <entry key="0xBA" value="SWEET KISS" />
+            <entry key="0xBB" value="BELLY DRUM" />
+            <entry key="0xBC" value="SLUDGE BOMB" />
+            <entry key="0xBD" value="MUD-SLAP" />
+            <entry key="0xBE" value="OCTAZOOKA" />
+            <entry key="0xBF" value="SPIKES" />
+            <entry key="0xC0" value="ZAP CANNON" />
+            <entry key="0xC1" value="FORESIGHT" />
+            <entry key="0xC2" value="DESTINY BOND" />
+            <entry key="0xC3" value="PERISH SONG" />
+            <entry key="0xC4" value="ICY WIND" />
+            <entry key="0xC5" value="DETECT" />
+            <entry key="0xC6" value="BONE RUSH" />
+            <entry key="0xC7" value="LOCK-ON" />
+            <entry key="0xC8" value="OUTRAGE" />
+            <entry key="0xC9" value="SANDSTORM" />
+            <entry key="0xCA" value="GIGA DRAIN" />
+            <entry key="0xCB" value="ENDURE" />
+            <entry key="0xCC" value="CHARM" />
+            <entry key="0xCD" value="ROLLOUT" />
+            <entry key="0xCE" value="FALSE SWIPE" />
+            <entry key="0xCF" value="SWAGGER" />
+            <entry key="0xD0" value="MILK DRINK" />
+            <entry key="0xD1" value="SPARK" />
+            <entry key="0xD2" value="FURY CUTTER" />
+            <entry key="0xD3" value="STEEL WING" />
+            <entry key="0xD4" value="MEAN LOOK" />
+            <entry key="0xD5" value="ATTRACT" />
+            <entry key="0xD6" value="SLEEP TALK" />
+            <entry key="0xD7" value="HEAL BELL" />
+            <entry key="0xD8" value="RETURN" />
+            <entry key="0xD9" value="PRESENT" />
+            <entry key="0xDA" value="FRUSTRATION" />
+            <entry key="0xDB" value="SAFEGUARD" />
+            <entry key="0xDC" value="PAIN SPLIT" />
+            <entry key="0xDD" value="SACRED FIRE" />
+            <entry key="0xDE" value="MAGNITUDE" />
+            <entry key="0xDF" value="DYNAMICPUNCH" />
+            <entry key="0xE0" value="MEGAHORN" />
+            <entry key="0xE1" value="DRAGONBREATH" />
+            <entry key="0xE2" value="BATON PASS" />
+            <entry key="0xE3" value="ENCORE" />
+            <entry key="0xE4" value="PURSUIT" />
+            <entry key="0xE5" value="RAPID SPIN" />
+            <entry key="0xE6" value="SWEET SCENT" />
+            <entry key="0xE7" value="IRON TAIL" />
+            <entry key="0xE8" value="METAL CLAW" />
+            <entry key="0xE9" value="VITAL THROW" />
+            <entry key="0xEA" value="MORNING SUN" />
+            <entry key="0xEB" value="SYNTHESIS" />
+            <entry key="0xEC" value="MOONLIGHT" />
+            <entry key="0xED" value="HIDDEN POWER" />
+            <entry key="0xEE" value="CROSS CHOP" />
+            <entry key="0xEF" value="TWISTER" />
+            <entry key="0xF0" value="RAIN DANCE" />
+            <entry key="0xF1" value="SUNNY DAY" />
+            <entry key="0xF2" value="CRUNCH" />
+            <entry key="0xF3" value="MIRROR COAT" />
+            <entry key="0xF4" value="PSYCH UP" />
+            <entry key="0xF5" value="EXTREMESPEED" />
+            <entry key="0xF6" value="ANCIENTPOWER" />
+            <entry key="0xF7" value="SHADOW BALL" />
+            <entry key="0xF8" value="FUTURE SIGHT" />
+            <entry key="0xF9" value="ROCK SMASH" />
+            <entry key="0xFA" value="WHIRLPOOL" />
+            <entry key="0xFB" value="BEAT UP" />
+        </moves>
+        <items>
+            <entry key="0x00" />
+            <entry key="0x01" value="MASTER BALL" />
+            <entry key="0x02" value="ULTRA BALL" />
+            <entry key="0x03" value="BRIGHTPOWDER" />
+            <entry key="0x04" value="GREAT BALL" />
+            <entry key="0x05" value="POKE BALL" />
+            <entry key="0x06" value="TOWN MAP" />
+            <entry key="0x07" value="BICYCLE" />
+            <entry key="0x08" value="MOON STONE" />
+            <entry key="0x09" value="ANTIDOTE" />
+            <entry key="0x0A" value="BURN HEAL" />
+            <entry key="0x0B" value="ICE HEAL" />
+            <entry key="0x0C" value="AWAKENING" />
+            <entry key="0x0D" value="PARLYZ HEAL" />
+            <entry key="0x0E" value="FULL RESTORE" />
+            <entry key="0x0F" value="MAX POTION" />
+            <entry key="0x10" value="HYPER POTION" />
+            <entry key="0x11" value="SUPER POTION" />
+            <entry key="0x12" value="POTION" />
+            <entry key="0x13" value="ESCAPE ROPE" />
+            <entry key="0x14" value="REPEL" />
+            <entry key="0x15" value="MAX ELIXER" />
+            <entry key="0x16" value="FIRE STONE" />
+            <entry key="0x17" value="THUNDERSTONE" />
+            <entry key="0x18" value="WATER STONE" />
+            <entry key="0x19" value="TERU-SAMA" />
+            <entry key="0x1A" value="HP UP" />
+            <entry key="0x1B" value="PROTEIN" />
+            <entry key="0x1C" value="IRON" />
+            <entry key="0x1D" value="CARBOS" />
+            <entry key="0x1E" value="LUCKY PUNCH" />
+            <entry key="0x1F" value="CALCIUM" />
+            <entry key="0x20" value="RARE CANDY" />
+            <entry key="0x21" value="X ACCURACY" />
+            <entry key="0x22" value="LEAF STONE" />
+            <entry key="0x23" value="METAL POWDER" />
+            <entry key="0x24" value="NUGGET" />
+            <entry key="0x25" value="POKE DOLL" />
+            <entry key="0x26" value="FULL HEAL" />
+            <entry key="0x27" value="REVIVE" />
+            <entry key="0x28" value="MAX REVIVE" />
+            <entry key="0x29" value="GUARD SPEC." />
+            <entry key="0x2A" value="SUPER REPEL" />
+            <entry key="0x2B" value="MAX REPEL" />
+            <entry key="0x2C" value="DIRE HIT" />
+            <entry key="0x2D" value="TERU-SAMA" />
+            <entry key="0x2E" value="FRESH WATER" />
+            <entry key="0x2F" value="SODA POP" />
+            <entry key="0x30" value="LEMONADE" />
+            <entry key="0x31" value="X ATTACK" />
+            <entry key="0x32" value="TERU-SAMA" />
+            <entry key="0x33" value="X DEFEND" />
+            <entry key="0x34" value="X SPEED" />
+            <entry key="0x35" value="X SPECIAL" />
+            <entry key="0x36" value="COIN CASE" />
+            <entry key="0x37" value="ITEMFINDER" />
+            <entry key="0x38" value="POKE FLUTE" />
+            <entry key="0x39" value="EXP.SHARE" />
+            <entry key="0x3A" value="OLD ROD" />
+            <entry key="0x3B" value="GOOD ROD" />
+            <entry key="0x3C" value="SILVER LEAF" />
+            <entry key="0x3D" value="SUPER ROD" />
+            <entry key="0x3E" value="PP UP" />
+            <entry key="0x3F" value="ETHER" />
+            <entry key="0x40" value="MAX ETHER" />
+            <entry key="0x41" value="ELIXER" />
+            <entry key="0x42" value="RED SCALE" />
+            <entry key="0x43" value="SECRETPOTION" />
+            <entry key="0x44" value="S.S.TICKET" />
+            <entry key="0x45" value="MYSTERY EGG" />
+            <entry key="0x46" value="CLEAR BELL" />
+            <entry key="0x47" value="SILVER WING" />
+            <entry key="0x48" value="MOOMOO MILK" />
+            <entry key="0x49" value="QUICK CLAW" />
+            <entry key="0x4A" value="PSNCUREBERRY" />
+            <entry key="0x4B" value="GOLD LEAF" />
+            <entry key="0x4C" value="SOFT SAND" />
+            <entry key="0x4D" value="SHARP BEAK" />
+            <entry key="0x4E" value="PRZCUREBERRY" />
+            <entry key="0x4F" value="BURNT BERRY" />
+            <entry key="0x50" value="ICE BERRY" />
+            <entry key="0x51" value="POISON BARB" />
+            <entry key="0x52" value="KING'S ROCK" />
+            <entry key="0x53" value="BITTER BERRY" />
+            <entry key="0x54" value="MINT BERRY" />
+            <entry key="0x55" value="RED APRICORN" />
+            <entry key="0x56" value="TINYMUSHROOM" />
+            <entry key="0x57" value="BIG MUSHROOM" />
+            <entry key="0x58" value="SILVERPOWDER" />
+            <entry key="0x59" value="BLU APRICORN" />
+            <entry key="0x5A" value="TERU-SAMA" />
+            <entry key="0x5B" value="AMULET COIN" />
+            <entry key="0x5C" value="YLW APRICORN" />
+            <entry key="0x5D" value="GRN APRICORN" />
+            <entry key="0x5E" value="CLEANSE TAG" />
+            <entry key="0x5F" value="MYSTIC WATER" />
+            <entry key="0x60" value="TWISTEDSPOON" />
+            <entry key="0x61" value="WHT APRICORN" />
+            <entry key="0x62" value="BLACKBELT" />
+            <entry key="0x63" value="BLK APRICORN" />
+            <entry key="0x64" value="TERU-SAMA" />
+            <entry key="0x65" value="PNK APRICORN" />
+            <entry key="0x66" value="BLACKGLASSES" />
+            <entry key="0x67" value="SLOWPOKETAIL" />
+            <entry key="0x68" value="PINK BOW" />
+            <entry key="0x69" value="STICK" />
+            <entry key="0x6A" value="SMOKE BALL" />
+            <entry key="0x6B" value="NEVERMELTICE" />
+            <entry key="0x6C" value="MAGNET" />
+            <entry key="0x6D" value="MIRACLEBERRY" />
+            <entry key="0x6E" value="PEARL" />
+            <entry key="0x6F" value="BIG PEARL" />
+            <entry key="0x70" value="EVERSTONE" />
+            <entry key="0x71" value="SPELL TAG" />
+            <entry key="0x72" value="RAGECANDYBAR" />
+            <entry key="0x73" value="GS BALL" />
+            <entry key="0x74" value="BLUE CARD" />
+            <entry key="0x75" value="MIRACLE SEED" />
+            <entry key="0x76" value="THICK CLUB" />
+            <entry key="0x77" value="FOCUS BAND" />
+            <entry key="0x78" value="TERU-SAMA" />
+            <entry key="0x79" value="ENERGYPOWDER" />
+            <entry key="0x7A" value="ENERGY ROOT" />
+            <entry key="0x7B" value="HEAL POWDER" />
+            <entry key="0x7C" value="REVIVAL HERB" />
+            <entry key="0x7D" value="HARD STONE" />
+            <entry key="0x7E" value="LUCKY EGG" />
+            <entry key="0x7F" value="CARD KEY" />
+            <entry key="0x80" value="MACHINE PART" />
+            <entry key="0x81" value="EGG TICKET" />
+            <entry key="0x82" value="LOST ITEM" />
+            <entry key="0x83" value="STARDUST" />
+            <entry key="0x84" value="STAR PIECE" />
+            <entry key="0x85" value="BASEMENT KEY" />
+            <entry key="0x86" value="PASS" />
+            <entry key="0x87" value="TERU-SAMA" />
+            <entry key="0x88" value="TERU-SAMA" />
+            <entry key="0x89" value="TERU-SAMA" />
+            <entry key="0x8A" value="CHARCOAL" />
+            <entry key="0x8B" value="BERRY JUICE" />
+            <entry key="0x8C" value="SCOPE LENS" />
+            <entry key="0x8D" value="TERU-SAMA" />
+            <entry key="0x8E" value="TERU-SAMA" />
+            <entry key="0x8F" value="METAL COAT" />
+            <entry key="0x90" value="DRAGON FANG" />
+            <entry key="0x91" value="TERU-SAMA" />
+            <entry key="0x92" value="LEFTOVERS" />
+            <entry key="0x93" value="TERU-SAMA" />
+            <entry key="0x94" value="TERU-SAMA" />
+            <entry key="0x95" value="TERU-SAMA" />
+            <entry key="0x96" value="MYSTERYBERRY" />
+            <entry key="0x97" value="DRAGON SCALE" />
+            <entry key="0x98" value="BERSERK GENE" />
+            <entry key="0x99" value="TERU-SAMA" />
+            <entry key="0x9A" value="TERU-SAMA" />
+            <entry key="0x9B" value="TERU-SAMA" />
+            <entry key="0x9C" value="SACRED ASH" />
+            <entry key="0x9D" value="HEAVY BALL" />
+            <entry key="0x9E" value="FLOWER MAIL" />
+            <entry key="0x9F" value="LEVEL BALL" />
+            <entry key="0xA0" value="LURE BALL" />
+            <entry key="0xA1" value="FAST BALL" />
+            <entry key="0xA2" value="TERU-SAMA" />
+            <entry key="0xA3" value="LIGHT BALL" />
+            <entry key="0xA4" value="FRIEND BALL" />
+            <entry key="0xA5" value="MOON BALL" />
+            <entry key="0xA6" value="LOVE BALL" />
+            <entry key="0xA7" value="NORMAL BOX" />
+            <entry key="0xA8" value="GORGEOUS BOX" />
+            <entry key="0xA9" value="SUN STONE" />
+            <entry key="0xAA" value="POLKADOT BOW" />
+            <entry key="0xAB" value="TERU-SAMA" />
+            <entry key="0xAC" value="UP-GRADE" />
+            <entry key="0xAD" value="BERRY" />
+            <entry key="0xAE" value="GOLD BERRY" />
+            <entry key="0xAF" value="SQUIRTBOTTLE" />
+            <entry key="0xB0" value="TERU-SAMA" />
+            <entry key="0xB1" value="PARK BALL" />
+            <entry key="0xB2" value="RAINBOW WING" />
+            <entry key="0xB3" value="TERU-SAMA" />
+            <entry key="0xB4" value="BRICK PIECE" />
+            <entry key="0xB5" value="SURF MAIL" />
+            <entry key="0xB6" value="LITEBLUEMAIL" />
+            <entry key="0xB7" value="PORTRAITMAIL" />
+            <entry key="0xB8" value="LOVELY MAIL" />
+            <entry key="0xB9" value="EON MAIL" />
+            <entry key="0xBA" value="MORPH MAIL" />
+            <entry key="0xBB" value="BLUESKY MAIL" />
+            <entry key="0xBC" value="MUSIC MAIL" />
+            <entry key="0xBD" value="MIRAGE MAIL" />
+            <entry key="0xBE" value="TERU-SAMA" />
+        </items>
+        <pokemonSpecies>
+            <entry key="0x00" />
+            <entry key="0x01" value="Bulbasaur" />
+            <entry key="0x02" value="Ivysaur" />
+            <entry key="0x03" value="Venusaur" />
+            <entry key="0x04" value="Charmander" />
+            <entry key="0x05" value="Charmeleon" />
+            <entry key="0x06" value="Charizard" />
+            <entry key="0x07" value="Squirtle" />
+            <entry key="0x08" value="Wartortle" />
+            <entry key="0x09" value="Blastoise" />
+            <entry key="0x0A" value="Caterpie" />
+            <entry key="0x0B" value="Metapod" />
+            <entry key="0x0C" value="Butterfree" />
+            <entry key="0x0D" value="Weedle" />
+            <entry key="0x0E" value="Kakuna" />
+            <entry key="0x0F" value="Beedrill" />
+            <entry key="0x10" value="Pidgey" />
+            <entry key="0x11" value="Pidgeotto" />
+            <entry key="0x12" value="Pidgeot" />
+            <entry key="0x13" value="Rattata" />
+            <entry key="0x14" value="Raticate" />
+            <entry key="0x15" value="Spearow" />
+            <entry key="0x16" value="Fearow" />
+            <entry key="0x17" value="Ekans" />
+            <entry key="0x18" value="Arbok" />
+            <entry key="0x19" value="Pikachu" />
+            <entry key="0x1A" value="Raichu" />
+            <entry key="0x1B" value="Sandshrew" />
+            <entry key="0x1C" value="Sandslash" />
+            <entry key="0x1D" value="NidoranF" />
+            <entry key="0x1E" value="Nidorina" />
+            <entry key="0x1F" value="Nidoqueen" />
+            <entry key="0x20" value="NidoranM" />
+            <entry key="0x21" value="Nidorino" />
+            <entry key="0x22" value="Nidoking" />
+            <entry key="0x23" value="Clefairy" />
+            <entry key="0x24" value="Clefable" />
+            <entry key="0x25" value="Vulpix" />
+            <entry key="0x26" value="Ninetales" />
+            <entry key="0x27" value="Jigglypuff" />
+            <entry key="0x28" value="Wigglytuff" />
+            <entry key="0x29" value="Zubat" />
+            <entry key="0x2A" value="Golbat" />
+            <entry key="0x2B" value="Oddish" />
+            <entry key="0x2C" value="Gloom" />
+            <entry key="0x2D" value="Vileplume" />
+            <entry key="0x2E" value="Paras" />
+            <entry key="0x2F" value="Parasect" />
+            <entry key="0x30" value="Venonat" />
+            <entry key="0x31" value="Venomoth" />
+            <entry key="0x32" value="Diglett" />
+            <entry key="0x33" value="Dugtrio" />
+            <entry key="0x34" value="Meowth" />
+            <entry key="0x35" value="Persian" />
+            <entry key="0x36" value="Psyduck" />
+            <entry key="0x37" value="Golduck" />
+            <entry key="0x38" value="Mankey" />
+            <entry key="0x39" value="Primeape" />
+            <entry key="0x3A" value="Growlithe" />
+            <entry key="0x3B" value="Arcanine" />
+            <entry key="0x3C" value="Poliwag" />
+            <entry key="0x3D" value="Poliwhirl" />
+            <entry key="0x3E" value="Poliwrath" />
+            <entry key="0x3F" value="Abra" />
+            <entry key="0x40" value="Kadabra" />
+            <entry key="0x41" value="Alakazam" />
+            <entry key="0x42" value="Machop" />
+            <entry key="0x43" value="Machoke" />
+            <entry key="0x44" value="Machamp" />
+            <entry key="0x45" value="Bellsprout" />
+            <entry key="0x46" value="Weepinbell" />
+            <entry key="0x47" value="Victreebel" />
+            <entry key="0x48" value="Tentacool" />
+            <entry key="0x49" value="Tentacruel" />
+            <entry key="0x4A" value="Geodude" />
+            <entry key="0x4B" value="Graveler" />
+            <entry key="0x4C" value="Golem" />
+            <entry key="0x4D" value="Ponyta" />
+            <entry key="0x4E" value="Rapidash" />
+            <entry key="0x4F" value="Slowpoke" />
+            <entry key="0x50" value="Slowbro" />
+            <entry key="0x51" value="Magnemite" />
+            <entry key="0x52" value="Magneton" />
+            <entry key="0x53" value="Farfetch'd" />
+            <entry key="0x54" value="Doduo" />
+            <entry key="0x55" value="Dodrio" />
+            <entry key="0x56" value="Seel" />
+            <entry key="0x57" value="Dewgong" />
+            <entry key="0x58" value="Grimer" />
+            <entry key="0x59" value="Muk" />
+            <entry key="0x5A" value="Shellder" />
+            <entry key="0x5B" value="Cloyster" />
+            <entry key="0x5C" value="Gastly" />
+            <entry key="0x5D" value="Haunter" />
+            <entry key="0x5E" value="Gengar" />
+            <entry key="0x5F" value="Onix" />
+            <entry key="0x60" value="Drowzee" />
+            <entry key="0x61" value="Hypno" />
+            <entry key="0x62" value="Krabby" />
+            <entry key="0x63" value="Kingler" />
+            <entry key="0x64" value="Voltorb" />
+            <entry key="0x65" value="Electrode" />
+            <entry key="0x66" value="Exeggcute" />
+            <entry key="0x67" value="Exeggutor" />
+            <entry key="0x68" value="Cubone" />
+            <entry key="0x69" value="Marowak" />
+            <entry key="0x6A" value="Hitmonlee" />
+            <entry key="0x6B" value="Hitmonchan" />
+            <entry key="0x6C" value="Lickitung" />
+            <entry key="0x6D" value="Koffing" />
+            <entry key="0x6E" value="Weezing" />
+            <entry key="0x6F" value="Rhyhorn" />
+            <entry key="0x70" value="Rhydon" />
+            <entry key="0x71" value="Chansey" />
+            <entry key="0x72" value="Tangela" />
+            <entry key="0x73" value="Kangaskhan" />
+            <entry key="0x74" value="Horsea" />
+            <entry key="0x75" value="Seadra" />
+            <entry key="0x76" value="Goldeen" />
+            <entry key="0x77" value="Seaking" />
+            <entry key="0x78" value="Staryu" />
+            <entry key="0x79" value="Starmie" />
+            <entry key="0x7A" value="Mr. Mime" />
+            <entry key="0x7B" value="Scyther" />
+            <entry key="0x7C" value="Jynx" />
+            <entry key="0x7D" value="Electabuzz" />
+            <entry key="0x7E" value="Magmar" />
+            <entry key="0x7F" value="Pinsir" />
+            <entry key="0x80" value="Tauros" />
+            <entry key="0x81" value="Magikarp" />
+            <entry key="0x82" value="Gyarados" />
+            <entry key="0x83" value="Lapras" />
+            <entry key="0x84" value="Ditto" />
+            <entry key="0x85" value="Eevee" />
+            <entry key="0x86" value="Vaporeon" />
+            <entry key="0x87" value="Jolteon" />
+            <entry key="0x88" value="Flareon" />
+            <entry key="0x89" value="Porygon" />
+            <entry key="0x8A" value="Omanyte" />
+            <entry key="0x8B" value="Omastar" />
+            <entry key="0x8C" value="Kabuto" />
+            <entry key="0x8D" value="Kabutops" />
+            <entry key="0x8E" value="Aerodactyl" />
+            <entry key="0x8F" value="Snorlax" />
+            <entry key="0x90" value="Articuno" />
+            <entry key="0x91" value="Zapdos" />
+            <entry key="0x92" value="Moltres" />
+            <entry key="0x93" value="Dratini" />
+            <entry key="0x94" value="Dragonair" />
+            <entry key="0x95" value="Dragonite" />
+            <entry key="0x96" value="Mewtwo" />
+            <entry key="0x97" value="Mew" />
+            <entry key="0x98" value="Chikorita" />
+            <entry key="0x99" value="Bayleef" />
+            <entry key="0x9A" value="Meganium" />
+            <entry key="0x9B" value="Cyndaquil" />
+            <entry key="0x9C" value="Quilava" />
+            <entry key="0x9D" value="Typhlosion" />
+            <entry key="0x9E" value="Totodile" />
+            <entry key="0x9F" value="Croconaw" />
+            <entry key="0xA0" value="Feraligatr" />
+            <entry key="0xA1" value="Sentret" />
+            <entry key="0xA2" value="Furret" />
+            <entry key="0xA3" value="Hoothoot" />
+            <entry key="0xA4" value="Noctowl" />
+            <entry key="0xA5" value="Ledyba" />
+            <entry key="0xA6" value="Ledian" />
+            <entry key="0xA7" value="Spinarak" />
+            <entry key="0xA8" value="Ariados" />
+            <entry key="0xA9" value="Crobat" />
+            <entry key="0xAA" value="Chinchou" />
+            <entry key="0xAB" value="Lanturn" />
+            <entry key="0xAC" value="Pichu" />
+            <entry key="0xAD" value="Cleffa" />
+            <entry key="0xAE" value="Igglybuff" />
+            <entry key="0xAF" value="Togepi" />
+            <entry key="0xB0" value="Togetic" />
+            <entry key="0xB1" value="Natu" />
+            <entry key="0xB2" value="Xatu" />
+            <entry key="0xB3" value="Mareep" />
+            <entry key="0xB4" value="Flaaffy" />
+            <entry key="0xB5" value="Ampharos" />
+            <entry key="0xB6" value="Bellossom" />
+            <entry key="0xB7" value="Marill" />
+            <entry key="0xB8" value="Azumarill" />
+            <entry key="0xB9" value="Sudowoodo" />
+            <entry key="0xBA" value="Politoed" />
+            <entry key="0xBB" value="Hoppip" />
+            <entry key="0xBC" value="Skiploom" />
+            <entry key="0xBD" value="Jumpluff" />
+            <entry key="0xBE" value="Aipom" />
+            <entry key="0xBF" value="Sunkern" />
+            <entry key="0xC0" value="Sunflora" />
+            <entry key="0xC1" value="Yanma" />
+            <entry key="0xC2" value="Wooper" />
+            <entry key="0xC3" value="Quagsire" />
+            <entry key="0xC4" value="Espeon" />
+            <entry key="0xC5" value="Umbreon" />
+            <entry key="0xC6" value="Murkrow" />
+            <entry key="0xC7" value="Slowking" />
+            <entry key="0xC8" value="Misdreavus" />
+            <entry key="0xC9" value="Unown" />
+            <entry key="0xCA" value="Wobbuffet" />
+            <entry key="0xCB" value="Girafarig" />
+            <entry key="0xCC" value="Pineco" />
+            <entry key="0xCD" value="Forretress" />
+            <entry key="0xCE" value="Dunsparce" />
+            <entry key="0xCF" value="Gligar" />
+            <entry key="0xD0" value="Steelix" />
+            <entry key="0xD1" value="Snubbull" />
+            <entry key="0xD2" value="Granbull" />
+            <entry key="0xD3" value="Qwilfish" />
+            <entry key="0xD4" value="Scizor" />
+            <entry key="0xD5" value="Shuckle" />
+            <entry key="0xD6" value="Heracross" />
+            <entry key="0xD7" value="Sneasel" />
+            <entry key="0xD8" value="Teddiursa" />
+            <entry key="0xD9" value="Ursaring" />
+            <entry key="0xDA" value="Slugma" />
+            <entry key="0xDB" value="Magcargo" />
+            <entry key="0xDC" value="Swinub" />
+            <entry key="0xDD" value="Piloswine" />
+            <entry key="0xDE" value="Corsola" />
+            <entry key="0xDF" value="Remoraid" />
+            <entry key="0xE0" value="Octillery" />
+            <entry key="0xE1" value="Delibird" />
+            <entry key="0xE2" value="Mantine" />
+            <entry key="0xE3" value="Skarmory" />
+            <entry key="0xE4" value="Houndour" />
+            <entry key="0xE5" value="Houndoom" />
+            <entry key="0xE6" value="Kingdra" />
+            <entry key="0xE7" value="Phanpy" />
+            <entry key="0xE8" value="Donphan" />
+            <entry key="0xE9" value="Porygon2" />
+            <entry key="0xEA" value="Stantler" />
+            <entry key="0xEB" value="Smeargle" />
+            <entry key="0xEC" value="Tyrogue" />
+            <entry key="0xED" value="Hitmontop" />
+            <entry key="0xEE" value="Smoochum" />
+            <entry key="0xEF" value="Elekid" />
+            <entry key="0xF0" value="Magby" />
+            <entry key="0xF1" value="Miltank" />
+            <entry key="0xF2" value="Blissey" />
+            <entry key="0xF3" value="Raikou" />
+            <entry key="0xF4" value="Entei" />
+            <entry key="0xF5" value="Suicune" />
+            <entry key="0xF6" value="Larvitar" />
+            <entry key="0xF7" value="Pupitar" />
+            <entry key="0xF8" value="Tyranitar" />
+            <entry key="0xF9" value="Lugia" />
+            <entry key="0xFA" value="Ho-oh" />
+            <entry key="0xFB" value="Celebi" />
+        </pokemonSpecies>
+        <pokemonPokedexNumbers>
+            <entry key="0x00" />
+            <entry key="0x01" value="1" />
+            <entry key="0x02" value="2" />
+            <entry key="0x03" value="3" />
+            <entry key="0x04" value="4" />
+            <entry key="0x05" value="5" />
+            <entry key="0x06" value="6" />
+            <entry key="0x07" value="7" />
+            <entry key="0x08" value="8" />
+            <entry key="0x09" value="9" />
+            <entry key="0x0A" value="10" />
+            <entry key="0x0B" value="11" />
+            <entry key="0x0C" value="12" />
+            <entry key="0x0D" value="13" />
+            <entry key="0x0E" value="14" />
+            <entry key="0x0F" value="15" />
+            <entry key="0x10" value="16" />
+            <entry key="0x11" value="17" />
+            <entry key="0x12" value="18" />
+            <entry key="0x13" value="19" />
+            <entry key="0x14" value="20" />
+            <entry key="0x15" value="21" />
+            <entry key="0x16" value="22" />
+            <entry key="0x17" value="23" />
+            <entry key="0x18" value="24" />
+            <entry key="0x19" value="25" />
+            <entry key="0x1A" value="26" />
+            <entry key="0x1B" value="27" />
+            <entry key="0x1C" value="28" />
+            <entry key="0x1D" value="29" />
+            <entry key="0x1E" value="30" />
+            <entry key="0x1F" value="31" />
+            <entry key="0x20" value="32" />
+            <entry key="0x21" value="33" />
+            <entry key="0x22" value="34" />
+            <entry key="0x23" value="35" />
+            <entry key="0x24" value="36" />
+            <entry key="0x25" value="37" />
+            <entry key="0x26" value="38" />
+            <entry key="0x27" value="39" />
+            <entry key="0x28" value="40" />
+            <entry key="0x29" value="41" />
+            <entry key="0x2A" value="42" />
+            <entry key="0x2B" value="43" />
+            <entry key="0x2C" value="44" />
+            <entry key="0x2D" value="45" />
+            <entry key="0x2E" value="46" />
+            <entry key="0x2F" value="47" />
+            <entry key="0x30" value="48" />
+            <entry key="0x31" value="49" />
+            <entry key="0x32" value="50" />
+            <entry key="0x33" value="51" />
+            <entry key="0x34" value="52" />
+            <entry key="0x35" value="53" />
+            <entry key="0x36" value="54" />
+            <entry key="0x37" value="55" />
+            <entry key="0x38" value="56" />
+            <entry key="0x39" value="57" />
+            <entry key="0x3A" value="58" />
+            <entry key="0x3B" value="59" />
+            <entry key="0x3C" value="60" />
+            <entry key="0x3D" value="61" />
+            <entry key="0x3E" value="62" />
+            <entry key="0x3F" value="63" />
+            <entry key="0x40" value="64" />
+            <entry key="0x41" value="65" />
+            <entry key="0x42" value="66" />
+            <entry key="0x43" value="67" />
+            <entry key="0x44" value="68" />
+            <entry key="0x45" value="69" />
+            <entry key="0x46" value="70" />
+            <entry key="0x47" value="71" />
+            <entry key="0x48" value="72" />
+            <entry key="0x49" value="73" />
+            <entry key="0x4A" value="74" />
+            <entry key="0x4B" value="75" />
+            <entry key="0x4C" value="76" />
+            <entry key="0x4D" value="77" />
+            <entry key="0x4E" value="78" />
+            <entry key="0x4F" value="79" />
+            <entry key="0x50" value="80" />
+            <entry key="0x51" value="81" />
+            <entry key="0x52" value="82" />
+            <entry key="0x53" value="83" />
+            <entry key="0x54" value="84" />
+            <entry key="0x55" value="85" />
+            <entry key="0x56" value="86" />
+            <entry key="0x57" value="87" />
+            <entry key="0x58" value="88" />
+            <entry key="0x59" value="89" />
+            <entry key="0x5A" value="90" />
+            <entry key="0x5B" value="91" />
+            <entry key="0x5C" value="92" />
+            <entry key="0x5D" value="93" />
+            <entry key="0x5E" value="94" />
+            <entry key="0x5F" value="95" />
+            <entry key="0x60" value="96" />
+            <entry key="0x61" value="97" />
+            <entry key="0x62" value="98" />
+            <entry key="0x63" value="99" />
+            <entry key="0x64" value="100" />
+            <entry key="0x65" value="101" />
+            <entry key="0x66" value="102" />
+            <entry key="0x67" value="103" />
+            <entry key="0x68" value="104" />
+            <entry key="0x69" value="105" />
+            <entry key="0x6A" value="106" />
+            <entry key="0x6B" value="107" />
+            <entry key="0x6C" value="108" />
+            <entry key="0x6D" value="109" />
+            <entry key="0x6E" value="110" />
+            <entry key="0x6F" value="111" />
+            <entry key="0x70" value="112" />
+            <entry key="0x71" value="113" />
+            <entry key="0x72" value="114" />
+            <entry key="0x73" value="115" />
+            <entry key="0x74" value="116" />
+            <entry key="0x75" value="117" />
+            <entry key="0x76" value="118" />
+            <entry key="0x77" value="119" />
+            <entry key="0x78" value="120" />
+            <entry key="0x79" value="121" />
+            <entry key="0x7A" value="122" />
+            <entry key="0x7B" value="123" />
+            <entry key="0x7C" value="124" />
+            <entry key="0x7D" value="125" />
+            <entry key="0x7E" value="126" />
+            <entry key="0x7F" value="127" />
+            <entry key="0x80" value="128" />
+            <entry key="0x81" value="129" />
+            <entry key="0x82" value="130" />
+            <entry key="0x83" value="131" />
+            <entry key="0x84" value="132" />
+            <entry key="0x85" value="133" />
+            <entry key="0x86" value="134" />
+            <entry key="0x87" value="135" />
+            <entry key="0x88" value="136" />
+            <entry key="0x89" value="137" />
+            <entry key="0x8A" value="138" />
+            <entry key="0x8B" value="139" />
+            <entry key="0x8C" value="140" />
+            <entry key="0x8D" value="141" />
+            <entry key="0x8E" value="142" />
+            <entry key="0x8F" value="143" />
+            <entry key="0x90" value="144" />
+            <entry key="0x91" value="145" />
+            <entry key="0x92" value="146" />
+            <entry key="0x93" value="147" />
+            <entry key="0x94" value="148" />
+            <entry key="0x95" value="149" />
+            <entry key="0x96" value="150" />
+            <entry key="0x97" value="151" />
+            <entry key="0x98" value="152" />
+            <entry key="0x99" value="153" />
+            <entry key="0x9A" value="154" />
+            <entry key="0x9B" value="155" />
+            <entry key="0x9C" value="156" />
+            <entry key="0x9D" value="157" />
+            <entry key="0x9E" value="158" />
+            <entry key="0x9F" value="159" />
+            <entry key="0xA0" value="160" />
+            <entry key="0xA1" value="161" />
+            <entry key="0xA2" value="162" />
+            <entry key="0xA3" value="163" />
+            <entry key="0xA4" value="164" />
+            <entry key="0xA5" value="165" />
+            <entry key="0xA6" value="166" />
+            <entry key="0xA7" value="167" />
+            <entry key="0xA8" value="168" />
+            <entry key="0xA9" value="169" />
+            <entry key="0xAA" value="170" />
+            <entry key="0xAB" value="171" />
+            <entry key="0xAC" value="172" />
+            <entry key="0xAD" value="173" />
+            <entry key="0xAE" value="174" />
+            <entry key="0xAF" value="175" />
+            <entry key="0xB0" value="176" />
+            <entry key="0xB1" value="177" />
+            <entry key="0xB2" value="178" />
+            <entry key="0xB3" value="179" />
+            <entry key="0xB4" value="180" />
+            <entry key="0xB5" value="181" />
+            <entry key="0xB6" value="182" />
+            <entry key="0xB7" value="183" />
+            <entry key="0xB8" value="184" />
+            <entry key="0xB9" value="185" />
+            <entry key="0xBA" value="186" />
+            <entry key="0xBB" value="187" />
+            <entry key="0xBC" value="188" />
+            <entry key="0xBD" value="189" />
+            <entry key="0xBE" value="190" />
+            <entry key="0xBF" value="191" />
+            <entry key="0xC0" value="192" />
+            <entry key="0xC1" value="193" />
+            <entry key="0xC2" value="194" />
+            <entry key="0xC3" value="195" />
+            <entry key="0xC4" value="196" />
+            <entry key="0xC5" value="197" />
+            <entry key="0xC6" value="198" />
+            <entry key="0xC7" value="199" />
+            <entry key="0xC8" value="200" />
+            <entry key="0xC9" value="201" />
+            <entry key="0xCA" value="202" />
+            <entry key="0xCB" value="203" />
+            <entry key="0xCC" value="204" />
+            <entry key="0xCD" value="205" />
+            <entry key="0xCE" value="206" />
+            <entry key="0xCF" value="207" />
+            <entry key="0xD0" value="208" />
+            <entry key="0xD1" value="209" />
+            <entry key="0xD2" value="210" />
+            <entry key="0xD3" value="211" />
+            <entry key="0xD4" value="212" />
+            <entry key="0xD5" value="213" />
+            <entry key="0xD6" value="214" />
+            <entry key="0xD7" value="215" />
+            <entry key="0xD8" value="216" />
+            <entry key="0xD9" value="217" />
+            <entry key="0xDA" value="218" />
+            <entry key="0xDB" value="219" />
+            <entry key="0xDC" value="220" />
+            <entry key="0xDD" value="221" />
+            <entry key="0xDE" value="222" />
+            <entry key="0xDF" value="223" />
+            <entry key="0xE0" value="224" />
+            <entry key="0xE1" value="225" />
+            <entry key="0xE2" value="226" />
+            <entry key="0xE3" value="227" />
+            <entry key="0xE4" value="228" />
+            <entry key="0xE5" value="229" />
+            <entry key="0xE6" value="230" />
+            <entry key="0xE7" value="231" />
+            <entry key="0xE8" value="232" />
+            <entry key="0xE9" value="233" />
+            <entry key="0xEA" value="234" />
+            <entry key="0xEB" value="235" />
+            <entry key="0xEC" value="236" />
+            <entry key="0xED" value="237" />
+            <entry key="0xEE" value="238" />
+            <entry key="0xEF" value="239" />
+            <entry key="0xF0" value="240" />
+            <entry key="0xF1" value="241" />
+            <entry key="0xF2" value="242" />
+            <entry key="0xF3" value="243" />
+            <entry key="0xF4" value="244" />
+            <entry key="0xF5" value="245" />
+            <entry key="0xF6" value="246" />
+            <entry key="0xF7" value="247" />
+            <entry key="0xF8" value="248" />
+            <entry key="0xF9" value="249" />
+            <entry key="0xFA" value="250" />
+            <entry key="0xFB" value="251" />
+        </pokemonPokedexNumbers>
+        <mapGroups>
+            <entry key="0x01" value="OLIVINE" />
+            <entry key="0x02" value="MAHOGANY" />
+            <entry key="0x03" value="DUNGEONS" />
+            <entry key="0x04" value="ECRUTEAK" />
+            <entry key="0x05" value="BLACKTHORN" />
+            <entry key="0x06" value="CINNABAR" />
+            <entry key="0x07" value="CERULEAN" />
+            <entry key="0x08" value="AZALEA" />
+            <entry key="0x09" value="LAKE OF RAGE" />
+            <entry key="0x0A" value="VIOLET" />
+            <entry key="0x0B" value="GOLDENROD" />
+            <entry key="0x0C" value="VERMILION" />
+            <entry key="0x0D" value="PALLET" />
+            <entry key="0x0E" value="PEWTER" />
+            <entry key="0x0F" value="FAST SHIP" />
+            <entry key="0x10" value="INDIGO" />
+            <entry key="0x11" value="FUCHSIA" />
+            <entry key="0x12" value="LAVENDER" />
+            <entry key="0x13" value="SILVER" />
+            <entry key="0x14" value="CABLE CLUB" />
+            <entry key="0x15" value="CELADON" />
+            <entry key="0x16" value="CIANWOOD" />
+            <entry key="0x17" value="VIRIDIAN" />
+            <entry key="0x18" value="NEW BARK" />
+            <entry key="0x19" value="SAFFRON" />
+            <entry key="0x1A" value="CHERRYGROVE" />
+        </mapGroups>
+        <mapNumber>
+            <entry key="0x00" />
+        </mapNumber>
+        <textPrompt>
+            <entry key="0x58" value="▼" />
+            <entry key="0xEE" value="▼" />
+        </textPrompt>
+    </references>
+</mapper>
