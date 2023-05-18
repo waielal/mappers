@@ -33,12 +33,12 @@
             <property name="dvSpeed" type="int" address="address + 22" postprocessor-reader="(x - (x % 16))/16" />
             <property name="dvSpecial" type="int" address="address + 22" postprocessor-reader="x % 16" />
 
-            <array name="moves" type="pokemonInPartyMoveset">
+            <moves>
                 <class name="0" type="pokemonInPartyMoveset" var:moveAddress="address + 2" />
                 <class name="1" type="pokemonInPartyMoveset" var:moveAddress="address + 3" />
                 <class name="2" type="pokemonInPartyMoveset" var:moveAddress="address + 4" />
                 <class name="3" type="pokemonInPartyMoveset" var:moveAddress="address + 5" />
-            </array>
+            </moves>
 
             <property name="statExpHealth" type="int" address="address + 11" length="2" />
             <property name="statExpAttack" type="int" address="address + 13" length="2" />
@@ -69,14 +69,14 @@
         <player>
             <property name="name" type="string" address="0xD47D" length="11" />
 
-            <array name="team" type="pokemonInParty">
+            <team>
                 <class name="0" type="pokemonInParty" var:address="0xDCDF" var:nicknameAddress="0xDE41" />
                 <class name="1" type="pokemonInParty" var:address="0xDD0F" var:nicknameAddress="0xDE4C" />
                 <class name="2" type="pokemonInParty" var:address="0xDD3F" var:nicknameAddress="0xDE57" />
                 <class name="3" type="pokemonInParty" var:address="0xDD6F" var:nicknameAddress="0xDE62" />
                 <class name="4" type="pokemonInParty" var:address="0xDD9F" var:nicknameAddress="0xDE6D" />
                 <class name="5" type="pokemonInParty" var:address="0xDDCF" var:nicknameAddress="0xDE78" />
-            </array>
+            </team>
 
             <property name="teamCount" type="int" address="0xDCD7" />
 
