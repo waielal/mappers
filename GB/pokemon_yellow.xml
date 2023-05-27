@@ -667,7 +667,7 @@
         <textPrompt>
             <entry key="0xEE" value="▼" />
         </textPrompt>
-        <stageModifiers>
+        <stageModifiers type="number">
             <entry key="0x00" />
             <entry key="0x01" value="-6" />
             <entry key="0x02" value="-5" />
@@ -686,12 +686,12 @@
             <entry key="0x14" />
         </stageModifiers>
         <trashCanFlags>
-            <entry key="0x00">Unsolved</entry>
-            <entry key="0x02">First Can Found</entry>
-            <entry key="0x03">Solved</entry>
+            <entry key="0x00" value="Unsolved" />
+            <entry key="0x02" value="First Can Found" />
+            <entry key="0x03" value="Solved" />
         </trashCanFlags>
         <statusConditions>
-            <entry key="0x00" value=" " />
+            <entry key="0x00" />
             <entry key="0x01" value="Asleep" />
             <entry key="0x02" value="Asleep" />
             <entry key="0x03" value="Alseep" />
@@ -1221,7 +1221,7 @@
             <entry key="0xFA" value="TM50: Substitute" />
             <entry key="0xFF" />
         </items>
-        <pokemonPokedexNumbers>
+        <pokemonPokedexNumbers type="number">
             <entry key="0x00" />
             <entry key="0xFF" />
             <entry key="0x01" value="112" />

@@ -995,7 +995,7 @@
             <entry key="0xFE" value="8" />
             <entry key="0xFF" value="9" />
         </defaultCharacterMap>
-        <stageModifiers>
+        <stageModifiers type="number">
             <entry key="0x00" />
             <entry key="0x01" value="-6" />
             <entry key="0x02" value="-5" />
@@ -1717,7 +1717,7 @@
             <entry key="0xFA" value="Ho-oh" />
             <entry key="0xFB" value="Celebi" />
         </pokemonSpecies>
-        <pokemonPokedexNumbers>
+        <pokemonPokedexNumbers type="number">
             <entry key="0x00" />
             <entry key="0x01" value="1" />
             <entry key="0x02" value="2" />

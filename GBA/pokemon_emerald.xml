@@ -917,7 +917,7 @@
             <entry key="0x0D" value="NOTHING_FAINTED" />
             <entry key="0xFF" value="NONE" />
         </battleAction>
-        <stageModifiers>
+        <stageModifiers type="number">
             <entry key="0x00" value="-6" />
             <entry key="0x01" value="-5" />
             <entry key="0x02" value="-4" />
@@ -2008,7 +2008,7 @@
             <entry key="0x06" value="Korean" />
             <entry key="0x07" value="Spanish" />
         </language>
-        <pokemonPokedexNumbers>
+        <pokemonPokedexNumbers type="number">
             <entry key="0x00" />
             <entry key="0x01" value="1" />
             <entry key="0x02" value="2" />
