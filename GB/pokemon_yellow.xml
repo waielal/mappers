@@ -1421,7 +1421,7 @@
             <entry key="0xFF" />
             <entry key="0x01" value="Rhydon" />
             <entry key="0x02" value="Kangaskhan" />
-            <entry key="0x03" value="NidoranM" />
+            <entry key="0x03" value="Nidoran-M" />
             <entry key="0x04" value="Clefairy" />
             <entry key="0x05" value="Spearow" />
             <entry key="0x06" value="Voltorb" />
@@ -1433,7 +1433,7 @@
             <entry key="0x0C" value="Exeggcute" />
             <entry key="0x0D" value="Grimer" />
             <entry key="0x0E" value="Gengar" />
-            <entry key="0x0F" value="NidoranF" />
+            <entry key="0x0F" value="Nidoran-F" />
             <entry key="0x10" value="Nidoqueen" />
             <entry key="0x11" value="Cubone" />
             <entry key="0x12" value="Rhyhorn" />
