@@ -114,7 +114,8 @@
 
         <encounter>
             <property name="level" address="address" type="int" />
-            <property name="pokemon" address="address + 1" type="int" reference="pokemonSpecies" />
+            <property name="species" address="address + 1" type="int" reference="pokemonSpecies" />
+            <property name="pokedexNumber" address="address + 1" type="int" reference="pokemonPokedexNumbers" />
         </encounter>
     </classes>
 
@@ -246,9 +247,9 @@
             <property name="trashCanPuzzle"        type="bit" address="0xD772" position="0" description="Set value to 3 to solve the puzzle. Freezing this property breaks the gym trainers." />
         </events>
         <battle>
-            <property name="type" type="int" address="0xD056" reference="battleTypes" />
+            <property name="mode" type="int" address="0xD056" reference="battleModes" />
             <property name="animationTurn" type="int" address="0xFFF3" reference="battleTurn" description="This dictates which direction battle animations are played. (Enemy attacking player, or player attacking enemy.)" />
-            <property name="specialType" type="int" address="0xD059" reference="specialBattleTypes" />
+            <property name="type" type="int" address="0xD059" reference="battleTypes" />
             <property name="lowHealthAlarm" type="int" address="0xCCF6" reference="lowHealthAlarm" description="This is set to 0 at the start of battle and 1 when the opponent has lost" />
             <property name="attackDamage" type="int" address="0xD0D7" description="Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage." /> <!--duplicate property-->
             <trainer>
@@ -627,18 +628,18 @@
     </properties>
 
     <references>
-        <battleTypes>
+        <battleModes>
             <entry key="0x00" value="None" />
             <entry key="0x01" value="Wild" />
             <entry key="0x02" value="Trainer" />
             <entry key="0xFF" value="Lost Battle" />
-        </battleTypes>
-        <specialBattleTypes>
+        </battleModes>
+        <battleTypes>
             <entry key="0x00" value="Normal" />
             <entry key="0x01" value="Old Man Battle" />
             <entry key="0x02" value="Safari Zone" />
             <entry key="0x04" value="Oak Catching Starter" />
-        </specialBattleTypes>
+        </battleTypes>
         <battleTurn>
             <entry key="0x00" value="Player" />
             <entry key="0x01" value="Opponent" />
