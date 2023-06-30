@@ -721,6 +721,9 @@
                 <property name="movesLearnt" type="int" length="2" address="0x1023f" />
             </battles>
         </patch>
+        <game>
+            <property name="generation" type="int" value="2" />
+        </game>
     </properties>
 
     <references>

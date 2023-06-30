@@ -850,6 +850,10 @@
             <property name="callback1" type="int" length="4" address="0x030022c0" reference="mainState" />
             <property name="callback2" type="int" length="4" address="0x030022c4" reference="subState" />
         </pointers>
+
+        <game>
+            <property name="generation" type="int" value="3" />
+        </game>
     </properties>
 
     <references>

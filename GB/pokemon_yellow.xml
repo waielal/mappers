@@ -119,7 +119,7 @@
         </encounter>
     </classes>
 
-    <properties>
+    <properties>        
         <player>
             <property name="name" type="string" address="0xD157" length="11" />
             <property name="playerId" type="int" address="0xD358" length="2" />
@@ -625,6 +625,9 @@
             <property name="seconds" type="int" address="0xDA43" />
             <property name="frames"  type="int" address="0xDA44" />
         </gameTime>
+        <game>
+            <property name="generation" type="int" value="1" />
+        </game>
     </properties>
 
     <references>
